@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pomidoros.View.WelcomePage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+
+        <ScrollView>
+
+        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand"
+                     Margin="30,155,0,0">
+            <StackLayout VerticalOptions="CenterAndExpand">
+
+            <Label Text="Здравствуйте," TextColor="#1A1824" FontSize="16"></Label>
+
+            <Label Text="Олдос Хаксли" TextColor="#1A1824" FontSize="30">
+            </Label>
+
+            </StackLayout>
+
+            <ActivityIndicator x:Name="activ" IsRunning="true" Color="#96A637" Margin="0,155,0,0"/>
+
+        </StackLayout>
+
+        </ScrollView>
+
+    </ContentPage.Content>
+
+</ContentPage>

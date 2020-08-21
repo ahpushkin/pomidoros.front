@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pomidoros.View.OrgerPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+
+            <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+
+            <Label FontSize="16" BackgroundColor="Transparent" TextColor="#1C1C1C" Text="Заказ№00000"></Label>
+
+            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+
+        </StackLayout>
+            <Image Source="map"></Image>
+            <Frame BackgroundColor="White" HasShadow="False" CornerRadius="30" HeightRequest="50"
+                   Margin="0,-30,0,0" ></Frame>
+            <Label Text="ул. Заливная 39" TextColor="#1C1C1C" BackgroundColor="Transparent" FontSize="16"
+                   Margin="30,-60,0,10"></Label>
+            <Label Text="2,3 km" TextColor="#39B637" BackgroundColor="Transparent" FontSize="16"
+                   Margin="30,-10,0,20"></Label>
+            <Button BackgroundColor="Transparent"/>
+                <BoxView Margin="30,-60,30,0" HeightRequest="1" BackgroundColor="LightGray"/>
+            <Button BackgroundColor="Transparent"/>
+
+             <Label Text="ул. Заливная 39" TextColor="#1C1C1C" BackgroundColor="Transparent" FontSize="16"
+                   Margin="30,-40,0,10"></Label>
+            <Label Text="2,3 km" TextColor="#39B637" BackgroundColor="Transparent" FontSize="16"
+                   Margin="30,-10,0,30"></Label>
+
+            <Button Text="Связаться с клиентом" BackgroundColor="#96A637" FontAttributes="Bold"
+                        FontSize="16" CornerRadius="5" Margin="30,-20,30,0" TextColor="White"></Button>
+
+            <Button Text="Подтвердить доставку с клиентом" BackgroundColor="Transparent" FontAttributes="Bold"
+                        FontSize="16" Margin="0,5,30,0" TextColor="#1A1824"></Button>
+
+            <Button Text="Невозможно доставить заказ" BackgroundColor="Transparent" FontAttributes="Bold"
+                        FontSize="16" Margin="0,5,30,0" TextColor="#1A1824"></Button>
+            <Button Text="Экстренное сообщение" BackgroundColor="Transparent" FontAttributes="Bold"
+                        FontSize="16" Margin="0,5,30,0" TextColor="#D80B30"></Button>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

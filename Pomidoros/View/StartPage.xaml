@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pomidoros.View.StartPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Orientation="Vertical"  VerticalOptions="StartAndExpand">
+        <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+
+            <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+
+            <Label FontSize="16" BackgroundColor="Transparent" TextColor="#1C1C1C" Text="Подготовка 1/2"></Label>
+
+            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+
+        </StackLayout>
+       
+        <Label FontSize="30" Margin="30,39,0,0" FontAttributes="Bold">
+        <Label.FormattedText>
+        <FormattedString>
+        <Span Text="Осматривали &#x0a;ли вы " TextColor="#1A1824"/>
+        <Span Text="сегодня" TextColor="#96A637" />
+        <Span Text=" ваш транспорт?" TextColor="#1A1824"/>
+
+        </FormattedString>
+        </Label.FormattedText>
+
+        </Label>
+        <Image Source="car" Margin="30,102,0,0" HorizontalOptions="StartAndExpand"></Image>
+
+        <Label Margin="30,34,0,0" Text="Легковой автомобиль" FontSize="16"
+        TextColor="#1A1824"></Label>
+
+       <Label Margin="30,6,0,0" Text="Volkswagen Passat" FontSize="20"
+        TextColor="#1A1824" FontAttributes="Bold"></Label>
+
+        <Button Text="AA 1234 AB" BackgroundColor="Transparent" FontSize="18" BorderWidth="1" BorderColor="Gray"
+                TextColor="#1A1824" HeightRequest="45" WidthRequest="141" Margin="30,9,0,0"
+                HorizontalOptions="StartAndExpand" CornerRadius="5"></Button>
+
+        <Button Text="Да, уже осмотрел и готов" Clicked="NextEvent" CornerRadius="5" BackgroundColor="#96A637" FontAttributes="Bold"
+                        FontSize="16" Margin="30,104,30,0" TextColor="White"></Button>
+
+        <Button Text="Нет, еще не осматривал" BackgroundColor="Transparent" FontAttributes="Bold"
+                        FontSize="16" Margin="0,39,30,32" TextColor="#1A1824"></Button>
+
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

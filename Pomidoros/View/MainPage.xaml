@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pomidoros.View.MainPage"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame BackgroundColor="#96A637" HeightRequest="99" Margin="0,-20,0,0">
+
+                    <StackLayout x:Name="bar" Orientation="Horizontal" Margin="16,0,16,0">
+                        <Button BackgroundColor="Transparent" TextColor="White" Clicked="ProfileEvent" Text="Профиль"
+                        HorizontalOptions="StartAndExpand" Margin="0,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
+
+                         <Button BackgroundColor="Transparent" TextColor="White" Text="Мои заказы"
+                        HorizontalOptions="CenterAndExpand" Clicked="MyOrderEvent" Margin="0,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
+
+                         <Button BackgroundColor="Transparent" TextColor="White" Text="История"
+                        HorizontalOptions="EndAndExpand" Margin="0,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
+                    </StackLayout>
+
+                </Frame>
+                <Frame BackgroundColor="White" CornerRadius="20" Margin="0,-20,0,0"
+                       HasShadow="False">
+                    <StackLayout>
+
+                        <ImageButton Clicked="GoNext" Source="trueorder" Margin="0,112,0,0"></ImageButton>
+
+                         <Label FontSize="30" Margin="30,29,0,0" HorizontalOptions="Center"
+                         HorizontalTextAlignment="Center" FontAttributes="Bold">
+                        <Label.FormattedText>
+                        <FormattedString>
+                        <Span Text="Есть доступные&#x0a; заказы" TextColor="#1A1824"/>
+                        </FormattedString>
+                        </Label.FormattedText>
+
+                         </Label>
+
+                         <Label Margin="30,18,30,0" HorizontalTextAlignment="Center" Text="Чтобы принять заказ, подойдите к монитору, проведите карточкой и получите талон"
+                         FontSize="16"
+                         TextColor="#1A1824"></Label>
+
+                        <Image HorizontalOptions="Start" Source="monitor" Margin="21,130,0,25"></Image>
+                    </StackLayout>
+                </Frame>
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
