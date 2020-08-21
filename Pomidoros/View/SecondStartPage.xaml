@@ -9,15 +9,15 @@
         <StackLayout Orientation="Vertical"  VerticalOptions="StartAndExpand">
         <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
 
-            <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+        <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
 
-            <Label FontSize="16" BackgroundColor="Transparent" TextColor="#1C1C1C" Text="Подготовка 2/2"></Label>
+        <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Подготовка 2/2"></Label>
 
-            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+        <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
         </StackLayout>
        
-        <Label FontSize="30" Margin="30,39,0,0" FontAttributes="Bold">
+        <Label FontSize="30" Margin="30,39,0,0" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
         <Label.FormattedText>
         <FormattedString>
         <Span Text="Вы сейчас одеты  &#x0a;в фирменную  &#x0a;форму?" TextColor="#1A1824"/>
@@ -25,14 +25,14 @@
         </Label.FormattedText>
 
         </Label>
-        <Image Source="forma" BackgroundColor="Transparent" Margin="0,115,0,0" HorizontalOptions="Center"></Image>
+        <Image Source="forma" BackgroundColor="Transparent" Margin="20,115,20,0" HorizontalOptions="Center"></Image>
 
         
-        <Button Text="Да, я надел форму" CornerRadius="5" BackgroundColor="#96A637" FontAttributes="Bold"
-                        FontSize="16" Margin="30,118,30,0" Clicked="NextEvent" TextColor="White"></Button>
+        <Button Text="Да, я надел форму" CornerRadius="5" FontFamily="{StaticResource BoldFont}" BackgroundColor="#96A637" FontAttributes="Bold"
+        FontSize="16" Margin="30,118,30,0" Clicked="NextEvent" TextColor="White"></Button>
 
-        <Button Text="Нет, пока не надел форму" BackgroundColor="Transparent" FontAttributes="Bold"
-                        FontSize="16" Margin="0,39,30,32" TextColor="#1A1824"></Button>
+        <Button Text="Нет, пока не надел форму" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"
+        FontSize="16" Margin="0,39,30,32" TextColor="#1A1824"></Button>
 
         </StackLayout>
         </ScrollView>

@@ -12,9 +12,9 @@
                      Margin="30,155,0,0">
             <StackLayout VerticalOptions="CenterAndExpand">
 
-            <Label Text="Здравствуйте," TextColor="#1A1824" FontSize="16"></Label>
+            <Label Text="Здравствуйте," FontFamily="{StaticResource NormalFont}" TextColor="#1A1824" FontSize="16"></Label>
 
-            <Label Text="Олдос Хаксли" TextColor="#1A1824" FontSize="30">
+            <Label Text="Олдос Хаксли" FontFamily="{StaticResource BoldFont}" TextColor="#1A1824" FontSize="30">
             </Label>
 
             </StackLayout>

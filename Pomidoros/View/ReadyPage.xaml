@@ -9,7 +9,7 @@
         <StackLayout>
         <Image Source="ready" Margin="0,161,0,0"></Image>
 
-        <Label FontSize="30" Margin="0,39,0,0" FontAttributes="Bold"
+        <Label FontSize="30" Margin="0,39,0,0" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"
                HorizontalOptions="Center">
 
         <Label.FormattedText>
@@ -21,7 +21,7 @@
         </Label.FormattedText>
         </Label>
 
-        <Label Margin="0,25,0,0" Text="Идёт загрузка заказов" FontSize="16"
+        <Label Margin="0,25,0,0" Text="Идёт загрузка заказов" FontFamily="{StaticResource NormalFont}" FontSize="16"
         TextColor="#1A1824" HorizontalOptions="Center"></Label>
 
         <ActivityIndicator x:Name="activ" IsRunning="true" Color="#96A637" Margin="0,30,0,0"/>

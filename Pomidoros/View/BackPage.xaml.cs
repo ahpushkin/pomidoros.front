@@ -5,19 +5,15 @@ using Xamarin.Forms;
 
 namespace Pomidoros.View
 {
-    public partial class OrgerPage : ContentPage
+    public partial class BackPage : ContentPage
     {
-        public OrgerPage()
+        public BackPage()
         {
             InitializeComponent();
         }
         void BackEvent(object sender, EventArgs args)
         {
             Navigation.PopAsync();
-        }
-        void DoneEvent(object sender, EventArgs args)
-        {
-            Navigation.PushAsync(new RatingPage());
         }
     }
 }

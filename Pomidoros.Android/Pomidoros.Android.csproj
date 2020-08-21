@@ -129,7 +129,7 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\Profile_image.png">
+    <AndroidResource Include="Resources\drawable\profileimage.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
@@ -138,6 +138,14 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\geo.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\map.png">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\pker.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

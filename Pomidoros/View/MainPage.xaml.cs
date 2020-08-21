@@ -19,6 +19,10 @@ namespace Pomidoros.View
         {
             Navigation.PushAsync(new MyOrderPage());
         }
+        void MyHistoryEvent(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new HistoryPage());
+        }
         void BackEvent(object sender, EventArgs args)
         {
             Navigation.PopAsync();

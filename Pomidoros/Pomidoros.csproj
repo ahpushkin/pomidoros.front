@@ -21,4 +21,21 @@
     <Folder Include="View\" />
     <Folder Include="Controls\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="View\HistoryPage.xaml.cs">
+      <DependentUpon>HistoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\RatingPage.xaml.cs">
+      <DependentUpon>RatingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\DonePage.xaml.cs">
+      <DependentUpon>DonePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\BackPage.xaml.cs">
+      <DependentUpon>BackPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

@@ -1,20 +1,22 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pomidoros.View.MyOrderPage"
+             x:Class="Pomidoros.View.HistoryPage"
+             BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
-            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+        <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
 
-            <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+       <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
 
-            <Label FontSize="16" BackgroundColor="Transparent" TextColor="#1C1C1C" FontFamily="{StaticResource BoldFont}" Text="Мои заказы"></Label>
+       <Label FontSize="16" BackgroundColor="Transparent" TextColor="#1C1C1C" Text="История заказов" FontFamily="{StaticResource BoldFont}"></Label>
 
-            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
-
+       <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+            
         </StackLayout>
-            <ListView x:Name="orders"
+         <ListView x:Name="orders"
             HasUnevenRows="True" Margin="0,20,0,0"
             ItemSelected="GetOrder">
             <ListView.ItemTemplate>
@@ -30,5 +32,6 @@
             </ListView.ItemTemplate>
         </ListView>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

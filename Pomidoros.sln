@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomidoros.Android", "Pomidoros.Android\Pomidoros.Android.csproj", "{56009548-589A-44FE-8D1D-9ED9C2BFE25B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomidoros.iOS", "Pomidoros.iOS\Pomidoros.iOS.csproj", "{F306D404-3D0B-4946-BBE6-51A3A28A33C7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pomidoros", "Pomidoros\Pomidoros.csproj", "{69DA654C-7519-425A-948D-B97D6506CB98}"
 EndProject
 Global

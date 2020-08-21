@@ -6,7 +6,7 @@
         <!-- Underneath are a couple of entries to get you started. -->
         <!-- Set theme colors from https://aka.ms/material-colors -->
         <!-- colorPrimary is used for the default action bar background -->
-        <item name="colorPrimary">#FAFAFA</item>
+        <item name="colorPrimary">#96A637</item>
         <!-- colorPrimaryDark is used for the status bar -->
        <item name="colorPrimaryDark">#96A637</item>
         <!-- colorAccent is used as the default value for colorControlActivated

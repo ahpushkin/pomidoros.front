@@ -17,15 +17,12 @@ namespace Pomidoros.View
             //navigation to next page
             Navigation.PushAsync(new WelcomePage());
         }
-
         //method for save user data
         void SaveUserData()
         {
-
         }
         protected virtual void OnAppearing()
         {
-
         }
     }
 }

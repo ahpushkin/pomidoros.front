@@ -6,11 +6,9 @@
         <ResourceDictionary>
     <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
         <On Platform="Android" Value="Montserrat-Bold.ttf#Montserrat" />
-        <On Platform="iOS" Value="Montserrat-Bold" />
     </OnPlatform>
     <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
         <On Platform="Android" Value="Montserrat-Light.ttf#Open Sans" />
-        <On Platform="iOS" Value="Montserrat-Light" />
     </OnPlatform>
 </ResourceDictionary>
     </Application.Resources>

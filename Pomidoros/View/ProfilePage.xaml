@@ -12,17 +12,17 @@
 
             <ImageButton Source="back"  Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
 
-            <Label FontSize="16" BackgroundColor="Transparent" TextColor="#1C1C1C" Text="Профиль"></Label>
+            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Профиль"></Label>
 
             <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
              </StackLayout>
              <StackLayout>
 
-             <Image Source="Profile_image" HorizontalOptions="Start" VerticalOptions="StartAndExpand" Margin="30,32,0,0"></Image>
+             <Image Source="profileimage" HorizontalOptions="Start" VerticalOptions="StartAndExpand" Margin="30,32,0,0"></Image>
 
              <Label FontSize="30" Margin="30,29,0,0" HorizontalOptions="StartAndExpand"
-            HorizontalTextAlignment="Start" FontAttributes="Bold">
+            HorizontalTextAlignment="Start" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
             <Label.FormattedText>
             <FormattedString>
             <Span Text="Олдос Хаксли" TextColor="#1A1824"/>
@@ -32,11 +32,11 @@
 
              <StackLayout Orientation="Horizontal">
              <Image Source="logout" Margin="30,10,0,0"></Image>
-             <Label Text="Выйти" Margin="8,10,0,0" TextColor="#96A637"></Label>
+             <Label Text="Выйти" FontFamily="{StaticResource BoldFont}" Margin="8,10,0,0" FontSize="16" TextColor="#96A637"></Label>
              </StackLayout>
 
             <Label FontSize="20" Margin="30,16,0,0" HorizontalOptions="StartAndExpand"
-            HorizontalTextAlignment="Start" FontAttributes="Bold">
+            HorizontalTextAlignment="Start" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
             <Label.FormattedText>
             <FormattedString>
             <Span Text="Личная информация" TextColor="#1A1824"/>
@@ -44,45 +44,47 @@
             </Label.FormattedText>
             </Label>
 
-            <Label FontSize="16" BackgroundColor="Transparent" TextColor="Gray" Text="Идентификатор"
+            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Идентификатор"
                    Margin="30,14,0,0"></Label>
             <local:ImageEntry
                        ImageHeight="15"
                        ImageWidth="25"
-                       LineColor="Gray"
+                       LineColor="LightGray"
+                       FontFamily="{StaticResource NormalFont}"
                        PlaceholderColor="LightGray"
-                       TextColor="#1A1824" Margin="30,2,0,0" Text="22212151" HeightRequest="50"/>
+                       TextColor="#1A1824" Margin="30,2,30,0" Text="22212151" HeightRequest="50"/>
 
-             <Label FontSize="16" BackgroundColor="Transparent" TextColor="Gray" Text="Имя и Фамилия"
+             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Имя и Фамилия"
                    Margin="30,11,0,0"></Label>
             <local:ImageEntry
                        ImageHeight="15"
                        ImageWidth="25"
-                       LineColor="Gray"
+                       LineColor="LightGray"
+                       FontFamily="{StaticResource NormalFont}"
                        PlaceholderColor="LightGray"
-                       TextColor="#1A1824" Margin="30,2,0,0" Text="Олдос Хаксли" HeightRequest="50"/>
+                       TextColor="#1A1824" Margin="30,2,30,0" Text="Олдос Хаксли" HeightRequest="50"/>
 
-            <Label FontSize="16" BackgroundColor="Transparent" TextColor="Gray" Text="Email"
+            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Email"
                    Margin="30,11,0,0"></Label>
             <local:ImageEntry
                        ImageHeight="15"
                        ImageWidth="25"
-                       LineColor="Gray"
+                        FontFamily="{StaticResource NormalFont}"
+                       LineColor="LightGray"
                        PlaceholderColor="LightGray"
-                       TextColor="#1A1824" Margin="30,2,0,0" Text="aldous.huxley@gmail.com" HeightRequest="50"/>
+                       TextColor="#1A1824" Margin="30,2,30,0" Text="aldous.huxley@gmail.com" HeightRequest="50"/>
 
-            <Label FontSize="16" BackgroundColor="Transparent" TextColor="Gray" Text="Номер телефона"
+            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Номер телефона"
                    Margin="30,11,0,0"></Label>
             <local:ImageEntry
+                       FontFamily="{StaticResource NormalFont}"
                        ImageHeight="15"
                        ImageWidth="25"
-                       LineColor="Gray"
+                       LineColor="LightGray"
                        PlaceholderColor="LightGray"
-                       TextColor="#1A1824" Margin="30,2,0,0" Text="+380 9767 217 315" HeightRequest="50"/>
+                       TextColor="#1A1824" Margin="30,2,30,0" Text="+380 9767 217 315" HeightRequest="50"/>
 
-             <Label Margin="30,17,30,0" HorizontalTextAlignment="Start" Text="Для смены транспорта необходимо выйти из системы и зайти под другими доступами."
-             FontSize="16"
-             TextColor="#1A1824"></Label>
+           
 
             <Label FontSize="20" Margin="30,16,0,0" HorizontalOptions="StartAndExpand"
             HorizontalTextAlignment="Start" FontAttributes="Bold">
@@ -98,29 +100,32 @@
                     <Image Source="car"></Image>
                     <StackLayout Orientation="Vertical" Margin="0,-10,0,0">
                     <Label FontSize="16" Margin="30,16,0,0" HorizontalOptions="StartAndExpand"
-                      HorizontalTextAlignment="Start" FontAttributes="Bold">
+                     HorizontalTextAlignment="Start" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
                     <Label.FormattedText>
-                     <FormattedString>
+                    <FormattedString>
                     <Span Text="AA 1234 AB" TextColor="#1A1824"/>
                     </FormattedString>
                     </Label.FormattedText>
-                     </Label>
-                      <Label FontSize="14" Margin="30,-2,0,0" HorizontalOptions="StartAndExpand"
-                      HorizontalTextAlignment="Start" FontAttributes="Bold">
+                    </Label>
+                    <Label FontSize="14" Margin="30,-2,0,0" HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Start" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
                     <Label.FormattedText>
-                     <FormattedString>
+                    <FormattedString>
                     <Span Text="Volkswagen-Passat" TextColor="LightGray"/>
                     </FormattedString>
                     </Label.FormattedText>
                      </Label>
                     </StackLayout>
+                    
                 </StackLayout>
             </Frame>
-
-             <Button Text="Связаться с оператором" Clicked="ChangeEvent" CornerRadius="5" BackgroundColor="#96A637" FontAttributes="Bold"
+             <Label Margin="30,17,30,0" HorizontalTextAlignment="Start" FontFamily="{StaticResource NormalFont}" Text="Для смены транспорта необходимо&#x0a;выйти из системы и зайти под другими&#x0a;доступами."
+                    FontSize="18"
+                    TextColor="#1A1824"></Label>
+             <Button Text="Связаться с оператором" Clicked="ChangeEvent" FontFamily="{StaticResource BoldFont}" CornerRadius="5" BackgroundColor="#96A637" FontAttributes="Bold"
                         FontSize="16" Margin="30,40,30,0" TextColor="White"></Button>
 
-             <Button Text="Запросить перерыв на 15 мин" BackgroundColor="Transparent" FontAttributes="Bold"
+             <Button Text="Запросить перерыв на 15 мин" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"
                         FontSize="16" Margin="0,5,30,79" TextColor="#1A1824"></Button>
              </StackLayout>
              </StackLayout>

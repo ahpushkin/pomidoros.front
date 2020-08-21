@@ -5,13 +5,11 @@ using Xamarin.Forms;
 
 namespace Pomidoros.View
 {
-    public partial class MyOrderPage : ContentPage
+    public partial class HistoryPage : ContentPage
     {
-
-        public MyOrderPage()
+        public HistoryPage()
         {
             InitializeComponent();
-
             var orderslist = new List<string>();
 
             orderslist.Add("ул. Засумская, 12");

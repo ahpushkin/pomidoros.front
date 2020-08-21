@@ -10,13 +10,13 @@
                 <Frame BackgroundColor="#96A637" HeightRequest="99" Margin="0,-20,0,0">
 
                     <StackLayout x:Name="bar" Orientation="Horizontal" Margin="16,0,16,0">
-                        <Button BackgroundColor="Transparent" TextColor="White" Clicked="ProfileEvent" Text="Профиль"
+                        <Button BackgroundColor="Transparent" TextColor="White" FontFamily="{StaticResource BoldFont}" Clicked="ProfileEvent" Text="Профиль"
                         HorizontalOptions="StartAndExpand" Margin="0,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
 
-                         <Button BackgroundColor="Transparent" TextColor="White" Text="Мои заказы"
+                         <Button BackgroundColor="Transparent" TextColor="White" FontFamily="{StaticResource BoldFont}" Text="Мои заказы"
                         HorizontalOptions="CenterAndExpand" Clicked="MyOrderEvent" Margin="0,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
 
-                         <Button BackgroundColor="Transparent" TextColor="White" Text="История"
+                         <Button BackgroundColor="Transparent" Clicked="MyHistoryEvent" TextColor="White" FontFamily="{StaticResource BoldFont}" Text="История"
                         HorizontalOptions="EndAndExpand" Margin="0,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
                     </StackLayout>
 
@@ -25,9 +25,9 @@
                        HasShadow="False">
                     <StackLayout>
 
-                        <ImageButton Clicked="GoNext" Source="trueorder" Margin="0,112,0,0"></ImageButton>
+                        <ImageButton BackgroundColor="Transparent" Source="trueorder" Margin="0,112,0,0"></ImageButton>
 
-                         <Label FontSize="30" Margin="30,29,0,0" HorizontalOptions="Center"
+                         <Label FontSize="30" Margin="0,29,0,0" HorizontalOptions="Center"
                          HorizontalTextAlignment="Center" FontAttributes="Bold">
                         <Label.FormattedText>
                         <FormattedString>
