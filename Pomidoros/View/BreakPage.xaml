@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pomidoros.View.BreakPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Orientation="Vertical"  VerticalOptions="StartAndExpand">
+                
+            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+
+            <ImageButton Source="back"  Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+
+            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Перерыв"></Label>
+
+            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+
+            </StackLayout>
+            <Frame  BackgroundColor="Transparent" Margin="30,26,30,0" CornerRadius="10" BorderColor="LightGray" HeightRequest="83">
+            <Label Text="Перерыв на 15 мин одобрен" BackgroundColor="Transparent" TextColor="#1C1C1C"
+            FontSize="16" HorizontalTextAlignment="Center"  FontFamily="{StaticResource BoldFont}" VerticalTextAlignment="Center"></Label>
+            </Frame>
+            <Label Text="осталось" BackgroundColor="Transparent" TextColor="#1C1C1C"
+            FontSize="16" HorizontalTextAlignment="Center" Margin="0,132,0,0" FontFamily="{StaticResource NormalFont}" VerticalTextAlignment="Center"></Label>
+
+            <Label Text="14:59" BackgroundColor="Transparent" TextColor="#1C1C1C"
+            FontSize="30" HorizontalTextAlignment="Center" Margin="0,10,0,0" FontFamily="{StaticResource BoldFont}" VerticalTextAlignment="Center"></Label>
+            </StackLayout>
+            </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

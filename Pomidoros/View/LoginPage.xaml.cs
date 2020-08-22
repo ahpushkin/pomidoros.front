@@ -17,12 +17,21 @@ namespace Pomidoros.View
             //navigation to next page
             Navigation.PushAsync(new WelcomePage());
         }
-        //method for save user data
-        void SaveUserData()
+        void StartLogin(object sender, EventArgs args)
         {
+            DisplayAlert("Ошибка", "x93231231", "%№10100,(.,54");
         }
-        protected virtual void OnAppearing()
+        void ShowPassowrd(object sender, EventArgs args)
         {
+        if(psword.IsPassword == true)
+        {
+           psword.IsPassword = false;
         }
+        else
+        {
+           psword.IsPassword = true;
+        }    
+        }
+       
     }
 }

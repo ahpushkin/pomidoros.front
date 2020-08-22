@@ -13,8 +13,8 @@
         
         </StackLayout>
         <StackLayout>
-        <Button x:Name="done" BackgroundColor="Transparent" Clicked="DoneEvent" Margin="0,0,0,34" Text="Завершить доставку (0:15)" FontFamily="{StaticResource BoldFont}" FontSize="16"
-        TextColor="#96A637" VerticalOptions="EndAndExpand" HorizontalOptions="Center"></Button>
+        <Button x:Name="done" BackgroundColor="Transparent" TextColor="#96A637" Clicked="DoneEvent" Margin="0,0,0,34" Text="Завершить доставку (0:15)" FontFamily="{StaticResource BoldFont}" FontSize="16">
+        </Button>
         </StackLayout>
         </StackLayout>
         </ScrollView>

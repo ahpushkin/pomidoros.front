@@ -19,5 +19,9 @@ namespace Pomidoros.View
         {
             Navigation.PushAsync(new ChangePage());
         }
+        void BreakEvent(object sender,EventArgs args)
+        {
+            Navigation.PushAsync(new WaitPage());
+        }
     }
 }

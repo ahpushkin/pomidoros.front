@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pomidoros.View.HistoryPage"
              BackgroundColor="White"
+             xmlns:control1="clr-namespace:SegmentedControl.FormsPlugin.Abstractions;assembly=SegmentedControl.FormsPlugin.Abstractions"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
@@ -16,18 +17,26 @@
        <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
             
         </StackLayout>
+
+        <control1:SegmentedControl x:Name="SegmentedControl" HeightRequest="47" BackgroundColor="#96A637"  SelectedSegment="{Binding SegmentSelection}" TintColor="White" SelectedTextColor="#1C1C1C" DisabledColor="#1C1C1C" Margin="30,20,30,8">  
+        <control1:SegmentedControl.Children>  
+                <control1:SegmentedControlOption Text="Item 1" />  
+                <control1:SegmentedControlOption Text="Item 2" />  
+
+        </control1:SegmentedControl.Children>  
+        </control1:SegmentedControl>
+            
          <ListView x:Name="orders"
-            HasUnevenRows="True" Margin="0,20,0,0"
+            HasUnevenRows="True" Margin="30,20,30,0"
             ItemSelected="GetOrder">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ImageCell
-                        ImageSource="geo"
-                        Text="ул. Засумская, 12"
-                        Detail="2,3км"
-                        TextColor="#1C1C1C"
-                        DetailColor="#39B637"
-                        />
+                     ImageSource="geo"
+                     Text="ул. Засумская, 12"
+                     Detail="2,3км"
+                     TextColor="#1C1C1C"
+                     DetailColor="#39B637"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

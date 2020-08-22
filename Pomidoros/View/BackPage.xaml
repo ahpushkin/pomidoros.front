@@ -5,6 +5,7 @@
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout VerticalOptions="StartAndExpand">
             <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
 
@@ -15,6 +16,30 @@
             <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
             </StackLayout>
+            <Image Source="map2"></Image>
+            <Frame BackgroundColor="White" HeightRequest="200" Margin="0,-260,0,0" CornerRadius="25">
+            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Vertical" Margin="30,0,0,0">
+            <Image Source="geo2" HeightRequest="24" WidthRequest="24" Margin="0,0,0,30" VerticalOptions="StartAndExpand"></Image>
+            <Image Source="geo" HeightRequest="24" WidthRequest="24" Margin="0,25,0,60" VerticalOptions="EndAndExpand"></Image>
+            </StackLayout>
+            <StackLayout Orientation="Vertical">
+            <Label Text="ул. Заливная 39" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" BackgroundColor="Transparent" FontSize="16"
+            Margin="30,0,0,10"></Label>
+            <Label Text="2,3 km" TextColor="#39B637" FontFamily="{StaticResource NormalFont}" BackgroundColor="Transparent" FontSize="16"
+            Margin="30,0,0,20"></Label>
+            <Button BackgroundColor="Transparent"/>
+            <BoxView Margin="30,-60,30,0" WidthRequest="290" HeightRequest="1" BackgroundColor="LightGray"/>
+            <Button BackgroundColor="Transparent"/>
+
+            <Label Text="ул. Заливная 39" TextColor="#1C1C1C" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontSize="16"
+            Margin="30,-40,0,10"></Label>
+            <Label Text="2,3 km" TextColor="#39B637" FontFamily="{StaticResource NormalFont}" BackgroundColor="Transparent" FontSize="16"
+            Margin="30,-10,0,30"></Label>
+            </StackLayout>
+            </StackLayout>
+            </Frame>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

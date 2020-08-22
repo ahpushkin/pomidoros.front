@@ -17,7 +17,7 @@
                         HorizontalOptions="CenterAndExpand" Clicked="MyOrderEvent" Margin="0,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
 
                          <Button BackgroundColor="Transparent" Clicked="MyHistoryEvent" TextColor="White" FontFamily="{StaticResource BoldFont}" Text="История"
-                        HorizontalOptions="EndAndExpand" Margin="0,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
+                        HorizontalOptions="EndAndExpand" Margin="-10,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
                     </StackLayout>
 
                 </Frame>

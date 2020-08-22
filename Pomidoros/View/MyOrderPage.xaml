@@ -15,7 +15,7 @@
 
         </StackLayout>
             <ListView x:Name="orders"
-            HasUnevenRows="True" Margin="0,20,0,0"
+            HasUnevenRows="True" Margin="30,20,30,0"
             ItemSelected="GetOrder">
             <ListView.ItemTemplate>
                 <DataTemplate>

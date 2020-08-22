@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:Pomidoros.Controls"
+             x:Class="Pomidoros.View.MorePage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+
+            <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+
+            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+
+            </StackLayout>
+
+            <StackLayout>
+
+            </StackLayout>
+
+            <Label FontSize="30" Margin="30,39,0,0" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
+            <Label.FormattedText>
+            <FormattedString>
+            <Span Text="Состав&#x0a;Заказа №000000" TextColor="#1A1824"/>
+
+            </FormattedString>
+            </Label.FormattedText>
+            
+            </Label>
+   
+            <ListView x:Name="orders"
+            HasUnevenRows="True" Margin="30,40,30,0"
+              HeightRequest="150" >
+            <ListView.ItemTemplate >
+                <DataTemplate >
+                    <ImageCell 
+                    Text="Паперони спайс × 2шт"
+                    Detail="500 ₴"
+                    TextColor="#1C1C1C"
+                    DetailColor="#1C1C1C"
+                    />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+            <views:DashedLineView
+            VerticalOptions="Center"
+            HorizontalOptions="Fill"
+            LineColor="#f60"
+            HeightRequest="10"
+            DashSize="30"
+            WhiteSize="50"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Margin="30,0,30,0" Text="Общая сумма" FontFamily="{StaticResource BoldFont}" FontSize="16"
+                 TextColor="#1A1824" HorizontalOptions="StartAndExpand"></Label>
+
+                 <Label Margin="30,0,30,0" Text="1 100 ₴" FontFamily="{StaticResource BoldFont}" FontSize="16"
+                 TextColor="#1A1824" HorizontalOptions="StartAndExpand"></Label>
+              </StackLayout>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

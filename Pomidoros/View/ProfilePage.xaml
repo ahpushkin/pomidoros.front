@@ -125,7 +125,7 @@
              <Button Text="Связаться с оператором" Clicked="ChangeEvent" FontFamily="{StaticResource BoldFont}" CornerRadius="5" BackgroundColor="#96A637" FontAttributes="Bold"
                         FontSize="16" Margin="30,40,30,0" TextColor="White"></Button>
 
-             <Button Text="Запросить перерыв на 15 мин" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"
+             <Button Text="Запросить перерыв на 15 мин" Clicked="BreakEvent" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"
                         FontSize="16" Margin="0,5,30,79" TextColor="#1A1824"></Button>
              </StackLayout>
              </StackLayout>

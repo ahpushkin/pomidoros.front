@@ -16,21 +16,15 @@ namespace Pomidoros.View
             base.OnAppearing();
 
             var count = 15;
-            Device.StartTimer(new TimeSpan(0, 0, 15), () =>
+            async void Heartbeat()
             {
-                // do something every 15 seconds
-                Device.BeginInvokeOnMainThread(() =>
+                while (true)
                 {
+                    await Task.Delay(1000);
                     count--;
-                    // interact with UI elements
-
                     done.Text = "Завершить доставку (" + count.ToString() + ")";
-                });
-                return true;
-            });
-            if(count == 0)
-            {
-                await this.Navigation.PushAsync(new DonePage());
+
+                }
             }
         }
         void DoneEvent(object sender, EventArgs args)

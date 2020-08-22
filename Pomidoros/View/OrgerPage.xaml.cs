@@ -19,5 +19,9 @@ namespace Pomidoros.View
         {
             Navigation.PushAsync(new RatingPage());
         }
+        void MoreDeatil(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new MorePage());
+        }
     }
 }

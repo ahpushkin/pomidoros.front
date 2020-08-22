@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pomidoros.View.OverPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <ScrollView>
+          <StackLayout Orientation="Vertical">
+                
+            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+
+            <ImageButton Source="back"  Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+
+            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Перерыв"></Label>
+
+            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+
+            </StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand" Margin="0,-500,0,0">
+           
+             <Label FontSize="20" HorizontalTextAlignment="Center" Margin="0,5,0,0" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
+            <Label.FormattedText>
+            <FormattedString>
+            <Span Text="Перерыв окончен" TextColor="#1A1824"/>
+
+        </FormattedString>
+        </Label.FormattedText>
+
+        </Label>
+            <Label Margin="0,5,0,0" Text="Подойдите к монитору и&#x0a;проведите карточкой, чтобы&#x0a; взять заказ" HorizontalOptions="Center"
+            HorizontalTextAlignment="Center" FontFamily="{StaticResource NormalFont}" FontSize="16"
+            TextColor="#1A1824"></Label>
+        <Button Text="На главную" FontFamily="{StaticResource BoldFont}" Clicked="MainEvent" CornerRadius="5" BackgroundColor="#96A637" FontAttributes="Bold"
+        FontSize="16" Margin="30,10,30,0" TextColor="White"></Button>
+         </StackLayout>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
