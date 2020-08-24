@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pomidoros.View.MapPage"
+             xmlns:gmaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps">
+    <ContentPage.Content>
+
+    <Grid>
+        <gmaps:Map x:Name="map_main" MapType="Street" HasZoomEnabled="True" MyLocationEnabled="True" >
+            <gmaps:Map.ItemTemplate>
+                <DataTemplate>
+                    <gmaps:Pin Position="{Binding Position}" Label="{Binding PinLabel}" />
+                </DataTemplate>
+            </gmaps:Map.ItemTemplate>
+        </gmaps:Map>
+    </Grid>
+       
+    </ContentPage.Content>
+</ContentPage>

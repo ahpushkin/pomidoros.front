@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.ComponentModel;
 using Xamarin.Forms;
+using Xamarin.Forms.GoogleMaps;
 
 namespace Pomidoros.View
 {
+    [DesignTimeVisible(false)]
+
     public partial class OrgerPage : ContentPage
     {
         public OrgerPage()
         {
             InitializeComponent();
+
         }
         void BackEvent(object sender, EventArgs args)
         {
@@ -23,5 +27,6 @@ namespace Pomidoros.View
         {
             Navigation.PushAsync(new MorePage());
         }
+        
     }
 }

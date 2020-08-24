@@ -15,7 +15,7 @@ namespace Pomidoros.View
             var orderslist = new List<string>();
 
             orderslist.Add("ул. Засумская, 12");
-            orders.ItemsSource = orderslist;
+            
         }
         void BackEvent(object sender, EventArgs args)
         {

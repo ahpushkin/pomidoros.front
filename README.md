@@ -15,3 +15,13 @@ Insert it in `~/Droid/Properties/AndroidManifest.xml`:
       <meta-data android:name="com.google.android.geo.API_KEY" android:value="[YOUR API KEY HERE]" />
       ...
     </application>
+
+## Licenses
+
+This project uses some third-party assets with a license that requires attribution:
+
+- Source Sans Pro
+- [SkiaSharp](https://www.nuget.org/packages/SkiaSharp)
+- [FFImageLoading](https://github.com/daniel-luberda/FFImageLoading)
+- [Skor.Controls](https://github.com/skordesign/SKOR.UI)
+- [Xamarin.Forms.GoogleMaps](https://github.com/xamarin/googlemaps)

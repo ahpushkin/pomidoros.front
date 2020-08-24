@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pomidoros.View.OrgerPage"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="White">
-
-           <!--xmlns:gmaps="clr-namespace: Xamarin.Forms.GoogleMaps;assembly = Xamarin.Forms.GoogleMaps"-->
+             xmlns:gmaps="clr-namespace: Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             BackgroundColor="White"
+             >
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
@@ -18,17 +18,18 @@
             <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
         </StackLayout>
-         <!--
-            <Grid>
-        <gmaps:Map x:Name="MyMap" MapType="Street" HasZoomEnabled="True" MyLocationEnabled="True" >
+         
+        <!--
+           <Grid>
+            <gmaps:Map x:Name="main_map" MapType="Street" HeightRequest="300"  HasZoomEnabled="True" MyLocationEnabled="True" >
             <gmaps:Map.ItemTemplate>
                 <DataTemplate>
-                    <gmaps:Pin Icon="{Binding PinIcon}" Position="{Binding Position}"
-                              Label="{Binding PinLabel}" />
+                    <gmaps:Pin/>
                 </DataTemplate>
             </gmaps:Map.ItemTemplate>
         </gmaps:Map>
          </Grid>-->
+      
         
             <Frame BackgroundColor="White" HasShadow="False" CornerRadius="30" HeightRequest="50"
                    Margin="0,-30,0,0" ></Frame>

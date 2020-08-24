@@ -8,12 +8,14 @@
         <ScrollView>
         <StackLayout>
         <StackLayout VerticalOptions="CenterAndExpand">
-        <Label Text="Понравилось ли вам доставка?" FontFamily="{StaticResource BoldFont}" HorizontalTextAlignment="Center" TextColor="#1A1824" FontSize="30"></Label>
+        <Label Text="Понравилось ли вам доставка?" FontFamily="{StaticResource BoldFont}" HorizontalTextAlignment="Center"
+               TextColor="#1A1824" FontSize="30"></Label>
         <Image Source="pker" Margin="30,25,30,0"></Image>
         
         </StackLayout>
         <StackLayout>
-        <Button x:Name="done" BackgroundColor="Transparent" TextColor="#96A637" Clicked="DoneEvent" Margin="0,0,0,34" Text="Завершить доставку (0:15)" FontFamily="{StaticResource BoldFont}" FontSize="16">
+        <Button x:Name="done" BackgroundColor="Transparent" TextColor="#96A637" Clicked="DoneEvent" Margin="0,0,0,34"
+                Text="{Binding TimerProperty}" FontFamily="{StaticResource BoldFont}" FontSize="16">
         </Button>
         </StackLayout>
         </StackLayout>

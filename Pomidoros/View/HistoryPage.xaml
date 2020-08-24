@@ -26,20 +26,51 @@
         </control1:SegmentedControl.Children>  
         </control1:SegmentedControl>
             
-         <ListView x:Name="orders"
-            HasUnevenRows="True" Margin="30,20,30,0"
-            ItemSelected="GetOrder">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ImageCell
-                     ImageSource="geo"
-                     Text="ул. Засумская, 12"
-                     Detail="2,3км"
-                     TextColor="#1C1C1C"
-                     DetailColor="#39B637"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+         <Button BackgroundColor="Transparent"/>
+                <BoxView Margin="0,-15,0,0" HeightRequest="0.1" BackgroundColor="#EAEAEB"/>
+            <Button BackgroundColor="Transparent"/>
+   <TableView Intent="Menu" RowHeight="80" Margin="0,-45,0,0">
+	<TableRoot>
+		<TableSection>
+			<ViewCell>
+				<StackLayout Padding="15, 5, 15, 5" Orientation="Horizontal">
+					<Image Source="geo"  Margin="30,-15,0,0"/>
+					<StackLayout Orientation="Vertical" Margin="15,0,0,0">
+					<Label FontFamily="{StaticResource BoldFont}" FontSize="16" Text="ул. Засумская, 12" TextColor="#1C1C1C" VerticalOptions="Center" />
+					<Label FontFamily="{StaticResource NormalFont}" Text="2.3 км" TextColor="#39B637" VerticalOptions="Center" />
+					</StackLayout>
+					 <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer
+                Tapped="GetOrder">
+                </TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+				</StackLayout>
+			</ViewCell>
+		</TableSection>
+        <TableSection>
+			<ViewCell>
+				<StackLayout Padding="15, 5, 15, 5" Orientation="Horizontal">
+					<Image Source="geo"  Margin="30,-15,0,0"/>
+					<StackLayout Orientation="Vertical" Margin="15,0,0,0">
+					<Label FontFamily="{StaticResource BoldFont}" FontSize="16" Text="ул. Засумская, 12" TextColor="#1C1C1C" VerticalOptions="Center" />
+					<Label FontFamily="{StaticResource NormalFont}" Text="2.3 км" TextColor="#39B637" VerticalOptions="Center" />
+					</StackLayout>
+				</StackLayout>
+			</ViewCell>
+		</TableSection>
+		<TableSection>
+			<ViewCell>
+				<StackLayout Padding="15, 5, 15, 5" Orientation="Horizontal">
+					<Image Source="geo"  Margin="30,-15,0,0"/>
+					<StackLayout Orientation="Vertical" Margin="15,0,0,0">
+					<Label FontFamily="{StaticResource BoldFont}" FontSize="16" Text="ул. Засумская, 12" TextColor="#1C1C1C" VerticalOptions="Center" />
+					<Label FontFamily="{StaticResource NormalFont}" Text="2.3 км" TextColor="#39B637" VerticalOptions="Center" />
+					</StackLayout>
+				</StackLayout>
+			</ViewCell>
+		</TableSection>
+	</TableRoot>
+</TableView>
         </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -17,6 +17,7 @@
     <PackageReference Include="SegmentedControl.FormsPlugin" Version="2.0.1" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.1" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
@@ -24,6 +25,8 @@
     <Folder Include="Utils\" />
     <Folder Include="View\" />
     <Folder Include="Controls\" />
+    <Folder Include="Styles\" />
+    <Folder Include="ViewModel\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="View\HistoryPage.xaml.cs">

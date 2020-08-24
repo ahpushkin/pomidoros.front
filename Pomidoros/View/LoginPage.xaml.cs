@@ -19,18 +19,15 @@ namespace Pomidoros.View
         }
         void StartLogin(object sender, EventArgs args)
         {
-            DisplayAlert("Ошибка", "x93231231", "%№10100,(.,54");
+            if (string.IsNullOrEmpty(number.Text))
+            {
+                number.Text = "+380";
+            }
         }
+
         void ShowPassowrd(object sender, EventArgs args)
         {
-        if(psword.IsPassword == true)
-        {
-           psword.IsPassword = false;
-        }
-        else
-        {
-           psword.IsPassword = true;
-        }    
+            psword.IsPassword = psword.IsPassword ? false : true;
         }
        
     }

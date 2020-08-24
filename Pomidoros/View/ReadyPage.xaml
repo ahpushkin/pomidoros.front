@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <ScrollView>
   
-        <StackLayout>
+        <StackLayout VerticalOptions="Center">
         <Image Source="ready" Margin="0,161,0,0"></Image>
 
         <Label FontSize="30" Margin="0,39,0,0" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"

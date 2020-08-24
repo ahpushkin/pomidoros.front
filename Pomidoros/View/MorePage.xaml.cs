@@ -32,19 +32,33 @@ namespace Pomidoros.View
         public MorePage()
         {
             InitializeComponent();
-
-            var orderslist = new List<string>();
-
-            orderslist.Add("Паперони спайс × 2шт");
-            orderslist.Add("Четыре мяса × 1 шт");
-            orderslist.Add("Pepsi 1литр  × 1 шт");
-
-            orders.ItemsSource = orderslist;
         }
        
         void BackEvent(object sender, EventArgs args)
         {
             Navigation.PopAsync();
+        }
+        private void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
+        {
+
+            SKImageInfo info = args.Info;
+            SKSurface surface = args.Surface;
+            SKCanvas canvas = surface.Canvas;
+
+            canvas.Clear();
+
+            SKPaint paint = new SKPaint
+            {
+                Style = SKPaintStyle.Stroke,
+                Color = SKColors.Gray,
+                StrokeWidth = 5,
+                StrokeCap = SKStrokeCap.Butt,
+                PathEffect = SKPathEffect.CreateDash(new float[] { 5, 5 }, 20)
+            };
+
+            SKPath path = new SKPath();
+
+            canvas.DrawPath(path, paint);
         }
     }
 }
