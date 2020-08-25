@@ -37,7 +37,7 @@
 
                          </Label>
 
-                         <Label Margin="30,18,30,0" HorizontalTextAlignment="Center" Text="Чтобы принять заказ, подойдите к монитору, проведите карточкой и получите талон"
+                         <Label Margin="30,18,30,0" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" Text="Чтобы принять заказ, подойдите к монитору, проведите карточкой и получите талон"
                          FontSize="16"
                          TextColor="#1A1824"></Label>
 

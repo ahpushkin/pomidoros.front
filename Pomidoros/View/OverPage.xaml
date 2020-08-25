@@ -10,10 +10,6 @@
                 
             <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
 
-            <ImageButton Source="back"  Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
-
-            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Перерыв"></Label>
-
             <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
             </StackLayout>

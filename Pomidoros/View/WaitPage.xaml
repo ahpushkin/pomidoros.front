@@ -18,10 +18,10 @@
 
             </StackLayout>
             <StackLayout VerticalOptions="CenterAndExpand" Margin="0,-500,0,0">
-           <Label Margin="30,0,0,0" Text="Вы запросили перерыв на 15 минут у администратора." HorizontalOptions="Center"
+           <Label Margin="0,0,0,0" Text="Вы запросили перерыв на 15 минут у администратора." HorizontalOptions="Center"
             HorizontalTextAlignment="Center" FontFamily="{StaticResource NormalFont}" FontSize="16"
             TextColor="#1A1824"></Label>
-             <Label FontSize="20" HorizontalTextAlignment="Center" Margin="30,5,0,0" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
+             <Label FontSize="20" HorizontalTextAlignment="Center" Margin="0,5,0,0" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
             <Label.FormattedText>
             <FormattedString>
             <Span Text="Ожидайте подтверждение,&#x0a;чтобы начать перерыв" TextColor="#1A1824"/>

@@ -12,7 +12,7 @@
         <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
         </StackLayout>
 
-        <Label FontSize="30" Margin="30,29,0,0" HorizontalOptions="Center"
+        <Label FontSize="30" Margin="0,29,0,0" HorizontalOptions="Center"
         HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
         <Label.FormattedText>
         <FormattedString>

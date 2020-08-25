@@ -5,7 +5,7 @@
              x:Class="Pomidoros.View.MorePage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView Margin="0,0,0,30">
 
             <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
 

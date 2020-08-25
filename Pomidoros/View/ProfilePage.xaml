@@ -47,6 +47,7 @@
             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Идентификатор"
                    Margin="30,14,0,0"></Label>
             <local:ImageEntry
+                       IsReadOnly="True"
                        ImageHeight="15"
                        ImageWidth="25"
                        LineColor="LightGray"
@@ -57,6 +58,7 @@
              <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Имя и Фамилия"
                    Margin="30,11,0,0"></Label>
             <local:ImageEntry
+                       IsReadOnly="True"
                        ImageHeight="15"
                        ImageWidth="25"
                        LineColor="LightGray"
@@ -67,6 +69,7 @@
             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Email"
                    Margin="30,11,0,0"></Label>
             <local:ImageEntry
+                        IsReadOnly="True"
                        ImageHeight="15"
                        ImageWidth="25"
                         FontFamily="{StaticResource NormalFont}"
@@ -77,6 +80,7 @@
             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Номер телефона"
                    Margin="30,11,0,0"></Label>
             <local:ImageEntry
+                        IsReadOnly="True"
                        FontFamily="{StaticResource NormalFont}"
                        ImageHeight="15"
                        ImageWidth="25"

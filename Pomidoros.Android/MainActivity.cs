@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
+using Xamarin.Forms.GoogleMaps.Android;
+
 namespace Pomidoros.Droid
 {
     [Activity(Label = "Pomidoros", Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
@@ -19,10 +21,17 @@ namespace Pomidoros.Droid
 
             base.OnCreate(savedInstanceState);
 
-            Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
+
+            Pomidoros.Droid.Renderer.XFCircleProgressRenderer.InitRender();
+
+            Xamarin.FormsGoogleMaps.Init(this, savedInstanceState); // initialize for Xamarin.Forms.GoogleMaps
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+
             LoadApplication(new App());
+
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

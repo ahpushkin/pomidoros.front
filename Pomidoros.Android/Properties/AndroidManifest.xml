@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="pshkn.pomidoros">
 	<uses-sdk android:minSdkVersion="20" android:targetSdkVersion="30" />
-	<application android:label="Pomidoros.Android" android:theme="@style/MainTheme">
-    <!---
+	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+	
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+	
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	
+    <uses-permission android:name="android.permission.INTERNET" />
+	
+    <application android:label="Pomidoros.Android" android:theme="@style/MainTheme">
+            <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCFEtN0gw8snXz4yVHIdpZXL4--raBj8QQ" />
+		<!---
     <meta-data android: name = "com.google.android.maps.v2.API_KEY" android: value = "AddYourAndroidAPIKeyHere" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     
@@ -20,5 +31,5 @@
     
     <uses-permission android:name="android.permission.INTERNET" />
     -->
-    </application>
+	</application>
 </manifest>

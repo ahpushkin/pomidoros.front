@@ -21,7 +21,7 @@ namespace Pomidoros.View
 
             await Task.Delay(5000);
 
-            await this.Navigation.PushAsync(new BreakPage());
+            await Navigation.PushAsync(new BreakPage());
           
         }
     }

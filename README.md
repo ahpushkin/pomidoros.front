@@ -1,8 +1,7 @@
 
-# Podidoros frontend app
+# pom_frontend
 
-# app-customers
-<img src="https://github.com/ahpushkin/pomidoros.front/tree/master/Screenshots/example.png" />
+<img src="https://github.com/ahpushkin/pomidoros.front/blob/master/Screenshots/example.png" />
 
 ## Google Maps API key (Android)
 For Android, you'll need to obtain a Google Maps API key:
@@ -20,7 +19,7 @@ Insert it in `~/Droid/Properties/AndroidManifest.xml`:
 
 This project uses some third-party assets with a license that requires attribution:
 
-- Source Sans Pro
+- Montserrat
 - [SkiaSharp](https://www.nuget.org/packages/SkiaSharp)
 - [FFImageLoading](https://github.com/daniel-luberda/FFImageLoading)
 - [Skor.Controls](https://github.com/skordesign/SKOR.UI)

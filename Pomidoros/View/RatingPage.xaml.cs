@@ -37,10 +37,10 @@ namespace Pomidoros.View
                 count--;
                 main_data = "Завершить доставку (" + count.ToString() + ")";
                 TimerProperty = main_data;
-                if(count == 0)
+                if (count == 0)
                 {
-                    break;
                     await Navigation.PushAsync(new DonePage());
+                    break;
                 }
             }
 
@@ -49,14 +49,41 @@ namespace Pomidoros.View
         {
             base.OnAppearing();
             BindingContext = this;
+            ret.IsVisible = false;
 
-          
             Heartbeat();
 
         }
+        void BackEvent(object sender, EventArgs args)
+        {
+            Navigation.PopAsync();
+        }
+
         void DoneEvent(object sender, EventArgs args)
         {
             Navigation.PushAsync(new DonePage());
+        }
+        void YesEvent(object sender, EventArgs args) {
+            yes.BackgroundColor = Color.FromHex("#96A637");
+            yes.TextColor = Color.White;
+
+            mainv.VerticalOptions = LayoutOptions.StartAndExpand;
+            title.FontSize = 20;
+            no.IsEnabled = false;
+            ret.Text = "Приятного аппетита!";
+            ret.IsVisible = true;
+        }
+        void NopeEvent(object sender, EventArgs args)
+        {
+            no.BackgroundColor = Color.FromHex("#1C1C1C");
+            no.TextColor = Color.White;
+
+            yes.IsEnabled = false;
+            mainv.VerticalOptions = LayoutOptions.StartAndExpand;
+            title.FontSize = 20;
+
+            ret.Text = "Наш оператор свяжется с вами, чтобы узнать подробности";
+            ret.IsVisible = true;
         }
     }
 }

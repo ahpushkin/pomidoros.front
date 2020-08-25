@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Pomidoros.Controls;
 using Pomidoros.ViewModel;
 using Pomidoros.ViewModel.Base;
+using SkiaSharp;
 using Xamarin.Forms;
 
 namespace Pomidoros.View
 {
     public partial class BreakPage : ContentPage
     {
-
         private string timerProperty;
         public string main_data;
         public string TimerProperty
@@ -26,9 +27,8 @@ namespace Pomidoros.View
         {
             InitializeComponent();
 
-            BindingContext = this;
 
-            BindingContext = new MyTripCountdownViewModel();
+            BindingContext = this;
 
         }
         void BackEvent(object sender, EventArgs args)
@@ -36,19 +36,17 @@ namespace Pomidoros.View
             Navigation.PopAsync();
         }
 
-
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
-            var vm = BindingContext as BaseViewModel;
-            await vm?.LoadAsync();
 
             var count = 900;
             while (true)
             {
                 await Task.Delay(1000);
                 count--;
+                await progres.ProgressTo(0.01, 1000, Easing.Linear);
+               
                 TimeSpan time = TimeSpan.FromSeconds(count);
 
                 //here backslash is must to tell that colon is
@@ -58,16 +56,11 @@ namespace Pomidoros.View
                 TimerProperty = main_data;
                 if (count == 0)
                 {
+                    await this.Navigation.PushAsync(new OverPage());
                     break;
-                    await Navigation.PushAsync(new OverPage());
                 }
             }
         }
-        protected override async void OnDisappearing()
-        {
-            base.OnDisappearing();
-            var vm = BindingContext as BaseViewModel;
-            await vm?.UnloadAsync();
-        }
+        
     }
 }
