@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Pomidoros.View.Notification;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace Pomidoros.View
@@ -24,11 +25,14 @@ namespace Pomidoros.View
                 number.Text = "+380";
             }
         }
-
         void ShowPassowrd(object sender, EventArgs args)
         {
             psword.IsPassword = psword.IsPassword ? false : true;
         }
-       
+        void OperatorEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new OperatorPage());
+        }
+
     }
 }

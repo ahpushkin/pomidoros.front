@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Pomidoros.View.Notification;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace Pomidoros.View
@@ -18,6 +19,10 @@ namespace Pomidoros.View
         void NextEvent(object sender, EventArgs args)
         {
             Navigation.PushAsync(new ReadyPage());
+        }
+        void OperatorEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new OperatorPage());
         }
     }
 }

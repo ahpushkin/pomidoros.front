@@ -14,7 +14,7 @@
 
             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Профиль"></Label>
 
-            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+            <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
              </StackLayout>
              <StackLayout>

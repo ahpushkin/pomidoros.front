@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pomidoros.View.DonePage"
              NavigationPage.HasNavigationBar="False"
-             BackgroundImageSource="map2">
+             BackgroundColor="LightGray">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-            <Frame BackgroundColor="White" Margin="30,170,30,0" HeightRequest="381" CornerRadius="20">
+            <Frame BackgroundColor="White" Margin="30,170,30,0" HeightRequest="281" CornerRadius="20">
             <StackLayout>
             <Label FontSize="20" Margin="0,39,0,0" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
             <Label.FormattedText>
@@ -22,26 +22,24 @@
             <StackLayout Orientation="Horizontal">
             <StackLayout Orientation="Vertical" Margin="30,0,0,0">
             <Image Source="geo2" HeightRequest="24" WidthRequest="24" Margin="0,0,0,30" VerticalOptions="StartAndExpand"></Image>
-            <Image Source="geo" HeightRequest="24" WidthRequest="24" Margin="0,25,0,60" VerticalOptions="EndAndExpand"></Image>
+            <Image Source="geo" HeightRequest="24" WidthRequest="24" Margin="0,0,0,60" VerticalOptions="EndAndExpand"></Image>
             </StackLayout>
             <StackLayout Orientation="Vertical">
             <Label Text="ул. Заливная 39" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" BackgroundColor="Transparent" FontSize="16"
             Margin="30,0,0,10"></Label>
-            <Label Text="2,3 km" TextColor="#39B637" FontFamily="{StaticResource NormalFont}" BackgroundColor="Transparent" FontSize="16"
-            Margin="30,0,0,20"></Label>
+
             <Button BackgroundColor="Transparent"/>
-            <BoxView Margin="30,-60,30,0" WidthRequest="290" HeightRequest="1" BackgroundColor="LightGray"/>
+            <BoxView Margin="30,-50,30,0" WidthRequest="290" HeightRequest="1" BackgroundColor="LightGray"/>
             <Button BackgroundColor="Transparent"/>
 
             <Label Text="ул. Заливная 39" TextColor="#1C1C1C" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontSize="16"
-            Margin="30,-40,0,10"></Label>
-            <Label Text="2,3 km" TextColor="#39B637" FontFamily="{StaticResource NormalFont}" BackgroundColor="Transparent" FontSize="16"
-                   Margin="30,-10,0,30"></Label>
-            <BoxView HeightRequest="1" Margin="-60,-20,0,0" BackgroundColor="LightGray"/>
+            Margin="30,-50,0,10"></Label>
+
+            <BoxView HeightRequest="1" Margin="-60,0,0,0" BackgroundColor="LightGray"/>
             </StackLayout>
             </StackLayout>
 
-            <Label FontSize="16" Margin="0,39,0,0" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
+            <Label FontSize="16" Margin="0,-40,0,0" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
             <Label.FormattedText>
             <FormattedString>
             <Span Text="Информация о заказе остается доступной на странице «" TextColor="#1A1824"/>

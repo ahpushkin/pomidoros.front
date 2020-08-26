@@ -9,15 +9,15 @@
             <StackLayout>
                 <Frame BackgroundColor="#96A637" HeightRequest="99" Margin="0,-20,0,0">
 
-                    <StackLayout x:Name="bar" Orientation="Horizontal" Margin="16,0,16,0">
+                    <StackLayout x:Name="bar" Orientation="Horizontal" Margin="0,0,0,0">
                         <Button BackgroundColor="Transparent" TextColor="White" FontFamily="{StaticResource BoldFont}" Clicked="ProfileEvent" Text="Профиль"
-                        HorizontalOptions="StartAndExpand" Margin="0,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
+                        HorizontalOptions="StartAndExpand" Margin="0,54,0,0" FontSize="15" FontAttributes="Bold"></Button>
 
                          <Button BackgroundColor="Transparent" TextColor="White" FontFamily="{StaticResource BoldFont}" Text="Мои заказы"
-                        HorizontalOptions="CenterAndExpand" Clicked="MyOrderEvent" Margin="0,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
+                        HorizontalOptions="CenterAndExpand" Clicked="MyOrderEvent" Margin="0,54,0,0" FontSize="15" FontAttributes="Bold"></Button>
 
                          <Button BackgroundColor="Transparent" Clicked="MyHistoryEvent" TextColor="White" FontFamily="{StaticResource BoldFont}" Text="История"
-                        HorizontalOptions="EndAndExpand" Margin="-10,54,0,0" FontSize="16" FontAttributes="Bold"></Button>
+                        HorizontalOptions="EndAndExpand" Margin="-10,54,0,0" FontSize="15" FontAttributes="Bold"></Button>
                     </StackLayout>
 
                 </Frame>

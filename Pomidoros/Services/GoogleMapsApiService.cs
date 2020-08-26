@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Pomidoros.IMap;
 using Pomidoros.Model;
+using SkiaSharp;
 
 namespace Pomidoros.Services
 {
@@ -25,7 +26,7 @@ namespace Pomidoros.Services
             {
                 var response = await httpClient.GetAsync($"api/directions/json?mode=driving&transit_routing_preference=less_driving&origin={originLatitude},{originLongitude}&destination={destinationLatitude},{destinationLongitude}&key={_googleMapsKey}").ConfigureAwait(false);
                 if (response.IsSuccessStatusCode)
-                {
+               {
                     var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                     if (!string.IsNullOrWhiteSpace(json))
                     {

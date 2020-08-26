@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Pomidoros.View.Notification;
+using Rg.Plugins.Popup.Services;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
@@ -33,7 +35,10 @@ namespace Pomidoros.View
         {
             InitializeComponent();
         }
-       
+        void OperatorEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new OperatorPage());
+        }
         void BackEvent(object sender, EventArgs args)
         {
             Navigation.PopAsync();

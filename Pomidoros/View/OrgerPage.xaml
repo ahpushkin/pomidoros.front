@@ -19,7 +19,7 @@
 
             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Заказ№00000"></Label>
 
-            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+            <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
         </StackLayout>
          <maps:Map x:Name="map"
@@ -50,9 +50,12 @@
                    Margin="30,-10,0,30"></Label>
             </StackLayout>
             </StackLayout>
-            
+            <Button Text="Просмотреть маршрут" BackgroundColor="#96A637" FontAttributes="Bold"
+                        FontSize="16" CornerRadius="20" FontFamily="{StaticResource BoldFont}" Margin="30,-20,30,0" TextColor="White"></Button>
+
+
             <Button Text="Связаться с клиентом" BackgroundColor="#96A637" FontAttributes="Bold"
-                        FontSize="16" CornerRadius="5" FontFamily="{StaticResource BoldFont}" Margin="30,-20,30,0" TextColor="White"></Button>
+                        FontSize="16" CornerRadius="5" FontFamily="{StaticResource BoldFont}" Margin="30,10,30,0" TextColor="White"></Button>
 
             <Button Text="Подтвердить доставку с клиентом" Clicked="DoneEvent" BackgroundColor="Transparent" FontAttributes="Bold"
                         FontSize="16" Margin="0,5,30,0" FontFamily="{StaticResource BoldFont}" TextColor="#1A1824"></Button>
@@ -62,54 +65,6 @@
             <Button Text="Экстренное сообщение" BackgroundColor="Transparent" FontAttributes="Bold"
                         FontSize="16" Margin="0,5,30,0" FontFamily="{StaticResource BoldFont}" TextColor="#D80B30"></Button>
 
-            <StackLayout Orientation="Horizontal">
-                <Frame HorizontalOptions="StartAndExpand" BorderColor="LightGray" WidthRequest="149" CornerRadius="10" Margin="30,40,0,0" HeightRequest="51">
-                    <StackLayout>
-                        <Label Text="Ожидание" TextColor="Gray" FontFamily="{StaticResource NormalFont}"></Label>
-                       <Label Text="20 минут" TextColor="#1C1C1C" FontSize="16" FontFamily="{StaticResource BoldFont}"></Label>
-                    </StackLayout>
-                </Frame>
-                   <Frame HorizontalOptions="EndAndExpand" BorderColor="LightGray" WidthRequest="149" CornerRadius="10" Margin="30,40,30,0" HeightRequest="51">
-                    <StackLayout>
-                        <Label Text="Способ оплаты" TextColor="Gray" FontFamily="{StaticResource NormalFont}"></Label>
-                       <Label Text="Наличные" TextColor="#1C1C1C" FontSize="16" FontFamily="{StaticResource BoldFont}"></Label>
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
-           <Label Text="Дополнительные комментарии" Margin="30,39,0,0" TextColor="#1C1C1C" FontSize="16" FontFamily="{StaticResource BoldFont}"></Label>
-          <Label Text="Не трясти при перевозке" Margin="30,5,0,0" TextColor="#1C1C1C" FontSize="16" FontFamily="{StaticResource NormalFont}"></Label>
-            <StackLayout Orientation="Horizontal">
-                          <Label Text="Состав заказа" HorizontalOptions="StartAndExpand" Margin="30,35,0,0" TextColor="#1C1C1C" FontSize="16" FontFamily="{StaticResource NormalFont}"></Label>
-                    <ImageButton Source="more" BackgroundColor="Transparent" Margin="0,0,30,-30"  Clicked="MoreDeatil" HorizontalOptions="EndAndExpand"></ImageButton>
-            </StackLayout>
-            <ScrollView Orientation="Horizontal">
-            <StackLayout Orientation="Horizontal" Margin="30,10,30,44">
-                <Frame HorizontalOptions="StartAndExpand" BorderColor="LightGray" WidthRequest="100" CornerRadius="10" Margin="0,10,0,0" HeightRequest="51">
-                    <StackLayout>
-                        <Label Text="МакТост" TextColor="#1C1C1C" FontFamily="{StaticResource NormalFont}"></Label>
-                       <Label Text="1 шт" TextColor="Gray" FontSize="16" FontFamily="{StaticResource NormalFont}"></Label>
-                    </StackLayout>
-                </Frame>
-                 <Frame HorizontalOptions="StartAndExpand" BorderColor="LightGray" WidthRequest="100" CornerRadius="10" Margin="0,10,0,0" HeightRequest="51">
-                    <StackLayout>
-                        <Label Text="МакТост" TextColor="#1C1C1C" FontFamily="{StaticResource NormalFont}"></Label>
-                       <Label Text="1 шт" TextColor="Gray" FontSize="16" FontFamily="{StaticResource NormalFont}"></Label>
-                    </StackLayout>
-                </Frame>
-                 <Frame HorizontalOptions="StartAndExpand" BorderColor="LightGray" WidthRequest="100" CornerRadius="10" Margin="0,10,0,0" HeightRequest="51">
-                    <StackLayout>
-                        <Label Text="МакТост" TextColor="#1C1C1C" FontFamily="{StaticResource NormalFont}"></Label>
-                       <Label Text="1 шт" TextColor="Gray" FontSize="16" FontFamily="{StaticResource NormalFont}"></Label>
-                    </StackLayout>
-                </Frame>
-                 <Frame HorizontalOptions="StartAndExpand" BorderColor="LightGray" WidthRequest="100" CornerRadius="10" Margin="0,10,0,0" HeightRequest="51">
-                    <StackLayout>
-                        <Label Text="МакТост" TextColor="#1C1C1C" FontFamily="{StaticResource NormalFont}"></Label>
-                       <Label Text="1 шт" TextColor="Gray" FontSize="16" FontFamily="{StaticResource NormalFont}"></Label>
-                    </StackLayout>
-                </Frame>
-            </StackLayout>
-            </ScrollView>
         </StackLayout>
         </ScrollView>
     </ContentPage.Content>

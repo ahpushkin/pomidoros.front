@@ -9,7 +9,7 @@
         <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
         <ImageButton Source="back" BackgroundColor="Transparent" Clicked="BackEvent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
 
-        <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+        <ImageButton Source="help" Clicked="OperatorEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
         </StackLayout>
 
         <Label FontSize="30" Margin="0,29,0,0" HorizontalOptions="Center"

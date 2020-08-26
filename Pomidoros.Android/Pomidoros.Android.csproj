@@ -62,7 +62,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashActivity.cs" />
     <Compile Include="Renderers\ImageEntryRenderer.cs" />
-    <Compile Include="Renderers\XFCircleProgressRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -142,10 +141,6 @@
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable\map.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
     <AndroidResource Include="Resources\drawable\pker.png">
       <SubType></SubType>
       <Generator></Generator>
@@ -155,10 +150,6 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\more.png">
-      <SubType></SubType>
-      <Generator></Generator>
-    </AndroidResource>
-    <AndroidResource Include="Resources\drawable\map2.png">
       <SubType></SubType>
       <Generator></Generator>
     </AndroidResource>

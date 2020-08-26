@@ -13,25 +13,31 @@
 
             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Перерыв"></Label>
 
-            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+            <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
             </StackLayout>
         <StackLayout x:Name="mainv" VerticalOptions="CenterAndExpand">
         <Label x:Name="title" Text="Понравилось ли вам доставка?" FontFamily="{StaticResource BoldFont}" HorizontalTextAlignment="Center"
-               TextColor="#1A1824" FontSize="30" Margin="0,20,0,0"></Label>
+               TextColor="#1A1824" FontSize="30" Margin="0,-40,0,0"></Label>
 
-        <StackLayout x:Name="choose" Orientation="Horizontal" HorizontalOptions="Center" Margin="0,0,0,30">
-            <Button x:Name="yes" Clicked="YesEvent" BackgroundColor="Transparent" BorderColor="LightGray" BorderWidth="1"
-                    CornerRadius="20" Text="Да" Margin="0,0,-5,0" TextColor="#96A637" HeightRequest="100"
-                    WidthRequest="180"
-                    FontSize="30" FontFamily="{StaticResource BoldFont}"></Button>
-             <Button x:Name="no" Clicked="NopeEvent" BackgroundColor="Transparent" BorderColor="LightGray" BorderWidth="1"
-                    CornerRadius="20" Margin="-5,0,0,0" Text="Нет" TextColor="#96A637" HeightRequest="100"
-                    WidthRequest="180"
-                    FontSize="30" FontFamily="{StaticResource BoldFont}"></Button>
-             
-        </StackLayout>
-            <Label Text="Спасибо за ответ" FontFamily="{StaticResource BoldFont}" HorizontalTextAlignment="Center"
+        <Frame x:Name="choose" BackgroundColor="Transparent" HorizontalOptions="Center"
+               BorderColor="LightGray" CornerRadius="20" HeightRequest="50" Margin="0,22,0,30">
+            <StackLayout Orientation="Horizontal" HeightRequest="70">
+            <StackLayout  x:Name="yea" BackgroundColor="Transparent">
+            <Button x:Name="yes" Clicked="YesEvent" BackgroundColor="Transparent" 
+                   Text="Да" Margin="0,0,0,0" TextColor="#96A637" HeightRequest="50"
+                    WidthRequest="150"
+                    FontSize="25" FontFamily="{StaticResource BoldFont}"></Button>
+             </StackLayout>
+             <StackLayout x:Name="nope" BackgroundColor="Transparent">
+             <Button x:Name="no" Clicked="NopeEvent" BackgroundColor="Transparent"
+                   Margin="0,0,0,0" Text="Нет" TextColor="#96A637" HeightRequest="50"
+                    WidthRequest="150"
+                    FontSize="25" FontFamily="{StaticResource BoldFont}"></Button>
+              </StackLayout>
+           </StackLayout>
+        </Frame>
+            <Label x:Name="thx" Text="Спасибо за ответ" FontFamily="{StaticResource BoldFont}" HorizontalTextAlignment="Center"
                TextColor="#1A1824" FontSize="20" Margin="0,15,0,0"></Label>
             <Label x:Name="ret" Text="Приятного аппетита!" FontFamily="{StaticResource BoldFont}" HorizontalTextAlignment="Center"
                TextColor="#1A1824" FontSize="30" Margin="0,15,0,0"></Label>

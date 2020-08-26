@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using Pomidoros.View.Notification;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 
@@ -30,7 +32,10 @@ namespace Pomidoros.View
             set { SetValue(UpdateCommandProperty, value); }
         }
 
-
+        void OperatorEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new OperatorPage());
+        }
         public OrgerPage()
         {
             InitializeComponent();

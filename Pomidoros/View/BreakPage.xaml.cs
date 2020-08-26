@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Pomidoros.Controls;
+using Pomidoros.View.Notification;
 using Pomidoros.ViewModel;
 using Pomidoros.ViewModel.Base;
+using Rg.Plugins.Popup.Services;
 using SkiaSharp;
 using Xamarin.Forms;
 
@@ -22,7 +24,10 @@ namespace Pomidoros.View
                 OnPropertyChanged(nameof(TimerProperty)); // Notify that there was a change on this property
             }
         }
-
+        void OperatorEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new OperatorPage());
+        }
         public BreakPage()
         {
             InitializeComponent();

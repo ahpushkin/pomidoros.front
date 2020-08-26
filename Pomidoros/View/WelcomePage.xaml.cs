@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Pomidoros.View.Notification;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace Pomidoros.View
@@ -24,6 +26,10 @@ namespace Pomidoros.View
             else
             {
                 DisplayAlert("Произошла ошибка.", "Повторите попытку позже. ", "Хорошо");
+            }
+            void OperatorEvent(object sender, EventArgs args)
+            {
+                PopupNavigation.Instance.PushAsync(new OperatorPage());
             }
         }
 

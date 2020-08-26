@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Pomidoros.View.Notification;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace Pomidoros.View
@@ -19,13 +21,17 @@ namespace Pomidoros.View
                 OnPropertyChanged(nameof(TimerProperty)); // Notify that there was a change on this property
             }
         }
-
+        void OperatorEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new OperatorPage());
+        }
         public RatingPage()
         {
             InitializeComponent();
 
             BindingContext = this;
 
+            thx.IsVisible = false;
         }
         async void Heartbeat()
         {
@@ -70,8 +76,12 @@ namespace Pomidoros.View
             mainv.VerticalOptions = LayoutOptions.StartAndExpand;
             title.FontSize = 20;
             no.IsEnabled = false;
+
             ret.Text = "Приятного аппетита!";
             ret.IsVisible = true;
+            yea.BackgroundColor = Color.FromHex("#96A637");
+
+            thx.IsVisible = true;
         }
         void NopeEvent(object sender, EventArgs args)
         {
@@ -80,10 +90,14 @@ namespace Pomidoros.View
 
             yes.IsEnabled = false;
             mainv.VerticalOptions = LayoutOptions.StartAndExpand;
+
             title.FontSize = 20;
+            nope.BackgroundColor = Color.FromHex("#1C1C1C");
 
             ret.Text = "Наш оператор свяжется с вами, чтобы узнать подробности";
             ret.IsVisible = true;
+
+            thx.IsVisible = true;
         }
     }
 }

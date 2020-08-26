@@ -13,7 +13,7 @@
 
             <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
 
-            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+            <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
             </StackLayout>
 

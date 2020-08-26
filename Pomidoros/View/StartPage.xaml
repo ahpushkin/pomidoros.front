@@ -13,7 +13,7 @@
 
         <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Подготовка 1/2"></Label>
 
-        <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+        <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
         </StackLayout>
        
@@ -43,7 +43,7 @@
         <Button Text="Да, уже осмотрел и готов" FontFamily="{StaticResource BoldFont}" Clicked="NextEvent" CornerRadius="5" BackgroundColor="#96A637" FontAttributes="Bold"
         FontSize="16" Margin="30,104,30,0" TextColor="White"></Button>
 
-        <Button Text="Нет, еще не осматривал" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"
+        <Button Text="Нет, еще не осматривал" Clicked="CheckEvent" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"
         FontSize="16" Margin="0,39,30,32" TextColor="#1A1824"></Button>
 
         </StackLayout>

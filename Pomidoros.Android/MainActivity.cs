@@ -21,9 +21,7 @@ namespace Pomidoros.Droid
 
             base.OnCreate(savedInstanceState);
 
-
-            Pomidoros.Droid.Renderer.XFCircleProgressRenderer.InitRender();
-
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState); // initialize for Xamarin.Forms.GoogleMaps
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

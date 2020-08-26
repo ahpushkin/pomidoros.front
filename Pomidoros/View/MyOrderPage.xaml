@@ -11,7 +11,7 @@
 
             <Label FontSize="16" BackgroundColor="Transparent" TextColor="#1C1C1C" FontFamily="{StaticResource BoldFont}" Text="Мои заказы"></Label>
 
-            <ImageButton Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+            <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
         </StackLayout>
 			 <Button BackgroundColor="Transparent"/>
@@ -21,7 +21,7 @@
 	<TableRoot>
 		<TableSection >
 			<ViewCell >
-				<StackLayout Padding="15, 5, 15, 5" Orientation="Horizontal">
+				<StackLayout Padding="15, 5, 15, 5" BackgroundColor="Transparent" Orientation="Horizontal">
 					<Image Source="geo"  Margin="30,-15,0,0"/>
 					<StackLayout Orientation="Vertical" Margin="15,0,0,0">
 					<Label FontFamily="{StaticResource BoldFont}" FontSize="16" Text="ул. Засумская, 12" TextColor="#1C1C1C" VerticalOptions="Center" />
@@ -43,6 +43,11 @@
 					<Label FontFamily="{StaticResource BoldFont}" FontSize="16" Text="ул. Засумская, 12" TextColor="#1C1C1C" VerticalOptions="Center" />
 					<Label FontFamily="{StaticResource NormalFont}" Text="2.3 км" TextColor="#39B637" VerticalOptions="Center" />
 					</StackLayout>
+				<StackLayout.GestureRecognizers>
+                <TapGestureRecognizer
+                Tapped="GetReview">
+                </TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
 				</StackLayout>
 			</ViewCell>
 		</TableSection>
@@ -53,6 +58,7 @@
 					<StackLayout Orientation="Vertical" Margin="15,0,0,0">
 					<Label FontFamily="{StaticResource BoldFont}" FontSize="16" Text="ул. Засумская, 12" TextColor="#1C1C1C" VerticalOptions="Center" />
 					<Label FontFamily="{StaticResource NormalFont}" Text="2.3 км" TextColor="#39B637" VerticalOptions="Center" />
+			
 					</StackLayout>
 				</StackLayout>
 			</ViewCell>

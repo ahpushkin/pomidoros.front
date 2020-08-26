@@ -34,7 +34,10 @@ namespace Pomidoros.Droid
             await Task.Delay(8000); // Simulate a bit of startup work.
             Log.Debug(TAG, "Startup work is finished - starting MainActivity.");
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+            var mainActivityIntent = new Intent(this, typeof(MainActivity));
+            mainActivityIntent.AddFlags(ActivityFlags.NoAnimation); //Add this line
         }
+
     }
 
 }
