@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <pages:PopupPage  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pomidoros.View.Notification.OperatorPage">
-     <Frame  
+             x:Class="Pomidoros.View.Notification.WearPopupPage">
+    <Frame  
            HorizontalOptions="Center" 
            VerticalOptions="Center"
            HasShadow="True"
-           Margin="0,0,0,0"
+           Margin="30,0,30,0"
            CornerRadius="20"
            IsClippedToBounds="True"
            Padding="0">
@@ -15,15 +15,15 @@
                       HorizontalOptions="FillAndExpand"
                       Padding="20, 20, 20, 20"
                       BackgroundColor="#EFEFEF">
-         <Label Text="Связаться с оператором" HorizontalTextAlignment="Center" TextColor="Black"
+         <Label Text="Пожалуйста,&#x0a;наденьте форму" HorizontalTextAlignment="Center" TextColor="Black"
          HorizontalOptions="Center" FontSize="17"  FontFamily="{StaticResource BoldFont}"></Label>
-         <Label Text="Оператор поможет в решении вашей проблемы" TextColor="Black"
+         <Label Text="Надень специальную форму для того, чтобы работники заведений и заказчики могли вас узнать." TextColor="Black"
          HorizontalOptions="Center" FontSize="16" HorizontalTextAlignment="Center"  Margin="0,10,0,0" FontFamily="{StaticResource NormalFont}"></Label>
                 <BoxView WidthRequest="290" HeightRequest="1" Margin="0,20,0,0" BackgroundColor="LightGray"/>
-        <Button Text="Позвонить" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
+        <Button Text="Хорошо" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
                 FontFamily="{StaticResource BoldFont}" Clicked="OnClose"/>
         <BoxView WidthRequest="290" HeightRequest="0.01" Margin="0,-5,0,0" BackgroundColor="LightGray"/>
-        <Button Text="Отмена" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
+        <Button Text="У меня нет формы" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
                 FontFamily="{StaticResource BoldFont}" Clicked="OnClose"/>
          </StackLayout>
     </Frame>

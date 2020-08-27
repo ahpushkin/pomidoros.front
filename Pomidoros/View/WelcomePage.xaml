@@ -9,7 +9,7 @@
         <ScrollView>
 
         <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand"
-                     Margin="30,0,0,0">
+                     Margin="30,-40,0,0">
             <StackLayout VerticalOptions="CenterAndExpand">
 
             <Label Text="Здравствуйте," FontFamily="{StaticResource NormalFont}" TextColor="#1A1824" FontSize="16"></Label>

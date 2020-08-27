@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
+using Pomidoros.View.Notification;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace Pomidoros.View
@@ -31,5 +33,19 @@ namespace Pomidoros.View
         {
             Navigation.PushAsync(new OrgerPage());
         }
+        void HaveNext(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new HavePopupPage());
+        }
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await Task.Delay(5000);
+
+            PopupNavigation.Instance.PushAsync(new DoPopupPage());
+
+        }
+
     }
 }

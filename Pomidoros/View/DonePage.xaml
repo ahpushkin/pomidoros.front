@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-            <Frame BackgroundColor="White" Margin="30,170,30,0" HeightRequest="281" CornerRadius="20">
+            <Frame BackgroundColor="White" Margin="30,170,30,0" HeightRequest="380" CornerRadius="20">
             <StackLayout>
             <Label FontSize="20" Margin="0,39,0,0" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
             <Label.FormattedText>

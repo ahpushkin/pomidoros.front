@@ -24,5 +24,9 @@ namespace Pomidoros.View
         {
             PopupNavigation.Instance.PushAsync(new OperatorPage());
         }
+        void WearEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new WearPopupPage());
+        }
     }
 }

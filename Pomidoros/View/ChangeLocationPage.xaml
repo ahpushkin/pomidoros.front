@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Pomidoros.ViewModels"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             x:Class="Pomidoros.View.ChangeLocationPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             >
+    <ContentPage.BindingContext>
+        <vm:MainViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+    <StackLayout>
+     <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+
+            <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+
+            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Заказ№00000"></Label>
+
+            <Button FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#96A637" Text="Сохранить"></Button>
+
+        </StackLayout>
+    <Grid>        
+           <StackLayout BackgroundColor="White"
+                        Orientation="Horizontal"
+                        VerticalOptions="Start"
+                        Padding="10"
+                        x:Name="searchLayout"
+                        Margin="30,50,30,0">
+             
+            <Label x:Name="to" Text="ул. Заливная 39" Focused="ChangeLocationEvent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" BackgroundColor="Transparent" FontSize="16"
+                   Margin="0,-60,0,10">
+                
+            </Label>
+            <Label Text="2,3 km" TextColor="#39B637" FontFamily="{StaticResource NormalFont}" BackgroundColor="Transparent" FontSize="16"
+                   Margin="0,-10,0,20"></Label>
+            <Button BackgroundColor="Transparent"/>
+                <BoxView Margin="30,-60,30,0" WidthRequest="290" HeightRequest="1" BackgroundColor="LightGray"/>
+            <Button BackgroundColor="Transparent"/>
+
+             <Label x:Name="from" Text="ул. Заливная 39" TextColor="#1C1C1C" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontSize="16"
+                   Margin="0,-40,0,10">
+            </Label>
+            <Label Text="2,3 km" TextColor="#39B637" FontFamily="{StaticResource NormalFont}" BackgroundColor="Transparent" FontSize="16"
+                   Margin="30,-10,0,30"></Label>
+            </StackLayout>
+            </StackLayout>
+                <maps:Map x:Name="map"
+                    IsVisible="false"
+                    InitialCameraUpdate="40.77, -73.93, 13, 30, 60"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"/>
+                       <Image Source="ic_search"
+                              HeightRequest="15"
+                              WidthRequest="15"/>
+                       <Label HorizontalOptions="FillAndExpand"
+                              LineBreakMode="TailTruncation"
+                              FontAttributes="Italic"
+                              Text="Search Place"
+                              TextColor="Gray"/>
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer 
+                               Tapped="OnEnterAddressTapped" />
+                   </StackLayout.GestureRecognizers>
+           </StackLayout>
+        
+           <Button Text="Stop"
+                   Margin="40"
+                   Clicked="Handle_Stop_Clicked"
+                   Command="{Binding StopRouteCommand}"
+                   IsVisible="false"
+                   x:Name="stopRouteButton"
+                   BackgroundColor="Red"
+                   TextColor="White"
+                   FontSize="17"
+                   VerticalOptions="EndAndExpand"
+                   HorizontalOptions="FillAndExpand"/>
+    </Grid>
+        </StackLayout>
+        </ScrollView>
+</ContentPage>

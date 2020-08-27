@@ -2,18 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pomidoros.View.MapPage"
-             xmlns:gmaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps">
+             xmlns:gmaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:vm="clr-namespace:Pomidoros.ViewModel"
+             BackgroundColor="White"
+             NavigationPage.HasNavigationBar="False">
+     <ContentPage.BindingContext>
+        <vm:MapViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
+        <ScrollView>
+        <StackLayout>
+            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
 
-    <Grid>
-        <gmaps:Map x:Name="map_main" MapType="Street" HasZoomEnabled="True" MyLocationEnabled="True" >
-            <gmaps:Map.ItemTemplate>
-                <DataTemplate>
-                    <gmaps:Pin Position="{Binding Position}" Label="{Binding PinLabel}" />
-                </DataTemplate>
-            </gmaps:Map.ItemTemplate>
-        </gmaps:Map>
-    </Grid>
-       
+            <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+
+            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Заказ№00000"></Label>
+
+            <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+
+        </StackLayout>
+                <gmaps:Map x:Name="map"
+                      HeightRequest="800"
+                      Margin="0,5,0,0"
+                      InitialCameraUpdate="40.77, -73.93, 13, 30, 60"
+                      VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

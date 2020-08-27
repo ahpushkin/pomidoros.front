@@ -15,6 +15,7 @@ namespace Pomidoros.View
     {
         private string timerProperty;
         public string main_data;
+        public int count;
         public string TimerProperty
         {
             get { return timerProperty; }
@@ -44,27 +45,33 @@ namespace Pomidoros.View
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
-            var count = 900;
+            
+            count = 900;
+            UpdateTime();
             while (true)
             {
                 await Task.Delay(1000);
                 count--;
                 await progres.ProgressTo(0.01, 1000, Easing.Linear);
-               
-                TimeSpan time = TimeSpan.FromSeconds(count);
 
-                //here backslash is must to tell that colon is
-                //not the part of format, it just a character that we want in output
-                string str = time.ToString(@"mm\:ss");
-                main_data = str;
-                TimerProperty = main_data;
+                UpdateTime();
+
                 if (count == 0)
                 {
                     await this.Navigation.PushAsync(new OverPage());
                     break;
                 }
             }
+        }
+        void UpdateTime()
+        {
+            TimeSpan time = TimeSpan.FromSeconds(count);
+
+            //here backslash is must to tell that colon is
+            //not the part of format, it just a character that we want in output
+            string str = time.ToString(@"mm\:ss");
+            main_data = str;
+            TimerProperty = main_data;
         }
         
     }

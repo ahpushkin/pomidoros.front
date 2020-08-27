@@ -22,12 +22,12 @@
 
             </StackLayout>
             <maps:Map x:Name="map"
-                   HeightRequest="550"
+                   HeightRequest="394"
                       InitialCameraUpdate="40.77, -73.93, 13, 30, 60"
                       VerticalOptions="FillAndExpand"
                       HorizontalOptions="FillAndExpand"/>
-            <Frame BackgroundColor="White" HeightRequest="200" Margin="0,-30,0,0" CornerRadius="25">
-            <StackLayout Orientation="Horizontal">
+            <Frame BackgroundColor="White" HeightRequest="200" HasShadow="False" Margin="0,-30,0,0" CornerRadius="25">
+            <StackLayout Orientation="Horizontal" >
             <StackLayout Orientation="Vertical" Margin="30,0,0,0">
             <Image Source="geo2" HeightRequest="24" WidthRequest="24" Margin="0,0,0,30" VerticalOptions="StartAndExpand"></Image>
             <Image Source="geo" HeightRequest="24" WidthRequest="24" Margin="0,25,0,60" VerticalOptions="EndAndExpand"></Image>

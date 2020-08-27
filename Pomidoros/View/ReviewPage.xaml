@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pomidoros.View.ReviewPage"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-              xmlns:vm="clr-namespace:Pomidoros.ViewModel"
-                NavigationPage.HasNavigationBar="False">
+             xmlns:vm="clr-namespace:Pomidoros.ViewModel"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
      <ContentPage.BindingContext>
         <vm:MapViewModel/>
     </ContentPage.BindingContext>
@@ -28,12 +29,12 @@
         
             <Frame BackgroundColor="White" HasShadow="False" CornerRadius="30" HeightRequest="50"
                    Margin="0,-30,0,0" ></Frame>
-            <StackLayout Orientation="Horizontal">
-             <StackLayout Orientation="Vertical" Margin="30,0,0,0">
+            <StackLayout Orientation="Horizontal" BackgroundColor="White">
+             <StackLayout Orientation="Vertical" BackgroundColor="White" Margin="30,0,0,0">
                 <Image Source="geo2" HeightRequest="24" WidthRequest="24" Margin="0,-50,0,30" VerticalOptions="StartAndExpand"></Image>
                  <Image Source="geo" HeightRequest="24" WidthRequest="24" Margin="0,25,0,60" VerticalOptions="EndAndExpand"></Image>
              </StackLayout>
-            <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Vertical" BackgroundColor="White">
             <Label Text="ул. Заливная 39" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" BackgroundColor="Transparent" FontSize="16"
                    Margin="30,-60,0,10"></Label>
             <Label Text="2,3 km" TextColor="#39B637" FontFamily="{StaticResource NormalFont}" BackgroundColor="Transparent" FontSize="16"
@@ -49,7 +50,7 @@
             </StackLayout>
             </StackLayout>
             
-            <Button Text="Просмотреть маршрут" BackgroundColor="#96A637" FontAttributes="Bold"
+            <Button Text="Просмотреть маршрут" Clicked="ShowMap" BackgroundColor="#96A637" FontAttributes="Bold"
                         FontSize="16" CornerRadius="20" FontFamily="{StaticResource BoldFont}" Margin="30,-20,30,0" TextColor="White"></Button>
 
             <StackLayout Orientation="Horizontal">

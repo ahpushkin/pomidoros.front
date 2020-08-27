@@ -28,5 +28,9 @@ namespace Pomidoros.View
         {
             PopupNavigation.Instance.PushAsync(new OperatorPage());
         }
+        void LogoutEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new LogoutPopupPage());
+        }
     }
 }

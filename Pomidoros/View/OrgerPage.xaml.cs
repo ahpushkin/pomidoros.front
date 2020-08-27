@@ -40,6 +40,13 @@ namespace Pomidoros.View
         {
             InitializeComponent();
 
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) => {
+                // handle the tap
+                Navigation.PushAsync(new ChangeLocationPage());
+            };
+            to.GestureRecognizers.Add(tapGestureRecognizer);
+            
             CalculateCommand = new Command<List<Xamarin.Forms.GoogleMaps.Position>>(Calculate);
             UpdateCommand = new Command<Xamarin.Forms.GoogleMaps.Position>(Update);
         }
@@ -55,7 +62,30 @@ namespace Pomidoros.View
         {
             Navigation.PushAsync(new MorePage());
         }
-
+        void ComfingEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new СonfirmPopupPage());
+        }
+        void MessageEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new MessagePopupPage());
+        }
+        void CallEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new CallPopupPage());
+        }
+        public void ChangeLocationEvent(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new ChangeLocationPage());
+        }
+        void ProblemEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new ProblemPopupPage());
+        }
+        void ShowMap(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new MapPage());
+        }
         async void Update(Xamarin.Forms.GoogleMaps.Position position)
         {
             if (map.Pins.Count == 1)

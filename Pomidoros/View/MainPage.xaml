@@ -11,13 +11,13 @@
 
                     <StackLayout x:Name="bar" Orientation="Horizontal" Margin="0,0,0,0">
                         <Button BackgroundColor="Transparent" TextColor="White" FontFamily="{StaticResource BoldFont}" Clicked="ProfileEvent" Text="Профиль"
-                        HorizontalOptions="StartAndExpand" Margin="0,54,0,0" FontSize="15" FontAttributes="Bold"></Button>
+                        HorizontalOptions="StartAndExpand" Margin="0,54,0,0" FontSize="13" FontAttributes="Bold"></Button>
 
                          <Button BackgroundColor="Transparent" TextColor="White" FontFamily="{StaticResource BoldFont}" Text="Мои заказы"
-                        HorizontalOptions="CenterAndExpand" Clicked="MyOrderEvent" Margin="0,54,0,0" FontSize="15" FontAttributes="Bold"></Button>
+                        HorizontalOptions="CenterAndExpand" Clicked="MyOrderEvent" Margin="0,54,0,0" FontSize="13" FontAttributes="Bold"></Button>
 
                          <Button BackgroundColor="Transparent" Clicked="MyHistoryEvent" TextColor="White" FontFamily="{StaticResource BoldFont}" Text="История"
-                        HorizontalOptions="EndAndExpand" Margin="-10,54,0,0" FontSize="15" FontAttributes="Bold"></Button>
+                        HorizontalOptions="EndAndExpand" Margin="-10,54,0,0" FontSize="13" FontAttributes="Bold"></Button>
                     </StackLayout>
 
                 </Frame>
@@ -41,7 +41,7 @@
                          FontSize="16"
                          TextColor="#1A1824"></Label>
 
-                        <Image HorizontalOptions="Start" Source="monitor" Margin="21,130,0,25"></Image>
+                        <ImageButton BackgroundColor="Transparent" Clicked="HaveNext" HorizontalOptions="Start" Source="monitor" Margin="21,130,0,25"></ImageButton>
                     </StackLayout>
                 </Frame>
                 

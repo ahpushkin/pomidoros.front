@@ -34,6 +34,7 @@
     <Folder Include="Helper\" />
     <Folder Include="Controller\" />
     <Folder Include="View\Notification\" />
+    <Folder Include="View\SearchPlace\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="View\HistoryPage.xaml.cs">
