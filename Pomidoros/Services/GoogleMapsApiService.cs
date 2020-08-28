@@ -14,11 +14,13 @@ namespace Pomidoros.Services
     {
         static string _googleMapsKey;
 
+        //render of maps
         public static void Initialize(string googleMapsKey)
         {
             _googleMapsKey = googleMapsKey;
         }
 
+        //main  methd
         public async Task<GoogleDirection> GetDirections(string originLatitude, string originLongitude, string destinationLatitude, string destinationLongitude)
         {
             GoogleDirection googleDirection = new GoogleDirection();
@@ -42,7 +44,8 @@ namespace Pomidoros.Services
             return googleDirection;
         }
 
-
+        //make request to google maps
+        ///https://maps.googleapis.com/maps/
         private const string ApiBaseAddress = "https://maps.googleapis.com/maps/";
         private HttpClient CreateClient()
         {
@@ -75,7 +78,7 @@ namespace Pomidoros.Services
                     }
                 }
             }
-
+            //return result, false-true
             return results;
         }
 
@@ -97,5 +100,6 @@ namespace Pomidoros.Services
 
             return result;
         }
+        //end
     }
 }

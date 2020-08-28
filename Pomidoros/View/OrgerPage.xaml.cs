@@ -39,13 +39,7 @@ namespace Pomidoros.View
         public OrgerPage()
         {
             InitializeComponent();
-
-            var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped += (s, e) => {
-                // handle the tap
-                Navigation.PushAsync(new ChangeLocationPage());
-            };
-            to.GestureRecognizers.Add(tapGestureRecognizer);
+    
             
             CalculateCommand = new Command<List<Xamarin.Forms.GoogleMaps.Position>>(Calculate);
             UpdateCommand = new Command<Xamarin.Forms.GoogleMaps.Position>(Update);

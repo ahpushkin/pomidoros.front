@@ -79,7 +79,6 @@ namespace Pomidoros.View
 
             ret.Text = "Приятного аппетита!";
             ret.IsVisible = true;
-            yea.BackgroundColor = Color.FromHex("#96A637");
 
             thx.IsVisible = true;
         }
@@ -92,7 +91,6 @@ namespace Pomidoros.View
             mainv.VerticalOptions = LayoutOptions.StartAndExpand;
 
             title.FontSize = 20;
-            nope.BackgroundColor = Color.FromHex("#1C1C1C");
 
             ret.Text = "Наш оператор свяжется с вами, чтобы узнать подробности";
             ret.IsVisible = true;

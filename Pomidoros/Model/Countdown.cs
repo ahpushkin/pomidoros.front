@@ -5,6 +5,8 @@ namespace Pomidoros.Model
 {
     public class Countdown : BindableObject
     {
+        //CounDown calss for progres bar
+        //timer
         TimeSpan _remainTime;
 
         public event Action Completed;
@@ -22,7 +24,7 @@ namespace Pomidoros.Model
                 OnPropertyChanged();
             }
         }
-
+        //start method
         public void Start(int seconds = 1)
         {
             Device.StartTimer(TimeSpan.FromSeconds(seconds), () =>
@@ -43,5 +45,6 @@ namespace Pomidoros.Model
                 return ticked;
             });
         }
+        //stop method not needed
     }
 }

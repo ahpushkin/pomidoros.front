@@ -24,7 +24,7 @@
         <Label Margin="0,25,0,0" Text="Идёт загрузка заказов" FontFamily="{StaticResource NormalFont}" FontSize="16"
         TextColor="#1A1824" HorizontalOptions="Center"></Label>
 
-        <ActivityIndicator x:Name="activ" IsRunning="true" Color="#96A637" Margin="0,30,0,0"/>
+        <ActivityIndicator x:Name="activ" IsRunning="true" Color="#96A637" Margin="0,30,0,30"/>
 
         </StackLayout>
 

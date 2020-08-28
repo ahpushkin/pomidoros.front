@@ -7,24 +7,27 @@
            HorizontalOptions="Center" 
            VerticalOptions="Center"
            HasShadow="True"
-           Margin="0,0,0,0"
+           Margin="30,0,30,0"
            CornerRadius="20"
            IsClippedToBounds="True"
            Padding="0">
          <StackLayout VerticalOptions="Center"
                       HorizontalOptions="FillAndExpand"
-                      Padding="20, 20, 20, 20"
+                      
                       BackgroundColor="#EFEFEF">
          <Label Text="Связаться с оператором" HorizontalTextAlignment="Center" TextColor="Black"
-         HorizontalOptions="Center" FontSize="17"  FontFamily="{StaticResource BoldFont}"></Label>
+         HorizontalOptions="Center" FontSize="17"  Margin="0,10,0,0" FontFamily="{StaticResource BoldFont}"></Label>
          <Label Text="Оператор поможет в решении вашей проблемы" TextColor="Black"
          HorizontalOptions="Center" FontSize="16" HorizontalTextAlignment="Center"  Margin="0,10,0,0" FontFamily="{StaticResource NormalFont}"></Label>
-                <BoxView WidthRequest="290" HeightRequest="1" Margin="0,20,0,0" BackgroundColor="LightGray"/>
+         <BoxView Margin="10,10,10,0" HeightRequest="1" BackgroundColor="LightGray"/>
+      
         <Button Text="Позвонить" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
-                FontFamily="{StaticResource BoldFont}" Clicked="OnClose"/>
-        <BoxView WidthRequest="290" HeightRequest="0.01" Margin="0,-5,0,0" BackgroundColor="LightGray"/>
+         FontFamily="{StaticResource BoldFont}" Clicked="OnClose"/>
+        <StackLayout>
+         <BoxView  Margin="10,0,10,0" HeightRequest="1" BackgroundColor="LightGray"/>
+        </StackLayout>
         <Button Text="Отмена" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
-                FontFamily="{StaticResource BoldFont}" Clicked="OnClose"/>
+                FontFamily="{StaticResource BoldFont}" Margin="0,0,0,10" Clicked="OnClose"/>
          </StackLayout>
     </Frame>
 </pages:PopupPage>

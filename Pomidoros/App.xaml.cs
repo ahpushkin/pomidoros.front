@@ -10,8 +10,9 @@ namespace Pomidoros
         public App()
         {
             InitializeComponent();
-            //set launch page 
-            MainPage = new NavigationPage(new MyOrderPage());
+            //set launch page
+            //pls dont change this code)
+            MainPage = new NavigationPage(new MorePage());
         }
         //OnStart method
         protected override void OnStart()

@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 
 namespace Pomidoros.Model
 {
+    //GoogleDirection
+    //type for map render
     public class GeocodedWaypoint
     {
         [JsonProperty("geocoder_status")]
@@ -91,7 +93,8 @@ namespace Pomidoros.Model
         [JsonProperty("points")]
         public string Points { get; set; }
     }
-
+    //not car
+    //Steap
     public class Step
     {
 
@@ -195,4 +198,6 @@ namespace Pomidoros.Model
         [JsonProperty("status")]
         public string Status { get; set; }
     }
+    //
+    //
 }

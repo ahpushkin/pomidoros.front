@@ -7,9 +7,7 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:vm="clr-namespace:Pomidoros.ViewModel"
           >
-     <ContentPage.BindingContext>
-        <vm:MapViewModel/>
-    </ContentPage.BindingContext>
+     
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
@@ -30,32 +28,25 @@
         
              <Frame BackgroundColor="White" HasShadow="False" CornerRadius="30" HeightRequest="50"
                    Margin="0,-30,0,0" ></Frame>
-            <StackLayout Orientation="Horizontal" BackgroundColor="White">
-             <StackLayout Orientation="Vertical" Margin="30,0,0,0" BackgroundColor="White">
-                <Image Source="geo2" HeightRequest="24" WidthRequest="24" Margin="0,-50,0,30" VerticalOptions="StartAndExpand"></Image>
-                 <Image Source="geo" HeightRequest="24" WidthRequest="24" Margin="0,25,0,60" VerticalOptions="EndAndExpand"></Image>
-             </StackLayout>
-            <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand" BackgroundColor="White">
-                 <StackLayout.GestureRecognizers>
-        <TapGestureRecognizer Tapped="ChangeLocationEvent"/>
-                </StackLayout.GestureRecognizers>
-            <Label x:Name="to" Text="ул. Заливная 39" Focused="ChangeLocationEvent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" BackgroundColor="Transparent" FontSize="16"
-                   Margin="0,-60,0,10">
-                
-            </Label>
-            <Label Text="2,3 km" TextColor="#39B637" FontFamily="{StaticResource NormalFont}" BackgroundColor="Transparent" FontSize="16"
-                   Margin="0,-10,0,20"></Label>
-            <Button BackgroundColor="Transparent"/>
-                <BoxView Margin="30,-60,30,0" WidthRequest="290" HeightRequest="1" BackgroundColor="LightGray"/>
-            <Button BackgroundColor="Transparent"/>
-
-             <Label x:Name="from" Text="ул. Заливная 39" TextColor="#1C1C1C" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontSize="16"
-                   Margin="0,-40,0,10">
-            </Label>
-            <Label Text="2,3 km" TextColor="#39B637" FontFamily="{StaticResource NormalFont}" BackgroundColor="Transparent" FontSize="16"
-                   Margin="30,-10,0,30"></Label>
+            <StackLayout Orientation="Horizontal" Margin="30,-30,0,40">
+                <StackLayout Orientation="Vertical">
+                    <Image Source="geo" Margin="0,0,0,30" HeightRequest="20"></Image>
+                    <Image Source="loc" Margin="0,-30,0,0"></Image>
+                    <Image Source="geo2" HeightRequest="20"></Image>
+                </StackLayout>
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                    <Label Text="ул. Заливная 39" FontSize="16" FontFamily="{StaticResource BoldFont}" TextColor="Black" Margin="20,-5,0,0"></Label>
+                    <Label Text="2.3 км" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="#39B637" Margin="20,-5,0,0"></Label>
+                    </StackLayout>
+                    <BoxView Margin="0,0,30,0" HorizontalOptions="FillAndExpand" WidthRequest="500" HeightRequest="1" BackgroundColor="LightGray"/>
+                     <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
+                    <Label Text="ул. Заливная 39" FontSize="16" FontFamily="{StaticResource BoldFont}" TextColor="Black" Margin="20,-5,0,0"></Label>
+                    <Label Text="2.3 км" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="#39B637" Margin="20,-5,0,0"></Label>
+                     </StackLayout>
+                </StackLayout>
             </StackLayout>
-            </StackLayout>
+            
             <Button Text="Просмотреть маршрут" Clicked="ShowMap" BackgroundColor="#96A637" FontAttributes="Bold"
                         FontSize="16" CornerRadius="20" FontFamily="{StaticResource BoldFont}" Margin="30,-20,30,0" TextColor="White"></Button>
 

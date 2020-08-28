@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:views="clr-namespace:Pomidoros.Controls" xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:views="clr-namespace:Pomidoros.Controls"
+             xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              x:Class="Pomidoros.View.MorePage"
+             xmlns:local="clr-namespace:Pomidoros"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView Margin="0,0,0,30">
@@ -30,40 +32,24 @@
             </Label.FormattedText>
             
             </Label>
-
-        <StackLayout>
-             <skiaforms:SKCanvasView Grid.Column="1" PaintSurface="OnCanvasViewPaintSurface" />
-             </StackLayout>
-
-             <TableView Intent="Menu" RowHeight="80" HeightRequest="300" Margin="30,15,30,0">
-	         <TableRoot>
-	        <TableSection>
-			<ViewCell>
-				<StackLayout Padding="15, 5, 15, 5" Margin="0,0,0,0" Orientation="Horizontal">
-					<Label FontFamily="{StaticResource NormalFont}" FontSize="16" Text="Паперони спайс × 2шт" TextColor="#1C1C1C" VerticalOptions="Center" />
-					<Label FontFamily="{StaticResource NormalFont}" Text="500 ₴" HorizontalOptions="EndAndExpand" TextColor="#1C1C1C" VerticalOptions="Center" />
-				</StackLayout>
-			</ViewCell>
-		    </TableSection>
-            <TableSection>
-			<ViewCell>
-				<StackLayout Padding="15, 5, 15, 5" Margin="0,0,0,0" Orientation="Horizontal">
-					<Label FontFamily="{StaticResource NormalFont}" FontSize="18" Text="Паперони спайс × 2шт" TextColor="#1C1C1C" VerticalOptions="Center" />
-					<Label FontFamily="{StaticResource NormalFont}" Text="500 ₴" HorizontalOptions="EndAndExpand" TextColor="#1C1C1C" VerticalOptions="Center" />
-				</StackLayout>
-			</ViewCell>
-		    </TableSection>
-            <TableSection>
-			<ViewCell>
-				<StackLayout Padding="15, 5, 15, 5" Margin="0,0,0,0" Orientation="Horizontal">
-					<Label FontFamily="{StaticResource NormalFont}" FontSize="18" Text="Паперони спайс × 2шт" TextColor="#1C1C1C" VerticalOptions="Center" />
-					<Label FontFamily="{StaticResource NormalFont}" Text="500 ₴" HorizontalOptions="EndAndExpand" TextColor="#1C1C1C" VerticalOptions="Center" />
-				</StackLayout>
-			</ViewCell>
-		    </TableSection>
-            </TableRoot>
-            </TableView>
-                     
+            
+            <local:MyListView SeparatorVisibility="None">
+            <local:MyListView.ItemsSource>
+            <x:Array Type="{x:Type x:String}">
+                <x:String>mono</x:String>
+                <x:String>monodroid</x:String>
+                <x:String>monotouch</x:String>
+                <x:String>monorail</x:String>
+                <x:String>monodevelop</x:String>
+                <x:String>monotone</x:String>
+               <x:String>monopoly</x:String>
+                <x:String>monomodal</x:String>
+                <x:String>mononucleosis</x:String>
+            </x:Array>
+           
+        </local:MyListView.ItemsSource>
+    </local:MyListView>
+                 
             <StackLayout Orientation="Horizontal">
                 <Label Margin="30,0,30,0" Text="Общая сумма" FontFamily="{StaticResource BoldFont}" FontSize="16"
                  TextColor="#1A1824" HorizontalOptions="StartAndExpand"></Label>

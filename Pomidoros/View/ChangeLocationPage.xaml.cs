@@ -66,8 +66,7 @@ namespace Pomidoros.View
 
         void Calculate(List<Xamarin.Forms.GoogleMaps.Position> list)
         {
-            searchLayout.IsVisible = false;
-            stopRouteButton.IsVisible = true;
+           // searchLayout.IsVisible = false;
             map.Polylines.Clear();
             var polyline = new Xamarin.Forms.GoogleMaps.Polyline();
             foreach (var p in list)
@@ -108,8 +107,7 @@ namespace Pomidoros.View
 
         public void Handle_Stop_Clicked(object sender, EventArgs e)
         {
-            searchLayout.IsVisible = true;
-            stopRouteButton.IsVisible = false;
+            //searchLayout.IsVisible = true;
             map.Polylines.Clear();
             map.Pins.Clear();
         }

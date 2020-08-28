@@ -10,6 +10,7 @@ namespace Pomidoros.Controls
 			this.HeightRequest = 50;
 		}
 		//main data
+		//BindableProperties
 		public static readonly BindableProperty ImageProperty =
 			BindableProperty.Create(nameof(Image), typeof(string), typeof(ImageEntry), string.Empty);
 
@@ -26,6 +27,7 @@ namespace Pomidoros.Controls
 			BindableProperty.Create(nameof(ImageAlignment), typeof(ImageAlignment), typeof(ImageEntry), ImageAlignment.Left);
 
 		//change color
+		//of entry line
 		public Color LineColor
 		{
 			get { return (Color)GetValue(LineColorProperty); }
@@ -56,7 +58,7 @@ namespace Pomidoros.Controls
 			set { SetValue(ImageAlignmentProperty, value); }
 		}
 	}
-
+	//icon location
 	//enum
 	public enum ImageAlignment
 	{

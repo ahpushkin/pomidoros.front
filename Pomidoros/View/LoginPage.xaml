@@ -10,7 +10,7 @@
 
         <StackLayout Orientation="Vertical" Margin="0,44,0,0">
             <StackLayout x:Name="hader" Orientation="Horizontal">
-            <ImageButton BackgroundColor="Transparent" Clicked="OperatorEvent" Source="help" HorizontalOptions="EndAndExpand" HeightRequest="40" WidthRequest="40" Margin="0,0,17,0"></ImageButton>
+            <ImageButton BackgroundColor="Transparent" Clicked="OperatorEvent" Source="help" HorizontalOptions="EndAndExpand" HeightRequest="40" WidthRequest="40" Margin="0,5,30,0"></ImageButton>
 
             <Label Text="Ру" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="Black" Margin="-20,10,0,0"></Label>
 
@@ -52,7 +52,7 @@
                 Placeholder="Введите пароль" FontFamily="{StaticResource NormalFont}" PlaceholderColor="LightGray"
                 TextColor="#1A1824" Margin="-30,20,0,0" HeightRequest="50" WidthRequest="300"/>
                 <ImageButton Clicked="ShowPassowrd" BackgroundColor="Transparent" Source="pass"
-                HeightRequest="25" WidthRequest="25" Margin="-10,-45,0,0" HorizontalOptions="EndAndExpand" />
+                HeightRequest="25" WidthRequest="25" Margin="-20,-50,0,0" HorizontalOptions="EndAndExpand" />
                 
                 </StackLayout>
 

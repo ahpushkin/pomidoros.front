@@ -6,9 +6,7 @@
              xmlns:vm="clr-namespace:Pomidoros.ViewModel"
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
-     <ContentPage.BindingContext>
-        <vm:MapViewModel/>
-    </ContentPage.BindingContext>
+ 
     <ContentPage.Content>
         <ScrollView>
         <StackLayout>

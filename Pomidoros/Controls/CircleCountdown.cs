@@ -7,6 +7,9 @@ namespace Pomidoros.Controls
 {
     public class CircleCountdown : SKCanvasView
     {
+        //BinableProperties
+        //Rener for draw cirlce
+        //also for timer 
         public static readonly BindableProperty StrokeWidthProperty =
             BindableProperty.Create(nameof(StrokeWidth), typeof(float), typeof(CircleCountdown), 10f, propertyChanged: OnPropertyChanged);
 
@@ -18,7 +21,7 @@ namespace Pomidoros.Controls
 
         public static readonly BindableProperty ProgressEndColorProperty =
             BindableProperty.Create(nameof(ProgressEndColor), typeof(Color), typeof(CircleCountdown), Color.Red, propertyChanged: OnPropertyChanged);
-
+        //consts
         private const float StartAngle = -90;
         private const float SweepAngle = 360;
 
@@ -27,7 +30,7 @@ namespace Pomidoros.Controls
             get { return (float)GetValue(StrokeWidthProperty); }
             set { SetValue(StrokeWidthProperty, value); }
         }
-
+        //progress value
         public float Progress
         {
             get { return (float)GetValue(ProgressProperty); }
@@ -46,6 +49,9 @@ namespace Pomidoros.Controls
             set { SetValue(ProgressEndColorProperty, value); }
         }
 
+
+        //main function to draw
+        //circle and timer
         protected override void OnPaintSurface(SKPaintSurfaceEventArgs args)
         {
             SKImageInfo info = args.Info;
@@ -70,7 +76,8 @@ namespace Pomidoros.Controls
             var circleProgress = bindable as CircleCountdown;
             circleProgress?.InvalidateSurface();
         }
-
+        //make progrss
+        //circle
         private void DrawProgressCircle(SKImageInfo info, SKCanvas canvas)
         {
             float progressAngle = SweepAngle * Progress;
@@ -102,7 +109,8 @@ namespace Pomidoros.Controls
 
             DrawCircle(info, canvas, paint, progressAngle);
         }
-
+        //draw circle
+        //by SkiaSharp nuget package
         private void DrawCircle(SKImageInfo info, SKCanvas canvas, SKPaint paint, float angle)
         {
             int size = Math.Min(info.Width, info.Height);

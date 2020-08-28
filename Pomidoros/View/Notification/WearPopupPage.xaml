@@ -13,18 +13,19 @@
            Padding="0">
          <StackLayout VerticalOptions="Center"
                       HorizontalOptions="FillAndExpand"
-                      Padding="20, 20, 20, 20"
                       BackgroundColor="#EFEFEF">
-         <Label Text="Пожалуйста,&#x0a;наденьте форму" HorizontalTextAlignment="Center" TextColor="Black"
+         <Label Text="Пожалуйста,&#x0a;наденьте форму" Margin="0,10,0,0" HorizontalTextAlignment="Center" TextColor="Black"
          HorizontalOptions="Center" FontSize="17"  FontFamily="{StaticResource BoldFont}"></Label>
          <Label Text="Надень специальную форму для того, чтобы работники заведений и заказчики могли вас узнать." TextColor="Black"
          HorizontalOptions="Center" FontSize="16" HorizontalTextAlignment="Center"  Margin="0,10,0,0" FontFamily="{StaticResource NormalFont}"></Label>
                 <BoxView WidthRequest="290" HeightRequest="1" Margin="0,20,0,0" BackgroundColor="LightGray"/>
         <Button Text="Хорошо" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
                 FontFamily="{StaticResource BoldFont}" Clicked="OnClose"/>
-        <BoxView WidthRequest="290" HeightRequest="0.01" Margin="0,-5,0,0" BackgroundColor="LightGray"/>
+        <StackLayout>
+        <BoxView WidthRequest="290" HeightRequest="1" Margin="0,0,0,0" BackgroundColor="LightGray"/>
+        </StackLayout>
         <Button Text="У меня нет формы" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
-                FontFamily="{StaticResource BoldFont}" Clicked="OnClose"/>
+                FontFamily="{StaticResource BoldFont}" Margin="0,0,0,10" Clicked="OnClose"/>
          </StackLayout>
     </Frame>
 </pages:PopupPage>

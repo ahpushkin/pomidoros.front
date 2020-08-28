@@ -32,7 +32,7 @@
 
              <StackLayout Orientation="Horizontal">
              <Image Source="logout" Margin="30,10,0,0"></Image>
-             <Button BackgroundColor="Transparent" Clicked="LogoutEvent" Text="Выйти" FontFamily="{StaticResource BoldFont}" Margin="8,10,0,0" FontSize="16" TextColor="#96A637"></Button>
+             <Button BackgroundColor="Transparent" Clicked="LogoutEvent" Text="Выйти" FontFamily="{StaticResource BoldFont}" Margin="-10,10,0,0" FontSize="16" TextColor="#96A637"></Button>
              </StackLayout>
 
             <Label FontSize="20" Margin="30,16,0,0" HorizontalOptions="StartAndExpand"
@@ -45,7 +45,7 @@
             </Label>
 
             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Идентификатор"
-                   Margin="30,14,0,0"></Label>
+                   Margin="32,14,0,0"></Label>
             <local:ImageEntry
                        IsReadOnly="True"
                        ImageHeight="15"
@@ -53,10 +53,10 @@
                        LineColor="LightGray"
                        FontFamily="{StaticResource NormalFont}"
                        PlaceholderColor="LightGray"
-                       TextColor="#1A1824" Margin="30,2,30,0" Text="22212151" HeightRequest="50"/>
+                       TextColor="#1A1824" Margin="30,-10,30,0" Text="22212151" HeightRequest="50"/>
 
              <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Имя и Фамилия"
-                   Margin="30,11,0,0"></Label>
+                   Margin="32,11,0,0"></Label>
             <local:ImageEntry
                        IsReadOnly="True"
                        ImageHeight="15"
@@ -64,10 +64,10 @@
                        LineColor="LightGray"
                        FontFamily="{StaticResource NormalFont}"
                        PlaceholderColor="LightGray"
-                       TextColor="#1A1824" Margin="30,2,30,0" Text="Олдос Хаксли" HeightRequest="50"/>
+                       TextColor="#1A1824" Margin="30,-10,30,0" Text="Олдос Хаксли" HeightRequest="50"/>
 
             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Email"
-                   Margin="30,11,0,0"></Label>
+                   Margin="32,11,0,0"></Label>
             <local:ImageEntry
                         IsReadOnly="True"
                        ImageHeight="15"
@@ -75,10 +75,10 @@
                         FontFamily="{StaticResource NormalFont}"
                        LineColor="LightGray"
                        PlaceholderColor="LightGray"
-                       TextColor="#1A1824" Margin="30,2,30,0" Text="aldous.huxley@gmail.com" HeightRequest="50"/>
+                       TextColor="#1A1824" Margin="30,-10,30,0" Text="aldous.huxley@gmail.com" HeightRequest="50"/>
 
             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Номер телефона"
-                   Margin="30,11,0,0"></Label>
+                   Margin="32,11,0,0"></Label>
             <local:ImageEntry
                         IsReadOnly="True"
                        FontFamily="{StaticResource NormalFont}"
@@ -86,7 +86,7 @@
                        ImageWidth="25"
                        LineColor="LightGray"
                        PlaceholderColor="LightGray"
-                       TextColor="#1A1824" Margin="30,2,30,0" Text="+380 9767 217 315" HeightRequest="50"/>
+                       TextColor="#1A1824" Margin="30,-10,30,0" Text="+380 9767 217 315" HeightRequest="50"/>
 
            
 
@@ -112,10 +112,10 @@
                     </Label.FormattedText>
                     </Label>
                     <Label FontSize="14" Margin="30,-2,0,0" HorizontalOptions="StartAndExpand"
-                    HorizontalTextAlignment="Start" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
+                    HorizontalTextAlignment="Start" FontFamily="{StaticResource NormalFont}" FontAttributes="Bold">
                     <Label.FormattedText>
                     <FormattedString>
-                    <Span Text="Volkswagen-Passat" TextColor="LightGray"/>
+                    <Span Text="Volkswagen-Passat" TextColor="Gray"/>
                     </FormattedString>
                     </Label.FormattedText>
                      </Label>

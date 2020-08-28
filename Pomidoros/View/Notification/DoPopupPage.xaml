@@ -13,13 +13,13 @@
            Padding="0">
          <StackLayout VerticalOptions="Center"
                       HorizontalOptions="FillAndExpand"
-                      Padding="20, 20, 20, 20"
+                      
                       BackgroundColor="#EFEFEF">
-         <Label Text="Чтобы принять заказ, подойдите к монитору, проведите карточкой и получите талон" TextColor="Black"
-         HorizontalOptions="Center" FontSize="16" HorizontalTextAlignment="Center"  Margin="0,10,0,0" FontFamily="{StaticResource NormalFont}"></Label>
+         <Label Text="Чтобы принять заказ, подойдите к монитору, проведите карточкой и получите талон" Margin="10,30,10,0" TextColor="Black"
+         HorizontalOptions="Center" FontSize="16" HorizontalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"></Label>
                 <BoxView WidthRequest="290" HeightRequest="1" Margin="0,20,0,0" BackgroundColor="LightGray"/>
         <Button Text="Понятно" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
-                FontFamily="{StaticResource BoldFont}" Clicked="OnClose"></Button>
+                FontFamily="{StaticResource BoldFont}" Clicked="OnClose" Margin="0,0,0,10"></Button>
          </StackLayout>
     </Frame>
 </pages:PopupPage>

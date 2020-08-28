@@ -6,7 +6,7 @@
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Orientation="Vertical"  VerticalOptions="StartAndExpand">
-        <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+        <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="30,54,30,0">
         <ImageButton Source="back" BackgroundColor="Transparent" Clicked="BackEvent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
 
         <ImageButton Source="help" Clicked="OperatorEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
@@ -20,17 +20,17 @@
         </FormattedString>
         </Label.FormattedText>
         </Label>
-        <Label Margin="30,139,30,0" HorizontalTextAlignment="Start" FontFamily="{StaticResource NormalFont}" Text="Для смены транспорта необходимо зайти под другими доступами."
+        <Label Margin="0,139,0,0" HorizontalTextAlignment="Center" HorizontalOptions="Center" FontFamily="{StaticResource NormalFont}" Text="Для смены транспорта необходимо зайти под другими доступами."
         FontSize="16"
         TextColor="#1A1824"></Label>
 
         <Button Text="Выйти и зайти заново" FontFamily="{StaticResource BoldFont}" CornerRadius="5" BackgroundColor="#96A637" FontAttributes="Bold"
         FontSize="16" Margin="30,28,30,0" TextColor="White"></Button>
-        <Label Margin="30,190,30,0" HorizontalTextAlignment="Start" FontFamily="{StaticResource NormalFont}" Text="Если вы не знаете другие доступы, обратитесь за помощью к оператору."
+        <Label Margin="0,190,30,0" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" Text="Если вы не знаете другие доступы, обратитесь за помощью к оператору."
         FontSize="16"
         TextColor="#1A1824"></Label>
         <Button Text="Связаться с оператором" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontAttributes="Bold"
-        FontSize="16" Margin="0,39,30,32" TextColor="#1A1824"></Button>
+        FontSize="16" Margin="0,39,30,0" TextColor="#1A1824"></Button>
        </StackLayout>
        </ScrollView>
     </ContentPage.Content>

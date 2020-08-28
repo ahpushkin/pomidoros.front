@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Pomidoros.Services
 {
+    //class for google places
+    //Auto complete
     public class GooglePlaceAutoCompletePrediction
     {
         [JsonProperty("description")]

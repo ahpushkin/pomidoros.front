@@ -7,6 +7,8 @@ namespace Pomidoros.Controls
 {
     public class DashedLineView : ContentView
     {
+        //Main values for color
+        //Entry render
         public Color LineColor
         {
             get; set;
@@ -27,12 +29,15 @@ namespace Pomidoros.Controls
             get; set;
         } = 0;
 
+        //main method
+        //Content
         public DashedLineView()
         {
             Content = new SKCanvasView();
             ((SKCanvasView)Content).PaintSurface += Canvas_PaintSurface;
         }
-
+        //Render entry for Android
+        //by SKiaSharp
         private void Canvas_PaintSurface(object sender, SKPaintSurfaceEventArgs args)
         {
             SKImageInfo info = args.Info;
@@ -63,7 +68,8 @@ namespace Pomidoros.Controls
                 path.MoveTo(0, 0);
                 path.LineTo(0, info.Height);
             }
-
+            //DrawPath
+            //
             canvas.DrawPath(path, paint);
         }
     }

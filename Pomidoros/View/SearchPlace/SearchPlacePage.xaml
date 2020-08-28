@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Pomidoros.Controls"
              x:Class="Pomidoros.View.SearchPlace.SearchPlacePage">
     <Grid VerticalOptions="FillAndExpand"
               BackgroundColor="White"
               RowSpacing="0"
+              NavigationPage.HasNavigationBar="False"
               ColumnSpacing="0">
                <Grid.RowDefinitions>
                   <RowDefinition Height="Auto"/>
@@ -17,14 +18,15 @@
           
              <StackLayout Grid.Row="0"  
                              Padding="10"
-                             BackgroundColor="LightGray"
+                             BackgroundColor="White"
                              Orientation="Horizontal">
                         <Image Source="ic_search"
                                HeightRequest="20"
                                WidthRequest="20"/>
-                        <Entry Placeholder="Enter Pickup"
+                        <local:ImageEntry Placeholder="ул. Заливная 39"
                                Text="{Binding PickupText}"
                                FontSize="18"
+                               LineColor="#96A637"
                                x:Name="originEntry"
                                ClassId="origin"
                                FontAttributes="Italic"
@@ -34,15 +36,16 @@
         
               <StackLayout Grid.Row="1"
                            Padding="10"
-                           BackgroundColor="LightGray"
+                           BackgroundColor="White"
                            Orientation="Horizontal">
                         <Image Source="ic_search"
                                HeightRequest="20"
                                WidthRequest="20"/>
-                        <Entry Placeholder="Where to?" 
+                        <local:ImageEntry  Placeholder="ул. Заливная 39" 
                                Text="{Binding OriginText}"
                                FontSize="18"
                                x:Name="destinationEntry"
+                               LineColor="#96A637"
                                ClassId="destination"
                                FontAttributes="Italic"
                                ReturnType="Search"
