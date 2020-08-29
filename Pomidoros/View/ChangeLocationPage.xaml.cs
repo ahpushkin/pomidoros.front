@@ -10,6 +10,7 @@ namespace Pomidoros.View
 {
     public partial class ChangeLocationPage : ContentPage
     {
+        //main value
         public static readonly BindableProperty CalculateCommandProperty =
         BindableProperty.Create(nameof(CalculateCommand), typeof(ICommand), typeof(MainPage), null, BindingMode.TwoWay);
 
@@ -28,7 +29,7 @@ namespace Pomidoros.View
             set { SetValue(UpdateCommandProperty, value); }
         }
 
-
+        //change location
         public ChangeLocationPage()
         {
             InitializeComponent();

@@ -33,8 +33,9 @@
             
             </Label>
             
-            <local:MyListView SeparatorVisibility="None">
-            <local:MyListView.ItemsSource>
+            <views:MyListView SeparatorVisibility="None" HeightRequest="300"
+                              Margin="20,10,30,0">
+            <views:MyListView.ItemsSource>
             <x:Array Type="{x:Type x:String}">
                 <x:String>mono</x:String>
                 <x:String>monodroid</x:String>
@@ -46,9 +47,8 @@
                 <x:String>monomodal</x:String>
                 <x:String>mononucleosis</x:String>
             </x:Array>
-           
-        </local:MyListView.ItemsSource>
-    </local:MyListView>
+        </views:MyListView.ItemsSource>
+    </views:MyListView>
                  
             <StackLayout Orientation="Horizontal">
                 <Label Margin="30,0,30,0" Text="Общая сумма" FontFamily="{StaticResource BoldFont}" FontSize="16"

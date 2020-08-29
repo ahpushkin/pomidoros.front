@@ -3,6 +3,7 @@
                   xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   x:Class="Pomidoros.View.Notification.CallPopupPage">
+    <!--#region-->
     <Frame Background="White"
            VerticalOptions="EndAndExpand"
            HorizontalOptions="Center" 
@@ -16,8 +17,9 @@
      <StackLayout VerticalOptions="Center"
                       HorizontalOptions="FillAndExpand"
                       Padding="20, 20, 20, 20"
-                      
+             
                       BackgroundColor="White">
+         <!--#endregion-->
         <ImageButton Source="closebar" HorizontalOptions="Center" Clicked="OnClose"></ImageButton>
          <Label Text="Связаться с клиентом (Д. Оруэлл)" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontAttributes="Bold"
                 FontSize="16" Margin="0,10,30,0" TextColor="#1A1824"></Label>
@@ -25,7 +27,7 @@
                         FontSize="16" CornerRadius="5" FontFamily="{StaticResource BoldFont}" Margin="30,30,30,0" TextColor="White"></Button>
          <Button Text="Написать сообщение" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontAttributes="Bold"
                 FontSize="16" Margin="0,10,30,0" TextColor="#1A1824"></Button>
-
+         <!--end-->
      </StackLayout>
     </Frame>
 </pages:PopupPage>

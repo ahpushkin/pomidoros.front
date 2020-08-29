@@ -3,7 +3,8 @@
                   xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pomidoros.View.Notification.OperatorPage">
-     <Frame  
+    <!--#region-->
+    <Frame  
            HorizontalOptions="Center" 
            VerticalOptions="Center"
            HasShadow="True"
@@ -20,14 +21,16 @@
          <Label Text="Оператор поможет в решении вашей проблемы" TextColor="Black"
          HorizontalOptions="Center" FontSize="16" HorizontalTextAlignment="Center"  Margin="0,10,0,0" FontFamily="{StaticResource NormalFont}"></Label>
          <BoxView Margin="10,10,10,0" HeightRequest="1" BackgroundColor="LightGray"/>
-      
+        <!--main btn-->
         <Button Text="Позвонить" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
          FontFamily="{StaticResource BoldFont}" Clicked="OnClose"/>
         <StackLayout>
          <BoxView  Margin="10,0,10,0" HeightRequest="1" BackgroundColor="LightGray"/>
         </StackLayout>
+         <!--close-->
         <Button Text="Отмена" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
                 FontFamily="{StaticResource BoldFont}" Margin="0,0,0,10" Clicked="OnClose"/>
          </StackLayout>
     </Frame>
+    <!--#endregion-->
 </pages:PopupPage>

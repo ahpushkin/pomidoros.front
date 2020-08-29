@@ -8,6 +8,8 @@ namespace Pomidoros.View.Notification
 {
     public partial class MessagePopupPage : PopupPage
     {
+        //init all componet
+        //drwa main ui
         public MessagePopupPage()
         {
             InitializeComponent();

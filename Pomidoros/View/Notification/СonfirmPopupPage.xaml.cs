@@ -8,6 +8,8 @@ namespace Pomidoros.View.Notification
 {
     public partial class СonfirmPopupPage : PopupPage
     {
+        //init all componet
+        //drwa main ui
         public СonfirmPopupPage()
         {
             InitializeComponent();
@@ -16,6 +18,7 @@ namespace Pomidoros.View.Notification
         {
             await PopupNavigation.Instance.PopAsync();
         }
+        //done event
         private async void DoneEvent(object sender, EventArgs e)
         {
            await Navigation.PushAsync(new RatingPage());

@@ -15,7 +15,7 @@
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
               </Grid.ColumnDefinitions>
-          
+          <!--Main placeholder for prompts-->
              <StackLayout Grid.Row="0"  
                              Padding="10"
                              BackgroundColor="White"
@@ -33,7 +33,7 @@
                                ReturnType="Search"
                                HorizontalOptions="FillAndExpand" />
               </StackLayout>
-        
+            <!--second-->
               <StackLayout Grid.Row="1"
                            Padding="10"
                            BackgroundColor="White"
@@ -51,7 +51,7 @@
                                ReturnType="Search"
                                HorizontalOptions="FillAndExpand" />
               </StackLayout>
-
+            <!--list of prompts-->
               <ListView VerticalOptions="FillAndExpand"
                         BackgroundColor="Transparent"
                         Grid.Row="2"
@@ -84,6 +84,7 @@
                                  Text="History"/>
                         </StackLayout>
                   </ListView.Header>
+                  <!--item sourse for list-->
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

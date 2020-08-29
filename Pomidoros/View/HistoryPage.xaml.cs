@@ -48,22 +48,18 @@ namespace Pomidoros.View
             yes.BackgroundColor = Color.FromHex("#96A637");
             yes.TextColor = Color.Black;
 
-            yea.BackgroundColor = Color.FromHex("#96A637");
 
             no.BackgroundColor = Color.FromHex("#FAFAFA");
             no.TextColor = Color.Black;
-            nope.BackgroundColor = Color.FromHex("#FAFAFA");
         }
         void NopeEvent(object sender, EventArgs args)
         {
             no.BackgroundColor = Color.FromHex("#96A637");
             no.TextColor = Color.Black;
 
-            nope.BackgroundColor = Color.FromHex("#96A637");
 
             yes.BackgroundColor = Color.FromHex("#FAFAFA");
             yes.TextColor = Color.Black;
-            yea.BackgroundColor = Color.FromHex("#FAFAFA");
 
         }
     }

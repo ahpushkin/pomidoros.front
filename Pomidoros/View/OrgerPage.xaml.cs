@@ -10,10 +10,12 @@ using Xamarin.Forms.GoogleMaps;
 
 namespace Pomidoros.View
 {
+    //visible of time desgin
     [DesignTimeVisible(false)]
 
     public partial class OrgerPage : ContentPage
     {
+        //main values
         public static readonly BindableProperty CalculateCommandProperty =
         BindableProperty.Create(nameof(CalculateCommand), typeof(ICommand), typeof(MainPage), null, BindingMode.TwoWay);
 
@@ -43,6 +45,18 @@ namespace Pomidoros.View
             
             CalculateCommand = new Command<List<Xamarin.Forms.GoogleMaps.Position>>(Calculate);
             UpdateCommand = new Command<Xamarin.Forms.GoogleMaps.Position>(Update);
+
+            tolocation.GestureRecognizers.Add(new TapGestureRecognizer((view) => OnLabelClicked()));
+
+            fromlocation.GestureRecognizers.Add(new TapGestureRecognizer((view) => OnLabelClicked()));
+
+        }
+
+        private async void OnLabelClicked()
+        {
+
+            await Navigation.PushAsync(new ChangeLocationPage());
+
         }
         void BackEvent(object sender, EventArgs args)
         {
@@ -80,6 +94,7 @@ namespace Pomidoros.View
         {
             Navigation.PushAsync(new MapPage());
         }
+        //update map values
         async void Update(Xamarin.Forms.GoogleMaps.Position position)
         {
             if (map.Pins.Count == 1)
@@ -102,7 +117,7 @@ namespace Pomidoros.View
                 map.Polylines?.FirstOrDefault()?.Positions?.Clear();
             }
         }
-
+        //calculate map
         void Calculate(List<Xamarin.Forms.GoogleMaps.Position> list)
         {
             map.Polylines.Clear();
@@ -136,6 +151,6 @@ namespace Pomidoros.View
             };
             map.Pins.Add(pin1);
         }
-
+        //end of region
     }
 }

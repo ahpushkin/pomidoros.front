@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pomidoros.View.Notification.CheckPogupPage"
              >
+   <!--#region-->
     <Frame  
            HorizontalOptions="Center" 
            VerticalOptions="Center"
@@ -12,6 +13,7 @@
            CornerRadius="20"
            IsClippedToBounds="True"
            Padding="0">
+        <!--main steck-->
          <StackLayout VerticalOptions="Center"
                       HorizontalOptions="FillAndExpand"
                       BackgroundColor="#EFEFEF">
@@ -24,4 +26,5 @@
                 FontFamily="{StaticResource BoldFont}" Clicked="OnClose"></Button>
          </StackLayout>
     </Frame>
+    <!--#endregion-->
 </pages:PopupPage>

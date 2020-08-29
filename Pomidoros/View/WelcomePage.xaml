@@ -14,7 +14,7 @@
 
             <Label Text="Здравствуйте," FontFamily="{StaticResource NormalFont}" TextColor="#1A1824" FontSize="16"></Label>
 
-            <Label Text="Олдос Хаксли" FontFamily="{StaticResource BoldFont}" TextColor="#1A1824" FontSize="30">
+            <Label x:Name="name" Text="Олдос Хаксли" FontFamily="{StaticResource BoldFont}" TextColor="#1A1824" FontSize="30">
             </Label>
 
             </StackLayout>

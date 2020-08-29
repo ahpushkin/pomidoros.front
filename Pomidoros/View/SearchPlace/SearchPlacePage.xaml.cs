@@ -7,6 +7,7 @@ namespace Pomidoros.View.SearchPlace
 {
     public partial class SearchPlacePage : ContentPage
     {
+        //main value
         public static readonly BindableProperty FocusOriginCommandProperty =
            BindableProperty.Create(nameof(FocusOriginCommand), typeof(ICommand), typeof(SearchPlacePage), null, BindingMode.TwoWay);
 
@@ -15,12 +16,13 @@ namespace Pomidoros.View.SearchPlace
             get { return (ICommand)GetValue(FocusOriginCommandProperty); }
             set { SetValue(FocusOriginCommandProperty, value); }
         }
-
+        //init all componet
+        //drwa main ui
         public SearchPlacePage()
         {
             InitializeComponent();
         }
-
+        //change values on apperning
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
@@ -29,7 +31,7 @@ namespace Pomidoros.View.SearchPlace
                 FocusOriginCommand = new Command(OnOriginFocus);
             }
         }
-
+        //focus
         void OnOriginFocus()
         {
             destinationEntry.Focus();

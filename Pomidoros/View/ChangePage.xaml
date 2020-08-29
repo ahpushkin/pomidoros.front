@@ -26,7 +26,7 @@
 
         <Button Text="Выйти и зайти заново" FontFamily="{StaticResource BoldFont}" CornerRadius="5" BackgroundColor="#96A637" FontAttributes="Bold"
         FontSize="16" Margin="30,28,30,0" TextColor="White"></Button>
-        <Label Margin="0,190,30,0" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" Text="Если вы не знаете другие доступы, обратитесь за помощью к оператору."
+        <Label Margin="0,190,0,0" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" Text="Если вы не знаете другие доступы, обратитесь за помощью к оператору."
         FontSize="16"
         TextColor="#1A1824"></Label>
         <Button Text="Связаться с оператором" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontAttributes="Bold"

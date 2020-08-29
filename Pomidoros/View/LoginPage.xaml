@@ -35,7 +35,7 @@
                 ImageWidth="13"
                 Focused="StartLogin"
                 LineColor="Gray"
-                Placeholder="+380 Номер телефона" FontFamily="{StaticResource NormalFont}" PlaceholderColor="LightGray"
+                Placeholder="+380 Номер телефона" FontFamily="{StaticResource NormalFont}" PlaceholderColor="Gray"
                 TextColor="#1A1824" Margin="-30,26,0,0" HeightRequest="50">
                 </local:ImageEntry>
                </StackLayout>
@@ -49,7 +49,7 @@
                 ImageHeight="13"
                 ImageWidth="13"
                 ImageAlignment="Right"
-                Placeholder="Введите пароль" FontFamily="{StaticResource NormalFont}" PlaceholderColor="LightGray"
+                Placeholder="Введите пароль" FontFamily="{StaticResource NormalFont}" PlaceholderColor="Gray"
                 TextColor="#1A1824" Margin="-30,20,0,0" HeightRequest="50" WidthRequest="300"/>
                 <ImageButton Clicked="ShowPassowrd" BackgroundColor="Transparent" Source="pass"
                 HeightRequest="25" WidthRequest="25" Margin="-20,-50,0,0" HorizontalOptions="EndAndExpand" />
@@ -59,7 +59,7 @@
                 <Button Text="Войти" Clicked="LoginEvent" FontFamily="{StaticResource BoldFont}" BackgroundColor="#96A637" FontAttributes="Bold"
                 FontSize="16" CornerRadius="5" Margin="-30,45,0,0" TextColor="White"></Button>
 
-                <Button Text="Забыли пароль?" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontAttributes="Bold"
+                <Button Text="Забыли пароль?" Clicked="OperatorEvent" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontAttributes="Bold"
                 FontSize="16" Margin="0,80,30,0" TextColor="#1A1824"></Button>
 
                 </StackLayout>

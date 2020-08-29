@@ -31,7 +31,7 @@
                     <Image Source="geo2" HeightRequest="20"></Image>
                 </StackLayout>
                 <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                    <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
                     <Label Text="ул. Заливная 39" FontSize="16" FontFamily="{StaticResource BoldFont}" TextColor="Black" Margin="20,-5,0,0"></Label>
                     <Label Text="2.3 км" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="#39B637" Margin="20,-5,0,0"></Label>
                     </StackLayout>

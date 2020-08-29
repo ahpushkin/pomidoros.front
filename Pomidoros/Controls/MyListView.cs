@@ -1,10 +1,11 @@
 ﻿using System;
+using Xamarin.Forms;
+
 namespace Pomidoros.Controls
 {
-    public class MyListView
+    //render for dashed line in lise view
+    //this class extend ListView
+    public class MyListView : ListView
     {
-        public MyListView()
-        {
-        }
     }
 }

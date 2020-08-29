@@ -18,21 +18,17 @@
         </StackLayout>
             <StackLayout  Margin="60,10,0,0" Orientation="Horizontal" HorizontalOptions="CenterAndExpand"
                           BackgroundColor="Transparent">
-            <StackLayout  x:Name="yea" BackgroundColor="Transparent">
             <Button x:Name="yes" Clicked="YesEvent" 
                    Text="Не сдан" Margin="0,0,0,0" TextColor="#FAFAFA" HeightRequest="40"
                     WidthRequest="140"
                     CornerRadius="10"
                     BackgroundColor="#96A637"
                     FontSize="16" FontFamily="{StaticResource NormalFont}"></Button>
-             </StackLayout>
-             <StackLayout x:Name="nope" BackgroundColor="Transparent">
              <Button x:Name="no" Clicked="NopeEvent" BackgroundColor="Transparent"
                     Margin="0,0,0,0" Text="Сдан" TextColor="#96A637" HeightRequest="40"
                     WidthRequest="140"
                     CornerRadius="10"
                     FontSize="16" FontFamily="{StaticResource NormalFont}"></Button>
-              </StackLayout>
             <Button BackgroundColor="Transparent"/>
                 <BoxView Margin="0,-15,0,0" HeightRequest="0.1" BackgroundColor="#EAEAEB"/>
             <Button BackgroundColor="Transparent"/>

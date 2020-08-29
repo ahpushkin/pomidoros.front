@@ -10,6 +10,8 @@ namespace Pomidoros.View
     {
         public DonePage()
         {
+            //init all ui
+            //draw ui
             InitializeComponent();
         }
         void MainEvent(object sender, EventArgs args)
@@ -20,6 +22,7 @@ namespace Pomidoros.View
         {
             Navigation.PushAsync(new BackPage());
         }
+        //operator
         void OperatorEvent(object sender, EventArgs args)
         {
             PopupNavigation.Instance.PushAsync(new OperatorPage());

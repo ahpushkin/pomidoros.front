@@ -11,6 +11,7 @@
            CornerRadius="20"
            IsClippedToBounds="True"
            Padding="0">
+         <!--main stack-->
          <StackLayout VerticalOptions="Center"
                       HorizontalOptions="FillAndExpand"
                       

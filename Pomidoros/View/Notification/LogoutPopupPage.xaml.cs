@@ -8,6 +8,8 @@ namespace Pomidoros.View.Notification
 {
     public partial class LogoutPopupPage : PopupPage
     {
+        //init all componet
+        //drwa main ui
         public LogoutPopupPage()
         {
             InitializeComponent();

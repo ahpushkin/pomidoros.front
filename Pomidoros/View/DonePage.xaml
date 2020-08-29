@@ -15,7 +15,8 @@
             <Span Text="Заказ ID 00000 успешно доставлен" TextColor="#1A1824"/>
             </FormattedString>
             </Label.FormattedText>
-            </Label>            
+            </Label>
+                <!-- main fun-->
           <BoxView Margin="0,0,0,0" HorizontalOptions="FillAndExpand" WidthRequest="1000" HeightRequest="1" BackgroundColor="LightGray"/>
           <StackLayout Orientation="Horizontal" Margin="0,20,0,40">
                 <StackLayout Orientation="Vertical">
@@ -35,6 +36,7 @@
                      </StackLayout>
                 </StackLayout>
             </StackLayout>
+                <!--end-->
            <BoxView Margin="0,-35,30,0" HorizontalOptions="FillAndExpand" WidthRequest="1000" HeightRequest="1" BackgroundColor="LightGray"/>
 
             <Label FontSize="16" Margin="0,0,0,0" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
@@ -58,4 +60,5 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
+    <!--#endregion-->
 </ContentPage>

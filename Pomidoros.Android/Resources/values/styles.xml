@@ -12,7 +12,7 @@
        <item name="colorPrimaryDark">#96A637</item>
         <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
-        <item name="colorAccent">#96A637</item>
+        <item name="colorAccent">#1C1C1C</item>
     </style>
     <style name="mybutton.text" parent="Base.TextAppearance.AppCompat.Button">
     <item name="android:textAllCaps">false</item>
