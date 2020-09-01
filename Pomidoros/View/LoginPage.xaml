@@ -7,21 +7,17 @@
              BackgroundColor="White">
     <ContentPage.Content>
         <ScrollView>
-
+        <!--#region-->
         <StackLayout Orientation="Vertical" Margin="0,44,0,0">
             <StackLayout x:Name="hader" Orientation="Horizontal">
             <ImageButton BackgroundColor="Transparent" Clicked="OperatorEvent" Source="help" HorizontalOptions="EndAndExpand" HeightRequest="40" WidthRequest="40" Margin="0,5,30,0"></ImageButton>
-
-            <Label Text="Ру" FontFamily="{StaticResource NormalFont}" FontSize="16" TextColor="Black" Margin="-20,10,0,0"></Label>
-
-            <Image Source="back" Rotation="-90" HeightRequest="25" Margin="-5,0,33,0"></Image>
             </StackLayout>
 
             <StackLayout x:Name="main" Margin="30,29,0,0">
 
                 <Label Text="Вход&#x0a;в систему" FontFamily="{StaticResource BoldFont}" TextColor="#1A1824" FontSize="40"></Label>
                 <StackLayout Padding="40">
-                
+                <!--main stack-->
                 <StackLayout>
                 <StackLayout.GestureRecognizers>
                 <TapGestureRecognizer
@@ -39,7 +35,7 @@
                 TextColor="#1A1824" Margin="-30,26,0,0" HeightRequest="50">
                 </local:ImageEntry>
                </StackLayout>
-     
+                <!---->
                 <StackLayout Orientation="Vertical">
 
                 <local:ImageEntry x:Name="psword"
@@ -67,4 +63,5 @@
          </StackLayout>
         </ScrollView>
     </ContentPage.Content>
+    <!--#endregion-->
 </ContentPage>

@@ -18,17 +18,8 @@ namespace Pomidoros.View
         {
             base.OnAppearing();
 
-            var client = new RestClient("http://138.201.153.220/");
-            var request = new RestRequest("api/user", Method.GET);
-            request.AddHeader("Accept", "application/json"); var queryResult = client.Execute<List<string>>(request).Data;
-            Console.WriteLine("new part --------------------------------");
 
-            foreach (string inventoryItem in queryResult)
-            {
-                Console.WriteLine(inventoryItem);
-            }
-
-            await Task.Delay(500000);
+            await Task.Delay(5000);
 
             if (activ.IsRunning == true)
             {

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Pomidoros.View.Notification;
+using Pomidoros.View.Stopped;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
@@ -77,6 +79,26 @@ namespace Pomidoros.View
         void MessageEvent(object sender, EventArgs args)
         {
             PopupNavigation.Instance.PushAsync(new MessagePopupPage());
+        }
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+
+            await Task.Delay(5000);
+
+            if (activ.IsRunning == true)
+            {
+                PopupNavigation.Instance.PushAsync(new StoppedPage());
+            }
+            else
+            {
+                DisplayAlert("Произошла ошибка.", "Повторите попытку позже. ", "Хорошо");
+            }
+            void OperatorEvent(object sender, EventArgs args)
+            {
+                PopupNavigation.Instance.PushAsync(new StoppedPage());
+            }
         }
         void CallEvent(object sender, EventArgs args)
         {

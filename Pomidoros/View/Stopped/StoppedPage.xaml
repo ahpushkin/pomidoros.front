@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pomidoros.View.Stopped.StoppedPage"
+             BackgroundClicked="DisplayError">
+  <Frame Background="White"
+           VerticalOptions="EndAndExpand"
+           HorizontalOptions="Center" 
+           HasShadow="True"
+           CornerRadius="20"
+           IsClippedToBounds="True"
+           Padding="0"
+           Margin="0,0,0,0"
+           WidthRequest="475"
+           HeightRequest="290">
+     <StackLayout VerticalOptions="Center"
+                      HorizontalOptions="FillAndExpand"
+                      Padding="20, 20, 20, 20"
+                      Margin="0,0,0,0"
+                      BackgroundColor="White">
+         <Label Text="Продолжайте движение" HorizontalTextAlignment="Center"  Margin="0,0,0,0" TextColor="Black"
+         HorizontalOptions="Center" FontSize="17"  FontFamily="{StaticResource BoldFont}"></Label>
+         <Label Text="Вы не двигаетесь с места более 5 минут." TextColor="Black"
+         HorizontalOptions="Center" FontSize="16" HorizontalTextAlignment="Center"  Margin="30,10,30,0" FontFamily="{StaticResource NormalFont}"></Label>
+         <Label Text="Если вы так и продолжите стоять на месте, то через 4:59 заказ перенаправится другому курьеру."  TextColor="Black"
+         HorizontalOptions="Center" FontSize="16" HorizontalTextAlignment="Center"  Margin="30,10,30,0" FontFamily="{StaticResource NormalFont}"></Label>
+         <Button Text="Понятно" BackgroundColor="#1C1C1C" FontAttributes="Bold"
+                        FontSize="16" CornerRadius="20" FontFamily="{StaticResource BoldFont}" Margin="30,30,30,0" TextColor="White"></Button>
+         <Button Text="Связаться с оператором" BackgroundColor="#1C1C1C" FontAttributes="Bold"
+                        FontSize="16" CornerRadius="20" FontFamily="{StaticResource BoldFont}" Margin="30,0,30,30" TextColor="White"></Button>
+         
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>
