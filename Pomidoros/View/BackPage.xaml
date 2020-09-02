@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:Pomidoros.ViewModel"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:maps1="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="Pomidoros.View.BackPage"
              BackgroundColor="White"
              NavigationPage.HasNavigationBar="False">
@@ -17,11 +18,9 @@
             <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
             </StackLayout>
-            <maps:Map x:Name="map"
-                   HeightRequest="500"
-                   InitialCameraUpdate="40.77, -73.93, 13, 30, 60"
-                   VerticalOptions="FillAndExpand"
-                   HorizontalOptions="FillAndExpand"/>
+
+                <maps1:Map x:Name="map" HeightRequest="400"/>
+
                 <Frame BackgroundColor="White" HeightRequest="10" VerticalOptions="EndAndExpand" HasShadow="False" Margin="0,-30,0,0" CornerRadius="25">
                 </Frame>
                 <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" Margin="30,0,0,0">

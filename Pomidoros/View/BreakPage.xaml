@@ -56,44 +56,58 @@
             FontSize="30" HorizontalTextAlignment="Center" Margin="0,10,0,0" FontFamily="{StaticResource BoldFont}" VerticalTextAlignment="Center"></Label>
             </StackLayout>
 
-            <ProgressBar Margin="30,30,30,0" Progress="0"  x:Name="progres"/>
+        
 
-            <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+           <Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="7*" />
+        <RowDefinition Height="10*" />
+    </Grid.RowDefinitions>
 
-                <!--
-                <controls:CircleCountdown 
-                    VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand"
-                    Progress="{Binding Progress}"
-                    ProgressStartColor="Green"
-                    ProgressEndColor="Green"
-                    StrokeWidth="10"/>
+         <forms:SKCanvasView x:Name="canvas" 
+                            PaintSurface="OnCanvasViewPaintSurfaceAsync" 
+                            Grid.Row="0" 
+                            BackgroundColor="#ecf0f1"/>
 
-                -->
-            <Grid
-                Grid.Row="2"
-                RowSpacing="0"
-                Margin="60, 24">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                
-            </Grid>
-          </Grid>
+        
+         <StackLayout Orientation="Vertical" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"  >
+
+            <StackLayout Orientation="Horizontal" IsVisible="false" HorizontalOptions="Center" BackgroundColor="White" Padding="0,5,10,5">
+                 <Label Text="  Today"/>
+                 <Switch x:Name="sw_listToggle" IsToggled="{Binding Path=Monitored, Mode=TwoWay}" 
+                    Toggled="switchToggledAsync" />
+                <Label Text="Monthly"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical" Spacing="0">
+            <ScrollView >
+            <ListView x:Name="lstView" IsVisible="false" BackgroundColor="White" RowHeight="50" HasUnevenRows = "true" HeightRequest="400" IsPullToRefreshEnabled="false"
+                      SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell IsEnabled="false" >
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center">
+                            <StackLayout Orientation="Horizontal" Padding="15,0,20,0" HorizontalOptions="FillAndExpand">
+                                <Image Source="{Binding activityImage}" />
+                                <Label Text = "{Binding activityName}" FontSize="18" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="Start" Margin="25,0,0,0" />
+                                <Label Text = "{Binding activityMinutes}" FontSize="18" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Center" XAlign="End" MinimumWidthRequest="90" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            </ListView>
+            </ScrollView>
+            </StackLayout>
+
+
+            <Slider x:Name="sweepAngleSlider"
+                   ValueChanged="sliderValueChanged"
+                   Minimum="0" Maximum="360"
+                  />
+       </StackLayout>
+        </Grid>
+
             </StackLayout>
             </ScrollView>
         </ContentPage.Content>

@@ -5,7 +5,7 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-             xmlns:vm="clr-namespace:Pomidoros.ViewModel"
+             xmlns:vm="clr-namespace:Pomidoros.ViewModel" xmlns:local="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms" xmlns:maps1="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
           >
      <!--#region-->
     <ContentPage.Content>
@@ -21,11 +21,7 @@
 
         </StackLayout><!--#region-->
         <!--map-->
-         <maps:Map x:Name="map"
-                   HeightRequest="394"
-                      InitialCameraUpdate="40.77, -73.93, 13, 30, 60"
-                      VerticalOptions="FillAndExpand"
-                      HorizontalOptions="FillAndExpand"/>
+       <maps1:Map x:Name="map" HeightRequest="400"/>
         <!--#endregion-->
              <Frame BackgroundColor="White" HasShadow="False" CornerRadius="30" HeightRequest="50"
                    Margin="0,-30,0,0" ></Frame>

@@ -14,6 +14,9 @@ namespace Pomidoros.View
 {
     public partial class LoginPage : ContentPage
     {
+
+        public static Dictionary<string, string> user_data;
+
         public static string username_get;
 
         //main method
@@ -26,7 +29,7 @@ namespace Pomidoros.View
         {
             //navigation to next page
             //Do login event
-            Login("people", "peoplepsword", "people@example.com");
+            Login("lepricon", "lepricon", "lepricon@example.com");
 
         }
         private async void CheckConnection()
@@ -160,7 +163,7 @@ namespace Pomidoros.View
             IRestResponse response = client.Execute(request);
 
             User user = JsonConvert.DeserializeObject<User>(response.Content);
-
+            
             // Once the call executes, we capture the user data in the
             // `Application.Current` namespace which is globally available in Xamarin
             Application.Current.Properties["email"] = user.email;
@@ -174,20 +177,32 @@ namespace Pomidoros.View
         private CookieContainer SessionCookie = new CookieContainer();
 
         public void UserData()
-        {
+        {           
             var client = new RestClient("http://138.201.153.220/api");
-            client.Authenticator = new HttpBasicAuthenticator("ArtemAdmin", "ZL10eaGWVksS");
-            client.AddDefaultHeader("Authorization", "Token" + "");
 
-            var request = new RestRequest("/user/", Method.GET);
-            request.AddHeader("Accept", "application/json");
+            client.Authenticator = new HttpBasicAuthenticator("people@example.com", "peoplepsword");
+
+            var request = new RestRequest("/user/people", Method.GET);
+            request.AddParameter("username", "people");
+            request.AddHeader("content-type", "application/json");
+            request.AddHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36");
+
             // We execute the request and capture the response
             // in a variable called `response`
 
-            request.AddParameter("username", "people");
+            IRestResponse response = client.Execute(request);
 
-            IRestResponse response = RestCliente.Execute(request);
-            DisplayAlert("Alert",response.Content,"Okay");
+            user_data = new Dictionary<string, string>
+            {
+                { "username", ""},
+                { "email", "" },
+                { "name", "" },
+                { "url", ""},
+                { "phone_number", ""},
+            };
+
+
+            DisplayAlert("Alert",response.Content.ToString(),"Okay");
         }
 
         public class LoginToken

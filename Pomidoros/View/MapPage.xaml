@@ -20,12 +20,7 @@
             <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
 
         </StackLayout>
-                <gmaps:Map x:Name="map"
-                      HeightRequest="800"
-                      Margin="0,5,0,0"
-                      InitialCameraUpdate="40.77, -73.93, 13, 30, 60"
-                      VerticalOptions="FillAndExpand"
-                      HorizontalOptions="FillAndExpand"/>
+             <gmaps:Map x:Name="map"/>                
         </StackLayout>
         </StackLayout>
         </ScrollView>

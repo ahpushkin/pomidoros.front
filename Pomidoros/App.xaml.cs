@@ -7,6 +7,8 @@ namespace Pomidoros
 {
     public partial class App : Application
     {
+        public static int CurrentLat { get; set; }
+
         public App()
         {
             InitializeComponent();
