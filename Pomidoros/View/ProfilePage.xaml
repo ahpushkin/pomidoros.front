@@ -22,7 +22,7 @@
              <Image Source="profileimage" HorizontalOptions="Start" VerticalOptions="StartAndExpand" Margin="30,32,0,0"></Image>
 
              <Label FontSize="30" Margin="30,29,0,0" HorizontalOptions="StartAndExpand"
-            HorizontalTextAlignment="Start" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
+            HorizontalTextAlignment="Start" x:Name="name" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
             <Label.FormattedText>
             <FormattedString>
             <Span Text="Олдос Хаксли" TextColor="#1A1824"/>
@@ -57,7 +57,7 @@
 
              <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Имя и Фамилия"
                    Margin="32,11,0,0"></Label>
-            <local:ImageEntry
+            <local:ImageEntry x:Name="ename"
                        IsReadOnly="True"
                        ImageHeight="15"
                        ImageWidth="25"
@@ -68,7 +68,7 @@
 
             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Email"
                    Margin="32,11,0,0"></Label>
-            <local:ImageEntry
+            <local:ImageEntry x:Name="eemail"
                         IsReadOnly="True"
                        ImageHeight="15"
                        ImageWidth="25"
@@ -79,7 +79,7 @@
 
             <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource NormalFont}" TextColor="Gray" Text="Номер телефона"
                    Margin="32,11,0,0"></Label>
-            <local:ImageEntry
+            <local:ImageEntry x:Name="ephone"
                         IsReadOnly="True"
                        FontFamily="{StaticResource NormalFont}"
                        ImageHeight="15"

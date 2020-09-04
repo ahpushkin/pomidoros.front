@@ -15,7 +15,8 @@
 
             <StackLayout x:Name="main" Margin="30,29,0,0">
 
-                <Label Text="Вход&#x0a;в систему" FontFamily="{StaticResource BoldFont}" TextColor="#1A1824" FontSize="40"></Label>
+                <Label Text="Вход&#x0a;в систему" FontFamily="{StaticResource BoldFont}" TextColor="#1A1824" FontSize="40">
+                </Label>
                 <StackLayout Padding="40">
                 <!--main stack-->
                 <StackLayout>

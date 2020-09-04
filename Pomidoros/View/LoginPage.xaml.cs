@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Pomidoros.View.Notification;
 using RestSharp;
 using RestSharp.Authenticators;
+using RestSharp.Serialization.Json;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -22,15 +25,41 @@ namespace Pomidoros.View
         //main method
         public LoginPage()
         {
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+
             InitializeComponent();
-            UserData();
+
+            //Login("people", "peoplepsword", "people@example.com");
         }
         void LoginEvent(object sender, EventArgs args)
         {
             //navigation to next page
             //Do login event
-            Login("lepricon", "lepricon", "lepricon@example.com");
 
+
+            //Login("people", "peoplepsword", "people@example.com");
+            Navigation.PushAsync(new WelcomePage());
+            user_data = new Dictionary<string, string>
+            {
+                { "username", "people"},
+                { "email", "people@example.com" },
+                { "name", "PeopleName" },
+                { "url", "people.com"},
+                { "phone_number", "+380986787623"},
+            };
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string filename = Path.Combine(path, "userdata.txt");
+
+            using (var streamWriter = new StreamWriter(filename, true))
+            {
+                streamWriter.WriteLine(DateTime.UtcNow);
+            }
+
+            using (var streamReader = new StreamReader(filename))
+            {
+                string content = streamReader.ReadToEnd();
+                System.Diagnostics.Debug.WriteLine(content);
+            }
         }
         private async void CheckConnection()
         {
@@ -117,30 +146,66 @@ namespace Pomidoros.View
 
         public void Login(string username, string password,string numbers)
         {
+
             // We are using the RestSharp library which provides many useful
             // methods and helpers when dealing with REST.
             // We first create the request and add the necessary parameters
             var client = new RestClient("http://138.201.153.220/api");
-            var request = new RestRequest("auth/login/", Method.POST);
+
+            var jsonDeserializer = new JsonDeserializer();
+            client.AddHandler("application/json", jsonDeserializer);
+
+            var request = new RestRequest("/auth/login/", Method.POST);
             request.AddHeader("Accept", "application/json");
+
+            client.Authenticator = new HttpBasicAuthenticator("people@example.com", "peoplepsword");
 
             request.AddParameter("username", username);
             request.AddParameter("email", numbers);
             request.AddParameter("password", password);
 
-            //request.AddParameter("connection", "{YOUR-CONNECTION-NAME-FOR-USERNAME-PASSWORD-AUTH}");
-
             // We execute the request and capture the response
             // in a variable called `response`
             IRestResponse response = client.Execute(request);
 
-            Console.WriteLine(response.Content);
+            var infoned = new RestRequest("/user/me/", Method.GET);
+            infoned.OnBeforeDeserialization = resp => { resp.ContentType = "application/json"; };
+            //infoned.AddParameter("","");
+            infoned.AddHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:80.0) Gecko/20100101 Firefox/80.0");
+            infoned.AddHeader("Connection", "keep-alive");
+            infoned.AddHeader("Accept-Language", "uk-UA,uk;q=0.8,en-US;q=0.5,en;q=0.3");
+            infoned.AddHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+            //infoned.AddParameter("Token", "aslkdiefapsd9f8983pqiefj83484", ParameterType.UrlSegment);
+            infoned.AddParameter("Authorization: ","Token " + "aslkdiefapsd9f8983pqiefj83484");
+
+
+            var queryResult = client.Execute(infoned);
+
+
+            IRestResponse responseinfo = client.Execute(infoned);
+
+            if (responseinfo.Content == null) { 
+                throw new Exception(response.ErrorMessage);
+            }
+
+
+            string rawResponse = responseinfo.Content;
+            DisplayAlert("Alert", queryResult.Content, "Okay");
+
+            user_data = new Dictionary<string, string>
+            {
+                { "username", "people"},
+                { "email", "people@example.com" },
+                { "name", "PeopleName" },
+                { "url", "people.com"},
+                { "phone_number", "+380986787623"},
+            };
 
             // Using the Newtonsoft.Json library we deserialaize the string into an object,
             // we have created a LoginToken class that will capture the keys we need
             if (response.Content.Contains("key"))
             {
-                Navigation.PushAsync(new WelcomePage());
+              Navigation.PushAsync(new WelcomePage());
             }
             else
             {
@@ -172,18 +237,53 @@ namespace Pomidoros.View
             // Finally, we navigate the user the the Orders page
             Navigation.PushModalAsync(new WelcomePage());
         }
-        private RestClient RestCliente = new RestClient("http://138.201.153.220/api");
+        
+
+        private RestClient RestCliente = new RestClient("http://138.201.153.220/");
 
         private CookieContainer SessionCookie = new CookieContainer();
 
+        private void ServiceSession() // once per session only
+        {
+            RestRequest login = new RestRequest("api/auth/login", Method.POST); // path to your login on rest-framework
+           RestCliente.Authenticator = new HttpBasicAuthenticator("people@example.com", "peoplepsword");  
+            IRestResponse loginresponse = RestCliente.Execute(login);
+
+            DisplayAlert("Alert", loginresponse.Content.ToString(), "Okay");
+
+
+            if (loginresponse.StatusCode == HttpStatusCode.OK)
+            {
+                var cookie = loginresponse.Cookies.FirstOrDefault();
+                SessionCookie.Add(new Cookie(cookie.Name, cookie.Value, cookie.Path, cookie.Domain));
+
+            }
+
+            RestCliente.CookieContainer = SessionCookie;
+
+            RestRequest request = new RestRequest("api/user/", Method.GET);
+            request.AddHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+            request.AddHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:80.0) Gecko/20100101 Firefox/80.0");
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("Connection", "keep-alive");
+
+            //infoneeded.AddParameter("username", "people");
+
+            IRestResponse response = RestCliente.Execute(request);
+
+            DisplayAlert("Alert", response.Content.ToString(), "Okay");
+
+        }
+
         public void UserData()
-        {           
-            var client = new RestClient("http://138.201.153.220/api");
+        {
+            ServiceSession();
+            
+            var client = new RestClient("http://138.201.153.220/api/user");
 
             client.Authenticator = new HttpBasicAuthenticator("people@example.com", "peoplepsword");
 
-            var request = new RestRequest("/user/people", Method.GET);
-            request.AddParameter("username", "people");
+            var request = new RestRequest("/people/", Method.GET);
             request.AddHeader("content-type", "application/json");
             request.AddHeader("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36");
 
@@ -191,18 +291,6 @@ namespace Pomidoros.View
             // in a variable called `response`
 
             IRestResponse response = client.Execute(request);
-
-            user_data = new Dictionary<string, string>
-            {
-                { "username", ""},
-                { "email", "" },
-                { "name", "" },
-                { "url", ""},
-                { "phone_number", ""},
-            };
-
-
-            DisplayAlert("Alert",response.Content.ToString(),"Okay");
         }
 
         public class LoginToken

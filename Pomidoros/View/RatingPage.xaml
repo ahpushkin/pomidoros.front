@@ -38,9 +38,9 @@
             <Button BackgroundColor="Transparent"/>
              </StackLayout>
             <Label x:Name="thx" Text="Спасибо за ответ" FontFamily="{StaticResource BoldFont}" HorizontalTextAlignment="Center"
-               TextColor="#1A1824" FontSize="20" Margin="0,15,0,0"></Label>
+               TextColor="#1A1824" FontSize="18" Margin="0,15,0,0"></Label>
             <Label x:Name="ret" Text="Приятного аппетита!" FontFamily="{StaticResource BoldFont}" HorizontalTextAlignment="Center"
-               TextColor="#1A1824" FontSize="30" Margin="0,15,0,0"></Label>
+               TextColor="#1A1824" FontSize="18" Margin="0,15,0,0"></Label>
         </StackLayout>
         <StackLayout>
         <Button x:Name="done" BackgroundColor="Transparent" TextColor="#96A637" Clicked="DoneEvent" Margin="0,0,0,34"

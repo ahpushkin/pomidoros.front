@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Pomidoros.View.Notification;
 using RestSharp;
 using Rg.Plugins.Popup.Services;
@@ -14,16 +15,16 @@ namespace Pomidoros.View
         {
             InitializeComponent();
         }
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-
             await Task.Delay(5000);
-
+            
             if (activ.IsRunning == true)
-            {
-                await this.Navigation.PushAsync(new StartPage());
+            {               
+               await this.Navigation.PushAsync(new StartPage());
             }
             else
             {

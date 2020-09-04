@@ -21,6 +21,7 @@ This project uses some third-party assets with a license that requires attributi
 
 - Montserrat
 - [SkiaSharp](https://www.nuget.org/packages/SkiaSharp)
-- [FFImageLoading](https://github.com/daniel-luberda/FFImageLoading)
-- [Skor.Controls](https://github.com/skordesign/SKOR.UI)
+- [RestSharp](https://www.nuget.org/packages/RestSharp)
+- [ SQLite-NET-PCL](https://github.com/xamarin/googlemaps)
+- [Xamarin.Forms.Maps](https://github.com/xamarin/googlemaps)
 - [Xamarin.Forms.GoogleMaps](https://github.com/xamarin/googlemaps)

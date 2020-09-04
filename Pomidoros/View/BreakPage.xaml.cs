@@ -46,14 +46,10 @@ namespace Pomidoros.View
 
 
             BindingContext = this;
-
             // Drawing the Radial Gauge
             initiateProgressUpdate();
         }
 
-
-        // Initializing the canvas & drawing over it
-        // Check here https://stackoverflow.com/questions/52893416/xamarin-forms-async-task-signature-return-type-of-eventhandler-doesnt-matc
         async void OnCanvasViewPaintSurfaceAsync(object sender, SKPaintSurfaceEventArgs args1)
 
         {

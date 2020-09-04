@@ -19,8 +19,8 @@
 
             </StackLayout>
 
-                <maps1:Map x:Name="map" HeightRequest="400"/>
-
+                <maps1:Map x:Name="map" HeightRequest="500" VerticalOptions="CenterAndExpand"/>
+                <StackLayout VerticalOptions="EndAndExpand">
                 <Frame BackgroundColor="White" HeightRequest="10" VerticalOptions="EndAndExpand" HasShadow="False" Margin="0,-30,0,0" CornerRadius="25">
                 </Frame>
                 <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" Margin="30,0,0,0">
@@ -41,6 +41,7 @@
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
+                    </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

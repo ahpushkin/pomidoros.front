@@ -22,8 +22,6 @@ namespace Pomidoros.View
         public BackPage()
         {
             InitializeComponent();
-
-            
         }
         void BackEvent(object sender, EventArgs args)
         {

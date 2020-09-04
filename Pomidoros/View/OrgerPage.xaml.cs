@@ -62,11 +62,11 @@ namespace Pomidoros.View
 
            
 
-            await Task.Delay(5000);
+            await Task.Delay(500000);
 
             if (activ.IsRunning == true)
             {
-                PopupNavigation.Instance.PushAsync(new StoppedPage());
+                //PopupNavigation.Instance.PushAsync(new StoppedPage());
             }
             else
             {

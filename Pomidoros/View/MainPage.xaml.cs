@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Pomidoros.Model;
 using Pomidoros.View.Notification;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -11,8 +12,26 @@ namespace Pomidoros.View
     {
         public MainPage()
         {
+
+            INotificationManager notificationManager;
+            int notificationNumber = 0;
+
             InitializeComponent();
+
+            //call method to start service, you can put this line everywhere you want to get start
+            //DependencyService.Get<IStartService>().StartForegroundServiceCompat();
+
+
+            //notificationManager = DependencyService.Get<INotificationManager>();
+            //notificationManager.NotificationReceived += (sender, eventArgs) =>
+           // {
+               // var evtData = (NotificationEventArgs)eventArgs;
+               // ShowNotification(evtData.Title, evtData.Message);
+           // };
         }
+
+        
+
         void ProfileEvent(object sender, EventArgs args)
         {
             Navigation.PushAsync(new ProfilePage());
@@ -37,6 +56,25 @@ namespace Pomidoros.View
         {
             PopupNavigation.Instance.PushAsync(new HavePopupPage());
         }
+
+        void OnScheduleClick(object sender, EventArgs e)
+        {
+            //string title = $"Local Notification #{notificationNumber}";
+           //string message = $"You have now received {notificationNumber} notifications!";
+           // notificationManager.ScheduleNotification(title, message);
+        }
+
+        void ShowNotification(string title, string message)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                var msg = new Label()
+                {
+                    Text = $"Notification Received:\nTitle: {title}\nMessage: {message}"
+                };
+            });
+        }
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();

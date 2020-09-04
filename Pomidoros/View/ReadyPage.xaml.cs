@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace Pomidoros.View
@@ -12,9 +14,27 @@ namespace Pomidoros.View
             InitializeComponent();
         }
 
+        public Dictionary<string, string> user_data = LoginPage.user_data;
+
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+
+            var jsondata = JsonConvert.SerializeObject(user_data);
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string filename = Path.Combine(path, "userdata.txt");
+
+            using (var streamWriter = new StreamWriter(filename, true))
+            {
+                streamWriter.WriteLine(jsondata);
+            }
+
+            using (var streamReader = new StreamReader(filename))
+            {
+                string content = streamReader.ReadToEnd();
+                System.Diagnostics.Debug.WriteLine(content);
+            }
 
             await Task.Delay(5000);
 

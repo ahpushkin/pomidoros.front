@@ -25,14 +25,14 @@
         </Label.FormattedText>
 
         </Label>
-        <Image Source="forma" BackgroundColor="Transparent" Margin="20,115,20,0" HorizontalOptions="Center"></Image>
+        <Image Source="forma" BackgroundColor="Transparent" Margin="20,75,20,0" HorizontalOptions="Center"></Image>
 
         
         <Button Text="Да, я надел форму" CornerRadius="5" FontFamily="{StaticResource BoldFont}" BackgroundColor="#96A637" FontAttributes="Bold"
         FontSize="16" Margin="30,118,30,0" Clicked="NextEvent" TextColor="White"></Button>
 
         <Button Clicked="WearEvent" Text="Нет, пока не надел форму" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"
-        FontSize="16" Margin="0,39,30,32" TextColor="#1A1824"></Button>
+        FontSize="16" Margin="0,10,20,32" TextColor="#1A1824"></Button>
 
         </StackLayout>
         </ScrollView>

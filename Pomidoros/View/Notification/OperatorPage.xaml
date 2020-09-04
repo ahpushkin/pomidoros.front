@@ -23,7 +23,7 @@
          <BoxView Margin="10,10,10,0" HeightRequest="1" BackgroundColor="LightGray"/>
         <!--main btn-->
         <Button Text="Позвонить" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
-         FontFamily="{StaticResource BoldFont}" Clicked="OnClose"/>
+         FontFamily="{StaticResource BoldFont}" Clicked="OnCall"/>
         <StackLayout>
          <BoxView  Margin="10,0,10,0" HeightRequest="1" BackgroundColor="LightGray"/>
         </StackLayout>

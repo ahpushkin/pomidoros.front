@@ -20,6 +20,7 @@
     <PackageReference Include="Xamarin.Forms.Maps" Version="4.8.0.1364" />
     <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="4.0.0-BETA1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />

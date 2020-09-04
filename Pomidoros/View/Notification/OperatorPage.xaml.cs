@@ -18,5 +18,9 @@ namespace Pomidoros.View.Notification
         {
             await PopupNavigation.Instance.PopAsync();
         }
+        private async void OnCall(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PopAsync();
+        }
     }
 }

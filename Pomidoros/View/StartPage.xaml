@@ -28,7 +28,7 @@
         </Label.FormattedText>
 
         </Label>
-        <Image Source="car" Margin="30,102,0,0" HorizontalOptions="StartAndExpand"></Image>
+        <Image Source="car" Margin="30,80,0,0" HorizontalOptions="StartAndExpand"></Image>
 
         <Label Margin="30,34,0,0" Text="Легковой автомобиль" FontFamily="{StaticResource NormalFont}" FontSize="16"
         TextColor="#1A1824"></Label>
@@ -41,7 +41,7 @@
         HorizontalOptions="StartAndExpand" CornerRadius="5"></Button>
 
         <Button Text="Да, уже осмотрел и готов" FontFamily="{StaticResource BoldFont}" Clicked="NextEvent" CornerRadius="5" BackgroundColor="#96A637" FontAttributes="Bold"
-        FontSize="16" Margin="30,104,30,0" TextColor="White"></Button>
+        FontSize="16" Margin="30,60,30,0" TextColor="White"></Button>
 
         <Button Text="Нет, еще не осматривал" Clicked="CheckEvent" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"
         FontSize="16" Margin="0,39,30,32" TextColor="#1A1824"></Button>
