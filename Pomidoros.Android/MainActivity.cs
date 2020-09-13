@@ -1,13 +1,9 @@
-﻿using System;
-
+﻿
+using Acr.UserDialogs;
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-
-using Xamarin.Forms.GoogleMaps.Android;
+using Android.Runtime;
 
 namespace Pomidoros.Droid
 {
@@ -27,6 +23,7 @@ namespace Pomidoros.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
+            UserDialogs.Init(this);
 
             LoadApplication(new App());
 

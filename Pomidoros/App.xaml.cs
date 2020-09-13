@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Autofac;
+using Pomidoros.Interfaces;
+using Pomidoros.Utils;
 using Pomidoros.View;
 using Pomidoros.ViewModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Pomidoros
 {
     public partial class App : Application
     {
+        public static IContainer Container { get; set; }
         public static int CurrentLat { get; set; }
         static UserItemDatabase database;
         public static UserItemDatabase Database
@@ -25,10 +27,22 @@ namespace Pomidoros
         {
             InitializeComponent();
 
+            InitIoc();
+
             //set launch page
             //pls dont change this code)
             MainPage = new NavigationPage(new LoginPage());
         }
+
+        private static void InitIoc()
+        {
+            var builder = new ContainerBuilder();
+
+            builder.RegisterType<Requests>().As<IRequestsToServer>();
+
+            Container = builder.Build();
+        }
+
         //OnStart method
         protected override void OnStart()
         {

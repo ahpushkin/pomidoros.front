@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
+using Autofac;
 using Newtonsoft.Json;
+using Pomidoros.Controller;
+using Pomidoros.Interfaces;
 using Pomidoros.View.Notification;
 using RestSharp;
 using Rg.Plugins.Popup.Services;
@@ -14,27 +18,30 @@ namespace Pomidoros.View
         public WelcomePage()
         {
             InitializeComponent();
+
+            name.Text = "Name Surname";
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-            await Task.Delay(5000);
+            var requestRes = await App.Container.Resolve<IRequestsToServer>()?.GetDriverDataAsync();
             
-            if (activ.IsRunning == true)
-            {               
-               await this.Navigation.PushAsync(new StartPage());
+            if (requestRes)
+            {
+                activ.IsRunning = false;
+               await Navigation.PushAsync(new StartPage());
             }
             else
             {
-                DisplayAlert("Произошла ошибка.", "Повторите попытку позже. ", "Хорошо");
-            }
-            void OperatorEvent(object sender, EventArgs args)
-            {
-                PopupNavigation.Instance.PushAsync(new OperatorPage());
-            }
+                UserDialogs.Instance.AlertAsync("Произошла ошибка.", "Не удалось загрузить данные вашего профиля. Повторите попытку позже. ", "Хорошо").SafeFireAndForget(false);
+            }            
         }
 
+        void OperatorEvent(object sender, EventArgs args)
+        {
+            PopupNavigation.Instance.PushAsync(new OperatorPage());
+        }
     }
 }
