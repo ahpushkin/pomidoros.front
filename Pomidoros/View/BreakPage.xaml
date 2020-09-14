@@ -1,12 +1,12 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pomidoros.View.BreakPage"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="White"
-             xmlns:forms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
-             >
-        <ContentPage.Resources>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Pomidoros.View.BreakPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
         <ResourceDictionary>
 
             <Style x:Key="TripTitleStyle" TargetType="Label">
@@ -27,88 +27,85 @@
                 <Setter Property="FontFamily" Value="{StaticResource BoldFont}" />
                 <Setter Property="HorizontalOptions" Value="Center" />
             </Style>
-            
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout Orientation="Vertical"  VerticalOptions="StartAndExpand">
-                
-            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+            <StackLayout VerticalOptions="FillAndExpand">
+                <StackLayout Margin="20,40,20,0" Orientation="Horizontal">
 
-            <ImageButton Source="back"  Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+                    <ImageButton
+                        Margin="0,-10,0,0"
+                        BackgroundColor="Transparent"
+                        Clicked="BackEvent"
+                        HorizontalOptions="StartAndExpand"
+                        Source="back" />
 
-            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Перерыв"></Label>
+                    <Label
+                        BackgroundColor="Transparent"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        Text="Перерыв"
+                        TextColor="#1C1C1C" />
 
-            <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+                    <ImageButton
+                        Margin="0,-10,0,0"
+                        BackgroundColor="Transparent"
+                        Clicked="OperatorEvent"
+                        HorizontalOptions="EndAndExpand"
+                        Source="help" />
 
+                </StackLayout>
+                <Frame
+                    Margin="30,26,30,10"
+                    BackgroundColor="Transparent"
+                    BorderColor="LightGray"
+                    CornerRadius="10"
+                    HeightRequest="83">
+                    <Label
+                        BackgroundColor="Transparent"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="Перерыв на 15 мин одобрен"
+                        TextColor="#1C1C1C"
+                        VerticalTextAlignment="Center" />
+                </Frame>
+                <Grid>
+                    <StackLayout Margin="0,70,0,0">
+                        <Label
+                            Margin="0,0,0,0"
+                            BackgroundColor="Transparent"
+                            FontFamily="{StaticResource NormalFont}"
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Text="осталось"
+                            TextColor="#1C1C1C"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Margin="0,10,0,0"
+                            BackgroundColor="Transparent"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="30"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding TimerProperty}"
+                            TextColor="#1C1C1C"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                    <control:ProgressRing
+                        x:Name="ProgressRing"
+                        AnimatedProgress="1"
+                        AnimationLength="900000"
+                        HeightRequest="250"
+                        HorizontalOptions="CenterAndExpand"
+                        ProgressColor="White"
+                        RingProgressColor="White"
+                        RingThickness="5"
+                        WidthRequest="250" />
+                </Grid>
             </StackLayout>
-            <Frame  BackgroundColor="Transparent" Margin="30,26,30,0" CornerRadius="10" BorderColor="LightGray" HeightRequest="83">
-            <Label Text="Перерыв на 15 мин одобрен" BackgroundColor="Transparent" TextColor="#1C1C1C"
-            FontSize="16" HorizontalTextAlignment="Center"  FontFamily="{StaticResource BoldFont}" VerticalTextAlignment="Center"></Label>
-            </Frame>
-
-            <StackLayout VerticalOptions="CenterAndExpand">
-            <Label Text="осталось" BackgroundColor="Transparent" TextColor="#1C1C1C"
-            FontSize="16" HorizontalTextAlignment="Center" Margin="0,0,0,0" FontFamily="{StaticResource NormalFont}" VerticalTextAlignment="Center"></Label>
-            <Label Text="{Binding TimerProperty}" BackgroundColor="Transparent" TextColor="#1C1C1C"
-            FontSize="30" HorizontalTextAlignment="Center" Margin="0,10,0,0" FontFamily="{StaticResource BoldFont}" VerticalTextAlignment="Center"></Label>
-            </StackLayout>
-
-        
-
-           <Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
-    <Grid.RowDefinitions>
-        <RowDefinition Height="7*" />
-        <RowDefinition Height="10*" />
-    </Grid.RowDefinitions>
-
-         <forms:SKCanvasView x:Name="canvas" 
-                            PaintSurface="OnCanvasViewPaintSurfaceAsync" 
-                            Grid.Row="0" 
-                            BackgroundColor="#ecf0f1"/>
-
-        
-         <StackLayout Orientation="Vertical" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"  >
-
-            <StackLayout Orientation="Horizontal" IsVisible="false" HorizontalOptions="Center" BackgroundColor="White" Padding="0,5,10,5">
-                 <Label Text="  Today"/>
-                 <Switch x:Name="sw_listToggle" IsToggled="{Binding Path=Monitored, Mode=TwoWay}" 
-                    Toggled="switchToggledAsync" />
-                <Label Text="Monthly"/>
-            </StackLayout>
-
-            <StackLayout Orientation="Vertical" Spacing="0">
-            <ScrollView >
-            <ListView x:Name="lstView" IsVisible="false" BackgroundColor="White" RowHeight="50" HasUnevenRows = "true" HeightRequest="400" IsPullToRefreshEnabled="false"
-                      SeparatorVisibility="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell IsEnabled="false" >
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" VerticalOptions="Center">
-                            <StackLayout Orientation="Horizontal" Padding="15,0,20,0" HorizontalOptions="FillAndExpand">
-                                <Image Source="{Binding activityImage}" />
-                                <Label Text = "{Binding activityName}" FontSize="18" HorizontalOptions="FillAndExpand" VerticalOptions="Center" XAlign="Start" Margin="25,0,0,0" />
-                                <Label Text = "{Binding activityMinutes}" FontSize="18" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="Center" XAlign="End" MinimumWidthRequest="90" />
-                            </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            </ListView>
-            </ScrollView>
-            </StackLayout>
-
-
-            <Slider x:Name="sweepAngleSlider"
-                   ValueChanged="sliderValueChanged"
-                   Minimum="0" Maximum="360"
-                  />
-       </StackLayout>
-        </Grid>
-
-            </StackLayout>
-            </ScrollView>
-        </ContentPage.Content>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

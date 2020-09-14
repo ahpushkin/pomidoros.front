@@ -1,67 +1,105 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Pomidoros.Controls"
-             x:Class="Pomidoros.View.LoginPage"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="White">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Pomidoros.View.LoginPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Pomidoros.Controls"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
-        <!--#region-->
-        <StackLayout Orientation="Vertical" Margin="0,44,0,0">
-            <StackLayout x:Name="hader" Orientation="Horizontal">
-            <ImageButton BackgroundColor="Transparent" Clicked="OperatorEvent" Source="help" HorizontalOptions="EndAndExpand" HeightRequest="40" WidthRequest="40" Margin="0,5,30,0"></ImageButton>
+            <!--#region-->
+            <StackLayout Margin="0,44,0,0" Orientation="Vertical">
+                <StackLayout x:Name="hader" Orientation="Horizontal">
+                    <ImageButton
+                        Margin="0,5,30,0"
+                        BackgroundColor="Transparent"
+                        Clicked="OperatorEvent"
+                        HeightRequest="40"
+                        HorizontalOptions="EndAndExpand"
+                        Source="help"
+                        WidthRequest="40" />
+                </StackLayout>
+
+                <StackLayout x:Name="main" Margin="30,29,0,0">
+
+                    <Label
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="40"
+                        Text="Вход&#x0a;в систему"
+                        TextColor="#1A1824" />
+                    <StackLayout Padding="40">
+                        <!--  main stack  -->
+                        <StackLayout>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="StartLogin" />
+                            </StackLayout.GestureRecognizers>
+                            <local:ImageEntry
+                                x:Name="number"
+                                Margin="-30,26,0,0"
+                                Focused="StartLogin"
+                                FontFamily="{StaticResource NormalFont}"
+                                HeightRequest="50"
+                                Image="ua"
+                                ImageHeight="9"
+                                ImageWidth="13"
+                                LineColor="Gray"
+                                Placeholder="+380 Номер телефона"
+                                PlaceholderColor="Gray"
+                                TextColor="#1A1824" />
+                        </StackLayout>
+                        <!--    -->
+                        <StackLayout Orientation="Vertical">
+                            <local:ImageEntry
+                                x:Name="psword"
+                                Margin="-30,20,0,0"
+                                BackgroundColor="Transparent"
+                                FontFamily="{StaticResource NormalFont}"
+                                HeightRequest="50"
+                                ImageAlignment="Right"
+                                ImageHeight="13"
+                                ImageWidth="13"
+                                IsPassword="True"
+                                LineColor="Gray"
+                                Placeholder="Введите пароль"
+                                PlaceholderColor="Gray"
+                                TextColor="#1A1824"
+                                WidthRequest="300" />
+                            <ImageButton
+                                Margin="-20,-50,0,0"
+                                BackgroundColor="Transparent"
+                                Clicked="ShowPassowrd"
+                                HeightRequest="25"
+                                HorizontalOptions="EndAndExpand"
+                                Source="pass"
+                                WidthRequest="25" />
+
+                        </StackLayout>
+
+                        <Button
+                            Margin="-30,45,0,0"
+                            BackgroundColor="#96A637"
+                            Clicked="LoginEvent"
+                            CornerRadius="5"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            Text="Войти"
+                            TextColor="White" />
+
+                        <Button
+                            Margin="0,80,30,0"
+                            BackgroundColor="Transparent"
+                            Clicked="ForgotEvent"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            Text="Забыли пароль?"
+                            TextColor="#1A1824" />
+
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>
-
-            <StackLayout x:Name="main" Margin="30,29,0,0">
-
-                <Label Text="Вход&#x0a;в систему" FontFamily="{StaticResource BoldFont}" TextColor="#1A1824" FontSize="40">
-                </Label>
-                <StackLayout Padding="40">
-                <!--main stack-->
-                <StackLayout>
-                <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer
-                Tapped="StartLogin">
-                </TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-                 <local:ImageEntry
-                Image="ua"
-                x:Name="number"
-                ImageHeight="9"
-                ImageWidth="13"
-                Focused="StartLogin"
-                LineColor="Gray"
-                Placeholder="+380 Номер телефона" FontFamily="{StaticResource NormalFont}" PlaceholderColor="Gray"
-                TextColor="#1A1824" Margin="-30,26,0,0" HeightRequest="50">
-                </local:ImageEntry>
-               </StackLayout>
-                <!---->
-                <StackLayout Orientation="Vertical">
-
-                <local:ImageEntry x:Name="psword"
-                BackgroundColor="Transparent"
-                IsPassword="True"
-                LineColor="Gray"
-                ImageHeight="13"
-                ImageWidth="13"
-                ImageAlignment="Right"
-                Placeholder="Введите пароль" FontFamily="{StaticResource NormalFont}" PlaceholderColor="Gray"
-                TextColor="#1A1824" Margin="-30,20,0,0" HeightRequest="50" WidthRequest="300"/>
-                <ImageButton Clicked="ShowPassowrd" BackgroundColor="Transparent" Source="pass"
-                HeightRequest="25" WidthRequest="25" Margin="-20,-50,0,0" HorizontalOptions="EndAndExpand" />
-                
-                </StackLayout>
-
-                <Button Text="Войти" Clicked="LoginEvent" FontFamily="{StaticResource BoldFont}" BackgroundColor="#96A637" FontAttributes="Bold"
-                FontSize="16" CornerRadius="5" Margin="-30,45,0,0" TextColor="White"></Button>
-
-                <Button Text="Забыли пароль?" Clicked="OperatorEvent" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontAttributes="Bold"
-                FontSize="16" Margin="0,80,30,0" TextColor="#1A1824"></Button>
-
-                </StackLayout>
-        </StackLayout>
-         </StackLayout>
         </ScrollView>
     </ContentPage.Content>
     <!--#endregion-->

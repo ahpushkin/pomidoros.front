@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Pomidoros.View.Notification;
+﻿using Pomidoros.View.Notification;
 using Rg.Plugins.Popup.Services;
+using System;
 using Xamarin.Forms;
 
 namespace Pomidoros.View

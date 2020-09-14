@@ -7,53 +7,49 @@ namespace Pomidoros.Controls
 {
     public class CircleCountdown : SKCanvasView
     {
-        //BinableProperties
-        //Rener for draw cirlce
-        //also for timer 
         public static readonly BindableProperty StrokeWidthProperty =
             BindableProperty.Create(nameof(StrokeWidth), typeof(float), typeof(CircleCountdown), 10f, propertyChanged: OnPropertyChanged);
 
         public static readonly BindableProperty ProgressProperty =
             BindableProperty.Create(nameof(Progress), typeof(float), typeof(CircleCountdown), 0f, propertyChanged: OnPropertyChanged);
 
-        public static readonly BindableProperty ProgressStartColorProperty =
-            BindableProperty.Create(nameof(ProgressStartColor), typeof(Color), typeof(CircleCountdown), Color.Blue, propertyChanged: OnPropertyChanged);
+        public static readonly BindableProperty LineBackgroundColorProperty =
+            BindableProperty.Create(nameof(LineBackgroundColor), typeof(Color), typeof(CircleCountdown), Color.Default, propertyChanged: OnPropertyChanged);
 
-        public static readonly BindableProperty ProgressEndColorProperty =
-            BindableProperty.Create(nameof(ProgressEndColor), typeof(Color), typeof(CircleCountdown), Color.Red, propertyChanged: OnPropertyChanged);
-        //consts
-        private const float StartAngle = -90;
-        private const float SweepAngle = 360;
+        public static readonly BindableProperty ProgressColorProperty =
+            BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(CircleCountdown), Color.Blue, propertyChanged: OnPropertyChanged);
+
+        private const float StartAngle = 15;
+        private const float SweepAngle = 270;
 
         public float StrokeWidth
         {
             get { return (float)GetValue(StrokeWidthProperty); }
             set { SetValue(StrokeWidthProperty, value); }
         }
-        //progress value
+
         public float Progress
         {
             get { return (float)GetValue(ProgressProperty); }
             set { SetValue(ProgressProperty, value); }
         }
 
-        public Color ProgressStartColor
+        public Color LineBackgroundColor
         {
-            get { return (Color)GetValue(ProgressStartColorProperty); }
-            set { SetValue(ProgressStartColorProperty, value); }
+            get { return (Color)GetValue(LineBackgroundColorProperty); }
+            set { SetValue(LineBackgroundColorProperty, value); }
         }
 
-        public Color ProgressEndColor
+        public Color ProgressColor
         {
-            get { return (Color)GetValue(ProgressEndColorProperty); }
-            set { SetValue(ProgressEndColorProperty, value); }
+            get { return (Color)GetValue(ProgressColorProperty); }
+            set { SetValue(ProgressColorProperty, value); }
         }
 
-
-        //main function to draw
-        //circle and timer
         protected override void OnPaintSurface(SKPaintSurfaceEventArgs args)
         {
+            base.OnPaintSurface(args);
+
             SKImageInfo info = args.Info;
             SKSurface surface = args.Surface;
             SKCanvas canvas = surface.Canvas;
@@ -65,7 +61,8 @@ namespace Pomidoros.Controls
 
             canvas.Clear();
             canvas.Save();
-            canvas.RotateDegrees(0, size / 2, size / 2);
+            canvas.RotateDegrees(120, size / 2, size / 2);
+            DrawBackgroundCircle(info, canvas);
             DrawProgressCircle(info, canvas);
 
             canvas.Restore();
@@ -75,32 +72,30 @@ namespace Pomidoros.Controls
         {
             var circleProgress = bindable as CircleCountdown;
             circleProgress?.InvalidateSurface();
+            circleProgress?.InvalidateMeasure();
         }
-        //make progrss
-        //circle
+
+        private void DrawBackgroundCircle(SKImageInfo info, SKCanvas canvas)
+        {
+            var paint = new SKPaint
+            {
+                Color = LineBackgroundColor.ToSKColor(),
+                StrokeWidth = StrokeWidth,
+                IsStroke = true,
+                IsAntialias = true,
+                StrokeCap = SKStrokeCap.Round
+            };
+
+            DrawCircle(info, canvas, paint, SweepAngle);
+        }
+
         private void DrawProgressCircle(SKImageInfo info, SKCanvas canvas)
         {
             float progressAngle = SweepAngle * Progress;
-            int size = Math.Min(info.Width, info.Height);
-
-            var shader = SKShader.CreateSweepGradient(
-                new SKPoint(size / 2, size / 2),
-                new[]
-                {
-                    ProgressStartColor.ToSKColor(),
-                    ProgressEndColor.ToSKColor(),
-                    ProgressStartColor.ToSKColor()
-                },
-                new[]
-                {
-                    StartAngle / 360,
-                    (StartAngle + progressAngle + 1) / 360,
-                    (StartAngle + progressAngle + 2) / 360
-                });
 
             var paint = new SKPaint
             {
-                Shader = shader,
+                Color = ProgressColor.ToSKColor(),
                 StrokeWidth = StrokeWidth,
                 IsStroke = true,
                 IsAntialias = true,
@@ -109,8 +104,7 @@ namespace Pomidoros.Controls
 
             DrawCircle(info, canvas, paint, progressAngle);
         }
-        //draw circle
-        //by SkiaSharp nuget package
+
         private void DrawCircle(SKImageInfo info, SKCanvas canvas, SKPaint paint, float angle)
         {
             int size = Math.Min(info.Width, info.Height);
@@ -124,7 +118,6 @@ namespace Pomidoros.Controls
                     StrokeWidth,
                     size - StrokeWidth,
                     size - StrokeWidth);
-
                 path.AddArc(rect, StartAngle, angle);
 
                 canvas.DrawPath(path, paint);
