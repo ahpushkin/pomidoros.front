@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Pomidoros.Interfaces;
+using Pomidoros.Services;
 using Pomidoros.Utils;
 using Pomidoros.View;
 using Pomidoros.ViewModel;
@@ -9,6 +10,7 @@ namespace Pomidoros
 {
     public partial class App : Application
     {
+        public static string TestPhone = "0633430412";
         public static IContainer Container { get; set; }
         public static int CurrentLat { get; set; }
         static UserItemDatabase database;
@@ -39,6 +41,7 @@ namespace Pomidoros
             var builder = new ContainerBuilder();
 
             builder.RegisterType<Requests>().As<IRequestsToServer>();
+            builder.RegisterType<CallService>().As<ICallService>();
 
             Container = builder.Build();
         }
