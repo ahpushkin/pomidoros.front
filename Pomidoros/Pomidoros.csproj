@@ -14,6 +14,7 @@
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.454" />
     <PackageReference Include="Autofac" Version="5.2.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Xam.Plugins.Forms.ProgressRing" Version="0.1.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="SkiaSharp" Version="2.80.1" />
@@ -32,7 +33,6 @@
     <Folder Include="Styles\" />
     <Folder Include="ViewModel\Base\" />
     <Folder Include="IMap\" />
-    <Folder Include="Services\" />
     <Folder Include="Helper\" />
     <Folder Include="Controller\" />
     <Folder Include="View\Notification\" />

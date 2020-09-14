@@ -5,14 +5,14 @@ namespace Pomidoros.Model
 {
     public class Countdown : BindableObject
     {
-        //CounDown calss for progres bar
-        //timer
         TimeSpan _remainTime;
 
         public event Action Completed;
         public event Action Ticked;
 
-        public DateTime EndDate { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
+        public bool IsRunning { get; set; }
 
         public TimeSpan RemainTime
         {
@@ -24,27 +24,32 @@ namespace Pomidoros.Model
                 OnPropertyChanged();
             }
         }
-        //start method
+
         public void Start(int seconds = 1)
         {
             Device.StartTimer(TimeSpan.FromSeconds(seconds), () =>
             {
-                RemainTime = (EndDate - DateTime.Now);
-
-                var ticked = RemainTime.TotalSeconds > 1;
-
-                if (ticked)
+                if (IsRunning)
                 {
-                    Ticked?.Invoke();
-                }
-                else
-                {
-                    Completed?.Invoke();
+                    StartTime += TimeSpan.FromSeconds(1);
+                    RemainTime = (EndTime - StartTime);
+
+                    var ticked = RemainTime.TotalSeconds >= 0;
+
+                    if (ticked)
+                    {
+                        Ticked?.Invoke();
+                    }
+                    else
+                    {
+                        Completed?.Invoke();
+                    }
+
+                    return ticked;
                 }
 
-                return ticked;
+                return true;
             });
         }
-        //stop method not needed
     }
 }
