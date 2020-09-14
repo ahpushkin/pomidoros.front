@@ -1,70 +1,121 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pomidoros.View.MyOrderPage"
-             NavigationPage.HasNavigationBar="False">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Pomidoros.View.MyOrderPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
-            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+            <StackLayout
+                Margin="20,54,20,0"
+                Orientation="Horizontal"
+                VerticalOptions="StartAndExpand">
 
-            <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+                <ImageButton
+                    Margin="0,-10,0,0"
+                    BackgroundColor="Transparent"
+                    Clicked="BackEvent"
+                    HorizontalOptions="StartAndExpand"
+                    Source="back" />
 
-            <Label FontSize="16" BackgroundColor="Transparent" TextColor="#1C1C1C" FontFamily="{StaticResource BoldFont}" Text="Мои заказы"></Label>
+                <Label
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Мои заказы"
+                    TextColor="#1C1C1C" />
 
-            <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+                <ImageButton
+                    Margin="0,-10,0,0"
+                    BackgroundColor="Transparent"
+                    Clicked="OperatorEvent"
+                    HorizontalOptions="EndAndExpand"
+                    Source="help" />
 
-        </StackLayout>
-			 <Button BackgroundColor="Transparent"/>
-                <BoxView Margin="0,-15,0,0" HeightRequest="0.1" BackgroundColor="#EAEAEB"/>
-            <Button BackgroundColor="Transparent"/>
-   <TableView Intent="Menu" RowHeight="80" Margin="0,-45,0,0">
-	<TableRoot>
-		<TableSection >
-			<ViewCell >
-				<StackLayout Padding="15, 5, 15, 5" BackgroundColor="Transparent" Orientation="Horizontal">
-					<Image Source="geo"  Margin="30,-15,0,0"/>
-					<StackLayout Orientation="Vertical" Margin="15,0,0,0">
-					<Label FontFamily="{StaticResource BoldFont}" FontSize="16" Text="ул. Засумская, 12" TextColor="#1C1C1C" VerticalOptions="Center" />
-					<Label FontFamily="{StaticResource NormalFont}" Text="2.3 км" TextColor="#39B637" VerticalOptions="Center" />
-					</StackLayout>
-					 <StackLayout.GestureRecognizers>
-                <TapGestureRecognizer
-                Tapped="GetOrder">
-                </TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-				</StackLayout>
-			</ViewCell>
-		</TableSection>
-        <TableSection>
-			<ViewCell>
-				<StackLayout Padding="15, 5, 15, 5" Orientation="Horizontal">
-					<Image Source="geo"  Margin="30,-15,0,0"/>
-					<StackLayout Orientation="Vertical" Margin="15,0,0,0">
-					<Label FontFamily="{StaticResource BoldFont}" FontSize="16" Text="ул. Засумская, 12" TextColor="#1C1C1C" VerticalOptions="Center" />
-					<Label FontFamily="{StaticResource NormalFont}" Text="2.3 км" TextColor="#39B637" VerticalOptions="Center" />
-					</StackLayout>
-				<StackLayout.GestureRecognizers>
-                <TapGestureRecognizer
-                Tapped="GetReview">
-                </TapGestureRecognizer>
-                </StackLayout.GestureRecognizers>
-				</StackLayout>
-			</ViewCell>
-		</TableSection>
-		<TableSection>
-			<ViewCell>
-				<StackLayout Padding="15, 5, 15, 5" Orientation="Horizontal">
-					<Image Source="geo"  Margin="30,-15,0,0"/>
-					<StackLayout Orientation="Vertical" Margin="15,0,0,0">
-					<Label FontFamily="{StaticResource BoldFont}" FontSize="16" Text="ул. Засумская, 12" TextColor="#1C1C1C" VerticalOptions="Center" />
-					<Label FontFamily="{StaticResource NormalFont}" Text="2.3 км" TextColor="#39B637" VerticalOptions="Center" />
-			
-					</StackLayout>
-				</StackLayout>
-			</ViewCell>
-		</TableSection>
-	</TableRoot>
-</TableView>
+            </StackLayout>
+            <Button BackgroundColor="Transparent" />
+            <BoxView
+                Margin="0,-15,0,0"
+                BackgroundColor="#EAEAEB"
+                HeightRequest="0.1" />
+            <Button BackgroundColor="Transparent" />
+            <TableView
+                Margin="0,-45,0,0"
+                Intent="Menu"
+                RowHeight="80">
+                <TableRoot>
+                    <TableSection>
+                        <ViewCell>
+                            <StackLayout
+                                Padding="15,5,15,5"
+                                BackgroundColor="Transparent"
+                                Orientation="Horizontal">
+                                <Image Margin="30,-15,0,0" Source="geo" />
+                                <StackLayout Margin="15,0,0,0" Orientation="Vertical">
+                                    <Label
+                                        FontFamily="{StaticResource BoldFont}"
+                                        FontSize="16"
+                                        Text="ул. Засумская, 12"
+                                        TextColor="#1C1C1C"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontFamily="{StaticResource NormalFont}"
+                                        Text="2.3 км"
+                                        TextColor="#39B637"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="GetOrder" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection>
+                        <ViewCell>
+                            <StackLayout Padding="15,5,15,5" Orientation="Horizontal">
+                                <Image Margin="30,-15,0,0" Source="geo" />
+                                <StackLayout Margin="15,0,0,0" Orientation="Vertical">
+                                    <Label
+                                        FontFamily="{StaticResource BoldFont}"
+                                        FontSize="16"
+                                        Text="ул. Засумская, 12"
+                                        TextColor="#1C1C1C"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontFamily="{StaticResource NormalFont}"
+                                        Text="2.3 км"
+                                        TextColor="#39B637"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="GetReview" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                    <TableSection>
+                        <ViewCell>
+                            <StackLayout Padding="15,5,15,5" Orientation="Horizontal">
+                                <Image Margin="30,-15,0,0" Source="geo" />
+                                <StackLayout Margin="15,0,0,0" Orientation="Vertical">
+                                    <Label
+                                        FontFamily="{StaticResource BoldFont}"
+                                        FontSize="16"
+                                        Text="ул. Засумская, 12"
+                                        TextColor="#1C1C1C"
+                                        VerticalOptions="Center" />
+                                    <Label
+                                        FontFamily="{StaticResource NormalFont}"
+                                        Text="2.3 км"
+                                        TextColor="#39B637"
+                                        VerticalOptions="Center" />
+
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
