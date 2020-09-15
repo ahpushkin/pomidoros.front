@@ -1,47 +1,109 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Pomidoros.ViewModel"
-             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-             xmlns:maps1="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             x:Class="Pomidoros.View.BackPage"
-             BackgroundColor="White"
-             NavigationPage.HasNavigationBar="False">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Pomidoros.View.BackPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:gmaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="StartAndExpand">
-            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+        <StackLayout VerticalOptions="FillAndExpand">
+            <StackLayout
+                Margin="20,35,20,0"
+                Orientation="Horizontal"
+                VerticalOptions="StartAndExpand">
 
-            <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+                <ImageButton
+                    Margin="0,-10,0,0"
+                    BackgroundColor="Transparent"
+                    Clicked="BackEvent"
+                    HorizontalOptions="StartAndExpand"
+                    Source="back" />
 
-            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="На базу"></Label>
+                <Label
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="На базу"
+                    TextColor="#1C1C1C" />
 
-            <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+                <ImageButton
+                    Margin="0,-10,0,0"
+                    BackgroundColor="Transparent"
+                    Clicked="OperatorEvent"
+                    HorizontalOptions="EndAndExpand"
+                    Source="help" />
 
             </StackLayout>
+            <RelativeLayout Margin="0">
+                <gmaps:Map
+                    x:Name="map"
+                    Padding="0,0,0,20"
+                    HorizontalOptions="FillAndExpand"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                           Property=Height,
+                                                                           Factor=0.85}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=1}"
+                    VerticalOptions="FillAndExpand" />
+            </RelativeLayout>
 
-                <maps1:Map x:Name="map" HeightRequest="500" VerticalOptions="CenterAndExpand"/>
-                <StackLayout VerticalOptions="EndAndExpand">
-                <Frame BackgroundColor="White" HeightRequest="10" VerticalOptions="EndAndExpand" HasShadow="False" Margin="0,-30,0,0" CornerRadius="25">
-                </Frame>
-                <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" Margin="30,0,0,0">
-                <StackLayout Orientation="Vertical">
-                    <Image Source="geo" Margin="0,0,0,30" HeightRequest="20"></Image>
-                    <Image Source="loc" Margin="0,-30,0,0"></Image>
-                    <Image Source="geo2" HeightRequest="20"></Image>
+            <yummy:PancakeView
+                Margin="0,-130,0,0"
+                Padding="0"
+                BackgroundColor="White"
+                CornerRadius="20,20,0,0"
+                HasShadow="True"
+                HeightRequest="300">
+                <StackLayout Margin="20,0,0,0" Orientation="Horizontal">
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Image
+                            Margin="0,10,0,0"
+                            HeightRequest="20"
+                            Source="geo" />
+                        <Image Margin="0,1" Source="loc" />
+                        <Image HeightRequest="20" Source="geo2" />
+                    </StackLayout>
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <StackLayout>
+                            <Label
+                                Margin="20,10,0,0"
+                                FontFamily="{StaticResource BoldFont}"
+                                FontSize="16"
+                                Text="ул. Заливная 39"
+                                TextColor="Black" />
+                            <Label
+                                Margin="20,-5,0,0"
+                                FontFamily="{StaticResource NormalFont}"
+                                FontSize="16"
+                                Text="2.3 км"
+                                TextColor="#39B637" />
+                        </StackLayout>
+                        <BoxView
+                            Margin="0,0,30,0"
+                            BackgroundColor="LightGray"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            WidthRequest="500" />
+                        <StackLayout>
+                            <Label
+                                Margin="20,10,0,0"
+                                FontFamily="{StaticResource BoldFont}"
+                                FontSize="16"
+                                Text="ул. Заливная 39"
+                                TextColor="Black" />
+                            <Label
+                                Margin="20,-5,0,0"
+                                FontFamily="{StaticResource NormalFont}"
+                                FontSize="16"
+                                Text="2.3 км"
+                                TextColor="#39B637" />
+                        </StackLayout>
+                    </StackLayout>
                 </StackLayout>
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
-                    <Label Text="ул. Заливная 39" FontSize="16" FontFamily="{StaticResource BoldFont}" TextColor="Black" Margin="20,-5,0,0"></Label>
-                    <Label Text="2.3 км" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="#39B637" Margin="20,-5,0,0"></Label>
-                    </StackLayout>
-                    <BoxView Margin="0,0,30,0" HorizontalOptions="FillAndExpand" WidthRequest="500" HeightRequest="1" BackgroundColor="LightGray"/>
-                    <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
-                    <Label Text="ул. Заливная 39" FontSize="16" FontFamily="{StaticResource BoldFont}" TextColor="Black" Margin="20,-5,0,0"></Label>
-                    <Label Text="2.3 км" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="#39B637" Margin="20,-5,0,0"></Label>
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
-                    </StackLayout>
+            </yummy:PancakeView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

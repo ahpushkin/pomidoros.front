@@ -1,52 +1,112 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pomidoros.View.StartPage"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="White">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Pomidoros.View.StartPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
-        <StackLayout Orientation="Vertical"  VerticalOptions="StartAndExpand">
-        <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                <StackLayout
+                    Margin="20,54,20,0"
+                    Orientation="Horizontal"
+                    VerticalOptions="StartAndExpand">
 
-        <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+                    <ImageButton
+                        Margin="0,-10,0,0"
+                        BackgroundColor="Transparent"
+                        Clicked="BackEvent"
+                        HorizontalOptions="StartAndExpand"
+                        Source="back" />
 
-        <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Подготовка 1/2"></Label>
+                    <Label
+                        BackgroundColor="Transparent"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        Text="Подготовка 1/2"
+                        TextColor="#1C1C1C" />
 
-        <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+                    <ImageButton
+                        Margin="0,-10,0,0"
+                        BackgroundColor="Transparent"
+                        Clicked="OperatorEvent"
+                        HorizontalOptions="EndAndExpand"
+                        Source="help" />
 
-        </StackLayout>
-       
-        <Label FontSize="30" Margin="30,39,0,0" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
-        <Label.FormattedText>
-        <FormattedString>
-        <Span Text="Осматривали &#x0a;ли вы " TextColor="#1A1824"/>
-        <Span Text="сегодня" TextColor="#96A637" />
-        <Span Text=" ваш транспорт?" TextColor="#1A1824"/>
+                </StackLayout>
 
-        </FormattedString>
-        </Label.FormattedText>
+                <Label
+                    Margin="30,39,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="30">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Осматривали &#x0a;ли вы " TextColor="#1A1824" />
+                            <Span Text="сегодня" TextColor="#96A637" />
+                            <Span Text=" ваш транспорт?" TextColor="#1A1824" />
 
-        </Label>
-        <Image Source="car" Margin="30,80,0,0" HorizontalOptions="StartAndExpand"></Image>
+                        </FormattedString>
+                    </Label.FormattedText>
 
-        <Label Margin="30,34,0,0" Text="Легковой автомобиль" FontFamily="{StaticResource NormalFont}" FontSize="16"
-        TextColor="#1A1824"></Label>
+                </Label>
+                <Image
+                    Margin="30,80,0,0"
+                    HorizontalOptions="StartAndExpand"
+                    Source="car" />
 
-       <Label Margin="30,6,0,0" Text="Volkswagen Passat" FontFamily="{StaticResource BoldFont}" FontSize="20"
-        TextColor="#1A1824" FontAttributes="Bold"></Label>
+                <Label
+                    Margin="30,34,0,0"
+                    FontFamily="{StaticResource NormalFont}"
+                    FontSize="16"
+                    Text="Легковой автомобиль"
+                    TextColor="#1A1824" />
 
-        <Button Text="AA 1234 AB" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontSize="18" BorderWidth="1" BorderColor="Gray"
-        TextColor="#1A1824" HeightRequest="45" WidthRequest="141" Margin="30,9,0,0"
-        HorizontalOptions="StartAndExpand" CornerRadius="5"></Button>
+                <Label
+                    Margin="30,6,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="20"
+                    Text="Volkswagen Passat"
+                    TextColor="#1A1824" />
 
-        <Button Text="Да, уже осмотрел и готов" FontFamily="{StaticResource BoldFont}" Clicked="NextEvent" CornerRadius="5" BackgroundColor="#96A637" FontAttributes="Bold"
-        FontSize="16" Margin="30,60,30,0" TextColor="White"></Button>
+                <Button
+                    Margin="30,9,0,0"
+                    BackgroundColor="Transparent"
+                    BorderColor="Gray"
+                    BorderWidth="1"
+                    CornerRadius="5"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="18"
+                    HeightRequest="45"
+                    HorizontalOptions="StartAndExpand"
+                    Text="AA 1234 AB"
+                    TextColor="#1A1824"
+                    WidthRequest="141" />
 
-        <Button Text="Нет, еще не осматривал" Clicked="CheckEvent" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold"
-        FontSize="16" Margin="0,39,30,32" TextColor="#1A1824"></Button>
+                <Button
+                    Margin="30,60,30,0"
+                    BackgroundColor="#96A637"
+                    Clicked="NextEvent"
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Да, уже осмотрел и готов"
+                    TextColor="White" />
 
-        </StackLayout>
+                <Button
+                    Margin="0,39,30,32"
+                    BackgroundColor="Transparent"
+                    Clicked="CheckEvent"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Нет, еще не осматривал"
+                    TextColor="#1A1824" />
+
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

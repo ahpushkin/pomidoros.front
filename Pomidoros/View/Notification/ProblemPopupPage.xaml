@@ -3,33 +3,27 @@
     x:Class="Pomidoros.View.Notification.ProblemPopupPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
-    <Frame
-        Margin="0,0,0,0"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <yummy:PancakeView
+        Margin="0"
         Padding="0"
-        Background="White"
-        CornerRadius="20"
+        BackgroundColor="Transparent"
+        CornerRadius="20,20,0,0"
         HasShadow="True"
-        HeightRequest="345"
-        HorizontalOptions="Center"
-        IsClippedToBounds="True"
-        VerticalOptions="EndAndExpand"
-        WidthRequest="475">
+        VerticalOptions="End">
         <StackLayout
             Padding="20,20,20,20"
             BackgroundColor="White"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="Center">
-            <ImageButton
-                Clicked="OnClose"
-                HorizontalOptions="Center"
-                Source="closebar" />
             <Label
                 Margin="30,10,30,0"
                 BackgroundColor="Transparent"
                 FontAttributes="Bold"
                 FontFamily="{StaticResource BoldFont}"
                 FontSize="16"
+                HorizontalOptions="CenterAndExpand"
                 Text="Невозможно доставить заказ"
                 TextColor="#1A1824" />
             <Button
@@ -60,5 +54,5 @@
                 Text="Клиент отказался от заказа "
                 TextColor="White" />
         </StackLayout>
-    </Frame>
+    </yummy:PancakeView>
 </pages:PopupPage>

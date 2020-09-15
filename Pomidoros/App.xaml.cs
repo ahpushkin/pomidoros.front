@@ -42,6 +42,7 @@ namespace Pomidoros
 
             builder.RegisterType<Requests>().As<IRequestsToServer>();
             builder.RegisterType<CallService>().As<ICallService>();
+            builder.RegisterType<SmsService>().As<ISmsService>();
 
             Container = builder.Build();
         }

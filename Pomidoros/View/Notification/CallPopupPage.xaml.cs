@@ -1,22 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Autofac;
+using Pomidoros.Controller;
+using Pomidoros.Interfaces;
 using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Services;
-using Xamarin.Forms;
+using System;
 
 namespace Pomidoros.View.Notification
 {
     public partial class CallPopupPage : PopupPage
     {
-        //init all componet
-        //drwa main ui
+        private readonly ICallService _callService;
+        private readonly ISmsService _smsService;
+
         public CallPopupPage()
         {
             InitializeComponent();
+
+            _callService = App.Container.Resolve<ICallService>();
+            _smsService = App.Container.Resolve<ISmsService>();
         }
-        private async void OnClose(object sender, EventArgs e)
+
+        private void CallClicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PopAsync();
+            _callService.CallAsync("").SafeFireAndForget(false);
+        }
+
+        private void SmsClicked(object sender, EventArgs e)
+        {
+            _smsService.SmsAsync("").SafeFireAndForget(false);
         }
     }
 }

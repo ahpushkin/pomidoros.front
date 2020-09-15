@@ -1,62 +1,132 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pomidoros.View.DonePage"
-             NavigationPage.HasNavigationBar="False"
-             BackgroundColor="LightGray">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Pomidoros.View.DonePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="LightGray"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-            <Frame BackgroundColor="White" Margin="30,170,30,0" HeightRequest="280" CornerRadius="20">
-            <StackLayout>
-            <Label FontSize="20" Margin="0,25,0,0" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
-            <Label.FormattedText>
-            <FormattedString>
-            <Span Text="Заказ ID 00000 успешно доставлен" TextColor="#1A1824"/>
-            </FormattedString>
-            </Label.FormattedText>
-            </Label>
-                <!-- main fun-->
-          <BoxView Margin="0,0,0,0" HorizontalOptions="FillAndExpand" WidthRequest="1000" HeightRequest="1" BackgroundColor="LightGray"/>
-          <StackLayout Orientation="Horizontal" Margin="0,20,0,40">
-                <StackLayout Orientation="Vertical">
-                    <Image Source="geo" Margin="0,0,0,30" HeightRequest="20"></Image>
-                    <Image Source="loc" Margin="0,-30,0,0"></Image>
-                    <Image Source="geo2" HeightRequest="20"></Image>
-                </StackLayout>
-                <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
-                    <Label Text="ул. Заливная 39" FontSize="16" FontFamily="{StaticResource BoldFont}" TextColor="Black" Margin="20,-5,0,0"></Label>
-                    <Label Text="2.3 км" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="#39B637" Margin="20,-5,0,0"></Label>
+                <Frame
+                    Margin="30,170,30,0"
+                    BackgroundColor="White"
+                    CornerRadius="20"
+                    HeightRequest="280">
+                    <StackLayout>
+                        <Label
+                            Margin="0,25,0,0"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="20"
+                            HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Заказ ID 00000 успешно доставлен" TextColor="#1A1824" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <!--  main fun  -->
+                        <BoxView
+                            Margin="0,0,0,0"
+                            BackgroundColor="LightGray"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            WidthRequest="1000" />
+                        <StackLayout Margin="0,20,0,40" Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical">
+                                <Image
+                                    Margin="0,0,0,30"
+                                    HeightRequest="20"
+                                    Source="geo" />
+                                <Image Margin="0,-30,0,0" Source="loc" />
+                                <Image HeightRequest="20" Source="geo2" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                                    <Label
+                                        Margin="20,-5,0,0"
+                                        FontFamily="{StaticResource BoldFont}"
+                                        FontSize="16"
+                                        Text="ул. Заливная 39"
+                                        TextColor="Black" />
+                                    <Label
+                                        Margin="20,-5,0,0"
+                                        FontFamily="{StaticResource NormalFont}"
+                                        FontSize="16"
+                                        Text="2.3 км"
+                                        TextColor="#39B637" />
+                                </StackLayout>
+                                <BoxView
+                                    Margin="0,0,30,0"
+                                    BackgroundColor="LightGray"
+                                    HeightRequest="1"
+                                    HorizontalOptions="FillAndExpand"
+                                    WidthRequest="500" />
+                                <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
+                                    <Label
+                                        Margin="20,-5,0,0"
+                                        FontFamily="{StaticResource BoldFont}"
+                                        FontSize="16"
+                                        Text="ул. Заливная 39"
+                                        TextColor="Black" />
+                                    <Label
+                                        Margin="20,-5,0,0"
+                                        FontFamily="{StaticResource NormalFont}"
+                                        FontSize="16"
+                                        Text="2.3 км"
+                                        TextColor="#39B637" />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                        <!--  end  -->
+                        <BoxView
+                            Margin="0,-35,30,0"
+                            BackgroundColor="LightGray"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            WidthRequest="1000" />
+
+                        <Label
+                            Margin="0,0,0,0"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Информация о заказе остается доступной на странице «" TextColor="#1A1824" />
+                                    <Span Text="История" TextColor="#96A637" />
+                                    <Span Text="»" TextColor="#1A1824" />
+
+
+                                </FormattedString>
+                            </Label.FormattedText>
+
+                        </Label>
                     </StackLayout>
-                    <BoxView Margin="0,0,30,0" HorizontalOptions="FillAndExpand" WidthRequest="500" HeightRequest="1" BackgroundColor="LightGray"/>
-                     <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
-                    <Label Text="ул. Заливная 39" FontSize="16" FontFamily="{StaticResource BoldFont}" TextColor="Black" Margin="20,-5,0,0"></Label>
-                    <Label Text="2.3 км" FontSize="16" FontFamily="{StaticResource NormalFont}" TextColor="#39B637" Margin="20,-5,0,0"></Label>
-                     </StackLayout>
-                </StackLayout>
-            </StackLayout>
-                <!--end-->
-           <BoxView Margin="0,-35,30,0" HorizontalOptions="FillAndExpand" WidthRequest="1000" HeightRequest="1" BackgroundColor="LightGray"/>
-
-            <Label FontSize="16" Margin="0,0,0,0" HorizontalTextAlignment="Center" FontFamily="{StaticResource BoldFont}" FontAttributes="Bold">
-            <Label.FormattedText>
-            <FormattedString>
-            <Span Text="Информация о заказе остается доступной на странице «" TextColor="#1A1824"/>
-            <Span Text="История" TextColor="#96A637"/>
-            <Span Text="»" TextColor="#1A1824"/>
-
-
-            </FormattedString>
-            </Label.FormattedText>
-
-            </Label>
-            </StackLayout>
-            </Frame>
-            <Button Text="Проложить маршрут до базы" Clicked="BackEvent" BackgroundColor="#96A637" FontAttributes="Bold"
-            FontSize="16" CornerRadius="5" FontFamily="{StaticResource BoldFont}" Margin="30,20,30,0" TextColor="White"></Button>
-            <Button Text="На главную" BackgroundColor="White" Clicked="MainEvent" FontAttributes="Bold"
-            FontSize="16" CornerRadius="5" HeightRequest="50" FontFamily="{StaticResource BoldFont}" Margin="30,20,30,30" TextColor="#1C1C1C"></Button>
+                </Frame>
+                <Button
+                    Margin="30,20,30,0"
+                    BackgroundColor="#96A637"
+                    Clicked="BackEvent"
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Проложить маршрут до базы"
+                    TextColor="White" />
+                <Button
+                    Margin="30,20,30,30"
+                    BackgroundColor="White"
+                    Clicked="MainEvent"
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    HeightRequest="50"
+                    Text="На главную"
+                    TextColor="#1C1C1C" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -1,28 +1,49 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pomidoros.View.MapPage"
-             xmlns:gmaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-             xmlns:vm="clr-namespace:Pomidoros.ViewModel"
-             BackgroundColor="White"
-             NavigationPage.HasNavigationBar="False">
- 
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Pomidoros.View.MapPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:gmaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+    BackgroundColor="White"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <ScrollView>
         <StackLayout>
-            <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
-            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
+            <StackLayout Margin="20,35,20,0" Orientation="Horizontal">
 
-            <ImageButton Source="back" Clicked="BackEvent" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
+                <ImageButton
+                    Margin="0,-10,0,0"
+                    BackgroundColor="Transparent"
+                    Clicked="BackEvent"
+                    HorizontalOptions="StartAndExpand"
+                    Source="back" />
 
-            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Заказ№00000"></Label>
+                <Label
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Заказ№00000"
+                    TextColor="#1C1C1C" />
 
-            <ImageButton Clicked="OperatorEvent" Source="help" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="EndAndExpand"></ImageButton>
+                <ImageButton
+                    Margin="0,-10,0,0"
+                    BackgroundColor="Transparent"
+                    Clicked="OperatorEvent"
+                    HorizontalOptions="EndAndExpand"
+                    Source="help" />
 
+            </StackLayout>
+            <RelativeLayout>
+                <gmaps:Map
+                    x:Name="map"
+                    HorizontalOptions="FillAndExpand"
+                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                           Property=Height,
+                                                                           Factor=1}"
+                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                          Property=Width,
+                                                                          Factor=1}"
+                    VerticalOptions="FillAndExpand" />
+            </RelativeLayout>
         </StackLayout>
-             <gmaps:Map x:Name="map"/>                
-        </StackLayout>
-        </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -37,6 +37,13 @@ namespace Pomidoros.View
         {
             InitializeComponent();
 
+            map.UiSettings.MyLocationButtonEnabled = false;
+            map.UiSettings.MapToolbarEnabled = false;
+            map.UiSettings.RotateGesturesEnabled = true;
+            map.UiSettings.ScrollGesturesEnabled = true;
+            map.UiSettings.ZoomControlsEnabled = false;
+            map.UiSettings.ZoomGesturesEnabled = true;
+
             CalculateCommand = new Command<List<Xamarin.Forms.GoogleMaps.Position>>(Calculate);
             UpdateCommand = new Command<Xamarin.Forms.GoogleMaps.Position>(Update);
         }

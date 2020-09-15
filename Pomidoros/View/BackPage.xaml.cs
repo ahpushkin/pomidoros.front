@@ -22,6 +22,13 @@ namespace Pomidoros.View
         public BackPage()
         {
             InitializeComponent();
+
+            map.UiSettings.MyLocationButtonEnabled = false;
+            map.UiSettings.MapToolbarEnabled = false;
+            map.UiSettings.RotateGesturesEnabled = true;
+            map.UiSettings.ScrollGesturesEnabled = true;
+            map.UiSettings.ZoomControlsEnabled = false;
+            map.UiSettings.ZoomGesturesEnabled = true;
         }
         void BackEvent(object sender, EventArgs args)
         {

@@ -1,50 +1,113 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pomidoros.View.MainPage"
-             BackgroundColor="White"
-             NavigationPage.HasNavigationBar="False">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Pomidoros.View.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    BackgroundColor="#96A637"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
-                <Frame BackgroundColor="#96A637" HeightRequest="99" Margin="0,-20,0,0">
+                <Frame
+                    Margin="0"
+                    Padding="8,8,8,2"
+                    BackgroundColor="Transparent"
+                    VerticalOptions="Start">
+                    <StackLayout
+                        x:Name="bar"
+                        Margin="0,5,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="3"
+                        VerticalOptions="Start">
+                        <Button
+                            Margin="0"
+                            BackgroundColor="#96A637"
+                            Clicked="ProfileEvent"
+                            CornerRadius="10"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="14"
+                            HeightRequest="50"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Профиль"
+                            TextColor="White"
+                            VerticalOptions="End" />
 
-                    <StackLayout x:Name="bar" Orientation="Horizontal" Margin="0,0,0,0">
-                        <Button BackgroundColor="Transparent" TextColor="White" FontFamily="{StaticResource BoldFont}" Clicked="ProfileEvent" Text="Профиль"
-                        HorizontalOptions="StartAndExpand" Margin="0,54,0,0" FontSize="14" FontAttributes="Bold"></Button>
+                        <Button
+                            Margin="0"
+                            BackgroundColor="#96A637"
+                            Clicked="MyOrderEvent"
+                            CornerRadius="10"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="14"
+                            HeightRequest="50"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Мои заказы"
+                            TextColor="White"
+                            VerticalOptions="End" />
 
-                         <Button BackgroundColor="Transparent" TextColor="White" FontFamily="{StaticResource BoldFont}" Text="Мои заказы"
-                        HorizontalOptions="CenterAndExpand" Clicked="MyOrderEvent" Margin="0,54,0,0" FontSize="14" FontAttributes="Bold"></Button>
-
-                         <Button BackgroundColor="Transparent" Clicked="MyHistoryEvent" TextColor="White" FontFamily="{StaticResource BoldFont}" Text="История"
-                        HorizontalOptions="EndAndExpand" Margin="-10,54,0,0" FontSize="14" FontAttributes="Bold"></Button>
+                        <Button
+                            Margin="0"
+                            BackgroundColor="#96A637"
+                            Clicked="MyHistoryEvent"
+                            CornerRadius="10"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="14"
+                            HeightRequest="50"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="История"
+                            TextColor="White"
+                            VerticalOptions="End" />
                     </StackLayout>
-
                 </Frame>
-                <Frame BackgroundColor="White" CornerRadius="20" Margin="0,-20,0,0"
-                       HasShadow="False">
+                <yummy:PancakeView
+                    Margin="0"
+                    BackgroundColor="White"
+                    CornerRadius="20,20,0,0"
+                    HasShadow="False"
+                    VerticalOptions="FillAndExpand">
                     <StackLayout>
+                        <Image
+                            Margin="0,50,0,0"
+                            BackgroundColor="Transparent"
+                            Source="trueorder"
+                            VerticalOptions="StartAndExpand" />
+                        <Label
+                            Margin="0,29,0,0"
+                            FontAttributes="Bold"
+                            FontSize="30"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Есть доступные&#x0a; заказы" TextColor="#1A1824" />
+                                </FormattedString>
+                            </Label.FormattedText>
 
-                        <ImageButton BackgroundColor="Transparent" Source="trueorder" Margin="0,112,0,0"></ImageButton>
+                        </Label>
 
-                         <Label FontSize="30" Margin="0,29,0,0" HorizontalOptions="Center"
-                         HorizontalTextAlignment="Center" FontAttributes="Bold">
-                        <Label.FormattedText>
-                        <FormattedString>
-                        <Span Text="Есть доступные&#x0a; заказы" TextColor="#1A1824"/>
-                        </FormattedString>
-                        </Label.FormattedText>
+                        <Label
+                            Margin="30,18,30,0"
+                            FontFamily="{StaticResource NormalFont}"
+                            FontSize="16"
+                            HorizontalTextAlignment="Center"
+                            Text="Чтобы принять заказ, подойдите к монитору, проведите карточкой и получите талон"
+                            TextColor="#1A1824" />
 
-                         </Label>
-
-                         <Label Margin="30,18,30,0" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" Text="Чтобы принять заказ, подойдите к монитору, проведите карточкой и получите талон"
-                         FontSize="16"
-                         TextColor="#1A1824"></Label>
-
-                        <ImageButton BackgroundColor="Transparent" Clicked="HaveNext" HorizontalOptions="Start" Source="monitor" Margin="21,130,0,25"></ImageButton>
+                        <ImageButton
+                            Margin="15,0,0,15"
+                            BackgroundColor="Transparent"
+                            Clicked="HaveNext"
+                            HorizontalOptions="StartAndExpand"
+                            Source="monitor"
+                            VerticalOptions="EndAndExpand" />
                     </StackLayout>
-                </Frame>
-                
+                </yummy:PancakeView>
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
