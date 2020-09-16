@@ -1,21 +1,15 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Pomidoros.Controller;
-using Pomidoros.View.Notification;
+﻿using Pomidoros.View.Notification;
 using Pomidoros.View.Stopped;
 using Rg.Plugins.Popup.Services;
+using System;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 namespace Pomidoros.View
 {
-    //visible of time desgin
-    [DesignTimeVisible(false)]
-
     public partial class OrgerPage : ContentPage
     {
-       
+        public ICommand ChangeLocationCommand { get; set; }
 
         void OperatorEvent(object sender, EventArgs args)
         {
@@ -24,17 +18,10 @@ namespace Pomidoros.View
         public OrgerPage()
         {
             InitializeComponent();
+            
+            ChangeLocationCommand = new Command(ChangeLocation);
 
-
-            tolocation.GestureRecognizers.Add(new TapGestureRecognizer((view) => OnLabelClicked()));
-
-            fromlocation.GestureRecognizers.Add(new TapGestureRecognizer((view) => OnLabelClicked()));
-        }
-        private async void OnLabelClicked()
-        {
-
-            await Navigation.PushAsync(new ChangeLocationPage());
-
+            BindingContext = this;
         }
         void BackEvent(object sender, EventArgs args)
         {
@@ -81,7 +68,7 @@ namespace Pomidoros.View
         {
             PopupNavigation.Instance.PushAsync(new CallPopupPage());
         }
-        public void ChangeLocationEvent(object sender, EventArgs args)
+        void ChangeLocation()
         {
             Navigation.PushAsync(new ChangeLocationPage());
         }

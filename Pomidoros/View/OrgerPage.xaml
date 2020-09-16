@@ -3,9 +3,7 @@
     x:Class="Pomidoros.View.OrgerPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
     xmlns:maps1="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-    xmlns:vm="clr-namespace:Pomidoros.ViewModel"
     BackgroundColor="White"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
@@ -57,8 +55,7 @@
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
                             <Label
-                                x:Name="tolocation"
-                                Margin="20,-5,0,0"
+                                Margin="20,0,0,0"
                                 FontFamily="{StaticResource BoldFont}"
                                 FontSize="16"
                                 Text="ул. Заливная 39"
@@ -66,7 +63,7 @@
                                 <Label.GestureRecognizers />
                             </Label>
                             <Label
-                                Margin="20,-5,0,0"
+                                Margin="20,0,0,0"
                                 FontFamily="{StaticResource NormalFont}"
                                 FontSize="16"
                                 Text="2.3 км"
@@ -80,16 +77,17 @@
                             WidthRequest="500" />
                         <StackLayout Orientation="Vertical" VerticalOptions="EndAndExpand">
                             <Label
-                                x:Name="fromlocation"
-                                Margin="20,-5,0,0"
+                                Margin="20,0,0,0"
                                 FontFamily="{StaticResource BoldFont}"
                                 FontSize="16"
                                 Text="ул. Заливная 39"
                                 TextColor="Black">
-                                <Label.GestureRecognizers />
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChangeLocationCommand}" />
+                                </Label.GestureRecognizers>
                             </Label>
                             <Label
-                                Margin="20,-5,0,0"
+                                Margin="20,0,0,0"
                                 FontFamily="{StaticResource NormalFont}"
                                 FontSize="16"
                                 Text="2.3 км"

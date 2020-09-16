@@ -52,17 +52,20 @@
                 </RelativeLayout>
 
                 <yummy:PancakeView
-                    Margin="0,-10,0,0"
+                    Margin="0,-20,0,0"
                     Padding="0"
-                    BackgroundColor="White"
+                    BackgroundColor="Transparent"
                     CornerRadius="20,20,0,0"
                     HasShadow="True"
                     VerticalOptions="FillAndExpand">
-                    <StackLayout Margin="0" Padding="0">
-                        <StackLayout BackgroundColor="White" Orientation="Horizontal">
+                    <StackLayout
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="White">
+                        <StackLayout BackgroundColor="Transparent" Orientation="Horizontal">
                             <StackLayout
                                 Margin="30,30,0,30"
-                                BackgroundColor="White"
+                                BackgroundColor="Transparent"
                                 Spacing="50">
                                 <Image
                                     Margin="0"
@@ -75,7 +78,7 @@
                                     Source="geo"
                                     WidthRequest="24" />
                             </StackLayout>
-                            <StackLayout BackgroundColor="White">
+                            <StackLayout BackgroundColor="Transparent">
                                 <Label
                                     Margin="30,25,0,0"
                                     BackgroundColor="Transparent"
@@ -103,7 +106,11 @@
                                     FontFamily="{StaticResource BoldFont}"
                                     FontSize="16"
                                     Text="ул. Заливная 39"
-                                    TextColor="#1C1C1C" />
+                                    TextColor="#1C1C1C">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ChangeLocationCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
                                 <Label
                                     Margin="30,0"
                                     BackgroundColor="Transparent"

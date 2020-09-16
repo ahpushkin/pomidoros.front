@@ -13,8 +13,9 @@ namespace Pomidoros.View
     [DesignTimeVisible(false)]
 
     public partial class ReviewPage : ContentPage
-    {
-        
+    {        
+        public ICommand ChangeLocationCommand { get; set; }
+
         void OperatorEvent(object sender, EventArgs args)
         {
             PopupNavigation.Instance.PushAsync(new OperatorPage());
@@ -22,6 +23,10 @@ namespace Pomidoros.View
         public ReviewPage()
         {
             InitializeComponent();
+
+            ChangeLocationCommand = new Command(ChangeLocation);
+
+            BindingContext = this;
 
             map.UiSettings.MyLocationButtonEnabled = false;
             map.UiSettings.MapToolbarEnabled = false;
@@ -42,15 +47,13 @@ namespace Pomidoros.View
         {
             Navigation.PushAsync(new RatingPage());
         }
-        void ChangeLocationEvent(object sender, EventArgs args)
+        void ChangeLocation()
         {
             Navigation.PushAsync(new ChangeLocationPage());
         }
         void MoreDeatil(object sender, EventArgs args)
         {
             Navigation.PushAsync(new MorePage());
-        }
-
-        
+        }        
     }
 }

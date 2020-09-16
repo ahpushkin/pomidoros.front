@@ -1,63 +1,109 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Pomidoros.ViewModels" xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-             x:Class="Pomidoros.View.LocationPage">
-   <ContentPage.BindingContext>
-        <vm:MainViewModel/>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Pomidoros.View.LocationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-    <ScrollView>
-    <StackLayout>
-     <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
-            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" Margin="20,54,20,0">
-
-            <ImageButton Source="back" BackgroundColor="Transparent" Margin="0,-10,0,0" HorizontalOptions="StartAndExpand"></ImageButton>
-
-            <Label FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" Text="Заказ№00000"></Label>
-
-            <Button FontSize="16" BackgroundColor="Transparent" FontFamily="{StaticResource BoldFont}" TextColor="#96A637" Text="Сохранить"></Button>
-
-        </StackLayout>
-           <StackLayout BackgroundColor="White"
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand">
+                    <StackLayout
+                        Margin="20,35,20,0"
                         Orientation="Horizontal"
-                        VerticalOptions="Start"
-                        Padding="10"
-                        x:Name="searchLayout"
-                        Margin="30,50,30,0">
-             
-            <Label x:Name="to" Text="ул. Заливная 39" FontFamily="{StaticResource BoldFont}" TextColor="#1C1C1C" BackgroundColor="Transparent" FontSize="16"
-                   Margin="0,-60,0,10">
-                
-            </Label>
-            <Label Text="2,3 km" TextColor="#39B637" FontFamily="{StaticResource NormalFont}" BackgroundColor="Transparent" FontSize="16"
-                   Margin="0,-10,0,20"></Label>
-            <Button BackgroundColor="Transparent"/>
-                <BoxView Margin="30,-60,30,0" WidthRequest="290" HeightRequest="1" BackgroundColor="LightGray"/>
-            <Button BackgroundColor="Transparent"/>
+                        VerticalOptions="StartAndExpand">
 
-             <Label x:Name="from" Text="ул. Заливная 39" TextColor="#1C1C1C" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontSize="16"
-                   Margin="0,-40,0,10">
-            </Label>
-            <Label Text="2,3 km" TextColor="#39B637" FontFamily="{StaticResource NormalFont}" BackgroundColor="Transparent" FontSize="16"
-                   Margin="30,-10,0,30"></Label>
-            </StackLayout>
-            </StackLayout>
-                <maps:Map x:Name="map"
-                    IsVisible="false"
+                        <ImageButton
+                            Margin="0,-10,0,0"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="StartAndExpand"
+                            Source="back" />
+
+                        <Label
+                            BackgroundColor="Transparent"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            Text="Заказ№00000"
+                            TextColor="#1C1C1C" />
+
+                        <Button
+                            BackgroundColor="Transparent"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            Text="Сохранить"
+                            TextColor="#96A637" />
+
+                    </StackLayout>
+                    <StackLayout
+                        x:Name="searchLayout"
+                        Margin="30,50,30,0"
+                        Padding="10"
+                        BackgroundColor="White"
+                        Orientation="Horizontal"
+                        VerticalOptions="Start">
+
+                        <Label
+                            x:Name="to"
+                            Margin="0,-60,0,10"
+                            BackgroundColor="Transparent"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            Text="ул. Заливная 39"
+                            TextColor="#1C1C1C" />
+                        <Label
+                            Margin="0,-10,0,20"
+                            BackgroundColor="Transparent"
+                            FontFamily="{StaticResource NormalFont}"
+                            FontSize="16"
+                            Text="2,3 km"
+                            TextColor="#39B637" />
+                        <Button BackgroundColor="Transparent" />
+                        <BoxView
+                            Margin="30,-60,30,0"
+                            BackgroundColor="LightGray"
+                            HeightRequest="1"
+                            WidthRequest="290" />
+                        <Button BackgroundColor="Transparent" />
+
+                        <Label
+                            x:Name="from"
+                            Margin="0,-40,0,10"
+                            BackgroundColor="Transparent"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            Text="ул. Заливная 39"
+                            TextColor="#1C1C1C" />
+                        <Label
+                            Margin="30,-10,0,30"
+                            BackgroundColor="Transparent"
+                            FontFamily="{StaticResource NormalFont}"
+                            FontSize="16"
+                            Text="2,3 km"
+                            TextColor="#39B637" />
+                    </StackLayout>
+                </StackLayout>
+                <maps:Map
+                    x:Name="map"
+                    HorizontalOptions="FillAndExpand"
                     InitialCameraUpdate="40.77, -73.93, 13, 30, 60"
-                    VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand"/>
-                       <Image Source="ic_search"
-                              HeightRequest="15"
-                              WidthRequest="15"/>
-                       <Label HorizontalOptions="FillAndExpand"
-                              LineBreakMode="TailTruncation"
-                              FontAttributes="Italic"
-                              Text="Search Place"
-                              TextColor="Gray"/>
-                      
-           </StackLayout>
+                    IsVisible="false"
+                    VerticalOptions="FillAndExpand" />
+                <Image
+                    HeightRequest="15"
+                    Source="ic_search"
+                    WidthRequest="15" />
+                <Label
+                    FontAttributes="Italic"
+                    HorizontalOptions="FillAndExpand"
+                    LineBreakMode="TailTruncation"
+                    Text="Search Place"
+                    TextColor="Gray" />
+
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

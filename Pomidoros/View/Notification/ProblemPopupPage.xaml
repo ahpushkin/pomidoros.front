@@ -29,6 +29,7 @@
             <Button
                 Margin="30,30,30,0"
                 BackgroundColor="#96A637"
+                Clicked="ClientClicked"
                 CornerRadius="5"
                 FontAttributes="Bold"
                 FontFamily="{StaticResource BoldFont}"
@@ -38,6 +39,7 @@
             <Button
                 Margin="30,30,30,0"
                 BackgroundColor="#96A637"
+                Clicked="NumberClicked"
                 CornerRadius="5"
                 FontAttributes="Bold"
                 FontFamily="{StaticResource BoldFont}"
@@ -47,6 +49,7 @@
             <Button
                 Margin="30,30,30,30"
                 BackgroundColor="#96A637"
+                Clicked="UndoneClicked"
                 CornerRadius="5"
                 FontAttributes="Bold"
                 FontFamily="{StaticResource BoldFont}"
