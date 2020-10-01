@@ -4,11 +4,13 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Android.Views;
+using Plugin.CurrentActivity;
 using Xamarin.Forms.GoogleMaps.Android;
 
 namespace Pomidoros.Droid
 {
-    [Activity(Label = "Pomidoros", Icon = "@mipmap/icon", Theme = "@style/MainTheme", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "Pomidoros", Icon = "@mipmap/icon", Theme = "@style/MainTheme", ScreenOrientation = ScreenOrientation.Portrait, WindowSoftInputMode = SoftInput.AdjustResize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -19,6 +21,7 @@ namespace Pomidoros.Droid
             base.OnCreate(savedInstanceState);
 
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
             // Override default BitmapDescriptorFactory by your implementation. 
             var platformConfig = new PlatformConfig
