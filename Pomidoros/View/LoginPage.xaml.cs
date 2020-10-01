@@ -10,12 +10,13 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Pomidoros.View.Base;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Pomidoros.View
 {
-    public partial class LoginPage : ContentPage
+    public partial class LoginPage : BaseContentPage
     {
         private bool _hasConnection { get; set; }
 
@@ -109,18 +110,6 @@ namespace Pomidoros.View
                 await UserDialogs.Instance.AlertAsync("Нет подключения к сети. Проверьте соединение с интернетом.");
             else if (current == NetworkAccess.Internet)
                 _hasConnection = true;
-        }
-
-        void StartLogin(object sender, EventArgs args)
-        {
-            //add +380 to text
-            //user cant delete this
-            if (string.IsNullOrEmpty(number.Text))
-            {
-                //add +380
-                //to entry text
-                number.Text = "+380";
-            }
         }
 
         void ForgotEvent(object sender, EventArgs args)

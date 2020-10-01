@@ -1,18 +1,24 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
+<base:BaseContentPage
     x:Class="Pomidoros.View.LoginPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:basil="clr-namespace:Basil.Behaviors.Masks;assembly=Basil.Behaviors"
+    xmlns:handlers="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:rules="clr-namespace:Basil.Behaviors.Rules.Mask;assembly=Basil.Behaviors"
+    xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
     xmlns:local="clr-namespace:Pomidoros.Controls"
     BackgroundColor="White"
-    NavigationPage.HasNavigationBar="False">
+    Icons="Dark"
+    StatusBarColor="White"
+    HasNavigationBar="False">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView Padding="30,20">
             <!--#region-->
-            <StackLayout Margin="0,44,0,0" Orientation="Vertical">
+            <StackLayout Orientation="Vertical">
                 <StackLayout x:Name="hader" Orientation="Horizontal">
                     <ImageButton
-                        Margin="0,5,30,0"
                         BackgroundColor="Transparent"
                         Clicked="OperatorEvent"
                         HeightRequest="40"
@@ -21,86 +27,88 @@
                         WidthRequest="40" />
                 </StackLayout>
 
-                <StackLayout x:Name="main" Margin="30,29,0,0">
+                <StackLayout x:Name="main"
+                             Margin="0,15,0,0"
+                             Spacing="20">
 
                     <Label
                         FontFamily="{StaticResource BoldFont}"
-                        FontSize="40"
-                        Text="Вход&#x0a;в систему"
+                        FontSize="33"
+                        Text="{x:Static str:LocalizationStrings.EnterTitle}"
                         TextColor="#1A1824" />
-                    <StackLayout Padding="40">
-                        <!--  main stack  -->
-                        <StackLayout>
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="StartLogin" />
-                            </StackLayout.GestureRecognizers>
-                            <local:ImageEntry
-                                x:Name="number"
-                                Margin="-30,26,0,0"
-                                Focused="StartLogin"
-                                FontFamily="{StaticResource NormalFont}"
-                                HeightRequest="50"
-                                Image="ua"
-                                ImageHeight="9"
-                                ImageWidth="13"
-                                LineColor="Gray"
-                                Placeholder="+380 Номер телефона"
-                                PlaceholderColor="Gray"
-                                TextColor="#1A1824" />
-                        </StackLayout>
-                        <!--    -->
-                        <StackLayout Orientation="Vertical">
-                            <local:ImageEntry
-                                x:Name="psword"
-                                Margin="-30,20,0,0"
-                                BackgroundColor="Transparent"
-                                FontFamily="{StaticResource NormalFont}"
-                                HeightRequest="50"
-                                ImageAlignment="Right"
-                                ImageHeight="13"
-                                ImageWidth="13"
-                                IsPassword="True"
-                                LineColor="Gray"
-                                Placeholder="Введите пароль"
-                                PlaceholderColor="Gray"
-                                TextColor="#1A1824"
-                                WidthRequest="300" />
-                            <ImageButton
-                                Margin="-20,-50,0,0"
-                                BackgroundColor="Transparent"
-                                Clicked="ShowPassowrd"
-                                HeightRequest="25"
-                                HorizontalOptions="EndAndExpand"
-                                Source="pass"
-                                WidthRequest="25" />
-
-                        </StackLayout>
-
-                        <Button
-                            Margin="-30,45,0,0"
-                            BackgroundColor="#96A637"
-                            Clicked="LoginEvent"
-                            CornerRadius="5"
-                            FontAttributes="Bold"
-                            FontFamily="{StaticResource BoldFont}"
-                            FontSize="16"
-                            Text="Войти"
-                            TextColor="White" />
-
-                        <Button
-                            Margin="0,80,30,0"
-                            BackgroundColor="Transparent"
-                            Clicked="ForgotEvent"
-                            FontAttributes="Bold"
-                            FontFamily="{StaticResource BoldFont}"
-                            FontSize="16"
-                            Text="Забыли пароль?"
-                            TextColor="#1A1824" />
-
-                    </StackLayout>
+                    
+                    <!--  phone  -->
+                    <local:ImageEntry
+                        x:Name="number"
+                        FontFamily="{StaticResource NormalFont}"
+                        HeightRequest="50"
+                        Image="ua"
+                        ImageHeight="19"
+                        ImageWidth="28"
+                        LineColor="Gray"
+                        Placeholder="{x:Static str:LocalizationStrings.UAPhonePlaceHolder}"
+                        PlaceholderColor="Gray"
+                        TextColor="#1A1824">
+                        <local:ImageEntry.Behaviors>
+                            <handlers:EventToSetPropertyBehavior x:TypeArguments="x:String" Value="+380" PropertyName="Text" EventName="Focused" TargetExecuteObject="{x:Reference number}" />
+                            <basil:MaskWithRulesBehavior Pattern="+380XXXXXXXXX" PropertyName="Text" >
+                                <rules:CharMaskRule Rule="X" AllowedChars="+1234567890" />
+                            </basil:MaskWithRulesBehavior>
+                        </local:ImageEntry.Behaviors>
+                    </local:ImageEntry>
+                    
+                    <!-- pwrd -->
+                    <local:ImageEntry
+                        x:Name="psword"
+                        Margin="0,5,0,0"
+                        BackgroundColor="Transparent"
+                        FontFamily="{StaticResource NormalFont}"
+                        HeightRequest="50"
+                        ImageAlignment="Right"
+                        ImageHeight="13"
+                        ImageWidth="13"
+                        IsPassword="True"
+                        LineColor="Gray"
+                        Placeholder="{x:Static str:LocalizationStrings.PasswordPlaceHolder}"
+                        PlaceholderColor="Gray"
+                        TextColor="#1A1824"
+                        WidthRequest="300" />
+                    
+                    <!-- hide pass btn -->
+                    <ImageButton
+                        Margin="0,-57,8,0"
+                        BackgroundColor="Transparent"
+                        Clicked="ShowPassowrd"
+                        HeightRequest="25"
+                        HorizontalOptions="EndAndExpand"
+                        Source="pass"
+                        WidthRequest="25" />
+                    
+                    <Button
+                        Margin="0,15,0,0"
+                        HeightRequest="55"
+                        BackgroundColor="#90A610"
+                        Clicked="LoginEvent"
+                        CornerRadius="8"
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        Text="{x:Static str:LocalizationStrings.EnterBtn}"
+                        TextColor="White" />
+                    
+                    <Button
+                        Margin="0,60,0,0"
+                        BackgroundColor="Transparent"
+                        Clicked="ForgotEvent"
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        Text="{x:Static str:LocalizationStrings.ForgotPassBtn}"
+                        TextColor="#1A1824" />
+                    
                 </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
     <!--#endregion-->
-</ContentPage>
+</base:BaseContentPage>
