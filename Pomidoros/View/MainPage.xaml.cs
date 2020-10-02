@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Pomidoros.Model;
+using Pomidoros.View.Base;
 using Pomidoros.View.Notification;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace Pomidoros.View
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : BaseContentPage
     {
         public MainPage()
         {

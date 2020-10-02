@@ -113,7 +113,7 @@ namespace Pomidoros.View.Authorization
 
         private void GoToForgotPasswordPage(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new ForgotPage());
+            Navigation.PushAsync(new ForgotPasswordPage());
         }
 
         private void SwitchPasswordVisibility(object sender, EventArgs args)

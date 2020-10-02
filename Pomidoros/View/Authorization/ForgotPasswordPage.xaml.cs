@@ -9,12 +9,12 @@ using Pomidoros.View.Base;
 
 namespace Pomidoros.View.Authorization
 {
-    public partial class ForgotPage : BaseContentPage
+    public partial class ForgotPasswordPage : BaseContentPage
     {
         private readonly IRequestsToServer _requestsToServer;
         private bool _smsResendEnable;
 
-        public ForgotPage()
+        public ForgotPasswordPage()
         {
             InitializeComponent();
             _smsResendEnable = true;

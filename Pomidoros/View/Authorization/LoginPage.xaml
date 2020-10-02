@@ -69,6 +69,7 @@
                         LineColor="Gray"
                         Placeholder="{x:Static str:LocalizationStrings.UAPhonePlaceHolder}"
                         PlaceholderColor="Gray"
+                        Keyboard="Numeric"
                         TextColor="#1A1824">
                         <local:ImageEntry.Behaviors>
                             <handlers:EventToSetPropertyBehavior x:TypeArguments="x:String" Value="+380" PropertyName="Text" EventName="Focused" TargetExecuteObject="{x:Reference number}" />
@@ -86,6 +87,7 @@
                         FontFamily="{StaticResource NormalFont}"
                         HeightRequest="50"
                         IsPassword="True"
+                        Keyboard="Numeric"
                         LineColor="Gray"
                         Placeholder="{x:Static str:LocalizationStrings.PasswordPlaceHolder}"
                         PlaceholderColor="Gray"

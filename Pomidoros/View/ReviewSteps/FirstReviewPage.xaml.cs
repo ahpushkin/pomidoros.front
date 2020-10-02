@@ -15,7 +15,7 @@ namespace Pomidoros.View.ReviewSteps
         }
         void BackEvent(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new LoginPage());
+            Navigation.PopToRootAsync();
         }
         void NextEvent(object sender, EventArgs args)
         {

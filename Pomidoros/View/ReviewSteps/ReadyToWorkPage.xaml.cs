@@ -41,8 +41,8 @@ namespace Pomidoros.View.ReviewSteps
 
             if (activ.IsRunning)
             {
-                Navigation.InsertPageBefore(new MainPage(), this);
-                Navigation.PopAsync();
+                Navigation.InsertPageBefore(new MainPage(), Navigation.NavigationStack[0]);
+                Navigation.PopToRootAsync();
             }
             else
             {
