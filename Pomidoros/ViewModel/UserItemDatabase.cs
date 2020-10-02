@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Pomidoros.Controller;
 using Pomidoros.Model;
 using Pomidoros.View;
+using Pomidoros.View.Authorization;
 using SQLite;
 
 namespace Pomidoros.ViewModel

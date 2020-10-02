@@ -37,7 +37,6 @@
     <Folder Include="IMap\" />
     <Folder Include="Helper\" />
     <Folder Include="Controller\" />
-    <Folder Include="View\Authorization" />
     <Folder Include="View\Notification\" />
     <Folder Include="View\SearchPlace\" />
     <Folder Include="View\Stopped\" />
@@ -63,6 +62,14 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>LocalizationStrings.ru.resx</DependentUpon>
+    </Compile>
+    <Compile Update="View\Authorization\ForgotPage.xaml.cs">
+      <DependentUpon>ForgotPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Authorization\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

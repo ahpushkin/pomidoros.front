@@ -3,6 +3,7 @@ using Pomidoros.Interfaces;
 using Pomidoros.Services;
 using Pomidoros.Utils;
 using Pomidoros.View;
+using Pomidoros.View.Authorization;
 using Pomidoros.ViewModel;
 using Xamarin.Forms;
 

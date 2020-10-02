@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <base:BaseContentPage
-    x:Class="Pomidoros.View.LoginPage"
+    x:Class="Pomidoros.View.Authorization.LoginPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:basil="clr-namespace:Basil.Behaviors.Masks;assembly=Basil.Behaviors"
@@ -20,7 +20,7 @@
                 <StackLayout x:Name="hader" Orientation="Horizontal">
                     <ImageButton
                         BackgroundColor="Transparent"
-                        Clicked="OperatorEvent"
+                        Clicked="ShowOperatorPopup"
                         HeightRequest="40"
                         HorizontalOptions="EndAndExpand"
                         Source="help"
@@ -78,7 +78,7 @@
                     <ImageButton
                         Margin="0,-57,8,0"
                         BackgroundColor="Transparent"
-                        Clicked="ShowPassowrd"
+                        Clicked="SwitchPasswordVisibility"
                         HeightRequest="25"
                         HorizontalOptions="EndAndExpand"
                         Source="pass"
@@ -99,7 +99,7 @@
                     <Button
                         Margin="0,60,0,0"
                         BackgroundColor="Transparent"
-                        Clicked="ForgotEvent"
+                        Clicked="GoToForgotPasswordPage"
                         FontAttributes="Bold"
                         FontFamily="{StaticResource BoldFont}"
                         FontSize="16"

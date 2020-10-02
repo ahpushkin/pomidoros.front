@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Pomidoros.View.Authorization;
 using Xamarin.Forms;
 
 namespace Pomidoros.View

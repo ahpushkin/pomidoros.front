@@ -5,11 +5,11 @@ using Pomidoros.Interfaces;
 using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Xamarin.Forms;
+using Pomidoros.View.Base;
 
-namespace Pomidoros.View
+namespace Pomidoros.View.Authorization
 {
-    public partial class ForgotPage : ContentPage
+    public partial class ForgotPage : BaseContentPage
     {
         private readonly IRequestsToServer _requestsToServer;
         private bool _smsResendEnable;
@@ -19,14 +19,12 @@ namespace Pomidoros.View
             InitializeComponent();
             _smsResendEnable = true;
             _requestsToServer = App.Container.Resolve<IRequestsToServer>();
+            states.State = "EnterPhone";
         }
-
-        void StartLogin(object sender, EventArgs args)
+        
+        private void BackEvent(object sender, EventArgs args)
         {
-            if (string.IsNullOrEmpty(number.Text))
-            {
-                number.Text = "+380";
-            }
+            Navigation.PopAsync();
         }
 
         private async void ResetPassword(object sender, EventArgs e)
@@ -46,9 +44,10 @@ namespace Pomidoros.View
             UserDialogs.Instance.HideLoading();
 
             if (code)
-                phoneNumberStack.IsVisible = false;
+                states.State = "EnterSmsCode";
             else
-                UserDialogs.Instance.AlertAsync("Ошибка соеденения с сервером. Повторите позже.", okText: "Ок").SafeFireAndForget(false);
+                UserDialogs.Instance.AlertAsync("Ошибка соеденения с сервером. Повторите позже.", okText: "Ок")
+                    .SafeFireAndForget(false);
 
         }
 

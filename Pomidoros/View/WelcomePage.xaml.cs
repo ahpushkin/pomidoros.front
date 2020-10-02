@@ -31,7 +31,8 @@ namespace Pomidoros.View
             if (requestRes)
             {
                 activ.IsRunning = false;
-               await Navigation.PushAsync(new StartPage());
+                Navigation.InsertPageBefore(new StartPage(), this);
+                Navigation.PopAsync();
             }
             else
             {

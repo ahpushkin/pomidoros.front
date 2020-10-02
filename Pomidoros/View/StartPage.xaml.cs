@@ -1,6 +1,7 @@
 ﻿using Pomidoros.View.Notification;
 using Rg.Plugins.Popup.Services;
 using System;
+using Pomidoros.View.Authorization;
 using Xamarin.Forms;
 
 namespace Pomidoros.View

@@ -12,9 +12,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Pomidoros.View.Base;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
-namespace Pomidoros.View
+namespace Pomidoros.View.Authorization
 {
     public partial class LoginPage : BaseContentPage
     {
@@ -112,19 +111,19 @@ namespace Pomidoros.View
                 _hasConnection = true;
         }
 
-        void ForgotEvent(object sender, EventArgs args)
+        private void GoToForgotPasswordPage(object sender, EventArgs args)
         {
             Navigation.PushAsync(new ForgotPage());
         }
 
-        void ShowPassowrd(object sender, EventArgs args)
+        private void SwitchPasswordVisibility(object sender, EventArgs args)
         {
-            psword.IsPassword = psword.IsPassword ? false : true;
+            psword.IsPassword = !psword.IsPassword;
         }
 
-        void OperatorEvent(object sender, EventArgs args)
+        private void ShowOperatorPopup(object sender, EventArgs args)
         {
             PopupNavigation.Instance.PushAsync(new OperatorPage());
-        } 
+        }
     }
 }
