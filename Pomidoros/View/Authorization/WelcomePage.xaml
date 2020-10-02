@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:Class="Pomidoros.View.Authorization.WelcomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+    HasNavigationBar="False"
+    Icons="Dark"
+    StatusBarColor="White">
+
+    <ContentPage.Content>
+        
+        <Grid Padding="30">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".4*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height=".6*" />
+            </Grid.RowDefinitions>
+            
+            <Label
+                Grid.Row="1"
+                FontFamily="{StaticResource NormalFont}"
+                FontSize="16"
+                Text="{x:Static str:LocalizationStrings.WelcomeTitle}"
+                TextColor="#1A1824" />
+
+            <Label
+                x:Name="name"
+                Grid.Row="2"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="30"
+                TextColor="#1A1824" />
+            
+            <ActivityIndicator
+                Grid.Row="3"
+                VerticalOptions="Center"
+                IsRunning="true"
+                Color="#96A637" />
+            
+        </Grid>
+    </ContentPage.Content>
+</base:BaseContentPage>

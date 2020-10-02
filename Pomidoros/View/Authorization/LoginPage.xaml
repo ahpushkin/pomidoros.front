@@ -14,23 +14,45 @@
     StatusBarColor="White"
     HasNavigationBar="False">
     <ContentPage.Content>
-        <ScrollView Padding="30,20">
-            <!--#region-->
-            <StackLayout Orientation="Vertical">
-                <StackLayout x:Name="hader" Orientation="Horizontal">
-                    <ImageButton
-                        BackgroundColor="Transparent"
-                        Clicked="ShowOperatorPopup"
-                        HeightRequest="40"
-                        HorizontalOptions="EndAndExpand"
-                        Source="help"
-                        WidthRequest="40" />
-                </StackLayout>
-
-                <StackLayout x:Name="main"
-                             Margin="0,15,0,0"
-                             Spacing="20">
-
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <StackLayout 
+                Margin="30, 20,30,10"
+                Orientation="Horizontal"
+                VerticalOptions="StartAndExpand">
+                        
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Clicked="ShowOperatorPopup"
+                    HeightRequest="40"
+                    HorizontalOptions="EndAndExpand"
+                    Source="help"
+                    WidthRequest="40" />
+                        
+            </StackLayout>
+            
+            <ScrollView Grid.Row="1">
+            
+                <Grid
+                    Margin="30, 15"
+                    RowSpacing="15"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Fill">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="70" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="70" />
+                    </Grid.RowDefinitions>
+                    
                     <Label
                         FontFamily="{StaticResource BoldFont}"
                         FontSize="33"
@@ -39,12 +61,11 @@
                     
                     <!--  phone  -->
                     <local:ImageEntry
+                        Grid.Row="1"
                         x:Name="number"
                         FontFamily="{StaticResource NormalFont}"
                         HeightRequest="50"
                         Image="ua"
-                        ImageHeight="19"
-                        ImageWidth="28"
                         LineColor="Gray"
                         Placeholder="{x:Static str:LocalizationStrings.UAPhonePlaceHolder}"
                         PlaceholderColor="Gray"
@@ -59,14 +80,11 @@
                     
                     <!-- pwrd -->
                     <local:ImageEntry
+                        Grid.Row="2"
                         x:Name="psword"
-                        Margin="0,5,0,0"
                         BackgroundColor="Transparent"
                         FontFamily="{StaticResource NormalFont}"
                         HeightRequest="50"
-                        ImageAlignment="Right"
-                        ImageHeight="13"
-                        ImageWidth="13"
                         IsPassword="True"
                         LineColor="Gray"
                         Placeholder="{x:Static str:LocalizationStrings.PasswordPlaceHolder}"
@@ -76,7 +94,8 @@
                     
                     <!-- hide pass btn -->
                     <ImageButton
-                        Margin="0,-57,8,0"
+                        Grid.Row="2"
+                        Margin="0,0,8,0"
                         BackgroundColor="Transparent"
                         Clicked="SwitchPasswordVisibility"
                         HeightRequest="25"
@@ -84,7 +103,9 @@
                         Source="pass"
                         WidthRequest="25" />
                     
+                    <!-- login btn -->
                     <Button
+                        Grid.Row="3"
                         Margin="0,15,0,0"
                         HeightRequest="55"
                         BackgroundColor="#90A610"
@@ -95,9 +116,9 @@
                         FontSize="16"
                         Text="{x:Static str:LocalizationStrings.EnterBtn}"
                         TextColor="White" />
-                    
+                        
                     <Button
-                        Margin="0,60,0,0"
+                        Grid.Row="5"
                         BackgroundColor="Transparent"
                         Clicked="GoToForgotPasswordPage"
                         FontAttributes="Bold"
@@ -106,9 +127,12 @@
                         Text="{x:Static str:LocalizationStrings.ForgotPassBtn}"
                         TextColor="#1A1824" />
                     
-                </StackLayout>
-            </StackLayout>
-        </ScrollView>
+                </Grid>
+                
+            </ScrollView>
+            
+        </Grid>
+        
     </ContentPage.Content>
-    <!--#endregion-->
+    
 </base:BaseContentPage>

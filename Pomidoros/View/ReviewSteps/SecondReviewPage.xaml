@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<base:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+                      x:Class="Pomidoros.View.ReviewSteps.SecondReviewPage"
+                      HasNavigationBar="False"
+                      Icons="Dark"
+                      StatusBarColor="White"
+                      BackgroundColor="White">
+    <ContentPage.Content>
+        
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <!-- header -->
+            <StackLayout
+                Margin="30, 20"
+                Orientation="Horizontal"
+                VerticalOptions="StartAndExpand">
+
+                <ImageButton
+                    Source="back"
+                    Clicked="BackEvent"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="StartAndExpand"/>
+
+                <Label
+                    FontSize="16"
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource BoldFont}"
+                    TextColor="#1C1C1C"
+                    VerticalTextAlignment="Center"
+                    Text="Подготовка 2/2"/>
+
+                <ImageButton
+                    Clicked="OperatorEvent"
+                    Source="help"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="EndAndExpand"/>
+
+            </StackLayout>
+            
+            <!-- body -->
+            <ScrollView Grid.Row="1">
+                <Grid  Margin="30, 15"
+                       VerticalOptions="Fill"
+                       HorizontalOptions="Fill">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="130" />
+                        <RowDefinition Height=".45*" />
+                        <RowDefinition Height="240" />
+                        <RowDefinition Height=".45*" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height=".1*" />
+                        <RowDefinition Height="55" />
+                    </Grid.RowDefinitions>
+                    
+                    <Label 
+                        FontSize="34"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontAttributes="Bold"
+                        Text="Вы сейчас одеты  &#x0a;в фирменную  &#x0a;форму?"
+                        TextColor="#1A1824"/>
+                    
+                    <Image 
+                        Grid.Row="2"
+                        Source="forma"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="Center"/>
+
+                    <Button 
+                        Grid.Row="4"
+                        Text="Да, я надел форму"
+                        CornerRadius="5"
+                        FontFamily="{StaticResource BoldFont}"
+                        BackgroundColor="#96A637"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        Clicked="NextEvent"
+                        TextColor="White"/>
+
+                    <Button 
+                        Grid.Row="6"
+                        Clicked="WearEvent"
+                        Text="Нет, пока не надел форму"
+                        BackgroundColor="Transparent"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        TextColor="#1A1824"/>
+
+                </Grid>
+                
+            </ScrollView>
+            
+        </Grid>
+        
+    </ContentPage.Content>
+</base:BaseContentPage>

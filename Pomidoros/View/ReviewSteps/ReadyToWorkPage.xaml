@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<base:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+             x:Class="Pomidoros.View.ReviewSteps.ReadyToWorkPage"
+             HasNavigationBar="False"
+             Icons="Dark"
+             StatusBarColor="White">
+    
+    <ContentPage.Content>
+        
+        <ScrollView>
+            
+            <StackLayout VerticalOptions="Center">
+                
+                <Image Source="ready"
+                       Margin="0,50,0,0"/>
+
+                <Label FontSize="34"
+                       Margin="0,40,0,0"
+                       FontFamily="{StaticResource BoldFont}"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Text="Вы готовы&#x0a;к работе!"
+                       TextColor="#1A1824"/>
+
+                <Label Margin="0,30,0,0"
+                       Text="Идёт загрузка заказов"
+                       FontFamily="{StaticResource NormalFont}"
+                       FontSize="16"
+                       TextColor="#1A1824"
+                       HorizontalOptions="Center"/>
+
+                <ActivityIndicator x:Name="activ"
+                                   IsRunning="true"
+                                   Color="#96A637"
+                                   Margin="0,30,0,30"/>
+
+            </StackLayout>
+            
+        </ScrollView>
+        
+    </ContentPage.Content>
+    
+</base:BaseContentPage>

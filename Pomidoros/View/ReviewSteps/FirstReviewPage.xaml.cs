@@ -2,13 +2,14 @@
 using Rg.Plugins.Popup.Services;
 using System;
 using Pomidoros.View.Authorization;
+using Pomidoros.View.Base;
 using Xamarin.Forms;
 
-namespace Pomidoros.View
+namespace Pomidoros.View.ReviewSteps
 {
-    public partial class StartPage : ContentPage
+    public partial class FirstReviewPage : BaseContentPage
     {
-        public StartPage()
+        public FirstReviewPage()
         {
             InitializeComponent();
         }
@@ -18,7 +19,7 @@ namespace Pomidoros.View
         }
         void NextEvent(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new SecondStartPage());
+            Navigation.PushAsync(new SecondReviewPage());
         }
         void CheckEvent(object sender, EventArgs args)
         {

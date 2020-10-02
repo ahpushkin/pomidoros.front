@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Autofac;
-using Newtonsoft.Json;
 using Pomidoros.Controller;
 using Pomidoros.Interfaces;
+using Pomidoros.View.Base;
 using Pomidoros.View.Notification;
-using RestSharp;
+using Pomidoros.View.ReviewSteps;
 using Rg.Plugins.Popup.Services;
-using Xamarin.Forms;
 
-namespace Pomidoros.View
+namespace Pomidoros.View.Authorization
 {
-    public partial class WelcomePage : ContentPage
+    public partial class WelcomePage : BaseContentPage
     {
         public WelcomePage()
         {
@@ -30,8 +27,7 @@ namespace Pomidoros.View
             
             if (requestRes)
             {
-                activ.IsRunning = false;
-                Navigation.InsertPageBefore(new StartPage(), this);
+                Navigation.InsertPageBefore(new FirstReviewPage(), this);
                 Navigation.PopAsync();
             }
             else

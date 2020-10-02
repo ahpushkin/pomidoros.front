@@ -4,13 +4,13 @@ using System.IO;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Pomidoros.View.Authorization;
-using Xamarin.Forms;
+using Pomidoros.View.Base;
 
-namespace Pomidoros.View
+namespace Pomidoros.View.ReviewSteps
 {
-    public partial class ReadyPage : ContentPage
+    public partial class ReadyToWorkPage : BaseContentPage
     {
-        public ReadyPage()
+        public ReadyToWorkPage()
         {
             InitializeComponent();
         }
@@ -39,9 +39,10 @@ namespace Pomidoros.View
 
             await Task.Delay(5000);
 
-            if (activ.IsRunning == true)
+            if (activ.IsRunning)
             {
-                await this.Navigation.PushAsync(new MainPage());
+                Navigation.InsertPageBefore(new MainPage(), this);
+                Navigation.PopAsync();
             }
             else
             {
