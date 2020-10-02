@@ -98,5 +98,17 @@ namespace Pomidoros.Resources {
                 return ResourceManager.GetString("ContinueBtn", resourceCulture);
             }
         }
+        
+        internal static string RecoveryCodeFromSmsPlaceHolder {
+            get {
+                return ResourceManager.GetString("RecoveryCodeFromSmsPlaceHolder", resourceCulture);
+            }
+        }
+        
+        internal static string SendSmsOnceMoreBtn {
+            get {
+                return ResourceManager.GetString("SendSmsOnceMoreBtn", resourceCulture);
+            }
+        }
     }
 }

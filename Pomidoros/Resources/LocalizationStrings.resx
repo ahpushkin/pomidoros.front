@@ -49,5 +49,10 @@
     <data name="ContinueBtn" xml:space="preserve">
         <value>Продолжить</value>
     </data>
-    
+    <data name="RecoveryCodeFromSmsPlaceHolder" xml:space="preserve">
+        <value>Код восстановления из СМС</value>
+    </data>
+    <data name="SendSmsOnceMoreBtn" xml:space="preserve">
+        <value>Отправить СМС еще раз</value>
+    </data>
 </root>
