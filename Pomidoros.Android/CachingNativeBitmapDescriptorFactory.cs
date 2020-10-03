@@ -15,10 +15,7 @@ namespace Pomidoros.Droid
             var defaultFactory = DefaultBitmapDescriptorFactory.Instance;
 
             if (!string.IsNullOrEmpty(descriptor.Id))
-            {
-                var cacheEntry = _cache.GetOrAdd(descriptor.Id, _ => defaultFactory.ToNative(descriptor));
-                return cacheEntry;
-            }
+                return _cache.GetOrAdd(descriptor.Id, _ => defaultFactory.ToNative(descriptor));
 
             return defaultFactory.ToNative(descriptor);
         }

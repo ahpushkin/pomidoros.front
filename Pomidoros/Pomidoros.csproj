@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -43,9 +44,6 @@
     <Folder Include="View\Sender\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="View\HistoryPage.xaml.cs">
-      <DependentUpon>HistoryPage.xaml</DependentUpon>
-    </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -63,7 +61,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>LocalizationStrings.ru.resx</DependentUpon>
     </Compile>
-    <Compile Update="View\Authorization\ForgotPage.xaml.cs">
+    <Compile Update="View\Authorization\ForgotPasswordPage.xaml.cs">
       <DependentUpon>ForgotPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -85,6 +83,14 @@
     </Compile>
     <Compile Update="View\ReviewSteps\ReadyToWorkPage.xaml.cs">
       <DependentUpon>ReadyPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Orders\MyOrdersPage.xaml.cs">
+      <DependentUpon>MyOrderPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\Orders\HistoryPage.xaml.cs">
+      <DependentUpon>HistoryPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
