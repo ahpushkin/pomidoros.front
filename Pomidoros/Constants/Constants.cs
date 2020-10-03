@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Pomidoros.Model
+namespace Pomidoros.Constants
 {
     public static class Constants
     {
