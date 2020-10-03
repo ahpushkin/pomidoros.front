@@ -8,6 +8,7 @@ using Android.Support.V4.Content;
 using Android.Support.V4.Content.Res;
 using Pomidoros.Controls;
 using UISampleApp.Droid.Renderers;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using static Android.Resource;
@@ -54,8 +55,8 @@ namespace UISampleApp.Droid.Renderers
             int resID = Resources.GetIdentifier(imageEntryImage, "drawable", this.Context.PackageName);
             var drawable = ContextCompat.GetDrawable(this.Context, resID);
             var bitmap = ((BitmapDrawable)drawable).Bitmap;
-
-            return new BitmapDrawable(Resources, Bitmap.CreateScaledBitmap(bitmap, element.ImageWidth * 2, element.ImageHeight * 2, true));
+            return new BitmapDrawable(Resources, Bitmap.CreateScaledBitmap(bitmap, 
+                (int)(bitmap.Width * element.ImageHorizontalScale), (int)(bitmap.Height * element.ImageVerticalScale), true));
         }
 
     }
