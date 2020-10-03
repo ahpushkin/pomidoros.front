@@ -1,7 +1,36 @@
+using Autofac;
+using Basil.Behaviors.Extensions;
+using Pomidoros.ViewModel.Base;
+using Pomidoros.ViewModel.Infra;
 using Xamarin.Forms;
 
 namespace Pomidoros.View.Base
 {
+    public class BaseContentPage<TViewModel> : BaseContentPage
+        where TViewModel : BaseViewModel
+    {
+        public BaseContentPage()
+        {
+            BindingContext = BaseApp.Container.Resolve<TViewModel>();
+        }
+        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            
+            if (BindingContext.Cast<IAppearingAware>(out var aware))
+                aware.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            
+            if (BindingContext.Cast<IDisappearingAware>(out var aware))
+                aware.OnDisappearing();
+        }
+    }
+    
     public class BaseContentPage : ContentPage
     {
         public static BindableProperty HasNavigationBarProperty = BindableProperty.Create(
