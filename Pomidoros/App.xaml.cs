@@ -1,64 +1,43 @@
-﻿using Autofac;
-using Pomidoros.Interfaces;
-using Pomidoros.Services;
-using Pomidoros.Utils;
-using Pomidoros.View;
+﻿using System.Net;
+using Autofac;
+using Pomidoros.Modules;
+using Pomidoros.Services.Navigation;
+using Pomidoros.Services.Storage;
 using Pomidoros.View.Authorization;
-using Pomidoros.ViewModel;
+using Pomidoros.ViewModel.Authorization;
+using Services.FlowFlags;
+using Services.Storage;
 using Xamarin.Forms;
 
 namespace Pomidoros
 {
-    public partial class App : Application
+    public partial class App : BaseApp
     {
-        public static string TestPhone = "0633430412";
-        public static IContainer Container { get; set; }
-        public static int CurrentLat { get; set; }
-        static UserItemDatabase database;
-        public static UserItemDatabase Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new UserItemDatabase();
-                }
-                return database;
-            }
-        }
-        public App()
+        protected override void InitializeApp()
         {
             InitializeComponent();
+        }
 
-            InitIoc();
+        protected override void PreLaunchRegistrations(ContainerBuilder builder)
+        {
+            builder.RegisterType<LoginPageViewModel>();
+            builder.RegisterType<StorageImplementation>().As<IStorage>();
+            builder.RegisterType<FlowFlagManager>().As<IFlowFlagManager>();
+        }
 
-            //set launch page
-            //pls dont change this code)
+        protected override void SetupNavigation()
+        {
             MainPage = new NavigationPage(new LoginPage());
         }
 
-        private static void InitIoc()
+        protected override void PostLaunchRegistrations(ContainerBuilder builder)
         {
-            var builder = new ContainerBuilder();
+            builder.RegisterModule<PluginsModule>();
+            builder.RegisterModule<ServicesModule>();
 
-            builder.RegisterType<Requests>().As<IRequestsToServer>();
-            builder.RegisterType<CallService>().As<ICallService>();
-            builder.RegisterType<SmsService>().As<ISmsService>();
-
-            Container = builder.Build();
-        }
-
-        //OnStart method
-        protected override void OnStart()
-        {
-        }
-        //OnSleep method
-        protected override void OnSleep()
-        {
-        }
-        //OnResum method
-        protected override void OnResume()
-        {
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            
+            builder.Register(c => new NavigationProvider(() => MainPage.Navigation));
         }
     }
 }
