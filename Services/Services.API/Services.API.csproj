@@ -42,11 +42,22 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Authorization\AuthorizationApi.cs" />
+        <Compile Include="Authorization\AuthorizationApi_mock.cs" />
         <Compile Include="Authorization\IAuthorizationApi.cs" />
+        <Compile Include="Orders\IOrdersApi.cs" />
+        <Compile Include="Orders\OrdersApi.cs" />
+        <Compile Include="Orders\OrdersApi_mock.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Services\Services.Models\Services.Models.csproj">
+        <Project>{6eab063c-476d-4d50-9e7f-36348b3154b0}</Project>
+        <Name>Services.Models</Name>
+      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
