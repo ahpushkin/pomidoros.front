@@ -4,6 +4,7 @@ using Pomidoros.Modules;
 using Pomidoros.Services.Navigation;
 using Pomidoros.Services.Storage;
 using Pomidoros.View.Authorization;
+using Pomidoros.ViewModel;
 using Pomidoros.ViewModel.Authorization;
 using Services.FlowFlags;
 using Services.Storage;
@@ -20,6 +21,7 @@ namespace Pomidoros
 
         protected override void PreLaunchRegistrations(ContainerBuilder builder)
         {
+            builder.RegisterType<MainPageViewModel>();
             builder.RegisterType<LoginPageViewModel>();
             builder.RegisterType<StorageImplementation>().As<IStorage>();
             builder.RegisterType<FlowFlagManager>().As<IFlowFlagManager>();
@@ -33,7 +35,10 @@ namespace Pomidoros
         protected override void PostLaunchRegistrations(ContainerBuilder builder)
         {
             builder.RegisterModule<PluginsModule>();
+            builder.RegisterModule<ApiBindingsModule>();
             builder.RegisterModule<ServicesModule>();
+            builder.RegisterModule<ViewModelsModule>();
+            builder.RegisterModule<ItemsViewModelModule>();
 
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             
