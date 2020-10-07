@@ -1,4 +1,7 @@
-$HEADER$namespace $NAMESPACE$
+namespace Services.Models.User
 {
-  public class $CLASS$ {$END$}
+    public class UserDataModel
+    {
+        
+    }
 }

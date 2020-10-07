@@ -35,18 +35,25 @@
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
+        <Reference Include="System.Net.Http" />
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="ApiBase.cs" />
         <Compile Include="Authorization\AuthorizationApi.cs" />
         <Compile Include="Authorization\AuthorizationApi_mock.cs" />
         <Compile Include="Authorization\IAuthorizationApi.cs" />
+        <Compile Include="Constants.cs" />
         <Compile Include="Orders\IOrdersApi.cs" />
         <Compile Include="Orders\OrdersApi.cs" />
         <Compile Include="Orders\OrdersApi_mock.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\..\Tools\Core\Core.csproj">
+        <Project>{c481399f-3ce7-467b-9dbc-588ab452a370}</Project>
+        <Name>Core</Name>
+      </ProjectReference>
       <ProjectReference Include="..\Services.Models\Services.Models.csproj">
         <Project>{6eab063c-476d-4d50-9e7f-36348b3154b0}</Project>
         <Name>Services.Models</Name>

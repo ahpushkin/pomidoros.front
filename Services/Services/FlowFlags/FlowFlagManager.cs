@@ -13,7 +13,7 @@ namespace Services.FlowFlags
         }
 
         public bool Is(string key)
-            => _storage.Get<bool>(key);
+            => _storage.Available(key) && _storage.Get<bool>(key);
 
         public void Set(string key, bool val)
             => _storage.Put(key, val);
