@@ -32,10 +32,6 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
-          <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-          <Private>True</Private>
-        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
@@ -46,6 +42,8 @@
         <Compile Include="CurrentUser\ICurrentUserDataService.cs" />
         <Compile Include="FlowFlags\FlowFlagManager.cs" />
         <Compile Include="FlowFlags\IFlowFlagManager.cs" />
+        <Compile Include="HistoryOrders\HistoryOrdersProvider.cs" />
+        <Compile Include="HistoryOrders\IHistoryOrdersProvider.cs" />
         <Compile Include="Orders\IOrdersProvider.cs" />
         <Compile Include="Orders\OrdersProvider.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,17 +52,17 @@
         <Compile Include="Storage\IStorage.cs" />
     </ItemGroup>
     <ItemGroup>
-      <None Include="packages.config" />
-    </ItemGroup>
-    <ItemGroup>
       <ProjectReference Include="..\Services.API\Services.API.csproj">
         <Project>{b6d1b98b-5ba4-4b0f-b316-f2f55575a6cb}</Project>
         <Name>Services.API</Name>
       </ProjectReference>
-      <ProjectReference Include="Services.Models\Services.Models.csproj">
+      <ProjectReference Include="..\Services.Models\Services.Models.csproj">
         <Project>{6eab063c-476d-4d50-9e7f-36348b3154b0}</Project>
         <Name>Services.Models</Name>
       </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
