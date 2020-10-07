@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<base:BaseContentPage x:Class="Pomidoros.View.Orders.OrdersHistoryPage"
+                      x:DataType="vm:OrdersHistoryPageViewModel"
+                      x:TypeArguments="vm:OrdersHistoryPageViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+                      xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
+                      xmlns:ivm="clr-namespace:Pomidoros.ViewModel.ListElements;assembly=Pomidoros"
+                      xmlns:state="clr-namespace:Pomidoros.StateContainer;assembly=Pomidoros"
+                      xmlns:states="clr-namespace:Pomidoros.View.Orders;assembly=Pomidoros"
+                      ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
+                      HasNavigationBar="False"
+                      Icons="Dark"
+                      StatusBarColor="White">
+	
+	<ContentPage.Content>
+		
+		<StackLayout>
+			
+			<StackLayout Orientation="Horizontal"
+			             HorizontalOptions="CenterAndExpand"
+			             Spacing="-8">
+	            
+				<Button x:Name="yes" Clicked="YesEvent" 
+				        Text="Не сдан" Margin="0,0,0,0"
+				        TextColor="#FAFAFA"
+				        HeightRequest="55"
+				        WidthRequest="190"
+				        CornerRadius="12"
+				        BackgroundColor="#96A637"
+				        FontSize="16"
+				        FontFamily="{StaticResource NormalFont}"/>
+			        
+				<Button x:Name="no" Clicked="NopeEvent"
+				        BackgroundColor="Transparent"
+				        Margin="0,0,0,0"
+				        Text="Сдан"
+				        TextColor="#96A637"
+				        HeightRequest="40"
+				        WidthRequest="190"
+				        CornerRadius="12"
+				        FontSize="16"
+				        FontFamily="{StaticResource NormalFont}"/>
+			        
+			</StackLayout>
+			
+			<Label
+				IsVisible="{Binding HasMessage}"
+				Margin="30,20"
+				Text="{Binding Message}"
+				FontSize="20"
+				TextColor="#222222"
+				FontFamily="{StaticResource NormalFont}"/>
+			
+			
+			<state:StateContainer x:Name="states">
+				<state:StateCondition State="{x:Static states:HistoryOrdersStates.NotDone}">
+					<RefreshView Command="{Binding RefreshCommand}"
+					             IsRefreshing="{Binding IsBusy}">
+						<CollectionView ItemsSource="{Binding UncompletedOrders}">
+							<CollectionView.ItemTemplate>
+			                    <DataTemplate x:DataType="ivm:ShortOrderViewModel">
+			                        
+			                        <Grid Padding="15,5,15,5"
+			                              HeightRequest="70">
+			                            
+			                            <Grid.RowDefinitions>
+			                                <RowDefinition Height=".5*"/>
+			                                <RowDefinition Height=".5*"/>
+			                            </Grid.RowDefinitions>
+			                            <Grid.ColumnDefinitions>
+			                                <ColumnDefinition Width="65"/>
+			                                <ColumnDefinition Width="*"/>
+			                            </Grid.ColumnDefinitions>
+			                            
+			                            <Image Grid.RowSpan="2"
+			                                   VerticalOptions="Center"
+			                                   HorizontalOptions="Center"
+			                                   HeightRequest="40"
+			                                   WidthRequest="40"
+			                                   Source="geo" />
+			                            
+			                            <Label
+			                                Grid.Column="1"
+			                                FontFamily="{StaticResource BoldFont}"
+			                                FontSize="18"
+			                                Text="{Binding Address}"
+			                                TextColor="#1C1C1C"
+			                                VerticalOptions="End" />
+			                                
+			                            <Label
+			                                Grid.Column="1"
+			                                Grid.Row="1"
+			                                FontFamily="{StaticResource NormalFont}"
+			                                Text="{Binding Distance}"
+			                                TextColor="#249824"
+			                                VerticalOptions="Start" />
+			                            
+			                            <Grid.GestureRecognizers>
+			                                <TapGestureRecognizer Command="{Binding PressCommand}"
+			                                                      CommandParameter="{Binding .}"/>
+			                            </Grid.GestureRecognizers>
+			                            
+			                        </Grid>
+			                        
+			                    </DataTemplate>
+			                </CollectionView.ItemTemplate>
+						</CollectionView>
+					</RefreshView>
+				</state:StateCondition>
+				<state:StateCondition State="{x:Static states:HistoryOrdersStates.Done}">
+					<RefreshView Command="{Binding RefreshCommand}"
+					             IsRefreshing="{Binding IsBusy}">
+						<CollectionView ItemsSource="{Binding CompletedOrders}">
+							<CollectionView.ItemTemplate>
+			                    <DataTemplate x:DataType="ivm:ShortOrderViewModel">
+			                        
+			                        <Grid Padding="15,5,15,5"
+			                              HeightRequest="70">
+			                            
+			                            <Grid.RowDefinitions>
+			                                <RowDefinition Height=".5*"/>
+			                                <RowDefinition Height=".5*"/>
+			                            </Grid.RowDefinitions>
+			                            <Grid.ColumnDefinitions>
+			                                <ColumnDefinition Width="65"/>
+			                                <ColumnDefinition Width="*"/>
+			                            </Grid.ColumnDefinitions>
+			                            
+			                            <Image Grid.RowSpan="2"
+			                                   VerticalOptions="Center"
+			                                   HorizontalOptions="Center"
+			                                   HeightRequest="40"
+			                                   WidthRequest="40"
+			                                   Source="geo" />
+			                            
+			                            <Label
+			                                Grid.Column="1"
+			                                FontFamily="{StaticResource BoldFont}"
+			                                FontSize="18"
+			                                Text="{Binding Address}"
+			                                TextColor="#1C1C1C"
+			                                VerticalOptions="End" />
+			                                
+			                            <Label
+			                                Grid.Column="1"
+			                                Grid.Row="1"
+			                                FontFamily="{StaticResource NormalFont}"
+			                                Text="{Binding Distance}"
+			                                TextColor="#249824"
+			                                VerticalOptions="Start" />
+			                            
+			                            <Grid.GestureRecognizers>
+			                                <TapGestureRecognizer Command="{Binding PressCommand}"
+			                                                      CommandParameter="{Binding .}"/>
+			                            </Grid.GestureRecognizers>
+			                            
+			                        </Grid>
+			                        
+			                    </DataTemplate>
+			                </CollectionView.ItemTemplate>
+						</CollectionView>
+					</RefreshView>
+				</state:StateCondition>
+			</state:StateContainer>
+			
+		</StackLayout>
+	</ContentPage.Content>
+</base:BaseContentPage>

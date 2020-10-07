@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:Class="Pomidoros.View.Orders.MyOrdersPage"
+    x:DataType="vm:MyOrdersPageViewModel"
+    x:TypeArguments="vm:MyOrdersPageViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
+    xmlns:ivm="clr-namespace:Pomidoros.ViewModel.ListElements;assembly=Pomidoros"
+    ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
+    HasNavigationBar="False"
+    Icons="Dark"
+    StatusBarColor="White">
+        
+    <ContentPage.Content>
+        
+        <RefreshView IsRefreshing="{Binding IsBusy}"
+                     Command="{Binding RefreshCommand}">
+            
+            <CollectionView ItemsSource="{Binding Items}"
+                            Footer="{Binding .}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="ivm:ShortOrderViewModel">
+                        
+                        <Grid Padding="15,5,15,5"
+                              HeightRequest="70">
+                            
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height=".5*"/>
+                                <RowDefinition Height=".5*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="65"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Image Grid.RowSpan="2"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   HeightRequest="40"
+                                   WidthRequest="40"
+                                   Source="geo" />
+                            
+                            <Label
+                                Grid.Column="1"
+                                FontFamily="{StaticResource BoldFont}"
+                                FontSize="18"
+                                Text="{Binding Address}"
+                                TextColor="#1C1C1C"
+                                VerticalOptions="End" />
+                                
+                            <Label
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                FontFamily="{StaticResource NormalFont}"
+                                Text="{Binding Distance}"
+                                TextColor="#249824"
+                                VerticalOptions="Start" />
+                            
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PressCommand}"
+                                                      CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                            
+                        </Grid>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+                <CollectionView.FooterTemplate>
+                    <DataTemplate>
+                        
+                        <StackLayout Spacing="40"
+                                     Padding="30,10"
+                                     IsVisible="{Binding OrderAttention}">
+                            
+                            <Label TextColor="Brown"
+                                   FontSize="20"
+                                   Text="Вы не можете взять одновременно более двух заказов." />
+                            
+                            <Label TextColor="Brown"
+                                   FontSize="20"
+                                   Text="Доставьте ваши нынешние заказы, чтобы взять новые." />
+                            
+                        </StackLayout>
+                        
+                    </DataTemplate>
+                </CollectionView.FooterTemplate>
+                
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
+</base:BaseContentPage>

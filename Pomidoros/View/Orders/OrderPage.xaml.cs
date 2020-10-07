@@ -5,9 +5,10 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-namespace Pomidoros.View
+
+namespace Pomidoros.View.Orders
 {
-    public partial class OrgerPage : ContentPage
+    public partial class OrderPage
     {
         public ICommand ChangeLocationCommand { get; set; }
 
@@ -15,7 +16,7 @@ namespace Pomidoros.View
         {
             PopupNavigation.Instance.PushAsync(new OperatorPage());
         }
-        public OrgerPage()
+        public OrderPage()
         {
             InitializeComponent();
             
