@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ControlTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="Pomidoros.Templates.NavigatablePageTemplate">
+    
+    <ContentView>
+        
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <!-- header -->
+            <StackLayout
+                Margin="30, 20"
+                Orientation="Horizontal"
+                VerticalOptions="StartAndExpand">
+
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Command="{x:TemplateBinding BindingContext.BackCommand}"
+                    HorizontalOptions="StartAndExpand"
+                    Source="back" />
+
+                <Label
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    VerticalTextAlignment="Center"
+                    Text="{x:TemplateBinding BindingContext.Title}"
+                    TextColor="#1C1C1C" />
+
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Command="{x:TemplateBinding BindingContext.CallOperatorCommand}"
+                    HorizontalOptions="EndAndExpand"
+                    Source="help" />
+
+            </StackLayout>
+            
+            <ContentPresenter Grid.Row="1"/>
+            
+        </Grid>
+        
+    </ContentView>
+    
+</ControlTemplate>

@@ -14,5 +14,8 @@ namespace Core.Extensions
                 parametrizedViewModel.PassParameters(parameters);
             return navigation.PushAsync(page);
         }
+
+        public static Task PushAsync<TSingleParameter>(this INavigation navigation, Page page, TSingleParameter parameter, string paramKey = null)
+            => navigation.PushAsync(page, new NavigationParameters {[paramKey == null ? string.Empty : paramKey] = parameter});
     }
 }
