@@ -1,4 +1,4 @@
-namespace Pomidoros.ViewModel.Infra
+namespace Core.ViewModel.Infra
 {
     public interface IAppearingAware
     {

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 using PropertyChangingEventHandler = System.ComponentModel.PropertyChangingEventHandler;
 
-namespace Pomidoros.ViewModel.Base
+namespace Core.ViewModel.Infra
 {
     public class BindingObject : INotifyPropertyChanged
     {

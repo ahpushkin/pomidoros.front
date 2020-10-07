@@ -1,6 +1,6 @@
 using Autofac;
+using Core.ViewModel.Infra;
 using Pomidoros.Constants;
-using Pomidoros.ViewModel.Infra;
 using Services.FlowFlags;
 
 namespace Pomidoros.ViewModel.Base

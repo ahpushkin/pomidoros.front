@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Acr.UserDialogs;
 using Autofac;
 using Core.Commands;
+using Core.ViewModel.Infra;
 using Pomidoros.Services.Navigation;
 using Pomidoros.View.Notification;
 using Rg.Plugins.Popup.Services;
@@ -25,9 +26,23 @@ namespace Pomidoros.ViewModel.Base
         
         #endregion
         
+        #region properties
+
+        private string _title;
+        public string Title
+        {
+            get => _title;
+            set => SetProperty(ref _title, value);
+        }
+        
         public ICommand CallOperatorCommand => new AsyncCommand(OnCallOperatorCommand);
+        public ICommand BackCommand => new AsyncCommand(OnBackCommand);
 
         protected INavigation Navigation => NavigationProvider.Navigation;
+
+        #endregion
+
+        #region helpers
 
         protected bool CheckConnection()
             => Connectivity.NetworkAccess == NetworkAccess.Internet;
@@ -39,10 +54,20 @@ namespace Pomidoros.ViewModel.Base
                 await UserDialogs.AlertAsync("Нет подключения к сети. Проверьте соединение с интернетом.");
             return result;
         }
+
+        protected void ErrorToast()
+            => UserDialogs.Toast("Произошла непредвиденая ошибка. Повторите запрос позже.");
+        
+        #endregion
+
+        #region commands
         
         private Task OnCallOperatorCommand(object arg)
-        {
-            return PopupNavigation.PushAsync(new OperatorPage());
-        }
+            => PopupNavigation.PushAsync(new OperatorPage());
+
+        private Task OnBackCommand(object arg)
+            => Navigation.PopAsync();
+        
+        #endregion
     }
 }

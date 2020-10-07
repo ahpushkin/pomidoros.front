@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <base:BaseContentPage
     x:Class="Pomidoros.View.Authorization.LoginPage"
+    x:TypeArguments="vm:LoginPageViewModel"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:basil="clr-namespace:Basil.Behaviors.Masks;assembly=Basil.Behaviors"
@@ -9,6 +10,7 @@
     xmlns:rules="clr-namespace:Basil.Behaviors.Rules.Mask;assembly=Basil.Behaviors"
     xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
     xmlns:local="clr-namespace:Pomidoros.Controls"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.Authorization;assembly=Pomidoros"
     BackgroundColor="White"
     Icons="Dark"
     StatusBarColor="White"
@@ -28,7 +30,7 @@
                         
                 <ImageButton
                     BackgroundColor="Transparent"
-                    Clicked="ShowOperatorPopup"
+                    Command="{Binding CallOperatorCommand}"
                     HeightRequest="40"
                     HorizontalOptions="EndAndExpand"
                     Source="help"
@@ -70,6 +72,7 @@
                         Placeholder="{x:Static str:LocalizationStrings.UAPhonePlaceHolder}"
                         PlaceholderColor="Gray"
                         Keyboard="Numeric"
+                        Text="{Binding Phone}"
                         TextColor="#1A1824">
                         <local:ImageEntry.Behaviors>
                             <handlers:EventToSetPropertyBehavior x:TypeArguments="x:String" Value="+380" PropertyName="Text" EventName="Focused" TargetExecuteObject="{x:Reference number}" />
@@ -82,11 +85,11 @@
                     <!-- pwrd -->
                     <local:ImageEntry
                         Grid.Row="2"
-                        x:Name="psword"
                         BackgroundColor="Transparent"
                         FontFamily="{StaticResource NormalFont}"
                         HeightRequest="50"
-                        IsPassword="True"
+                        IsPassword="{Binding IsPassword}"
+                        Text="{Binding Password}"
                         Keyboard="Numeric"
                         LineColor="Gray"
                         Placeholder="{x:Static str:LocalizationStrings.PasswordPlaceHolder}"
@@ -99,7 +102,7 @@
                         Grid.Row="2"
                         Margin="0,0,8,0"
                         BackgroundColor="Transparent"
-                        Clicked="SwitchPasswordVisibility"
+                        Command="{Binding SwitchPasswordVisibleCommand}"
                         HeightRequest="25"
                         HorizontalOptions="EndAndExpand"
                         Source="pass"
@@ -111,18 +114,19 @@
                         Margin="0,15,0,0"
                         HeightRequest="55"
                         BackgroundColor="#90A610"
-                        Clicked="LoginEvent"
+                        Command="{Binding LoginCommand}"
                         CornerRadius="8"
                         FontAttributes="Bold"
                         FontFamily="{StaticResource BoldFont}"
                         FontSize="16"
                         Text="{x:Static str:LocalizationStrings.EnterBtn}"
                         TextColor="White" />
-                        
+                    
+                    <!-- forgot btn -->
                     <Button
                         Grid.Row="5"
                         BackgroundColor="Transparent"
-                        Clicked="GoToForgotPasswordPage"
+                        Command="{Binding ForgotPasswordCommand}"
                         FontAttributes="Bold"
                         FontFamily="{StaticResource BoldFont}"
                         FontSize="16"
