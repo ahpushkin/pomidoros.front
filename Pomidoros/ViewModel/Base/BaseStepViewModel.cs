@@ -24,17 +24,11 @@ namespace Pomidoros.ViewModel.Base
 
         public virtual void OnDisappearing()
         {
-            RemoveFlowFlag();
         }
 
-        protected virtual void SetFlowFlag()
+        protected void SetFlowFlag()
         {
             FlowFlagManager.Set(CurrentStep, true);
-        }
-
-        protected virtual void RemoveFlowFlag()
-        {
-            FlowFlagManager.Set(CurrentStep, false);
         }
     }
 }

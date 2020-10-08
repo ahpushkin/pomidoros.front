@@ -1,7 +1,7 @@
 using Autofac;
 using Basil.Behaviors.Extensions;
+using Core.ViewModel.Infra;
 using Pomidoros.ViewModel.Base;
-using Pomidoros.ViewModel.Infra;
 using Xamarin.Forms;
 
 namespace Pomidoros.View.Base

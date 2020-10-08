@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<base:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      x:Class="Pomidoros.View.Profile.WaitPage"
+                      x:DataType="vm:WaitPageViewModel"
+                      x:TypeArguments="vm:WaitPageViewModel"
+                      xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+                      xmlns:vm="clr-namespace:Pomidoros.ViewModel.Profile;assembly=Pomidoros"
+                      ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
+                      BackgroundColor="White"
+                      HasNavigationBar="False"
+                      Icons="Dark"
+                      StatusBarColor="White">
+    
+    <StackLayout Padding="30"
+                 Spacing="10">
+        
+        <Label Margin="30,-100,30,0"
+               Text="Вы запросили перерыв на 15 минут у администратора."
+               HorizontalOptions="Center"
+               VerticalOptions="EndAndExpand"
+               FontFamily="{StaticResource NormalFont}"
+               FontSize="18"
+               TextColor="#1A1824" />
+        
+        <Label FontSize="24"
+               HorizontalTextAlignment="Center"
+               VerticalOptions="StartAndExpand"
+               Margin="0,5,0,0"
+               FontFamily="{StaticResource BoldFont}"
+               FontAttributes="Bold"
+               Text="Ожидайте подтверждение,&#x0a;чтобы начать перерыв"
+               TextColor="#1A1824"/>
+
+    </StackLayout>
+    
+</base:BaseContentPage>

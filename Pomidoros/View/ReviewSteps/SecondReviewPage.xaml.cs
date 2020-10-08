@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace Pomidoros.View.ReviewSteps
 {
-    public partial class SecondReviewPage : BaseContentPage
+    public partial class SecondReviewPage
     {
         public SecondReviewPage()
         {

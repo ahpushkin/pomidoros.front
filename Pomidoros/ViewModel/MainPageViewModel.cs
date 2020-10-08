@@ -9,9 +9,9 @@ using Acr.UserDialogs;
 using Autofac;
 using Core.Commands;
 using Core.Extensions;
-using Pomidoros.View;
 using Pomidoros.View.Notification;
 using Pomidoros.View.Orders;
+using Pomidoros.View.Profile;
 using Pomidoros.ViewModel.Base;
 using Rg.Plugins.Popup.Contracts;
 using Services.HistoryOrders;
@@ -82,10 +82,6 @@ namespace Pomidoros.ViewModel
             }
             
             _onseAppeared = true;
-        }
-
-        protected override void RemoveFlowFlag()
-        {
         }
 
         private async Task UpdateOrdersAsync()

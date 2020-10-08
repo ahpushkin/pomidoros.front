@@ -5,10 +5,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
     xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+    xmlns:basil="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
+    xmlns:handler="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
+    xmlns:handlerAsync="clr-namespace:Basil.Behaviors.Events.HandlersAsync;assembly=Basil.Behaviors"
+    xmlns:anim="clr-namespace:Basil.Behaviors.Animations.Standart;assembly=Basil.Behaviors"
     HasNavigationBar="False"
     Icons="Dark"
     StatusBarColor="White">
-
+    
+    <base:BaseContentPage.Behaviors>
+        <basil:EventToMultipleHandlersBehavior EventName="Appearing">
+            <anim:FadeAnimation Opacity="0" Length="0" Target="{x:Reference title}" />
+            <anim:FadeAnimation Opacity="0" Length="0" Target="{x:Reference name}" />
+            <anim:TranslateAnimation XOffset="-20" Length="0" Target="{x:Reference title}" />
+            <anim:TranslateAnimation XOffset="-30" Length="0" Target="{x:Reference name}" />
+            <handler:ParallelHandlerExecutor>
+                <anim:FadeAnimation Opacity="1" Length="450" Target="{x:Reference title}" />
+                <anim:TranslateAnimation XOffset="20" Length="550" Target="{x:Reference title}" Easing="{x:Static Easing.SinOut}" />
+            </handler:ParallelHandlerExecutor>
+            <handlerAsync:DelayedCompositeEventHandler DelayMilliseconds="200">
+                <handler:ParallelHandlerExecutor>
+                    <anim:FadeAnimation Opacity="1" Length="700" Target="{x:Reference name}" />
+                    <anim:TranslateAnimation XOffset="30" Length="600" Target="{x:Reference name}" Easing="{x:Static Easing.SinOut}" />
+                </handler:ParallelHandlerExecutor>
+            </handlerAsync:DelayedCompositeEventHandler>
+        </basil:EventToMultipleHandlersBehavior>
+    </base:BaseContentPage.Behaviors>
+    
     <ContentPage.Content>
         
         <Grid Padding="30">
@@ -21,6 +44,8 @@
             </Grid.RowDefinitions>
             
             <Label
+                x:Name="title"
+                x:FieldModifier="private"
                 Grid.Row="1"
                 FontFamily="{StaticResource NormalFont}"
                 FontSize="16"

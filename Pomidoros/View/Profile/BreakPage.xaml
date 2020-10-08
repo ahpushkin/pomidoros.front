@@ -1,11 +1,18 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-    x:Class="Pomidoros.View.BreakPage"
+<base:BaseContentPage
+    x:Class="Pomidoros.View.Profile.BreakPage"
+    x:DataType="vm:BreakPageViewModel"
+    x:TypeArguments="vm:BreakPageViewModel"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:control="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.Profile;assembly=Pomidoros"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
     BackgroundColor="White"
-    NavigationPage.HasNavigationBar="False">
+    StatusBarColor="White"
+    HasNavigationBar="False"
+    Icons="Dark">
     <ContentPage.Resources>
         <ResourceDictionary>
 
@@ -33,37 +40,15 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout VerticalOptions="FillAndExpand">
-                <StackLayout Margin="20,40,20,0" Orientation="Horizontal">
-
-                    <ImageButton
-                        Margin="0,-10,0,0"
-                        BackgroundColor="Transparent"
-                        Clicked="BackEvent"
-                        HorizontalOptions="StartAndExpand"
-                        Source="back" />
-
-                    <Label
-                        BackgroundColor="Transparent"
-                        FontFamily="{StaticResource BoldFont}"
-                        FontSize="16"
-                        Text="Перерыв"
-                        TextColor="#1C1C1C" />
-
-                    <ImageButton
-                        Margin="0,-10,0,0"
-                        BackgroundColor="Transparent"
-                        Clicked="OperatorEvent"
-                        HorizontalOptions="EndAndExpand"
-                        Source="help" />
-
-                </StackLayout>
+            <StackLayout Spacing="70">
+                
                 <Frame
-                    Margin="30,26,30,10"
+                    Margin="30,0,30,10"
                     BackgroundColor="Transparent"
                     BorderColor="LightGray"
                     CornerRadius="10"
-                    HeightRequest="83">
+                    HeightRequest="70">
+                    
                     <Label
                         BackgroundColor="Transparent"
                         FontFamily="{StaticResource BoldFont}"
@@ -72,7 +57,9 @@
                         Text="Перерыв на 15 мин одобрен"
                         TextColor="#1C1C1C"
                         VerticalTextAlignment="Center" />
+                    
                 </Frame>
+                
                 <Grid>
                     <StackLayout Margin="0,70,0,0">
                         <Label
@@ -80,7 +67,7 @@
                             BackgroundColor="Transparent"
                             FontFamily="{StaticResource NormalFont}"
                             FontSize="16"
-                            HorizontalTextAlignment="Center"
+                            HorizontalOptions="Center"
                             Text="осталось"
                             TextColor="#1C1C1C"
                             VerticalTextAlignment="Center" />
@@ -94,13 +81,14 @@
                             TextColor="#1C1C1C"
                             VerticalTextAlignment="Center" />
                     </StackLayout>
+                    
                     <control:ProgressRing
-                        x:Name="ProgressRing"
                         AnimatedProgress="1"
                         AnimationLength="900000"
                         HeightRequest="250"
                         HorizontalOptions="CenterAndExpand"
                         ProgressColor="White"
+                        RingBaseColor="{Binding BaseColor}"
                         RingProgressColor="White"
                         RingThickness="5"
                         WidthRequest="250" />
@@ -108,4 +96,4 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</base:BaseContentPage>

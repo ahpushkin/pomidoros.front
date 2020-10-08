@@ -1,7 +1,12 @@
+using Pomidoros.ViewModel.Base;
+
 namespace Pomidoros.ViewModel.Orders
 {
-    public class OrgerPageViewModel
+    public class OrderPageViewModel : BaseViewModel
     {
-        
+        public OrderPageViewModel()
+        {
+            Title = "Заказ №343323";
+        }
     }
 }

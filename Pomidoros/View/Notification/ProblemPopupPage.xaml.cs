@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Pomidoros.Controller;
+using Pomidoros.View.Orders;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -39,7 +40,7 @@ namespace Pomidoros.View.Notification
             UserDialogs.Instance.HideLoading();
 
             PopupNavigation.Instance.PopAsync().SafeFireAndForget(false);
-            Navigation.PushAsync(new HistoryPage()).SafeFireAndForget(false);
+            Navigation.PushAsync(new OrdersHistoryPage()).SafeFireAndForget(false);
             Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
         }
     }

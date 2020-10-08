@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
 using Autofac;
 using Core.Commands;
+using Core.Extensions;
 using Core.ViewModel.Infra;
 using Pomidoros.Services.Navigation;
 using Pomidoros.View.Notification;
@@ -56,7 +58,15 @@ namespace Pomidoros.ViewModel.Base
         }
 
         protected void ErrorToast()
-            => UserDialogs.Toast("Произошла непредвиденая ошибка. Повторите запрос позже.");
+            => Toast("Произошла непредвиденая ошибка. Повторите запрос позже.");
+
+        protected void Toast(string message)
+            => UserDialogs.Toast(new ToastConfig(message)
+            {
+                Duration = new TimeSpan(0, 0, 3),
+                Position = ToastPosition.Bottom,
+                MessageTextColor = System.Drawing.Color.White
+            });
         
         #endregion
 
@@ -66,7 +76,7 @@ namespace Pomidoros.ViewModel.Base
             => PopupNavigation.PushAsync(new OperatorPage());
 
         private Task OnBackCommand(object arg)
-            => Navigation.PopAsync();
+            => Navigation.PopFromNavigationAsync();
         
         #endregion
     }

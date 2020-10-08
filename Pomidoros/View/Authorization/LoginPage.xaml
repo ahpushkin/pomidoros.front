@@ -2,6 +2,7 @@
 <base:BaseContentPage
     x:Class="Pomidoros.View.Authorization.LoginPage"
     x:TypeArguments="vm:LoginPageViewModel"
+    x:DataType="vm:LoginPageViewModel"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:basil="clr-namespace:Basil.Behaviors.Masks;assembly=Basil.Behaviors"

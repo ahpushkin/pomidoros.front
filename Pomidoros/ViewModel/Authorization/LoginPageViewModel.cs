@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
@@ -13,6 +14,7 @@ using Pomidoros.View.Authorization;
 using Pomidoros.View.Notification;
 using Pomidoros.ViewModel.Base;
 using Rg.Plugins.Popup.Contracts;
+using Services.Authorization;
 using Xamarin.Forms;
 
 namespace Pomidoros.ViewModel.Authorization
@@ -25,9 +27,9 @@ namespace Pomidoros.ViewModel.Authorization
         protected IPopupNavigation PopupNavigation
             => _popupNavigation ??= App.Container.Resolve<IPopupNavigation>();
         
-        private IRequestsToServer _requestsToServer;
-        protected IRequestsToServer RequestsToServer
-            => _requestsToServer ??= App.Container.Resolve<IRequestsToServer>();
+        private IAuthorizationService _authorizationService;
+        protected IAuthorizationService AuthorizationService
+            => _authorizationService ??= App.Container.Resolve<IAuthorizationService>();
         
         #endregion
 
@@ -61,7 +63,7 @@ namespace Pomidoros.ViewModel.Authorization
         #endregion
 
         protected override string CurrentStep => FlowSteps.Login;
-        
+
         #region commands
         
         private void OnSwitchPasswordVisibleCommand()
@@ -79,14 +81,14 @@ namespace Pomidoros.ViewModel.Authorization
 
             var isLogined = false;
             using (UserDialogs.Loading(maskType: MaskType.Clear))
-                isLogined = await RequestsToServer.LoginAsync(Phone, Password);
+                //await AuthorizationService.LoginAsync(Phone, Password, CancellationToken.None);
+                await Task.Delay(2000);
             
-            if (isLogined)
+            //if (AuthorizationService.IsAuthorized)
+            if (true)
                 await Navigation.PushAsync(new WelcomePage());
             else
                 await UserDialogs.AlertAsync("Убедидесь в правильности введеных данных и повторите попытку.", "Ошибка при входе", "Ок");
-
-            SaveDataLegasy();
         }
         
         private Task OnForgotPasswordCommand(object arg)
@@ -102,61 +104,17 @@ namespace Pomidoros.ViewModel.Authorization
             
             if (string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(Password) || errorCounter > 0)
             {
-                UserDialogs.Toast(new ToastConfig("Проверьте введенные данные")
-                {
-                    Duration = new TimeSpan(0,0,3),
-                    Position = ToastPosition.Bottom,
-                    MessageTextColor = System.Drawing.Color.White
-                });
-                
+                Toast("Проверьте введенные данные");
                 return false;
             }
             
             if(!Phone.Contains("+380") || Phone.Length < 13 || Phone.Length > 14)
             {
-                UserDialogs.Toast(new ToastConfig("Неверный формат номера телефона")
-                {
-                    Duration = new TimeSpan(0, 0, 3),
-                    Position = ToastPosition.Bottom,
-                    MessageTextColor = System.Drawing.Color.White
-                });
-                
+                Toast("Неверный формат номера телефона");
                 return false;
             }
 
             return true;
         }
-
-        #region to refactor
-        [Obsolete]
-        public static Dictionary<string, string> user_data;
-        [Obsolete]
-        private void SaveDataLegasy()
-        {
-            #region need_rework
-            user_data = new Dictionary<string, string>
-            {
-                { "username", "people"},
-                { "email", "people@example.com" },
-                { "name", "PeopleName" },
-                { "url", "people.com"},
-                { "phone_number", "+380986787623"},
-            };
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var filename = Path.Combine(path, "userdata.txt");
-
-            using (var streamWriter = new StreamWriter(filename, true))
-            {
-                streamWriter.WriteLine(DateTime.UtcNow);
-            }
-
-            using (var streamReader = new StreamReader(filename))
-            {
-                var content = streamReader.ReadToEnd();
-                System.Diagnostics.Debug.WriteLine(content);
-            }
-            #endregion
-        }
-        #endregion
     }
 }
