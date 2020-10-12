@@ -19,5 +19,10 @@ namespace Services.HistoryOrders
         {
             return _ordersApi.GetHistoryOrdersAsync(token);
         }
+        
+        public Task<FullOrderModel> GetOrderDetailsAsync(string number, CancellationToken token)
+        {
+            return _ordersApi.GetOrderDetailAsync(number, token);
+        }
     }
 }

@@ -31,12 +31,12 @@
                        TextColor="#1C1C1C"/>
                 
                 <Frame Margin="30, 10,30,15"
-                       Padding="25"
+                       Padding="20"
                        CornerRadius="15"
                        BorderColor="LightGray"
                        HasShadow="False">
                     
-                    <StackLayout Spacing="30">
+                    <StackLayout Spacing="10">
                         
                         <Label Text="{Binding Order.OrderStatus,
                          Converter={x:StaticResource orderStatusEnumToStringConverter},
@@ -44,20 +44,20 @@
                                FontSize="18"
                                TextColor="#1C1C1C"
                                HorizontalOptions="Center"
-                               FontFamily="{StaticResource NormalFont}"/>
+                               FontAttributes="Bold"
+                               FontFamily="{StaticResource BoldFont}"/>
                         
                         <Label Text="{x:Static str:LocalizationStrings.ClientDidntLikeDeliveryReview}"
-                               FontSize="18"
+                               FontSize="16"
                                TextColor="OrangeRed"
                                HorizontalOptions="Center"
                                HorizontalTextAlignment="Center"
-                               FontAttributes="Bold"
-                               FontFamily="{StaticResource BoldFont}">
+                               FontFamily="{StaticResource NormalFont}">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label"
                                              Binding="{Binding Order.IsClientLiked}"
                                              Value="True">
-                                    <Setter Property="TextColor" Value="#39B637" />
+                                    <Setter Property="TextColor" Value="#96A637" />
                                     <Setter Property="Text" Value="{x:Static str:LocalizationStrings.ClientLikedDeliveryReview}" />
                                 </DataTrigger>
                             </Label.Triggers>
@@ -106,7 +106,7 @@
                                 FontFamily="{StaticResource NormalFont}"
                                 FontSize="16"
                                 Text="{Binding Order.Distance, Converter={x:StaticResource distanceToStringConverter}}"
-                                TextColor="#39B637" />
+                                TextColor="#96A637" />
                             
                         </StackLayout>
                         
@@ -134,7 +134,7 @@
                                 FontFamily="{StaticResource NormalFont}"
                                 FontSize="16"
                                 Text="{Binding Order.Distance, Converter={x:StaticResource distanceToStringConverter}}"
-                                TextColor="#39B637" />
+                                TextColor="#96A637" />
                             
                         </StackLayout>
                         
@@ -158,7 +158,9 @@
                     <Frame Margin="30,40,0,0"
                            BorderColor="LightGray"
                            CornerRadius="10"
-                           HeightRequest="51"
+                           MinimumHeightRequest="50"
+                           VerticalOptions="Start"
+                           HasShadow="False"
                            HorizontalOptions="StartAndExpand"
                            WidthRequest="149">
                         <StackLayout>
@@ -178,12 +180,13 @@
                         Margin="30,40,30,0"
                         BorderColor="LightGray"
                         CornerRadius="10"
-                        HeightRequest="75"
+                        HeightRequest="85"
                         HorizontalOptions="EndAndExpand"
+                        HasShadow="False"
                         WidthRequest="149">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="25"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -218,18 +221,18 @@
                             </Image>
                             
                             <Label
-                                Grid.ColumnSpan="2"
-                                Grid.Row="1"
-                                FontFamily="{StaticResource BoldFont}"
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                FontFamily="{StaticResource NormalFont}"
                                 FontSize="16"
                                 Text="Cдан"
-                                TextColor="OrangeRed">
+                                TextColor="#96A637">
                                 <Label.Triggers>
                                     <DataTrigger TargetType="Label"
                                                  Binding="{Binding Order.OrderStatus}"
                                                  Value="NotPayed">
                                         <Setter Property="Text" Value="Не сдан" />
-                                        <Setter Property="TextColor" Value="#39B637" />
+                                        <Setter Property="TextColor" Value="OrangeRed" />
                                     </DataTrigger>
                                 </Label.Triggers>
                             </Label>

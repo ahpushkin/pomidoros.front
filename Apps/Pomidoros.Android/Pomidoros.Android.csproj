@@ -90,7 +90,9 @@
     <None Include="StartForegroundServiceCompat.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\done.png" />
     <AndroidResource Include="Resources\drawable\emptyorder.png" />
+    <AndroidResource Include="Resources\drawable\notdone.png" />
     <AndroidResource Include="Resources\drawable\timed.png" />
     <AndroidResource Include="Resources\layout\Tabbar.xml" />
     <AndroidResource Include="Resources\layout\Toolbar.xml" />

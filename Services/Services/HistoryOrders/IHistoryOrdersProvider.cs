@@ -7,6 +7,7 @@ namespace Services.HistoryOrders
 {
     public interface IHistoryOrdersProvider
     {
+        Task<FullOrderModel> GetOrderDetailsAsync(string number, CancellationToken token);
         Task<IEnumerable<ShortOrderModel>> GetOrdersHistoryAsync(CancellationToken token);
     }
 }
