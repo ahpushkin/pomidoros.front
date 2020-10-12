@@ -44,8 +44,14 @@
     <data name="OrderStatusClosed" xml:space="preserve">
         <value>Заказ доставлен</value>
     </data>
+    <data name="OrderStatusNotDelivered" xml:space="preserve">
+        <value>Заказ не доставлен</value>
+    </data>
     <data name="OrderStatusNotPayed" xml:space="preserve">
         <value>Заказ не оплачен</value>
+    </data>
+    <data name="OrderStatusPending" xml:space="preserve">
+        <value>В ожидании</value>
     </data>
     <data name="CheckInputDataMessageToast" xml:space="preserve">
         <value>Проверьте введенные данные и повторите попытку</value>
@@ -147,7 +153,11 @@
     <data name="ClientLikedDeliveryReview" xml:space="preserve">
         <value>Клиенту понравилась доставка</value>
     </data>
-    <data name="OrderStatusNotDelivered" xml:space="preserve">
-        <value />
+    <data name="DeliveryEstimationTimeLabelFormat" xml:space="preserve">
+        <value>Заказ должен быть доставлен в {0:HH:mm}</value>
+    </data>
+    <data name="BeginDeliveryNowLabel" xml:space="preserve">
+        <value>Начните доставку сейчас,
+чтобы не опоздать</value>
     </data>
 </root>

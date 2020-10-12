@@ -69,6 +69,21 @@ namespace Pomidoros.ViewModel.Orders
         public ICommand EmergencyMessageCommand => new AsyncCommand(OnEmergencyMessageCommand);
         public ICommand OrderContentCommand => new AsyncCommand(OnOrderContentCommand);
         public ICommand ShowRouteCommand => new AsyncCommand(OnShowRouteCommand);
+        public ICommand BeginDeliveryCommand => new AsyncCommand(OnBeginDeliveryCommandAsync);
+
+        private async Task OnBeginDeliveryCommandAsync(object arg)
+        {
+            if (Order.OrderStatus != EOrderStatus.Pending)
+                return;
+
+            UserDialogs.ShowLoading();
+            Order.OrderStatus = EOrderStatus.Opened;
+            await Task.Delay(1500);
+            RaisePropertyChanged(nameof(Order));
+            IsOrderOpened = Order.OrderStatus == EOrderStatus.Opened;
+            IsOrderDelivered = Order.OrderStatus == EOrderStatus.Completed;
+            UserDialogs.HideLoading();
+        }
 
         private Task OnCallToClientCommand(object arg)
         {

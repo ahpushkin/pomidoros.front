@@ -5,6 +5,7 @@ namespace Services.Models.Enums
         Completed,
         NotPayed,
         Opened,
-        Failed
+        Failed,
+        Pending
     }
 }

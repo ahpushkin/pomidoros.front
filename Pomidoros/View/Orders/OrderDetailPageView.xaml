@@ -8,6 +8,7 @@
                       xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
                       xmlns:i="clr-namespace:Services.Models.Orders;assembly=Services.Models"
                       xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
+                      xmlns:stateContainer="clr-namespace:Pomidoros.StateContainer;assembly=Pomidoros"
                       x:Class="Pomidoros.View.Orders.OrderDetailPageView"
                       BackgroundColor="White"
                       ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
@@ -27,43 +28,96 @@
                        HorizontalOptions="Center"
                        TextColor="#1C1C1C"/>
                 
-                <Frame Margin="30, 10,30,15"
-                       Padding="25"
-                       CornerRadius="15"
-                       BorderColor="LightGray"
-                       HasShadow="False">
+                <stateContainer:StateContainer State="{Binding Order.OrderStatus}">
+                    <stateContainer:StateCondition State="Pending">
+                        <Frame Margin="30, 10,30,15"
+                               Padding="25, 25,25,0"
+                               CornerRadius="15"
+                               BorderColor="LightGray"
+                               HasShadow="False">
                     
-                    <StackLayout Spacing="30">
+                            <StackLayout Spacing="10">
                         
-                        <Label Text="{Binding Order.OrderStatus,
-                         Converter={x:StaticResource orderStatusEnumToStringConverter},
-                         StringFormat={x:Static str:LocalizationStrings.OrderStatusFormat}}"
-                               FontSize="18"
-                               TextColor="#1C1C1C"
-                               HorizontalOptions="Center"
-                               FontFamily="{StaticResource NormalFont}"/>
+                                <Label Text="{Binding Order.OrderStatus,
+                                Converter={x:StaticResource orderStatusEnumToStringConverter},
+                                StringFormat={x:Static str:LocalizationStrings.OrderStatusFormat}}"
+                                       FontSize="18"
+                                       TextColor="#1C1C1C"
+                                       HorizontalOptions="Center"
+                                       FontFamily="{StaticResource BoldFont}"/>
                         
-                        <Label Text="{x:Static str:LocalizationStrings.DeliverOrderToDestinationLabel}"
-                               FontSize="18"
-                               TextColor="#1C1C1C"
-                               HorizontalOptions="Center"
-                               HorizontalTextAlignment="Center"
-                               FontAttributes="Bold"
-                               IsVisible="{Binding IsOrderOpened}"
-                               FontFamily="{StaticResource BoldFont}" />
+                                <Label Text="{Binding Order.EndTime,
+                                StringFormat={x:Static str:LocalizationStrings.DeliveryEstimationTimeLabelFormat}}"
+                                       FontSize="16"
+                                       TextColor="#1C1C1C"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       FontAttributes="Bold"
+                                       FontFamily="{StaticResource NormalFont}" />
                         
-                        <Label Text="{Binding CountDown,
-                         StringFormat={x:Static str:LocalizationStrings.CountDownToMapViewLabelFormat}}"
-                               FontSize="16"
-                               FontFamily="{StaticResource NormalFont}"
-                               HorizontalOptions="Center"
-                               HorizontalTextAlignment="Center"
-                               IsVisible="{Binding IsOrderOpened}"
-                               TextColor="#1C1C1C"/>
+                                <Label Text="{x:Static str:LocalizationStrings.BeginDeliveryNowLabel}"
+                                       Margin="0,20,0,0"
+                                       FontSize="16"
+                                       FontFamily="{StaticResource NormalFont}"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="#1C1C1C"/>
+                                
+                                <Button Text="Начать доставку"
+                                        Margin="0,10,0,0"
+                                        TextColor="White"
+                                        BackgroundColor="#96A637"
+                                        CornerRadius="8"
+                                        Command="{Binding BeginDeliveryCommand}"
+                                        HorizontalOptions="Fill"
+                                        FontAttributes="Bold"
+                                        FontSize="18"
+                                        FontFamily="{StaticResource BoldFont}"/>
                         
-                    </StackLayout>
+                            </StackLayout>
                     
-                </Frame>
+                        </Frame>
+                    </stateContainer:StateCondition>
+                    <stateContainer:StateCondition State="Opened">
+                        <Frame Margin="30, 10,30,15"
+                               Padding="25"
+                               CornerRadius="15"
+                               BorderColor="LightGray"
+                               HasShadow="False">
+                    
+                            <StackLayout Spacing="30">
+                        
+                                <Label Text="{Binding Order.OrderStatus,
+                                Converter={x:StaticResource orderStatusEnumToStringConverter},
+                                StringFormat={x:Static str:LocalizationStrings.OrderStatusFormat}}"
+                                       FontSize="18"
+                                       TextColor="#1C1C1C"
+                                       HorizontalOptions="Center"
+                                       FontFamily="{StaticResource BoldFont}"/>
+                        
+                                <Label Text="{x:Static str:LocalizationStrings.DeliverOrderToDestinationLabel}"
+                                       FontSize="18"
+                                       TextColor="#1C1C1C"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       FontAttributes="Bold"
+                                       IsVisible="{Binding IsOrderOpened}"
+                                       FontFamily="{StaticResource BoldFont}" />
+                        
+                                <Label Text="{Binding CountDown,
+                                StringFormat={x:Static str:LocalizationStrings.CountDownToMapViewLabelFormat}}"
+                                       FontSize="16"
+                                       FontFamily="{StaticResource NormalFont}"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       IsVisible="{Binding IsOrderOpened}"
+                                       TextColor="#1C1C1C"/>
+                        
+                            </StackLayout>
+                    
+                        </Frame>
+                    </stateContainer:StateCondition>
+                </stateContainer:StateContainer>
                 
                 <maps:MapView InputTransparent="True"
                               LogoEnabled="False"
@@ -104,7 +158,7 @@
                                 FontFamily="{StaticResource NormalFont}"
                                 FontSize="16"
                                 Text="{Binding Order.Distance, Converter={x:StaticResource distanceToStringConverter}}"
-                                TextColor="#39B637" />
+                                TextColor="#96A637" />
                             
                         </StackLayout>
                         
@@ -132,7 +186,7 @@
                                 FontFamily="{StaticResource NormalFont}"
                                 FontSize="16"
                                 Text="{Binding Order.Distance, Converter={x:StaticResource distanceToStringConverter}}"
-                                TextColor="#39B637" />
+                                TextColor="#96A637" />
                             
                         </StackLayout>
                         
@@ -151,6 +205,56 @@
                     Text="Просмотреть маршрут"
                     TextColor="White" />
 
+                <StackLayout Orientation="Horizontal">
+                    
+                    <Frame Margin="30,40,0,0"
+                           BorderColor="LightGray"
+                           CornerRadius="10"
+                           MinimumHeightRequest="50"
+                           VerticalOptions="Start"
+                           HasShadow="False"
+                           HorizontalOptions="StartAndExpand"
+                           WidthRequest="149">
+                        <StackLayout>
+                            <Label
+                                FontFamily="{StaticResource NormalFont}"
+                                Text="Ожидание"
+                                TextColor="Gray" />
+                            <Label
+                                FontFamily="{StaticResource BoldFont}"
+                                FontSize="16"
+                                Text="20 мин."
+                                TextColor="#1C1C1C" />
+                        </StackLayout>
+                    </Frame>
+                    
+                    <Frame
+                        Margin="30,40,30,0"
+                        BorderColor="LightGray"
+                        CornerRadius="10"
+                        MinimumHeightRequest="50"
+                        VerticalOptions="Start"
+                        HorizontalOptions="EndAndExpand"
+                        HasShadow="False"
+                        WidthRequest="149">
+                        <StackLayout>
+                            
+                            <Label
+                                FontFamily="{StaticResource NormalFont}"
+                                Text="Способ оплаты"
+                                TextColor="Gray" />
+                            
+                            <Label
+                                FontFamily="{StaticResource BoldFont}"
+                                FontSize="16"
+                                Text="Наличные"
+                                TextColor="#1C1C1C" />
+                            
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+                
                 <Label
                     Margin="30,39,30,0"
                     FontFamily="{StaticResource BoldFont}"

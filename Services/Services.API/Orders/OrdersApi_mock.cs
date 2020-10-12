@@ -36,7 +36,7 @@ namespace Services.API.Orders
                 DeliveryAddress = rnd.Next(0,2) == 1 ? "ул. Героев Сталинграда 143-б" : null,
                 StartAddress = "ул. Засумская 65",
                 Distance = 5674,
-                OrderStatus = EOrderStatus.Opened,
+                OrderStatus = rnd.Next(0,2) == 0 ? EOrderStatus.Opened : EOrderStatus.Pending,
                 EndTime = DateTimeOffset.Now.AddHours(rnd.Next(10,60)),
                 Type = RandomizeOrderType(),
                 IsClientLiked = RandomizeBoolean()

@@ -93,9 +93,21 @@ namespace Pomidoros.Resources {
             }
         }
         
+        internal static string OrderStatusNotDelivered {
+            get {
+                return ResourceManager.GetString("OrderStatusNotDelivered", resourceCulture);
+            }
+        }
+        
         internal static string OrderStatusNotPayed {
             get {
                 return ResourceManager.GetString("OrderStatusNotPayed", resourceCulture);
+            }
+        }
+        
+        internal static string OrderStatusPending {
+            get {
+                return ResourceManager.GetString("OrderStatusPending", resourceCulture);
             }
         }
         
@@ -279,9 +291,15 @@ namespace Pomidoros.Resources {
             }
         }
         
-        internal static string OrderStatusNotDelivered {
+        internal static string DeliveryEstimationTimeLabelFormat {
             get {
-                return ResourceManager.GetString("OrderStatusNotDelivered", resourceCulture);
+                return ResourceManager.GetString("DeliveryEstimationTimeLabelFormat", resourceCulture);
+            }
+        }
+        
+        internal static string BeginDeliveryNowLabel {
+            get {
+                return ResourceManager.GetString("BeginDeliveryNowLabel", resourceCulture);
             }
         }
     }
