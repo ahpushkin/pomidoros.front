@@ -33,6 +33,7 @@
                 FontAttributes="Bold"
                 FontFamily="{StaticResource BoldFont}"
                 FontSize="16"
+                Clicked="OnExtraOrdinarEvent"
                 Text="ЧП"
                 TextColor="White" />
             <Button
@@ -40,6 +41,7 @@
                 BackgroundColor="#96A637"
                 CornerRadius="5"
                 FontAttributes="Bold"
+                Clicked="OnCantContinueRoute"
                 FontFamily="{StaticResource BoldFont}"
                 FontSize="16"
                 Text="Не могу продолжать маршрут"

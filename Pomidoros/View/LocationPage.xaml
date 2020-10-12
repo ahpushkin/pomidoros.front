@@ -1,13 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
+<base:BaseContentPage
     x:Class="Pomidoros.View.LocationPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-    xmlns:vm="clr-namespace:Pomidoros.ViewModels">
-    <ContentPage.BindingContext>
-        <vm:MainViewModel />
-    </ContentPage.BindingContext>
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -86,12 +83,15 @@
                             TextColor="#39B637" />
                     </StackLayout>
                 </StackLayout>
-                <maps:Map
-                    x:Name="map"
-                    HorizontalOptions="FillAndExpand"
-                    InitialCameraUpdate="40.77, -73.93, 13, 30, 60"
-                    IsVisible="false"
-                    VerticalOptions="FillAndExpand" />
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 <Image
                     HeightRequest="15"
                     Source="ic_search"
@@ -106,4 +106,4 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</base:BaseContentPage>

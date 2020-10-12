@@ -1,4 +1,9 @@
-$HEADER$namespace $NAMESPACE$
+using System.Threading.Tasks;
+
+namespace Core.ViewModel.Infra
 {
-  public interface $INTERFACE$ {$END$}
+    public interface INavigateBackAsync
+    {
+        Task NavigateBackAsync();
+    }
 }

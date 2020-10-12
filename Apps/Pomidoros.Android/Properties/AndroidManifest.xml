@@ -8,7 +8,7 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="Pomidoros" android:theme="@style/MainTheme">
+	<application android:label="Pomidoros" android:theme="@style/MainTheme" android:usesCleartextTraffic="true">
 		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCFEtN0gw8snXz4yVHIdpZXL4--raBj8QQ" />
 		<service android:name="com.mapbox.mapboxsdk.telemetry.TelemetryService" />
 		<!---

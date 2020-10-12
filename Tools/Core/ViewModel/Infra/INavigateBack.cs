@@ -1,4 +1,7 @@
-$HEADER$namespace $NAMESPACE$
+namespace Core.ViewModel.Infra
 {
-  public interface $INTERFACE$ {$END$}
+    public interface INavigateBack
+    {
+        void NavigateBack();
+    }
 }

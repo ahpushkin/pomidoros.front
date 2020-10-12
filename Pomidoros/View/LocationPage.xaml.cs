@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace Pomidoros.View
 {
-    public partial class LocationPage : ContentPage
+    public partial class LocationPage
     {
         public static readonly BindableProperty CalculateCommandProperty =
         BindableProperty.Create(nameof(CalculateCommand), typeof(ICommand), typeof(MainPage), null, BindingMode.TwoWay);

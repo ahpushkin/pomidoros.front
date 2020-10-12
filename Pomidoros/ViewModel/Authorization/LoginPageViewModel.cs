@@ -15,6 +15,7 @@ using Pomidoros.View.Notification;
 using Pomidoros.ViewModel.Base;
 using Rg.Plugins.Popup.Contracts;
 using Services.Authorization;
+using Services.CurrentUser;
 using Xamarin.Forms;
 
 namespace Pomidoros.ViewModel.Authorization
@@ -31,6 +32,10 @@ namespace Pomidoros.ViewModel.Authorization
         protected IAuthorizationService AuthorizationService
             => _authorizationService ??= App.Container.Resolve<IAuthorizationService>();
         
+        private ICurrentUserDataService _currentUserDataService;
+        protected ICurrentUserDataService CurrentUserDataService
+            => _currentUserDataService ??= App.Container.Resolve<ICurrentUserDataService>();
+
         #endregion
 
         #region properties
@@ -86,7 +91,10 @@ namespace Pomidoros.ViewModel.Authorization
             
             //if (AuthorizationService.IsAuthorized)
             if (true)
+            {
+                await CurrentUserDataService.FetchUserDataAsync();
                 await Navigation.PushAsync(new WelcomePage());
+            }
             else
                 await UserDialogs.AlertAsync("Убедидесь в правильности введеных данных и повторите попытку.", "Ошибка при входе", "Ок");
         }

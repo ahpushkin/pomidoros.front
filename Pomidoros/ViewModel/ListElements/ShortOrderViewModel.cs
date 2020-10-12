@@ -14,14 +14,17 @@ namespace Pomidoros.ViewModel.ListElements
             ICommand command)
         {
             _command = command;
+            Number = model.Number;
             Address = model.Address;
             Distance = model.Distance;
         }
         
+        public string Number { get; }
+        
         public string Address { get; set; }
 
-        private string _distance;
-        public string Distance
+        private int _distance;
+        public int Distance
         {
             get => _distance;
             set => SetProperty(ref _distance, value);

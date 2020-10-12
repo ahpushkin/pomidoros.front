@@ -69,9 +69,37 @@ namespace Pomidoros.ViewModel.Orders
 
         #region commands
 
-        private Task OnOpenOrderCommand(ShortOrderViewModel parameter)
+        private async Task OnOpenOrderCommand(ShortOrderViewModel chosen)
         {
-            return Navigation.PushAsync(new OrderPage(), parameter, "order");
+            var order = default(FullOrderModel);
+            
+            if (await CheckConnectionWithPopupAsync())
+                order = await GetOrderDetailsAsync(chosen.Number);
+            
+            if (order != null)
+                await Navigation.PushAsync(new OrderPage(), order, "order");
+        }
+
+        private async Task<FullOrderModel> GetOrderDetailsAsync(string orderNumber)
+        {
+            var order = default(FullOrderModel);
+            
+            try
+            {
+                UserDialogs.ShowLoading();
+                order = await _ordersProvider.GetOrderDetailsAsync(orderNumber, CancellationToken.None);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                Debugger.Break();
+            }
+            finally
+            {
+                UserDialogs.HideLoading();
+            }
+
+            return order;
         }
         
         private async Task OnRefreshCommandAsync(object parameter)

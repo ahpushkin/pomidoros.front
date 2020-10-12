@@ -85,7 +85,7 @@ namespace Pomidoros.ViewModel.Orders
 
         private Task OnReviewOrderCommand(ShortOrderViewModel arg)
         {
-            return Navigation.PushAsync(new ReviewPage(), arg, "order");
+            return Navigation.PushAsync(new ReviewOrderPage(), arg, "order");
         }
         
         private async Task OnRefreshCommand(object arg)

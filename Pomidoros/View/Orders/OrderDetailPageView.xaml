@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base:BaseContentPage x:TypeArguments="vm:OrderDetailPageViewModel"
+                      x:DataType="vm:OrderDetailPageViewModel"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+                      xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+                      xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
+                      xmlns:i="clr-namespace:Services.Models.Orders;assembly=Services.Models"
+                      xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
+                      x:Class="Pomidoros.View.Orders.OrderDetailPageView"
+                      BackgroundColor="White"
+                      ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
+                      HasNavigationBar="False"
+                      Icons="Dark"
+                      StatusBarColor="White">
+    <ContentPage.Content>
+        
+        <ScrollView>
+            
+            <StackLayout Spacing="5">
+                
+                <Label Text="{Binding Order.Number,
+                       StringFormat={x:Static str:LocalizationStrings.OrderIdentityNumberFormat}}"
+                       FontSize="16"
+                       FontFamily="{StaticResource NormalFont}"
+                       HorizontalOptions="Center"
+                       TextColor="#1C1C1C"/>
+                
+                <Frame Margin="30, 10,30,15"
+                       Padding="25"
+                       CornerRadius="15"
+                       BorderColor="LightGray"
+                       HasShadow="False">
+                    
+                    <StackLayout Spacing="30">
+                        
+                        <Label Text="{Binding Order.OrderStatus,
+                         Converter={x:StaticResource orderStatusEnumToStringConverter},
+                         StringFormat={x:Static str:LocalizationStrings.OrderStatusFormat}}"
+                               FontSize="18"
+                               TextColor="#1C1C1C"
+                               HorizontalOptions="Center"
+                               FontFamily="{StaticResource NormalFont}"/>
+                        
+                        <Label Text="{x:Static str:LocalizationStrings.DeliverOrderToDestinationLabel}"
+                               FontSize="18"
+                               TextColor="#1C1C1C"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               FontAttributes="Bold"
+                               IsVisible="{Binding IsOrderOpened}"
+                               FontFamily="{StaticResource BoldFont}" />
+                        
+                        <Label Text="{Binding CountDown,
+                         StringFormat={x:Static str:LocalizationStrings.CountDownToMapViewLabelFormat}}"
+                               FontSize="16"
+                               FontFamily="{StaticResource NormalFont}"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               IsVisible="{Binding IsOrderOpened}"
+                               TextColor="#1C1C1C"/>
+                        
+                    </StackLayout>
+                    
+                </Frame>
+                
+                <maps:MapView InputTransparent="True"
+                              LogoEnabled="False"
+                              HeightRequest="250"/>
+                
+                <StackLayout Margin="30,20"
+                             Orientation="Horizontal">
+                    
+                    <StackLayout Orientation="Vertical">
+                        
+                        <Image
+                            Margin="0,0,0,30"
+                            HeightRequest="20"
+                            Source="geo2" />
+                        
+                        <Image Margin="0,-30,0,0"
+                               Source="loc" />
+                        
+                        <Image HeightRequest="20"
+                               Source="geo" />
+                        
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Vertical">
+                        
+                        <StackLayout Orientation="Vertical"
+                                     VerticalOptions="StartAndExpand">
+                            
+                            <Label
+                                Margin="20,0,0,0"
+                                FontFamily="{StaticResource BoldFont}"
+                                FontSize="16"
+                                Text="{Binding Order.StartAddress}"
+                                TextColor="Black"/>
+                            
+                            <Label
+                                Margin="20,0,0,0"
+                                FontFamily="{StaticResource NormalFont}"
+                                FontSize="16"
+                                Text="{Binding Order.Distance, Converter={x:StaticResource distanceToStringConverter}}"
+                                TextColor="#39B637" />
+                            
+                        </StackLayout>
+                        
+                        <BoxView
+                            Margin="0,0,30,0"
+                            BackgroundColor="LightGray"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            WidthRequest="500" />
+                        
+                        <StackLayout Orientation="Vertical"
+                                     VerticalOptions="EndAndExpand">
+                            
+                            <Label
+                                Margin="20,0,0,0"
+                                FontFamily="{StaticResource BoldFont}"
+                                FontSize="16"
+                                Text="{Binding Order.DeliveryAddress}"
+                                TextColor="Black">
+                                
+                            </Label>
+                            
+                            <Label
+                                Margin="20,0,0,0"
+                                FontFamily="{StaticResource NormalFont}"
+                                FontSize="16"
+                                Text="{Binding Order.Distance, Converter={x:StaticResource distanceToStringConverter}}"
+                                TextColor="#39B637" />
+                            
+                        </StackLayout>
+                        
+                    </StackLayout>
+                    
+                </StackLayout>
+
+                <Button
+                    Margin="30,0"
+                    BackgroundColor="#96A637"
+                    Command="{Binding ShowRouteCommand}"
+                    CornerRadius="20"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Просмотреть маршрут"
+                    TextColor="White" />
+
+                <Label
+                    Margin="30,39,30,0"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Дополнительные комментарии"
+                    TextColor="#1C1C1C" />
+                
+                <Label
+                    Margin="30,5,30,0"
+                    FontFamily="{StaticResource NormalFont}"
+                    FontSize="16"
+                    Text="{Binding Order.Comments}"
+                    TextColor="#1C1C1C" />
+
+                <Button
+                    Margin="30,25,30,0"
+                    BackgroundColor="#96A637"
+                    Command="{Binding CallToClientCommand}"
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="14"
+                    Text="Связаться с клиентом"
+                    TextColor="White" />
+
+                <Button
+                    Margin="30,5"
+                    BackgroundColor="Transparent"
+                    Command="{Binding ApproveDeliveryCommand}"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="14"
+                    Text="Подтвердить доставку с клиентом"
+                    TextColor="#1A1824" />
+
+                <Button
+                    Margin="30,5"
+                    BackgroundColor="Transparent"
+                    Command="{Binding ImpossibleDeliveryCommand}"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="14"
+                    Text="Невозможно доставить заказ"
+                    TextColor="#1A1824" />
+                
+                <Button
+                    Margin="30,5"
+                    BackgroundColor="Transparent"
+                    Command="{Binding EmergencyMessageCommand}"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="14"
+                    Text="Экстренное сообщение"
+                    TextColor="#D80B30" />
+                
+                <StackLayout Orientation="Horizontal"
+                             Padding="30, 30,30,0">
+                    
+                    <Label
+                        FontFamily="{StaticResource NormalFont}"
+                        FontSize="18"
+                        Text="Состав заказа"
+                        TextColor="#1C1C1C" />
+                    
+                    <ImageButton
+                        Margin="0,-15,0,0"
+                        Padding="15"
+                        BackgroundColor="Transparent"
+                        Command="{Binding OrderContentCommand}"
+                        HorizontalOptions="EndAndExpand"
+                        Source="more" />
+                    
+                </StackLayout>
+
+                <ScrollView Orientation="Horizontal">
+                    
+                    <StackLayout Margin="30,0,30,30"
+                                 Orientation="Horizontal"
+                                 Spacing="10"
+                                 BindableLayout.ItemsSource="{Binding Order.Contents}">
+                        
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="i:OrderContentModel">
+                                
+                                <Frame
+                                    BorderColor="LightGray"
+                                    Padding="20,5,20,5"
+                                    CornerRadius="10"
+                                    HasShadow="False"
+                                    MinimumHeightRequest="80"
+                                    HeightRequest="80"
+                                    HorizontalOptions="StartAndExpand"
+                                    WidthRequest="120">
+                                    <StackLayout VerticalOptions="Center">
+                                        <Label
+                                            FontFamily="{StaticResource NormalFont}"
+                                            Text="{Binding Name}"
+                                            TextColor="#1C1C1C" />
+                                        <Label
+                                            FontFamily="{StaticResource NormalFont}"
+                                            FontSize="16"
+                                            Text="{Binding Count, Converter={x:StaticResource countIntToStringConverter}}"
+                                            TextColor="Gray" />
+                                    </StackLayout>
+                                </Frame>
+                                
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                        
+                    </StackLayout>
+                </ScrollView>
+                
+            </StackLayout>
+            
+        </ScrollView>
+        
+    </ContentPage.Content>
+</base:BaseContentPage>

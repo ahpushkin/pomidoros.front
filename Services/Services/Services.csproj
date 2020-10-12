@@ -43,12 +43,15 @@
     <ItemGroup>
         <Compile Include="Authorization\AuthorizationService.cs" />
         <Compile Include="Authorization\IAuthorizationService.cs" />
+        <Compile Include="Constants.cs" />
+        <Compile Include="CurrentUser\CurrentUserDataService.cs" />
         <Compile Include="CurrentUser\ICurrentUserDataService.cs" />
         <Compile Include="FlowFlags\FlowFlagManager.cs" />
         <Compile Include="FlowFlags\IFlowFlagManager.cs" />
         <Compile Include="HistoryOrders\HistoryOrdersProvider.cs" />
         <Compile Include="HistoryOrders\IHistoryOrdersProvider.cs" />
         <Compile Include="Orders\IOrdersProvider.cs" />
+        <Compile Include="Orders\IOrdersUpdater.cs" />
         <Compile Include="Orders\OrdersProvider.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Storage\IStorage.cs" />

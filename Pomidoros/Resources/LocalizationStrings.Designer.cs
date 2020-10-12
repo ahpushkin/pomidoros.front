@@ -45,6 +45,90 @@ namespace Pomidoros.Resources {
             }
         }
         
+        internal static string CountItemsDataFormat {
+            get {
+                return ResourceManager.GetString("CountItemsDataFormat", resourceCulture);
+            }
+        }
+        
+        internal static string CountDataFormat {
+            get {
+                return ResourceManager.GetString("CountDataFormat", resourceCulture);
+            }
+        }
+        
+        internal static string DistanceMeterDataFormat {
+            get {
+                return ResourceManager.GetString("DistanceMeterDataFormat", resourceCulture);
+            }
+        }
+        
+        internal static string DistanceKilometerDataFormat {
+            get {
+                return ResourceManager.GetString("DistanceKilometerDataFormat", resourceCulture);
+            }
+        }
+        
+        internal static string OrderNumberTitleFormat {
+            get {
+                return ResourceManager.GetString("OrderNumberTitleFormat", resourceCulture);
+            }
+        }
+        
+        internal static string OrderStatusFormat {
+            get {
+                return ResourceManager.GetString("OrderStatusFormat", resourceCulture);
+            }
+        }
+        
+        internal static string OrderStatusOpened {
+            get {
+                return ResourceManager.GetString("OrderStatusOpened", resourceCulture);
+            }
+        }
+        
+        internal static string OrderStatusClosed {
+            get {
+                return ResourceManager.GetString("OrderStatusClosed", resourceCulture);
+            }
+        }
+        
+        internal static string OrderStatusNotPayed {
+            get {
+                return ResourceManager.GetString("OrderStatusNotPayed", resourceCulture);
+            }
+        }
+        
+        internal static string CheckInputDataMessageToast {
+            get {
+                return ResourceManager.GetString("CheckInputDataMessageToast", resourceCulture);
+            }
+        }
+        
+        internal static string SaveButtonText {
+            get {
+                return ResourceManager.GetString("SaveButtonText", resourceCulture);
+            }
+        }
+        
+        internal static string AddressTextTitle {
+            get {
+                return ResourceManager.GetString("AddressTextTitle", resourceCulture);
+            }
+        }
+        
+        internal static string ChooseOnTheMapButton {
+            get {
+                return ResourceManager.GetString("ChooseOnTheMapButton", resourceCulture);
+            }
+        }
+        
+        internal static string WelcomeTitle {
+            get {
+                return ResourceManager.GetString("WelcomeTitle", resourceCulture);
+            }
+        }
+        
         internal static string EnterTitle {
             get {
                 return ResourceManager.GetString("EnterTitle", resourceCulture);
@@ -108,6 +192,96 @@ namespace Pomidoros.Resources {
         internal static string SendSmsOnceMoreBtn {
             get {
                 return ResourceManager.GetString("SendSmsOnceMoreBtn", resourceCulture);
+            }
+        }
+        
+        internal static string OrderIdentityNumberFormat {
+            get {
+                return ResourceManager.GetString("OrderIdentityNumberFormat", resourceCulture);
+            }
+        }
+        
+        internal static string DeliverOrderToDestinationLabel {
+            get {
+                return ResourceManager.GetString("DeliverOrderToDestinationLabel", resourceCulture);
+            }
+        }
+        
+        internal static string CountDownToMapViewLabelFormat {
+            get {
+                return ResourceManager.GetString("CountDownToMapViewLabelFormat", resourceCulture);
+            }
+        }
+        
+        internal static string OrderContentTitleFormat {
+            get {
+                return ResourceManager.GetString("OrderContentTitleFormat", resourceCulture);
+            }
+        }
+        
+        internal static string InputDeliveryAddressLabel {
+            get {
+                return ResourceManager.GetString("InputDeliveryAddressLabel", resourceCulture);
+            }
+        }
+        
+        internal static string InputDeliveryAddressPlaceholder {
+            get {
+                return ResourceManager.GetString("InputDeliveryAddressPlaceholder", resourceCulture);
+            }
+        }
+        
+        internal static string ConfirmAddressButton {
+            get {
+                return ResourceManager.GetString("ConfirmAddressButton", resourceCulture);
+            }
+        }
+        
+        internal static string ToConfirmAddressLabel {
+            get {
+                return ResourceManager.GetString("ToConfirmAddressLabel", resourceCulture);
+            }
+        }
+        
+        internal static string SubscribeOrderTitle {
+            get {
+                return ResourceManager.GetString("SubscribeOrderTitle", resourceCulture);
+            }
+        }
+        
+        internal static string SuccessDeliveredStatusPartLabel {
+            get {
+                return ResourceManager.GetString("SuccessDeliveredStatusPartLabel", resourceCulture);
+            }
+        }
+        
+        internal static string FailureDeliveredStatusPartLabel {
+            get {
+                return ResourceManager.GetString("FailureDeliveredStatusPartLabel", resourceCulture);
+            }
+        }
+        
+        internal static string ToHomeBaseTitle {
+            get {
+                return ResourceManager.GetString("ToHomeBaseTitle", resourceCulture);
+            }
+        }
+        
+        internal static string ClientDidntLikeDeliveryReview {
+            get {
+                return ResourceManager.GetString("ClientDidntLikeDeliveryReview", resourceCulture);
+            }
+        }
+        
+        internal static string ClientLikedDeliveryReview {
+            get {
+                return ResourceManager.GetString("ClientLikedDeliveryReview", resourceCulture);
+            }
+        }
+        
+        internal static string OrderStatusNotDelivered {
+            get {
+                return ResourceManager.GetString("OrderStatusNotDelivered", resourceCulture);
             }
         }
     }

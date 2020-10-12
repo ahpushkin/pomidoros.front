@@ -26,6 +26,7 @@ namespace Services.Authorization
         {
             if (IsAuthorized)
                 _storage.Remove(Constants.StorageKeys.Token);
+            _storage.RemoveAll();
         }
         
         public async Task LoginAsync(string phone, string passcode, CancellationToken token)

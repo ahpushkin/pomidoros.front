@@ -12,7 +12,7 @@
     HasNavigationBar="False"
     Icons="Dark"
     StatusBarColor="White">
-        
+    
     <ContentPage.Content>
         
         <RefreshView IsRefreshing="{Binding IsBusy}"
@@ -54,7 +54,7 @@
                                 Grid.Column="1"
                                 Grid.Row="1"
                                 FontFamily="{StaticResource NormalFont}"
-                                Text="{Binding Distance}"
+                                Text="{Binding Distance, Converter={StaticResource distanceToStringConverter}}"
                                 TextColor="#249824"
                                 VerticalOptions="Start" />
                             

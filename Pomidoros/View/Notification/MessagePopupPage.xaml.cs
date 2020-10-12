@@ -8,15 +8,21 @@ namespace Pomidoros.View.Notification
 {
     public partial class MessagePopupPage : PopupPage
     {
-        //init all componet
-        //drwa main ui
         public MessagePopupPage()
         {
             InitializeComponent();
         }
-        private async void OnClose(object sender, EventArgs e)
+
+        private async void OnCantContinueRoute(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PopAsync();
+            await PopupNavigation.Instance.PushAsync(new OperatorPage());
+        }
+
+        private async void OnExtraOrdinarEvent(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PopAsync();
+            await PopupNavigation.Instance.PushAsync(new OperatorPage());
         }
     }
 }

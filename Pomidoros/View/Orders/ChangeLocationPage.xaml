@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:Class="Pomidoros.View.Orders.ChangeLocationPage"
+    x:TypeArguments="vm:ChangeLocationPageViewModel"
+    x:DataType="vm:ChangeLocationPageViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Pomidoros.Controls"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+    xmlns:i="clr-namespace:Services.Models.Address;assembly=Services.Models"
+    BackgroundColor="White"
+    StatusBarColor="White"
+    HasNavigationBar="False"
+    Icons="Dark">
+    
+    <ContentPage.Content>
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="120" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+            
+            <StackLayout
+                Margin="30,20,30,0"
+                Orientation="Horizontal"
+                VerticalOptions="StartAndExpand">
+
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Command="{Binding BackCommand}"
+                    HorizontalOptions="StartAndExpand"
+                    Source="back" />
+
+                <Label
+                    FontFamily="{StaticResource BoldFont}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalTextAlignment="Center"
+                    FontSize="16"
+                    Text="{Binding Title}"
+                    TextColor="#1C1C1C" />
+
+                <Button
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="14"
+                    Command="{Binding SaveCommand}"
+                    Text="{x:Static str:LocalizationStrings.SaveButtonText}"
+                    TextColor="#96A637" />
+
+            </StackLayout>
+            
+            <Grid Grid.Row="1"
+                  Margin="30,0">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="55" />
+                    <RowDefinition Height="55" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <StackLayout VerticalOptions="Center"
+                             Grid.RowSpan="2">
+                    
+                    <Image
+                        Margin="0,0,0,30"
+                        HeightRequest="20"
+                        Source="geo2" />
+                    
+                    <Image Margin="0,-30,0,0"
+                           Source="loc" />
+                    
+                    <Image HeightRequest="20"
+                           Source="geo" />
+                    
+                </StackLayout>
+                
+                <StackLayout Grid.Column="1"
+                             Orientation="Vertical"
+                             VerticalOptions="Start">
+                        
+                    <Label
+                        Margin="10,0,0,0"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        Text="{Binding Order.StartAddress}"
+                        TextColor="Black"/>
+                        
+                    <Label
+                        Margin="10,0,0,0"
+                        FontFamily="{StaticResource NormalFont}"
+                        FontSize="16"
+                        Text="{Binding Order.Distance, Converter={x:StaticResource distanceToStringConverter}}"
+                        TextColor="#39B637" />
+                        
+                </StackLayout>
+                    
+                <BoxView
+                    Grid.Column="1"
+                    VerticalOptions="End"
+                    BackgroundColor="LightGray"
+                    HeightRequest="1"
+                    HorizontalOptions="FillAndExpand"
+                    WidthRequest="500" />
+                    
+                <local:ImageEntry
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="10,0,0,0"
+                    FontAttributes="Italic"
+                    FontFamily="{StaticResource NormalFont}"
+                    FontSize="18"
+                    HorizontalOptions="FillAndExpand"
+                    LineColor="#96A637"
+                    Text="{Binding DeliveryAddress}"
+                    Placeholder="{x:Static str:LocalizationStrings.InputDeliveryAddressPlaceholder}"
+                    ReturnType="Search" />
+                
+            </Grid>
+            
+            <CollectionView
+                Grid.Row="2"
+                BackgroundColor="Transparent"
+                ItemsSource="{Binding Places}">
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="i:PlaceModel">
+                        
+                        <StackLayout
+                            Padding="15"
+                            Spacing="2">
+
+                            <Label
+                                LineBreakMode="MiddleTruncation"
+                                Text="{Binding Address}" />
+
+                            <Label
+                                LineBreakMode="MiddleTruncation"
+                                Text="{Binding Distance, Converter={StaticResource distanceToStringConverter}}"
+                                TextColor="Gray" />
+                        </StackLayout>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            <Frame Grid.Row="3"
+                   Padding="5"
+                   HasShadow="True">
+                <Button
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="14"
+                    Command="{Binding SearchOnMapCommand}"
+                    Text="{x:Static str:LocalizationStrings.ChooseOnTheMapButton}"
+                    TextColor="#96A637" />
+            </Frame>
+            
+        </Grid>
+        
+    </ContentPage.Content>
+</base:BaseContentPage>

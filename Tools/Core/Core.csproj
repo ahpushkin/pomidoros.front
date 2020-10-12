@@ -45,6 +45,8 @@
         <Compile Include="Extensions\HttpResponseMessageExtensions.cs" />
         <Compile Include="Extensions\ListExtensions.cs" />
         <Compile Include="Extensions\NavigationExtensions.cs" />
+        <Compile Include="Extensions\PageExtensions.cs" />
+        <Compile Include="Extensions\PopupNavigationExtensions.cs" />
         <Compile Include="Extensions\StringExtensions.cs" />
         <Compile Include="Extensions\TaskExtensions.cs" />
         <Compile Include="Navigation\IParametrized.cs" />
@@ -53,6 +55,10 @@
         <Compile Include="ViewModel\Infra\BindingObject.cs" />
         <Compile Include="ViewModel\Infra\IAppearingAware.cs" />
         <Compile Include="ViewModel\Infra\IDisappearingAware.cs" />
+        <Compile Include="ViewModel\Infra\INavigateBack.cs" />
+        <Compile Include="ViewModel\Infra\INavigateBackAsync.cs" />
+        <Compile Include="ViewModel\Infra\INavigatedBack.cs" />
+        <Compile Include="ViewModel\Infra\INavigatedBackAsync.cs" />
         <Compile Include="ViewModel\Infra\ViewModelCondition.cs" />
     </ItemGroup>
     <ItemGroup>
@@ -60,6 +66,7 @@
     </ItemGroup>
     <ItemGroup>
       <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+      <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.6" />
       <PackageReference Include="Xamarin.Forms" Version="4.4.0.991864" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

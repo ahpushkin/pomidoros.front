@@ -96,7 +96,7 @@
                             FontAttributes="Bold"
                             FontFamily="{StaticResource BoldFont}"
                             FontSize="20"
-                            Text="Volkswagen Passat"
+                            Text="{Binding Model}"
                             TextColor="#1A1824" />
 
                         <Button
@@ -109,7 +109,7 @@
                             FontSize="18"
                             HeightRequest="45"
                             HorizontalOptions="StartAndExpand"
-                            Text="AA 1234 AB"
+                            Text="{Binding Number}"
                             TextColor="#1A1824"
                             WidthRequest="141" />
 

@@ -7,7 +7,12 @@ namespace Services.API.Orders
 {
     public class OrdersApi : IOrdersApi
     {
-        public Task<ShortOrderModel> GetOrderDetailAsync(string id, CancellationToken token)
+        public Task<FullOrderModel> UpdateOrderAsync(string number, FullOrderModel order, CancellationToken token)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<FullOrderModel> GetOrderDetailAsync(string number, CancellationToken token)
         {
             throw new System.NotImplementedException();
         }

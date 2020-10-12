@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    x:Class="Pomidoros.View.Notification.СonfirmDeliveryPopupPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+    <Frame
+        Margin="30,0,30,0"
+        Padding="0"
+        CornerRadius="20"
+        HasShadow="True"
+        HorizontalOptions="Center"
+        IsClippedToBounds="True"
+        VerticalOptions="Center">
+        <StackLayout
+            BackgroundColor="#EFEFEF"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center">
+            <Label
+                Margin="20,20,20,0"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="17"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Вы доставили заказ клиенту"
+                TextColor="Black" />
+            <Label
+                Margin="0,10,0,0"
+                FontFamily="{StaticResource NormalFont}"
+                FontSize="16"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Подтвердите доставку заказа и подпись со стороны клиента"
+                TextColor="Black" />
+            <BoxView
+                Margin="0,20,0,0"
+                BackgroundColor="LightGray"
+                HeightRequest="1"
+                WidthRequest="290" />
+            <Button
+                BackgroundColor="Transparent"
+                Clicked="DoneEvent"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="17"
+                Text="Заказ доставлен"
+                TextColor="#0074FF" />
+            <StackLayout>
+                <BoxView
+                    Margin="0,0,0,0"
+                    BackgroundColor="LightGray"
+                    HeightRequest="1"
+                    WidthRequest="290" />
+            </StackLayout>
+            <Button
+                Margin="0,0,0,20"
+                BackgroundColor="Transparent"
+                Clicked="OnClose"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="17"
+                Text="Отмена"
+                TextColor="#0074FF" />
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

@@ -16,14 +16,24 @@ namespace Core.ViewModel.Infra
                 return false;
 
             backingStore = value;
-            OnPropertyChanged(propertyName);
+            RaisePropertyChanged(propertyName);
 
             return true;
         }
         
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
+            OnPropertyChanging(propertyName);
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            OnPropertyChanged(propertyName);
+        }
+        
+        protected virtual void OnPropertyChanged(string propertyName = null)
+        {
+        }
+        
+        protected virtual void OnPropertyChanging(string propertyName = null)
+        {
         }
     }
 }

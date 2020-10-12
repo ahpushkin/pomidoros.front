@@ -18,7 +18,53 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-
+    
+    <!-- Common -->
+    <data name="CountItemsDataFormat" xml:space="preserve">
+        <value>{0} ед.</value>
+    </data>
+    <data name="CountDataFormat" xml:space="preserve">
+        <value>{0} шт.</value>
+    </data>
+    <data name="DistanceMeterDataFormat" xml:space="preserve">
+        <value>{0} м</value>
+    </data>
+    <data name="DistanceKilometerDataFormat" xml:space="preserve">
+        <value>{0:0.##} км</value>
+    </data>
+    <data name="OrderNumberTitleFormat" xml:space="preserve">
+        <value>Заказ №{0}</value>
+    </data>
+    <data name="OrderStatusFormat" xml:space="preserve">
+        <value>Статус: {0}</value>
+    </data>
+    <data name="OrderStatusOpened" xml:space="preserve">
+        <value>Доставляю заказ</value>
+    </data>
+    <data name="OrderStatusClosed" xml:space="preserve">
+        <value>Заказ доставлен</value>
+    </data>
+    <data name="OrderStatusNotPayed" xml:space="preserve">
+        <value>Заказ не оплачен</value>
+    </data>
+    <data name="CheckInputDataMessageToast" xml:space="preserve">
+        <value>Проверьте введенные данные и повторите попытку</value>
+    </data>
+    <data name="SaveButtonText" xml:space="preserve">
+        <value>Сохранить</value>
+    </data>
+    <data name="AddressTextTitle" xml:space="preserve">
+        <value>Адрес</value>
+    </data>
+    <data name="ChooseOnTheMapButton" xml:space="preserve">
+        <value>Выбрать на карте</value>
+    </data>
+    
+    <!-- Welcome page -->
+    <data name="WelcomeTitle" xml:space="preserve">
+        <value>Здравствуйте,</value>
+    </data>
+    
     <!-- Login -->
     <data name="EnterTitle" xml:space="preserve">
         <value>Вход&#x0a;в систему</value>
@@ -54,5 +100,54 @@
     </data>
     <data name="SendSmsOnceMoreBtn" xml:space="preserve">
         <value>Отправить СМС еще раз</value>
+    </data>
+    
+    <!-- Order detail views-->
+    <data name="OrderIdentityNumberFormat" xml:space="preserve">
+        <value>Порядковый номер: {0}</value>
+    </data>
+    <data name="DeliverOrderToDestinationLabel" xml:space="preserve">
+        <value>Доставьте заказ клиенту по
+указанному ниже адресу.</value>
+    </data>
+    <data name="CountDownToMapViewLabelFormat" xml:space="preserve">
+        <value>Через 10 сек вы будете направлены
+на экран маршрута</value>
+    </data>
+    <data name="OrderContentTitleFormat" xml:space="preserve">
+        <value>Состав&amp;#x0a;Заказа №{0}</value>
+    </data>
+    <data name="InputDeliveryAddressLabel" xml:space="preserve">
+        <value>Ввести адрес вручную</value>
+    </data>
+    <data name="InputDeliveryAddressPlaceholder" xml:space="preserve">
+        <value>Адрес доставки</value>
+    </data>
+    <data name="ConfirmAddressButton" xml:space="preserve">
+        <value>Подтвердить адрес</value>
+    </data>
+    <data name="ToConfirmAddressLabel" xml:space="preserve">
+        <value>Подтвердите адрес</value>
+    </data>
+    <data name="SubscribeOrderTitle" xml:space="preserve">
+        <value>Подписать заказ</value>
+    </data>
+    <data name="SuccessDeliveredStatusPartLabel" xml:space="preserve">
+        <value>успешно доставлен</value>
+    </data>
+    <data name="FailureDeliveredStatusPartLabel" xml:space="preserve">
+        <value>не доставлен</value>
+    </data>
+    <data name="ToHomeBaseTitle" xml:space="preserve">
+        <value>На базу</value>
+    </data>
+    <data name="ClientDidntLikeDeliveryReview" xml:space="preserve">
+        <value>Клиенту не понравилась доставка</value>
+    </data>
+    <data name="ClientLikedDeliveryReview" xml:space="preserve">
+        <value>Клиенту понравилась доставка</value>
+    </data>
+    <data name="OrderStatusNotDelivered" xml:space="preserve">
+        <value />
     </data>
 </root>

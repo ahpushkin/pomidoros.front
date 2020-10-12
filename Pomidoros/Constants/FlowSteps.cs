@@ -6,5 +6,6 @@ namespace Pomidoros.Constants
         public const string CheckAutoStep = nameof(CheckAutoStep);
         public const string CheckUniformStep = nameof(CheckUniformStep);
         public const string MainPageStep = nameof(MainPageStep);
+        public const string Break = nameof(Break);
     }
 }

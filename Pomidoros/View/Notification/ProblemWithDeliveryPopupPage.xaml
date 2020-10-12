@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    x:Class="Pomidoros.View.Notification.ProblemWithDeliveryPopupPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <yummy:PancakeView
+        Margin="0"
+        Padding="0"
+        BackgroundColor="Transparent"
+        CornerRadius="20,20,0,0"
+        HasShadow="True"
+        VerticalOptions="End">
+        <StackLayout
+            Padding="20,20,20,20"
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center">
+            <Label
+                Margin="30,10,30,0"
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="16"
+                HorizontalOptions="CenterAndExpand"
+                Text="Невозможно доставить заказ"
+                TextColor="#1A1824" />
+            <Button
+                Margin="30,30,30,0"
+                BackgroundColor="#96A637"
+                Clicked="ClientClicked"
+                CornerRadius="5"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="16"
+                Text="Клиент не выходит на связь"
+                TextColor="White" />
+            <Button
+                Margin="30,30,30,0"
+                BackgroundColor="#96A637"
+                Clicked="NumberClicked"
+                CornerRadius="5"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="16"
+                Text="Указан неверный номер"
+                TextColor="White" />
+            <Button
+                Margin="30,30,30,30"
+                BackgroundColor="#96A637"
+                Clicked="UndoneClicked"
+                CornerRadius="5"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="16"
+                Text="Клиент отказался от заказа"
+                TextColor="White" />
+        </StackLayout>
+    </yummy:PancakeView>
+</pages:PopupPage>

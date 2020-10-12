@@ -7,7 +7,8 @@ namespace Services.API.Orders
 {
     public interface IOrdersApi
     {
-        Task<ShortOrderModel> GetOrderDetailAsync(string id, CancellationToken token);
+        Task<FullOrderModel> UpdateOrderAsync(string number, FullOrderModel order, CancellationToken token);
+        Task<FullOrderModel> GetOrderDetailAsync(string number, CancellationToken token);
         Task<IEnumerable<ShortOrderModel>> GetOrdersAsync(CancellationToken token);
         Task<IEnumerable<ShortOrderModel>> GetHistoryOrdersAsync(CancellationToken token);
     }

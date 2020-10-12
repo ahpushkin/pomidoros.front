@@ -4,6 +4,7 @@ namespace Services.Models.Enums
     {
         Completed,
         NotPayed,
-        Opened
+        Opened,
+        Failed
     }
 }

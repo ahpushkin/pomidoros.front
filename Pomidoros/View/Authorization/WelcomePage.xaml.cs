@@ -7,6 +7,7 @@ using Pomidoros.View.Base;
 using Pomidoros.View.Notification;
 using Pomidoros.View.ReviewSteps;
 using Rg.Plugins.Popup.Services;
+using Services.CurrentUser;
 
 namespace Pomidoros.View.Authorization
 {
@@ -15,13 +16,14 @@ namespace Pomidoros.View.Authorization
         public WelcomePage()
         {
             InitializeComponent();
-
-            name.Text = "Name Surname";
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+
+            var userDataProvider = App.Container.Resolve<ICurrentUserDataService>();
+            name.Text = userDataProvider.GetUserData().FullName;
 
             var requestRes = await App.Container.Resolve<IRequestsToServer>()?.GetDriverDataAsync();
             
@@ -34,11 +36,6 @@ namespace Pomidoros.View.Authorization
             {
                 UserDialogs.Instance.AlertAsync("Произошла ошибка.", "Не удалось загрузить данные вашего профиля. Повторите попытку позже. ", "Хорошо").SafeFireAndForget(false);
             }            
-        }
-
-        void OperatorEvent(object sender, EventArgs args)
-        {
-            PopupNavigation.Instance.PushAsync(new OperatorPage());
         }
     }
 }
