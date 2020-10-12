@@ -98,7 +98,7 @@
                         FontFamily="{StaticResource NormalFont}"
                         FontSize="16"
                         Text="{Binding Order.Distance, Converter={x:StaticResource distanceToStringConverter}}"
-                        TextColor="#39B637" />
+                        TextColor="#96A637" />
                         
                 </StackLayout>
                     

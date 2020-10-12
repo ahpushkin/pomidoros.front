@@ -1,6 +1,8 @@
+using System;
 using System.Windows.Input;
 using Core.ViewModel.Infra;
 using Pomidoros.ViewModel.Base;
+using Services.Models.Enums;
 using Services.Models.Orders;
 
 namespace Pomidoros.ViewModel.ListElements
@@ -17,8 +19,12 @@ namespace Pomidoros.ViewModel.ListElements
             Number = model.Number;
             Address = model.Address;
             Distance = model.Distance;
+            Type = model.Type;
+            EndTime = model.EndTime;
         }
-        
+
+        public DateTimeOffset EndTime { get; set; }
+
         public string Number { get; }
         
         public string Address { get; set; }
@@ -30,6 +36,10 @@ namespace Pomidoros.ViewModel.ListElements
             set => SetProperty(ref _distance, value);
         }
 
+        public EOrderType Type { get; set; }
+
         public ICommand PressCommand => _command;
+
+        public bool IsCriticalTime => Type == EOrderType.Timed && EndTime - DateTimeOffset.Now < TimeSpan.FromMinutes(15);
     }
 }

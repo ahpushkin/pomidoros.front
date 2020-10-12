@@ -13,6 +13,7 @@ using Pomidoros.View;
 using Pomidoros.View.Orders;
 using Pomidoros.ViewModel.Base;
 using Pomidoros.ViewModel.ListElements;
+using Services.Models.Enums;
 using Services.Models.Orders;
 using Services.Orders;
 
@@ -63,8 +64,9 @@ namespace Pomidoros.ViewModel.Orders
         }
         
         public ICommand OpenOrderCommand => new AsyncCommand<ShortOrderViewModel>(OnOpenOrderCommand);
+        public ICommand BeginDeliveryCommand => new AsyncCommand<ShortOrderViewModel>(OnBeginDeliveryCommandAsync);
         public ICommand RefreshCommand => new AsyncCommand(OnRefreshCommandAsync);
-        
+
         #endregion
 
         #region commands
@@ -78,6 +80,13 @@ namespace Pomidoros.ViewModel.Orders
             
             if (order != null)
                 await Navigation.PushAsync(new OrderPage(), order, "order");
+        }
+
+        private Task OnBeginDeliveryCommandAsync(ShortOrderViewModel arg)
+        {
+            //TODO: Request to server to update status of order
+            arg.Type = EOrderType.Default;
+            return OnOpenOrderCommand(arg);
         }
 
         private async Task<FullOrderModel> GetOrderDetailsAsync(string orderNumber)
