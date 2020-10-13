@@ -185,6 +185,35 @@
                                     
                                 </StackLayout>
                             </state:StateCondition>
+                            <state:StateCondition State="HasSpecialOrder">
+                                <StackLayout Spacing="30"
+                                             Margin="30"
+                                             VerticalOptions="Center">
+                                    
+                                    <Label
+                                        Margin="0,29,0,0"
+                                        FontFamily="{StaticResource BoldFont}"
+                                        FontAttributes="Bold"
+                                        FontSize="24"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Вы не  можете взять новый
+заказ, пока не доставили
+и не подтвердили
+с администратором
+спецзадание"
+                                        TextColor="#1A1824"/>
+                                    
+                                    <Button Text="Связаться с администратором"
+                                            BackgroundColor="#96A637"
+                                            TextColor="White"
+                                            FontSize="18"
+                                            FontFamily="{StaticResource BoldFont}"
+                                            FontAttributes="Bold"
+                                            Command="{Binding CallOperatorCommand}" />
+                                    
+                                </StackLayout>
+                            </state:StateCondition>
                         </state:StateContainer>
                     </ScrollView>
                 </RefreshView>

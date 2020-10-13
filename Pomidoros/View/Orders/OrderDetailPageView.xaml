@@ -78,6 +78,35 @@
                     
                         </Frame>
                     </stateContainer:StateCondition>
+                    <stateContainer:StateCondition State="OperatorPending">
+                        <Frame Margin="30, 10,30,15"
+                               Padding="25, 25,25,0"
+                               CornerRadius="15"
+                               BorderColor="LightGray"
+                               HasShadow="False">
+                    
+                            <StackLayout Spacing="10">
+                        
+                                <Label Text="{Binding Order.OrderStatus,
+                                Converter={x:StaticResource orderStatusEnumToStringConverter},
+                                StringFormat={x:Static str:LocalizationStrings.OrderStatusFormat}}"
+                                       FontSize="18"
+                                       TextColor="#1C1C1C"
+                                       HorizontalOptions="Center"
+                                       FontFamily="{StaticResource BoldFont}"/>
+                        
+                                <Label Text="{x:Static str:LocalizationStrings.CantBeginAnotherOrderLabel}"
+                                       Margin="0,20,0,0"
+                                       FontSize="16"
+                                       FontFamily="{StaticResource NormalFont}"
+                                       HorizontalOptions="Center"
+                                       HorizontalTextAlignment="Center"
+                                       TextColor="#1C1C1C"/>
+                        
+                            </StackLayout>
+                    
+                        </Frame>
+                    </stateContainer:StateCondition>
                     <stateContainer:StateCondition State="Opened">
                         <Frame Margin="30, 10,30,15"
                                Padding="25"

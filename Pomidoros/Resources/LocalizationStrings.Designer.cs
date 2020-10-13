@@ -105,6 +105,12 @@ namespace Pomidoros.Resources {
             }
         }
         
+        internal static string OrderStatusOperatorApprovePending {
+            get {
+                return ResourceManager.GetString("OrderStatusOperatorApprovePending", resourceCulture);
+            }
+        }
+        
         internal static string OrderStatusPending {
             get {
                 return ResourceManager.GetString("OrderStatusPending", resourceCulture);
@@ -300,6 +306,12 @@ namespace Pomidoros.Resources {
         internal static string BeginDeliveryNowLabel {
             get {
                 return ResourceManager.GetString("BeginDeliveryNowLabel", resourceCulture);
+            }
+        }
+        
+        internal static string CantBeginAnotherOrderLabel {
+            get {
+                return ResourceManager.GetString("CantBeginAnotherOrderLabel", resourceCulture);
             }
         }
     }

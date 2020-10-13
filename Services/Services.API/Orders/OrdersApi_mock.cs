@@ -36,8 +36,8 @@ namespace Services.API.Orders
                 DeliveryAddress = rnd.Next(0,2) == 1 ? "ул. Героев Сталинграда 143-б" : null,
                 StartAddress = "ул. Засумская 65",
                 Distance = 5674,
-                OrderStatus = rnd.Next(0,2) == 0 ? EOrderStatus.Opened : EOrderStatus.Pending,
                 EndTime = DateTimeOffset.Now.AddHours(rnd.Next(10,60)),
+                OrderStatus = RandomizeOrderStatus(),
                 Type = RandomizeOrderType(),
                 IsClientLiked = RandomizeBoolean()
             };
@@ -87,15 +87,15 @@ namespace Services.API.Orders
             return type;
         }
 
-        private EOrderStatus RandomizeHistoryOrderStatus()
+        private EOrderStatus RandomizeOrderStatus()
         {
             var rnd = new Random();
             var randomValue = rnd.Next(0, 4);
-            var type = EOrderStatus.Completed;
+            var type = EOrderStatus.Opened;
             if (randomValue == 1)
-                type = EOrderStatus.Failed;
+                type = EOrderStatus.Pending;
             if (randomValue == 2)
-                type = EOrderStatus.NotPayed;
+                type = EOrderStatus.OperatorPending;
             return type;
         }
 

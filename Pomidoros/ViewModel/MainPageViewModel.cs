@@ -153,11 +153,18 @@ namespace Pomidoros.ViewModel
 
         private void UpdateState()
         {
-            var filteredOrders = _orders.Where(o => o.Status == EOrderStatus.Opened);
+            var filteredOrders = _orders
+                .Where(o => 
+                    o.Status == EOrderStatus.Opened ||
+                    o.Status == EOrderStatus.Pending);
             
             if (_orders == null)
             {
                 State = "OrdersEmpty";
+            }
+            else if (filteredOrders.Any(o => o.Type == EOrderType.Special))
+            {
+                State = "HasSpecialOrder";
             }
             else if (filteredOrders.Count() >= 2)
             {

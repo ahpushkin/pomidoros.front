@@ -50,6 +50,9 @@
     <data name="OrderStatusNotPayed" xml:space="preserve">
         <value>Заказ не оплачен</value>
     </data>
+    <data name="OrderStatusOperatorApprovePending" xml:space="preserve">
+        <value>Ожидается подтверждение о успешной доставки от администратора</value>
+    </data>
     <data name="OrderStatusPending" xml:space="preserve">
         <value>В ожидании</value>
     </data>
@@ -159,5 +162,8 @@
     <data name="BeginDeliveryNowLabel" xml:space="preserve">
         <value>Начните доставку сейчас,
 чтобы не опоздать</value>
+    </data>
+    <data name="CantBeginAnotherOrderLabel" xml:space="preserve">
+        <value>Вы не сможете брать второй заказ, пока администратор не подтвердит успешную доставку. Просим подождать несколько минут.</value>
     </data>
 </root>
