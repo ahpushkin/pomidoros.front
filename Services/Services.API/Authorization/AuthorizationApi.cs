@@ -15,7 +15,7 @@ namespace Services.API.Authorization
             _httpClient = httpClient;
         }
 
-        public Task<TokenModel> LoginAsync(string phone, string passcode, CancellationToken token)
+        public Task<TokenModel> LoginAsync(string phone, string passcode, CancellationToken token = default)
             => _httpClient
                 .PostAsync(RequestUrl("user/passcode/phone_verification"), new {phone, passcode}, token)
                 .ReadAsJsonAsync<TokenModel>()

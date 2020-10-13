@@ -20,6 +20,9 @@
     </resheader>
     
     <!-- Common -->
+    <data name="Ok" xml:space="preserve">
+        <value>Ок</value>
+    </data>
     <data name="CountItemsDataFormat" xml:space="preserve">
         <value>{0} ед.</value>
     </data>
@@ -69,6 +72,14 @@
         <value>Выбрать на карте</value>
     </data>
     
+    <!-- Common logic -->
+    <data name="NoInternetConnectionAlertMessage" xml:space="preserve">
+        <value>Нет подключения к сети. Проверьте соединение с интернетом.</value>
+    </data>
+    <data name="UnknownExceptionToastMessage" xml:space="preserve">
+        <value>Произошла непредвиденая ошибка. Повторите запрос позже.</value>
+    </data>
+    
     <!-- Welcome page -->
     <data name="WelcomeTitle" xml:space="preserve">
         <value>Здравствуйте,</value>
@@ -89,6 +100,15 @@
     </data>
     <data name="ForgotPassBtn" xml:space="preserve">
         <value>Забыли пароль?</value>
+    </data>
+    <data name="WrongPhoneNumberFormatToastMessage" xml:space="preserve">
+        <value>Неверный формат номера телефона</value>
+    </data>
+    <data name="ErrorWhileLoginAlertTitle" xml:space="preserve">
+        <value>Ошибка при входе</value>
+    </data>
+    <data name="EnsureRightCredentialsAlertMessage" xml:space="preserve">
+        <value>Убедидесь в правильности введеных данных и повторите попытку.</value>
     </data>
     
     <!-- Reset pass -->

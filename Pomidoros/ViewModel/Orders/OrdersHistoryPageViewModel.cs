@@ -103,7 +103,7 @@ namespace Pomidoros.ViewModel.Orders
 
             try
             {
-                if (await CheckConnectionWithPopupAsync())
+                if (await CheckConnectionWithAlertAsync())
                     await UpdateOrdersList();
             }
             catch (OperationCanceledException oce)

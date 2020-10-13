@@ -9,6 +9,6 @@ namespace Services.Authorization
 
         void Logout();
 
-        Task LoginAsync(string phone, string passcode, CancellationToken token);
+        Task LoginAsync(string phone, string passcode, CancellationToken token = default);
     }
 }

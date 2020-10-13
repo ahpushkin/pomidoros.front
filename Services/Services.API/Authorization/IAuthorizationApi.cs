@@ -6,6 +6,6 @@ namespace Services.API.Authorization
 {
     public interface IAuthorizationApi
     {
-        Task<TokenModel> LoginAsync(string phone, string passcode, CancellationToken token);
+        Task<TokenModel> LoginAsync(string phone, string passcode, CancellationToken token = default);
     }
 }

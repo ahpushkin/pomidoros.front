@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
@@ -6,6 +7,7 @@ using Autofac;
 using Core.Commands;
 using Core.Extensions;
 using Core.ViewModel.Infra;
+using Pomidoros.Resources;
 using Pomidoros.Services.Navigation;
 using Pomidoros.View.Notification;
 using Rg.Plugins.Popup.Services;
@@ -49,16 +51,15 @@ namespace Pomidoros.ViewModel.Base
         protected bool CheckConnection()
             => Connectivity.NetworkAccess == NetworkAccess.Internet;
 
-        protected async Task<bool> CheckConnectionWithPopupAsync()
+        protected async Task<bool> CheckConnectionWithAlertAsync()
         {
             var result = CheckConnection();
-            if (!result)
-                await UserDialogs.AlertAsync("Нет подключения к сети. Проверьте соединение с интернетом.");
+            if (!result) await AlertAsync(LocalizationStrings.NoInternetConnectionAlertMessage);
             return result;
         }
 
         protected void ErrorToast()
-            => Toast("Произошла непредвиденая ошибка. Повторите запрос позже.");
+            => Toast(LocalizationStrings.UnknownExceptionToastMessage);
 
         protected void Toast(string message)
             => UserDialogs.Toast(new ToastConfig(message)
@@ -67,6 +68,9 @@ namespace Pomidoros.ViewModel.Base
                 Position = ToastPosition.Bottom,
                 MessageTextColor = System.Drawing.Color.White
             });
+
+        protected Task AlertAsync(string message, string title = null, string okText = null, CancellationToken? token = null)
+            => UserDialogs.AlertAsync(message, title, okText, token);
         
         #endregion
 

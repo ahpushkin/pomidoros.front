@@ -45,6 +45,12 @@ namespace Pomidoros.Resources {
             }
         }
         
+        internal static string Ok {
+            get {
+                return ResourceManager.GetString("Ok", resourceCulture);
+            }
+        }
+        
         internal static string CountItemsDataFormat {
             get {
                 return ResourceManager.GetString("CountItemsDataFormat", resourceCulture);
@@ -141,6 +147,18 @@ namespace Pomidoros.Resources {
             }
         }
         
+        internal static string NoInternetConnectionAlertMessage {
+            get {
+                return ResourceManager.GetString("NoInternetConnectionAlertMessage", resourceCulture);
+            }
+        }
+        
+        internal static string UnknownExceptionToastMessage {
+            get {
+                return ResourceManager.GetString("UnknownExceptionToastMessage", resourceCulture);
+            }
+        }
+        
         internal static string WelcomeTitle {
             get {
                 return ResourceManager.GetString("WelcomeTitle", resourceCulture);
@@ -174,6 +192,24 @@ namespace Pomidoros.Resources {
         internal static string ForgotPassBtn {
             get {
                 return ResourceManager.GetString("ForgotPassBtn", resourceCulture);
+            }
+        }
+        
+        internal static string WrongPhoneNumberFormatToastMessage {
+            get {
+                return ResourceManager.GetString("WrongPhoneNumberFormatToastMessage", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorWhileLoginAlertTitle {
+            get {
+                return ResourceManager.GetString("ErrorWhileLoginAlertTitle", resourceCulture);
+            }
+        }
+        
+        internal static string EnsureRightCredentialsAlertMessage {
+            get {
+                return ResourceManager.GetString("EnsureRightCredentialsAlertMessage", resourceCulture);
             }
         }
         

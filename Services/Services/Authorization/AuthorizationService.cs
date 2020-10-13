@@ -29,7 +29,7 @@ namespace Services.Authorization
             _storage.RemoveAll();
         }
         
-        public async Task LoginAsync(string phone, string passcode, CancellationToken token)
+        public async Task LoginAsync(string phone, string passcode, CancellationToken token = default)
         {
             if (string.IsNullOrWhiteSpace(phone))
                 throw new ArgumentException(nameof(phone));

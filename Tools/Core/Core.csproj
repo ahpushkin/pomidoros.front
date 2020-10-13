@@ -41,6 +41,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Commands\AsyncCommand.cs" />
+        <Compile Include="Exceptions\Helpers\ErrorHandlerHelper.cs" />
         <Compile Include="Extensions\HttpClientExtensions.cs" />
         <Compile Include="Extensions\HttpResponseMessageExtensions.cs" />
         <Compile Include="Extensions\ListExtensions.cs" />
