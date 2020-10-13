@@ -17,11 +17,11 @@ namespace Pomidoros.Controls
 		public static readonly BindableProperty LineColorProperty =
 			BindableProperty.Create(nameof(LineColor), typeof(Xamarin.Forms.Color), typeof(ImageEntry), Color.White);
 
-		public static readonly BindableProperty ImageHeightProperty =
-			BindableProperty.Create(nameof(ImageHeight), typeof(int), typeof(ImageEntry), 40);
+		public static readonly BindableProperty ImageVerticalScaleProperty =
+			BindableProperty.Create(nameof(ImageVerticalScale), typeof(double), typeof(ImageEntry), 0.07);
 
-		public static readonly BindableProperty ImageWidthProperty =
-			BindableProperty.Create(nameof(ImageWidth), typeof(int), typeof(ImageEntry), 40);
+		public static readonly BindableProperty ImageHorizontalScaleProperty =
+			BindableProperty.Create(nameof(ImageHorizontalScale), typeof(double), typeof(ImageEntry), 0.07);
 
 		public static readonly BindableProperty ImageAlignmentProperty =
 			BindableProperty.Create(nameof(ImageAlignment), typeof(ImageAlignment), typeof(ImageEntry), ImageAlignment.Left);
@@ -34,16 +34,16 @@ namespace Pomidoros.Controls
 			set { SetValue(LineColorProperty, value); }
 		}
 
-		public int ImageWidth
+		public double ImageHorizontalScale
 		{
-			get { return (int)GetValue(ImageWidthProperty); }
-			set { SetValue(ImageWidthProperty, value); }
+			get { return (double)GetValue(ImageHorizontalScaleProperty); }
+			set { SetValue(ImageHorizontalScaleProperty, value); }
 		}
 
-		public int ImageHeight
+		public double ImageVerticalScale
 		{
-			get { return (int)GetValue(ImageHeightProperty); }
-			set { SetValue(ImageHeightProperty, value); }
+			get { return (double)GetValue(ImageVerticalScaleProperty); }
+			set { SetValue(ImageVerticalScaleProperty, value); }
 		}
 
 		public string Image

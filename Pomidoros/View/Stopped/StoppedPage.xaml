@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Pomidoros.View.Stopped.StoppedPage"
              BackgroundClicked="DisplayError">
-  <Frame Background="White"
+  <Frame 
            VerticalOptions="EndAndExpand"
            HorizontalOptions="Center" 
            HasShadow="True"

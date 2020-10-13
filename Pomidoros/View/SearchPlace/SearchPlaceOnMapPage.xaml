@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<base:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:local="clr-namespace:Pomidoros.Controls"
+                      xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
+                      xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+                      xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
+                      xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+                      xmlns:i="clr-namespace:Services.Models.Address;assembly=Services.Models"
+                      x:Class="Pomidoros.View.SearchPlace.SearchPlaceOnMapPage"
+                      x:TypeArguments="vm:ChangeLocationPageViewModel"
+                      x:DataType="vm:ChangeLocationPageViewModel"
+                      BackgroundColor="White"
+                      StatusBarColor="White"
+                      HasNavigationBar="False"
+                      Icons="Dark">
+    
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="120" />
+        </Grid.RowDefinitions>
+        
+        <maps:MapView />
+        
+        <Frame Padding="0"
+               Margin="30"
+               VerticalOptions="Start"
+               HorizontalOptions="Start"
+               CornerRadius="10">
+            
+            <ImageButton
+                BackgroundColor="Transparent"
+                Command="{x:TemplateBinding BackCommand}"
+                HorizontalOptions="StartAndExpand"
+                Source="back" />
+            
+        </Frame>
+        
+        <Grid 
+            Grid.Row="1"
+            x:Name="container"
+            VerticalOptions="StartAndExpand"
+            BackgroundColor="White">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <ScrollView Grid.Row="1">
+                <StackLayout Spacing="15" Padding="30,20,30,0">
+                    
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource NormalFont}"
+                        FontSize="16"
+                        Text="{x:Static str:LocalizationStrings.ToConfirmAddressLabel}"
+                        TextColor="Black"/>
+                    
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="21"
+                        Text="{Binding DeliveryAddress}"
+                        TextColor="Black"/>
+                    
+                    <Button
+                        BackgroundColor="#96A637"
+                        Command="{Binding SaveCommand}"
+                        CornerRadius="5"
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        Text="{x:Static str:LocalizationStrings.ConfirmAddressButton}"
+                        TextColor="White" />
+                    
+                </StackLayout>
+            </ScrollView>
+               
+            <Frame HasShadow="False">
+                        
+                <BoxView CornerRadius="8"
+                         HeightRequest="1"
+                         WidthRequest="140"
+                         Margin="0,-10,0,0"
+                         HorizontalOptions="Center"
+                         BackgroundColor="LightGray"/>
+                
+                <Frame.GestureRecognizers>
+                    <PanGestureRecognizer PanUpdated="OnPanUpdated"/>
+                </Frame.GestureRecognizers>
+                
+            </Frame>
+            
+        </Grid>
+        
+    </Grid>
+    
+</base:BaseContentPage>

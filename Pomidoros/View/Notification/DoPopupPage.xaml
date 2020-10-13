@@ -1,26 +1,43 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<pages:PopupPage  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 xmlns="http://xamarin.com/schemas/2014/forms"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 x:Class="Pomidoros.View.Notification.DoPopupPage">
-     <Frame  
-           HorizontalOptions="Center" 
-           VerticalOptions="Center"
-           HasShadow="True"
-           Margin="30,0,30,0"
-           CornerRadius="20"
-           IsClippedToBounds="True"
-           Padding="0">
-         <!--main stack-->
-         <StackLayout VerticalOptions="Center"
-                      HorizontalOptions="FillAndExpand"
-                      
-                      BackgroundColor="#EFEFEF">
-         <Label Text="Чтобы принять заказ, подойдите к монитору, проведите карточкой и получите талон" Margin="10,30,10,0" TextColor="Black"
-         HorizontalOptions="Center" FontSize="16" HorizontalTextAlignment="Center" FontFamily="{StaticResource NormalFont}"></Label>
-                <BoxView WidthRequest="290" HeightRequest="1" Margin="0,20,0,0" BackgroundColor="LightGray"/>
-        <Button Text="Понятно" FontSize="17"  TextColor="#0074FF" BackgroundColor="Transparent"
-                FontFamily="{StaticResource BoldFont}" Clicked="OnClose" Margin="0,0,0,10"></Button>
-         </StackLayout>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    x:Class="Pomidoros.View.Notification.DoPopupPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup">
+    <Frame
+        Margin="30,0,30,0"
+        Padding="0"
+        CornerRadius="20"
+        HasShadow="True"
+        HorizontalOptions="Center"
+        IsClippedToBounds="True"
+        VerticalOptions="Center">
+        <!--  main stack  -->
+        <StackLayout
+            BackgroundColor="#EFEFEF"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center">
+            <Label
+                Margin="10,30,10,0"
+                FontFamily="{StaticResource NormalFont}"
+                FontSize="16"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Чтобы принять заказ, подойдите к монитору, проведите карточкой и получите талон"
+                TextColor="Black" />
+            <BoxView
+                Margin="0,20,0,0"
+                BackgroundColor="LightGray"
+                HeightRequest="1"
+                WidthRequest="290" />
+            <Button
+                Margin="0,0,0,10"
+                BackgroundColor="Transparent"
+                Clicked="OnClose"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="17"
+                Text="Понятно"
+                TextColor="#0074FF" />
+        </StackLayout>
     </Frame>
 </pages:PopupPage>

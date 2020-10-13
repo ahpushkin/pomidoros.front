@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:Class="Pomidoros.View.ReviewSteps.FirstReviewPage"
+    x:DataType="vm:FirstReviewPageViewModel"
+    x:TypeArguments="vm:FirstReviewPageViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.ReviewSteps;assembly=Pomidoros"
+    BackgroundColor="White"
+    HasNavigationBar="False"
+    Icons="Dark"
+    StatusBarColor="White">
+    
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <!-- header -->
+            <StackLayout
+                Margin="30, 20"
+                Orientation="Horizontal"
+                VerticalOptions="StartAndExpand">
+
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Clicked="BackEvent"
+                    HorizontalOptions="StartAndExpand"
+                    Source="back" />
+
+                <Label
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    VerticalTextAlignment="Center"
+                    Text="Подготовка 1/2"
+                    TextColor="#1C1C1C" />
+
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Clicked="OperatorEvent"
+                    HorizontalOptions="EndAndExpand"
+                    Source="help" />
+
+            </StackLayout>
+            
+            <!-- body -->
+            <ScrollView Grid.Row="1"
+                        VerticalOptions="Fill">
+                
+                <Grid Margin="30, 15"
+                      VerticalOptions="Fill"
+                      HorizontalOptions="Fill">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120" />
+                        <RowDefinition Height=".45*" />
+                        <RowDefinition Height="240" />
+                        <RowDefinition Height=".45*" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height=".1*" />
+                        <RowDefinition Height="55" />
+                    </Grid.RowDefinitions>
+                    
+                    <Label
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="30">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Осматривали &#x0a;ли вы " TextColor="#1A1824" />
+                                <Span Text="сегодня" TextColor="#96A637" />
+                                <Span Text=" ваш транспорт?" TextColor="#1A1824" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    
+                    <StackLayout Grid.Row="2">
+                    
+                        <Image
+                            HorizontalOptions="StartAndExpand"
+                            Source="car" />
+
+                        <Label
+                            Margin="0,20,0,0"
+                            FontFamily="{StaticResource NormalFont}"
+                            FontSize="16"
+                            Text="Легковой автомобиль"
+                            TextColor="#1A1824" />
+
+                        <Label
+                            Margin="0,6,0,0"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="20"
+                            Text="{Binding Model}"
+                            TextColor="#1A1824" />
+
+                        <Button
+                            Margin="0,9,0,0"
+                            BackgroundColor="Transparent"
+                            BorderColor="Gray"
+                            BorderWidth="1"
+                            CornerRadius="5"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="18"
+                            HeightRequest="45"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding Number}"
+                            TextColor="#1A1824"
+                            WidthRequest="141" />
+
+                    </StackLayout>
+                    
+                    <Button
+                        Grid.Row="4"
+                        BackgroundColor="#96A637"
+                        Clicked="NextEvent"
+                        CornerRadius="5"
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        Text="Да, уже осмотрел и готов"
+                        TextColor="White" />
+
+                    <Button
+                        Grid.Row="6"
+                        BackgroundColor="Transparent"
+                        Clicked="CheckEvent"
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        Text="Нет, еще не осматривал"
+                        TextColor="#1A1824" />
+                    
+                </Grid>
+                
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</base:BaseContentPage>

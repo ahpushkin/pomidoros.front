@@ -1,51 +1,225 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pomidoros.View.MainPage"
-             BackgroundColor="White"
-             NavigationPage.HasNavigationBar="False">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:Class="Pomidoros.View.MainPage"
+    x:DataType="vm:MainPageViewModel"
+    x:TypeArguments="vm:MainPageViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel;assembly=Pomidoros"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:state="clr-namespace:Pomidoros.StateContainer;assembly=Pomidoros"
+    BackgroundColor="#96A637"
+    HasNavigationBar="False"
+    Icons="Light"
+    StatusBarColor="#96A637">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Frame BackgroundColor="#96A637" HeightRequest="99" Margin="0,-20,0,0">
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <StackLayout
+                x:Name="bar"
+                Margin="0,5,0,0"
+                Orientation="Horizontal"
+                Spacing="3"
+                VerticalOptions="End">
+                <Button
+                    Margin="0"
+                    BackgroundColor="#96A637"
+                    Command="{Binding OpenProfileCommand}"
+                    CornerRadius="10"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="14"
+                    HeightRequest="50"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Профиль"
+                    TextColor="White"
+                    VerticalOptions="End" />
 
-                    <StackLayout x:Name="bar" Orientation="Horizontal" Margin="0,0,0,0">
-                        <Button BackgroundColor="Transparent" TextColor="White" FontFamily="{StaticResource BoldFont}" Clicked="ProfileEvent" Text="Профиль"
-                        HorizontalOptions="StartAndExpand" Margin="0,54,0,0" FontSize="14" FontAttributes="Bold"></Button>
+                <Button
+                    Margin="0"
+                    BackgroundColor="#96A637"
+                    Command="{Binding OpenOrdersCommand}"
+                    CornerRadius="10"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="14"
+                    HeightRequest="50"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Мои заказы"
+                    TextColor="White"
+                    VerticalOptions="End" />
 
-                         <Button BackgroundColor="Transparent" TextColor="White" FontFamily="{StaticResource BoldFont}" Text="Мои заказы"
-                        HorizontalOptions="CenterAndExpand" Clicked="MyOrderEvent" Margin="0,54,0,0" FontSize="14" FontAttributes="Bold"></Button>
-
-                         <Button BackgroundColor="Transparent" Clicked="MyHistoryEvent" TextColor="White" FontFamily="{StaticResource BoldFont}" Text="История"
-                        HorizontalOptions="EndAndExpand" Margin="-10,54,0,0" FontSize="14" FontAttributes="Bold"></Button>
-                    </StackLayout>
-
-                </Frame>
-                <Frame BackgroundColor="White" CornerRadius="20" Margin="0,-20,0,0"
-                       HasShadow="False">
-                    <StackLayout>
-
-                        <ImageButton BackgroundColor="Transparent" Source="trueorder" Margin="0,112,0,0"></ImageButton>
-
-                         <Label FontSize="30" Margin="0,29,0,0" HorizontalOptions="Center"
-                         HorizontalTextAlignment="Center" FontAttributes="Bold">
-                        <Label.FormattedText>
-                        <FormattedString>
-                        <Span Text="Есть доступные&#x0a; заказы" TextColor="#1A1824"/>
-                        </FormattedString>
-                        </Label.FormattedText>
-
-                         </Label>
-
-                         <Label Margin="30,18,30,0" FontFamily="{StaticResource NormalFont}" HorizontalTextAlignment="Center" Text="Чтобы принять заказ, подойдите к монитору, проведите карточкой и получите талон"
-                         FontSize="16"
-                         TextColor="#1A1824"></Label>
-
-                        <ImageButton BackgroundColor="Transparent" Clicked="HaveNext" HorizontalOptions="Start" Source="monitor" Margin="21,130,0,25"></ImageButton>
-                    </StackLayout>
-                </Frame>
-                
+                <Button
+                    Margin="0"
+                    BackgroundColor="#96A637"
+                    Command="{Binding OpenHistoryCommand}"
+                    CornerRadius="10"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="14"
+                    HeightRequest="50"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="История"
+                    TextColor="White"
+                    VerticalOptions="End" />
             </StackLayout>
-        </ScrollView>
+            <yummy:PancakeView
+                Grid.Row="1"
+                Margin="0"
+                BackgroundColor="White"
+                CornerRadius="20,20,0,0"
+                Shadow="{yummy:ShadowMarkup Color=Black, BlurRadius=8, Opacity=1}"
+                VerticalOptions="FillAndExpand">
+                
+                <RefreshView Command="{Binding RefreshCommand}"
+                             IsRefreshing="{Binding IsBusy}">
+                    <ScrollView>
+                        <state:StateContainer State="{Binding State}">
+                            <state:StateCondition State="OrdersOutOfRange">
+                                <StackLayout
+                                    VerticalOptions="Center">
+                    
+                                    <Label
+                                        Margin="0,30,0,0"
+                                        FontAttributes="Bold"
+                                        FontSize="38"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Невозможно взять одновременно
+                        более двух
+                        заказов"
+                                        TextColor="#1A1824"/>
+
+                                    <Label
+                                        Margin="0,5,0,0"
+                                        FontFamily="{StaticResource NormalFont}"
+                                        FontSize="20"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Доставьте ваши нынешние заказы, чтобы взять новые"
+                                        TextColor="#1A1824" />
+                                    
+                                </StackLayout>
+                            </state:StateCondition>
+                            <state:StateCondition State="OrdersEmpty">
+                                <Grid VerticalOptions="Fill">
+                                   
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height=".3*" />
+                                        <RowDefinition Height="120" />
+                                        <RowDefinition Height="130" />
+                                        <RowDefinition Height="80" />
+                                        <RowDefinition Height=".7*" />
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Image
+                                        Grid.Row="1"
+                                        BackgroundColor="Transparent"
+                                        Source="emptyorder"
+                                        VerticalOptions="Fill" />
+                                                    
+                                    <Label
+                                        Grid.Row="2"
+                                        Margin="0,29,0,0"
+                                        FontAttributes="Bold"
+                                        FontSize="34"
+                                        VerticalOptions="End"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Сейчас нет доступных заказов"
+                                        TextColor="#1A1824"/>
+
+                                    <Label
+                                        Grid.Row="3"
+                                        Margin="30,18,30,0"
+                                        FontFamily="{StaticResource NormalFont}"
+                                        FontSize="20"
+                                        VerticalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Ожидайте на базе, чтобы получать уведомления о новых заказах"
+                                        TextColor="#1A1824" />
+                                                    
+                                </Grid>
+                            </state:StateCondition>
+                            <state:StateCondition State="">
+                                <StackLayout>
+                                </StackLayout>
+                            </state:StateCondition>
+                            <state:StateCondition State="OrdersAvailable">
+                                <StackLayout>
+                                    
+                                    <Image
+                                        BackgroundColor="Transparent"
+                                        Source="trueorder"
+                                        VerticalOptions="EndAndExpand" />
+                                    
+                                    <Label
+                                        Margin="0,29,0,0"
+                                        FontAttributes="Bold"
+                                        FontSize="34"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Есть доступные&#x0a; заказы"
+                                        TextColor="#1A1824"/>
+
+                                    <Label
+                                        Margin="30,18,30,0"
+                                        FontFamily="{StaticResource NormalFont}"
+                                        FontSize="20"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Чтобы принять заказ, подойдите к монитору, проведите карточкой и получите талон"
+                                        TextColor="#1A1824" />
+
+                                    <ImageButton
+                                        Margin="15,0,0,15"
+                                        BackgroundColor="Transparent"
+                                        Command="{Binding HaveOrdersPopupCommand}"
+                                        HorizontalOptions="StartAndExpand"
+                                        Source="monitor"
+                                        VerticalOptions="EndAndExpand" />
+                                    
+                                </StackLayout>
+                            </state:StateCondition>
+                            <state:StateCondition State="HasSpecialOrder">
+                                <StackLayout Spacing="30"
+                                             Margin="30"
+                                             VerticalOptions="Center">
+                                    
+                                    <Label
+                                        Margin="0,29,0,0"
+                                        FontFamily="{StaticResource BoldFont}"
+                                        FontAttributes="Bold"
+                                        FontSize="24"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Text="Вы не  можете взять новый
+заказ, пока не доставили
+и не подтвердили
+с администратором
+спецзадание"
+                                        TextColor="#1A1824"/>
+                                    
+                                    <Button Text="Связаться с администратором"
+                                            BackgroundColor="#96A637"
+                                            TextColor="White"
+                                            FontSize="18"
+                                            FontFamily="{StaticResource BoldFont}"
+                                            FontAttributes="Bold"
+                                            Command="{Binding CallOperatorCommand}" />
+                                    
+                                </StackLayout>
+                            </state:StateCondition>
+                        </state:StateContainer>
+                    </ScrollView>
+                </RefreshView>
+            </yummy:PancakeView>
+        </Grid>
+        
     </ContentPage.Content>
-</ContentPage>
+    
+</base:BaseContentPage>

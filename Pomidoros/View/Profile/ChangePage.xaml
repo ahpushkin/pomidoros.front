@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:TypeArguments="vm:ChangePageViewModel"
+    x:DataType="vm:ChangePageViewModel"
+    x:Class="Pomidoros.View.Profile.ChangePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.Profile;assembly=Pomidoros"
+    ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
+    BackgroundColor="White"
+    HasNavigationBar="False"
+    Icons="Dark"
+    StatusBarColor="White">
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="Fill">
+            
+            <Label
+                Margin="0,29,0,0"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="36"
+                HorizontalOptions="Center"
+                HorizontalTextAlignment="Center"
+                Text="Смена транспорта"
+                TextColor="#1A1824"/>
+            
+            <Label
+                Margin="30,0,30,0"
+                FontFamily="{StaticResource NormalFont}"
+                FontSize="16"
+                LineHeight="1.3"
+                VerticalOptions="EndAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="Для смены транспорта необходимо зайти под другими доступами."
+                TextColor="#1A1824" />
+
+            <Button
+                Margin="30,28,30,0"
+                BackgroundColor="#96A637"
+                Command="{Binding LogoutCommand}"
+                CornerRadius="8"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="16"
+                Text="Выйти и зайти заново"
+                TextColor="White" />
+            
+            <Label
+                Margin="30,0,30,0"
+                FontFamily="{StaticResource NormalFont}"
+                FontSize="18"
+                LineHeight="1.3"
+                VerticalOptions="EndAndExpand"
+                Text="Если вы не знаете другие доступы, обратитесь за помощью к оператору."
+                TextColor="#1A1824" />
+            
+            <Button
+                Margin="30"
+                BackgroundColor="Transparent"
+                Command="{Binding CallOperatorCommand}"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="16"
+                Text="Связаться с оператором"
+                TextColor="#1A1824" />
+            
+        </StackLayout>
+    </ContentPage.Content>
+</base:BaseContentPage>

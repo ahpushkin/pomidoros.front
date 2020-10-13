@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage x:TypeArguments="vm:OrderPageViewModel"
+                      x:DataType="vm:OrderPageViewModel"
+                      x:Class="Pomidoros.View.Orders.OrderPage"
+                      xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+                      xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
+                      xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
+                      xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+                      ControlTemplate="{x:StaticResource NavigatablePageWithTitleIconTemplate}"
+                      BackgroundColor="White"
+                      HasNavigationBar="False"
+                      Icons="Dark"
+                      StatusBarColor="White">
+    <ContentPage.Content>
+        
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".8*" />
+                <RowDefinition Height="120" />
+            </Grid.RowDefinitions>
+            
+            <maps:MapView />
+            
+            <Grid 
+                Grid.Row="1"
+                x:Name="container"
+                VerticalOptions="StartAndExpand"
+                BackgroundColor="White">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                
+                <ScrollView Grid.Row="1">
+                    <StackLayout Spacing="5">
+                        
+                        <StackLayout Margin="30,0,30,0"
+                                     Orientation="Horizontal">
+                            
+                            <StackLayout Orientation="Vertical">
+                                
+                                <Image
+                                    Margin="0,0,0,30"
+                                    HeightRequest="20"
+                                    Source="geo2" />
+                                
+                                <Image Margin="0,-30,0,0"
+                                       Source="loc" />
+                                
+                                <Image HeightRequest="20"
+                                       Source="geo" />
+                                
+                            </StackLayout>
+                            
+                            <StackLayout Orientation="Vertical">
+                                
+                                <StackLayout Orientation="Vertical"
+                                             VerticalOptions="StartAndExpand">
+                                    
+                                    <Label
+                                        Margin="20,0,0,0"
+                                        FontFamily="{StaticResource BoldFont}"
+                                        FontSize="16"
+                                        Text="{Binding Order.StartAddress}"
+                                        TextColor="Black"/>
+                                    
+                                    <Label
+                                        Margin="20,0,0,0"
+                                        FontFamily="{StaticResource NormalFont}"
+                                        FontSize="16"
+                                        Text="{Binding Order.Distance, Converter={x:StaticResource distanceToStringConverter}}"
+                                        TextColor="#39B637" />
+                                    
+                                </StackLayout>
+                                
+                                <BoxView
+                                    Margin="0,0,30,0"
+                                    BackgroundColor="LightGray"
+                                    HeightRequest="1"
+                                    HorizontalOptions="FillAndExpand"
+                                    WidthRequest="500" />
+                                
+                                <StackLayout Orientation="Vertical"
+                                             VerticalOptions="EndAndExpand"
+                                             IsVisible="{Binding HasDeliveryAddress}">
+                                    
+                                    <Label
+                                        Margin="20,0,0,0"
+                                        FontFamily="{StaticResource BoldFont}"
+                                        FontSize="16"
+                                        Text="{Binding Order.DeliveryAddress}"
+                                        TextColor="Black"/>
+                                    
+                                    <Label
+                                        Margin="20,0,0,0"
+                                        FontFamily="{StaticResource NormalFont}"
+                                        FontSize="16"
+                                        Text="{Binding Order.Distance, Converter={x:StaticResource distanceToStringConverter}}"
+                                        TextColor="#39B637" />
+                                    
+                                </StackLayout>
+                                
+                                <Label
+                                    Margin="20,0,0,0"
+                                    FontFamily="{StaticResource BoldFont}"
+                                    FontSize="16"
+                                    Text="{x:Static str:LocalizationStrings.InputDeliveryAddressLabel}"
+                                    IsVisible="{Binding HasDeliveryAddress, Converter={StaticResource boolInverterConverter}}"
+                                    TextColor="#96A637">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding InputAddressCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                
+                            </StackLayout>
+                            
+                        </StackLayout>
+                        
+                        <Button
+                            Margin="30,25,30,0"
+                            BackgroundColor="#96A637"
+                            Command="{Binding CallToClientCommand}"
+                            CornerRadius="5"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            Text="Связаться с клиентом"
+                            TextColor="White" />
+
+                        <Button
+                            Margin="30,0"
+                            BackgroundColor="Transparent"
+                            Command="{Binding ApproveDeliveryCommand}"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            Text="Подтвердить доставку с клиентом"
+                            TextColor="#1A1824" />
+
+                        <Button
+                            Margin="30,0"
+                            BackgroundColor="Transparent"
+                            Command="{Binding ImpossibleDeliveryCommand}"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            Text="Невозможно доставить заказ"
+                            TextColor="#1A1824" />
+                        
+                        <Button
+                            Margin="30,0"
+                            BackgroundColor="Transparent"
+                            Command="{Binding EmergencyMessageCommand}"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            Text="Экстренное сообщение"
+                            TextColor="#D80B30" />
+                        
+                    </StackLayout>
+                </ScrollView>
+                   
+                <Frame HasShadow="False">
+                            
+                    <BoxView CornerRadius="8"
+                             HeightRequest="1"
+                             WidthRequest="140"
+                             Margin="0,-10,0,0"
+                             HorizontalOptions="Center"
+                             BackgroundColor="LightGray"/>
+                    
+                    <Frame.GestureRecognizers>
+                        <PanGestureRecognizer PanUpdated="OnPanUpdated"/>
+                    </Frame.GestureRecognizers>
+                    
+                </Frame>
+                
+            </Grid>
+            
+        </Grid>
+    </ContentPage.Content>
+</base:BaseContentPage>

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:Class="Pomidoros.View.Profile.BreakPage"
+    x:DataType="vm:BreakPageViewModel"
+    x:TypeArguments="vm:BreakPageViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:ProgressRingControl.Forms.Plugin;assembly=ProgressRing.Forms.Plugin"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.Profile;assembly=Pomidoros"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
+    BackgroundColor="White"
+    StatusBarColor="White"
+    HasNavigationBar="False"
+    Icons="Dark">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="TripTitleStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource BoldFont}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="Margin" Value="48, 0, 48, 12" />
+            </Style>
+
+            <Style x:Key="BigCountdownStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource BoldFont}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="SmallCountdownStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource BoldFont}" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="70">
+                
+                <Frame
+                    Margin="30,0,30,10"
+                    BackgroundColor="Transparent"
+                    BorderColor="LightGray"
+                    CornerRadius="10"
+                    HeightRequest="70">
+                    
+                    <Label
+                        BackgroundColor="Transparent"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        HorizontalTextAlignment="Center"
+                        Text="Перерыв на 15 мин одобрен"
+                        TextColor="#1C1C1C"
+                        VerticalTextAlignment="Center" />
+                    
+                </Frame>
+                
+                <Grid>
+                    <StackLayout Margin="0,70,0,0">
+                        <Label
+                            Margin="0,0,0,0"
+                            BackgroundColor="Transparent"
+                            FontFamily="{StaticResource NormalFont}"
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            Text="осталось"
+                            TextColor="#1C1C1C"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Margin="0,10,0,0"
+                            BackgroundColor="Transparent"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="30"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding TimerProperty}"
+                            TextColor="#1C1C1C"
+                            VerticalTextAlignment="Center" />
+                    </StackLayout>
+                    
+                    <control:ProgressRing
+                        AnimatedProgress="1"
+                        AnimationLength="900000"
+                        HeightRequest="250"
+                        HorizontalOptions="CenterAndExpand"
+                        ProgressColor="White"
+                        RingBaseColor="{Binding BaseColor}"
+                        RingProgressColor="White"
+                        RingThickness="5"
+                        WidthRequest="250" />
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</base:BaseContentPage>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:TypeArguments="vm:BackToBasePageViewModel"
+    x:DataType="vm:BackToBasePageViewModel"
+    x:Class="Pomidoros.View.FlowAfterOrder.BackToBasePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.FlowAfterOrder;assembly=Pomidoros"
+    xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
+    xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+    ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
+    BackgroundColor="White"
+    HasNavigationBar="False"
+    Icons="Dark"
+    StatusBarColor="White">
+    
+    <ContentPage.Content>
+        <Grid RowSpacing="-5">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="180" />
+            </Grid.RowDefinitions>
+            
+            <maps:MapView />
+            
+            <yummy:PancakeView
+                Grid.Row="1"
+                Padding="0"
+                BackgroundColor="White"
+                CornerRadius="20,20,0,0"
+                HasShadow="True"
+                HeightRequest="300">
+                
+                <StackLayout Margin="30,10,30,0"
+                             Orientation="Horizontal">
+                    
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <Image Margin="0,10,0,0" HeightRequest="20" Source="geo2" />
+                        <Image Margin="0,1" Source="loc" />
+                        <Image HeightRequest="20" Source="geo" />
+                    </StackLayout>
+                    
+                    <StackLayout VerticalOptions="CenterAndExpand">
+                        <StackLayout Spacing="5" Margin="20,10,0,0">
+                            <Label
+                                FontFamily="{StaticResource BoldFont}"
+                                FontSize="18"
+                                Text="{Binding Order.StartAddress}"
+                                TextColor="Black" />
+                            <Label
+                                FontFamily="{StaticResource NormalFont}"
+                                FontSize="16"
+                                Text="{Binding Order.Distance, Converter={StaticResource distanceToStringConverter}}"
+                                TextColor="#39B637" />
+                        </StackLayout>
+                        
+                        <BoxView
+                            Margin="0,5,30,5"
+                            BackgroundColor="LightGray"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            WidthRequest="500" />
+                        
+                        <StackLayout Margin="20,0,0,0">
+                            <Label
+                                FontFamily="{StaticResource BoldFont}"
+                                FontSize="18"
+                                Text="{Binding Order.DeliveryAddress}"
+                                TextColor="Black" />
+                            <Label
+                                FontFamily="{StaticResource NormalFont}"
+                                FontSize="16"
+                                Text="{Binding Order.Distance, Converter={StaticResource distanceToStringConverter}}"
+                                TextColor="#39B637" />
+                        </StackLayout>
+                    </StackLayout>
+                </StackLayout>
+            </yummy:PancakeView>
+        </Grid>
+    </ContentPage.Content>
+</base:BaseContentPage>

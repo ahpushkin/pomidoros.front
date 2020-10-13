@@ -1,62 +1,87 @@
-﻿using Autofac;
-using Pomidoros.Interfaces;
-using Pomidoros.Services;
-using Pomidoros.Utils;
+﻿using System.Net;
+using Autofac;
+using Pomidoros.Constants;
+using Pomidoros.Modules;
+using Pomidoros.Services.Navigation;
+using Pomidoros.Services.Storage;
 using Pomidoros.View;
+using Pomidoros.View.Authorization;
+using Pomidoros.View.ReviewSteps;
 using Pomidoros.ViewModel;
+using Pomidoros.ViewModel.Authorization;
+using Pomidoros.ViewModel.Profile;
+using Pomidoros.ViewModel.ReviewSteps;
+using Services.FlowFlags;
+using Services.Storage;
 using Xamarin.Forms;
+
+using BreakPage = Pomidoros.View.Profile.BreakPage;
+using ProfilePage = Pomidoros.View.Profile.ProfilePage;
 
 namespace Pomidoros
 {
-    public partial class App : Application
+    public partial class App : BaseApp
     {
-        public static string TestPhone = "0633430412";
-        public static IContainer Container { get; set; }
-        public static int CurrentLat { get; set; }
-        static UserItemDatabase database;
-        public static UserItemDatabase Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new UserItemDatabase();
-                }
-                return database;
-            }
-        }
-        public App()
+        protected override void InitializeApp()
         {
             InitializeComponent();
-
-            InitIoc();
-
-            //set launch page
-            //pls dont change this code)
-            MainPage = new NavigationPage(new LoginPage());
         }
 
-        private static void InitIoc()
+        protected override void PreLaunchRegistrations(ContainerBuilder builder)
         {
-            var builder = new ContainerBuilder();
-
-            builder.RegisterType<Requests>().As<IRequestsToServer>();
-            builder.RegisterType<CallService>().As<ICallService>();
-
-            Container = builder.Build();
+            builder.RegisterType<BreakPageViewModel>();
+            builder.RegisterType<ProfilePageViewModel>();
+            builder.RegisterType<MainPageViewModel>();
+            builder.RegisterType<LoginPageViewModel>();
+            builder.RegisterType<SecondReviewPageViewModel>();
+            builder.RegisterType<FirstReviewPageViewModel>();
+            builder.RegisterType<StorageImplementation>().As<IStorage>();
+            builder.RegisterType<FlowFlagManager>().As<IFlowFlagManager>();
         }
 
-        //OnStart method
-        protected override void OnStart()
+        protected override void SetupNavigation()
         {
+            RestoreNavigation();
         }
-        //OnSleep method
-        protected override void OnSleep()
+
+        protected override void PostLaunchRegistrations(ContainerBuilder builder)
         {
+            builder.RegisterModule<PluginsModule>();
+            builder.RegisterModule<ApiBindingsModule>();
+            builder.RegisterModule<ServicesModule>();
+            builder.RegisterModule<ViewModelsModule>();
+            builder.RegisterModule<ItemsViewModelModule>();
+
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            
+            builder.Register(c => new NavigationProvider(() => MainPage.Navigation));
         }
-        //OnResum method
-        protected override void OnResume()
+
+        private void RestoreNavigation()
         {
+            var flowService = Container.Resolve<IFlowFlagManager>();
+
+            if (flowService.Is(FlowSteps.MainPageStep))
+            {
+                MainPage = new NavigationPage(new MainPage());
+
+                if (flowService.Is(FlowSteps.Break))
+                {
+                    MainPage.Navigation.PushAsync(new ProfilePage());
+                    MainPage.Navigation.PushAsync(new BreakPage());
+                }
+            }
+            else
+            {
+                MainPage = new NavigationPage(new LoginPage());
+
+                if (flowService.Is(FlowSteps.CheckAutoStep))
+                    MainPage.Navigation.PushAsync(new FirstReviewPage());
+                
+                if (flowService.Is(FlowSteps.CheckUniformStep))
+                    MainPage.Navigation.PushAsync(new SecondReviewPage());
+            }
+            
         }
     }
 }

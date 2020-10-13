@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    
+    <!-- Common -->
+    <data name="CountItemsDataFormat" xml:space="preserve">
+        <value>{0} ед.</value>
+    </data>
+    <data name="CountDataFormat" xml:space="preserve">
+        <value>{0} шт.</value>
+    </data>
+    <data name="DistanceMeterDataFormat" xml:space="preserve">
+        <value>{0} м</value>
+    </data>
+    <data name="DistanceKilometerDataFormat" xml:space="preserve">
+        <value>{0:0.##} км</value>
+    </data>
+    <data name="OrderNumberTitleFormat" xml:space="preserve">
+        <value>Заказ №{0}</value>
+    </data>
+    <data name="OrderStatusFormat" xml:space="preserve">
+        <value>Статус: {0}</value>
+    </data>
+    <data name="OrderStatusOpened" xml:space="preserve">
+        <value>Доставляю заказ</value>
+    </data>
+    <data name="OrderStatusClosed" xml:space="preserve">
+        <value>Заказ доставлен</value>
+    </data>
+    <data name="OrderStatusNotDelivered" xml:space="preserve">
+        <value>Заказ не доставлен</value>
+    </data>
+    <data name="OrderStatusNotPayed" xml:space="preserve">
+        <value>Заказ не оплачен</value>
+    </data>
+    <data name="OrderStatusOperatorApprovePending" xml:space="preserve">
+        <value>Ожидается подтверждение о успешной доставки от администратора</value>
+    </data>
+    <data name="OrderStatusPending" xml:space="preserve">
+        <value>В ожидании</value>
+    </data>
+    <data name="CheckInputDataMessageToast" xml:space="preserve">
+        <value>Проверьте введенные данные и повторите попытку</value>
+    </data>
+    <data name="SaveButtonText" xml:space="preserve">
+        <value>Сохранить</value>
+    </data>
+    <data name="AddressTextTitle" xml:space="preserve">
+        <value>Адрес</value>
+    </data>
+    <data name="ChooseOnTheMapButton" xml:space="preserve">
+        <value>Выбрать на карте</value>
+    </data>
+    
+    <!-- Welcome page -->
+    <data name="WelcomeTitle" xml:space="preserve">
+        <value>Здравствуйте,</value>
+    </data>
+    
+    <!-- Login -->
+    <data name="EnterTitle" xml:space="preserve">
+        <value>Вход&#x0a;в систему</value>
+    </data>
+    <data name="UAPhonePlaceHolder" xml:space="preserve">
+        <value>+380 Номер телефона</value>
+    </data>
+    <data name="PasswordPlaceHolder" xml:space="preserve">
+        <value>Введите пароль</value>
+    </data>
+    <data name="EnterBtn" xml:space="preserve">
+        <value>Войти</value>
+    </data>
+    <data name="ForgotPassBtn" xml:space="preserve">
+        <value>Забыли пароль?</value>
+    </data>
+    
+    <!-- Reset pass -->
+    <data name="ReceiveNewPassTitle" xml:space="preserve">
+        <value>Получить&#x0a;новый пароль</value>
+    </data>
+    <data name="EnterNewPhoneLbl" xml:space="preserve">
+        <value>Введите номер телефона,&#x0a;введенный вами при регистрации</value>
+    </data>
+    <data name="EnterReceivedSmsCodeLbl" xml:space="preserve">
+        <value>Введите код полученый в смс</value>
+    </data>
+    <data name="ContinueBtn" xml:space="preserve">
+        <value>Продолжить</value>
+    </data>
+    <data name="RecoveryCodeFromSmsPlaceHolder" xml:space="preserve">
+        <value>Код восстановления из СМС</value>
+    </data>
+    <data name="SendSmsOnceMoreBtn" xml:space="preserve">
+        <value>Отправить СМС еще раз</value>
+    </data>
+    
+    <!-- Order detail views-->
+    <data name="OrderIdentityNumberFormat" xml:space="preserve">
+        <value>Порядковый номер: {0}</value>
+    </data>
+    <data name="DeliverOrderToDestinationLabel" xml:space="preserve">
+        <value>Доставьте заказ клиенту по
+указанному ниже адресу.</value>
+    </data>
+    <data name="CountDownToMapViewLabelFormat" xml:space="preserve">
+        <value>Через 10 сек вы будете направлены
+на экран маршрута</value>
+    </data>
+    <data name="OrderContentTitleFormat" xml:space="preserve">
+        <value>Состав&amp;#x0a;Заказа №{0}</value>
+    </data>
+    <data name="InputDeliveryAddressLabel" xml:space="preserve">
+        <value>Ввести адрес вручную</value>
+    </data>
+    <data name="InputDeliveryAddressPlaceholder" xml:space="preserve">
+        <value>Адрес доставки</value>
+    </data>
+    <data name="ConfirmAddressButton" xml:space="preserve">
+        <value>Подтвердить адрес</value>
+    </data>
+    <data name="ToConfirmAddressLabel" xml:space="preserve">
+        <value>Подтвердите адрес</value>
+    </data>
+    <data name="SubscribeOrderTitle" xml:space="preserve">
+        <value>Подписать заказ</value>
+    </data>
+    <data name="SuccessDeliveredStatusPartLabel" xml:space="preserve">
+        <value>успешно доставлен</value>
+    </data>
+    <data name="FailureDeliveredStatusPartLabel" xml:space="preserve">
+        <value>не доставлен</value>
+    </data>
+    <data name="ToHomeBaseTitle" xml:space="preserve">
+        <value>На базу</value>
+    </data>
+    <data name="ClientDidntLikeDeliveryReview" xml:space="preserve">
+        <value>Клиенту не понравилась доставка</value>
+    </data>
+    <data name="ClientLikedDeliveryReview" xml:space="preserve">
+        <value>Клиенту понравилась доставка</value>
+    </data>
+    <data name="DeliveryEstimationTimeLabelFormat" xml:space="preserve">
+        <value>Заказ должен быть доставлен в {0:HH:mm}</value>
+    </data>
+    <data name="BeginDeliveryNowLabel" xml:space="preserve">
+        <value>Начните доставку сейчас,
+чтобы не опоздать</value>
+    </data>
+    <data name="CantBeginAnotherOrderLabel" xml:space="preserve">
+        <value>Вы не сможете брать второй заказ, пока администратор не подтвердит успешную доставку. Просим подождать несколько минут.</value>
+    </data>
+</root>

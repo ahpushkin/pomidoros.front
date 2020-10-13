@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:Class="Pomidoros.View.FlowAfterOrder.DoneOrderPage"
+    x:TypeArguments="vm:DonePageViewModel"
+    x:DataType="vm:DonePageViewModel"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
+    xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
+    xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="White"
+    HasNavigationBar="False"
+    Icons="Dark"
+    StatusBarColor="White">
+    <ContentPage.Content>
+        <Grid>
+            
+            <maps:MapView />
+            
+            <BoxView BackgroundColor="#A0000000" />
+            
+            <StackLayout VerticalOptions="Center">
+                <Frame
+                    Margin="30,0"
+                    Padding="0"
+                    BackgroundColor="White"
+                    CornerRadius="20"
+                    HeightRequest="280">
+                    
+                    <StackLayout Padding="15" Spacing="10">
+                        
+                        <Label
+                            Margin="5,5,5,15"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="18"
+                            Text="{Binding Title}"
+                            TextColor="#1A1824"
+                            HorizontalTextAlignment="Center">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding Order.OrderStatus}"
+                                             Value="Failed">
+                                    <Setter Property="TextColor" Value="Red" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                        
+                        <BoxView
+                            BackgroundColor="LightGray"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            WidthRequest="1000"
+                            Margin="-15,0"/>
+                        
+                        <StackLayout Margin="0,0,0,40" Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical" Spacing="0">
+                                <Image Margin="0,0,0,30" HeightRequest="20" Source="geo2" />
+                                <Image Margin="0,-30,0,0" Source="loc" />
+                                <Image HeightRequest="20" Source="geo" />
+                            </StackLayout>
+                            <FlexLayout JustifyContent="SpaceBetween" Direction="Column">
+                                <Label
+                                    Margin="20,0,0,0"
+                                    FontFamily="{StaticResource BoldFont}"
+                                    FontSize="18"
+                                    Text="{Binding Order.StartAddress}"
+                                    TextColor="Black" />
+                                <BoxView
+                                    Margin="0,0,30,0"
+                                    BackgroundColor="LightGray"
+                                    HeightRequest="1"
+                                    HorizontalOptions="FillAndExpand"
+                                    WidthRequest="500" />
+                                <Label
+                                    Margin="20,0,0,0"
+                                    FontFamily="{StaticResource BoldFont}"
+                                    FontSize="18"
+                                    Text="{Binding Order.DeliveryAddress}"
+                                    TextColor="Black" />
+                            </FlexLayout>
+                        </StackLayout>
+                        <!--  end  -->
+                        <BoxView
+                            Margin="-15,-35,-15,0"
+                            BackgroundColor="LightGray"
+                            HeightRequest="1"
+                            HorizontalOptions="FillAndExpand"
+                            WidthRequest="1000" />
+
+                        <Label
+                            Margin="0,10,0,0"
+                            FontFamily="{StaticResource NormalFont}"
+                            FontSize="16"
+                            HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Информация о заказе остается доступной на странице «" TextColor="#1A1824" />
+                                    <Span Text="История" TextColor="#96A637" />
+                                    <Span Text="»" TextColor="#1A1824" />
+                                </FormattedString>
+                            </Label.FormattedText>
+
+                        </Label>
+                    </StackLayout>
+                </Frame>
+                <Button
+                    Margin="30,20,30,0"
+                    BackgroundColor="#96A637"
+                    Clicked="BackEvent"
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Проложить маршрут до базы"
+                    HeightRequest="60"
+                    TextColor="White" />
+                
+                <Button
+                    Margin="30,20,30,30"
+                    BackgroundColor="White"
+                    Clicked="MainEvent"
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    HeightRequest="60"
+                    Text="На главную"
+                    TextColor="#1C1C1C" />
+            </StackLayout>
+            
+        </Grid>
+    </ContentPage.Content>
+</base:BaseContentPage>

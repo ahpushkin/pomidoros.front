@@ -1,15 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
+<l:BaseApp xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:l="clr-namespace:Pomidoros;assembly=Pomidoros"
+             xmlns:converters="clr-namespace:Pomidoros.Converters;assembly=Pomidoros"
+             xmlns:templates="clr-namespace:Pomidoros.Templates;assembly=Pomidoros"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:Application.WindowSoftInputModeAdjust="Resize"
              x:Class="Pomidoros.App">
+    
     <Application.Resources>
         <ResourceDictionary>
-    <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
-        <On Platform="Android" Value="Montserrat-Bold.ttf#Montserrat" />
-    </OnPlatform>
-    <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
-        <On Platform="Android" Value="Montserrat-Light.ttf#Open Sans" />
-    </OnPlatform>
-</ResourceDictionary>
+            
+            <!-- fonts -->
+            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+                <On Platform="Android" Value="Montserrat-Bold.ttf#Montserrat" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="NormalFont">
+                <On Platform="Android" Value="Montserrat-Light.ttf#Open Sans" />
+            </OnPlatform>
+            
+            <!-- data converters -->
+            <converters:OrderStatusEnumToStringConverter x:Key="orderStatusEnumToStringConverter" />
+            <converters:BoolInverterConverter x:Key="boolInverterConverter" />
+            <converters:DistanceIntToStringConverter x:Key="distanceToStringConverter" />
+            <converters:CountIntToStringConverter x:Key="countIntToStringConverter" />
+            
+            <!-- templates -->
+            <templates:NavigatablePageTemplate x:Key="NavigatablePageTemplate"/>
+            <templates:NavigatablePageWithTitleIconTemplate x:Key="NavigatablePageWithTitleIconTemplate"/>
+            
+        </ResourceDictionary>
     </Application.Resources>
-</Application>
+    
+</l:BaseApp>

@@ -1,33 +1,50 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<pages:PopupPage  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                  xmlns="http://xamarin.com/schemas/2014/forms"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                  x:Class="Pomidoros.View.Notification.CallPopupPage">
-    <!--#region-->
-    <Frame Background="White"
-           VerticalOptions="EndAndExpand"
-           HorizontalOptions="Center" 
-           HasShadow="True"
-           CornerRadius="20"
-           IsClippedToBounds="True"
-           Padding="0"
-           Margin="0,0,0,0"
-           WidthRequest="475"
-           HeightRequest="235">
-     <StackLayout VerticalOptions="Center"
-                      HorizontalOptions="FillAndExpand"
-                      Padding="20, 20, 20, 20"
-             
-                      BackgroundColor="White">
-         <!--#endregion-->
-        <ImageButton Source="closebar" HorizontalOptions="Center" Clicked="OnClose"></ImageButton>
-         <Label Text="Связаться с клиентом (Д. Оруэлл)" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontAttributes="Bold"
-                FontSize="16" Margin="0,10,30,0" TextColor="#1A1824"></Label>
-         <Button Text="Позвонить" BackgroundColor="#96A637" FontAttributes="Bold"
-                        FontSize="16" CornerRadius="5" FontFamily="{StaticResource BoldFont}" Margin="30,30,30,0" TextColor="White"></Button>
-         <Button Text="Написать сообщение" FontFamily="{StaticResource BoldFont}" BackgroundColor="Transparent" FontAttributes="Bold"
-                FontSize="16" Margin="0,10,30,0" TextColor="#1A1824"></Button>
-         <!--end-->
-     </StackLayout>
-    </Frame>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    x:Class="Pomidoros.View.Notification.CallPopupPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <yummy:PancakeView
+        Margin="0"
+        Padding="0"
+        BackgroundColor="Transparent"
+        CornerRadius="20,20,0,0"
+        HasShadow="True"
+        VerticalOptions="End">
+        <StackLayout
+            Padding="30,20,30,20"
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center">
+            <Label
+                Margin="0,10,0,0"
+                BackgroundColor="Transparent"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="16"
+                HorizontalOptions="CenterAndExpand"
+                Text="Связаться с клиентом"
+                TextColor="#1A1824" />
+            <Button
+                Margin="0,30,0,0"
+                BackgroundColor="#96A637"
+                Clicked="CallClicked"
+                CornerRadius="5"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="16"
+                Text="Позвонить"
+                TextColor="White" />
+            <Button
+                Margin="0,10,0,0"
+                BackgroundColor="Transparent"
+                Clicked="SmsClicked"
+                FontAttributes="Bold"
+                FontFamily="{StaticResource BoldFont}"
+                FontSize="16"
+                Text="Написать сообщение"
+                TextColor="#1A1824" />
+        </StackLayout>
+    </yummy:PancakeView>
 </pages:PopupPage>

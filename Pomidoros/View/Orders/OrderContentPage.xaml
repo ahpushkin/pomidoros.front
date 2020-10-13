@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:Class="Pomidoros.View.Orders.OrderContentPage"
+    x:TypeArguments="vm:OrderContentPageViewModel"
+    x:DataType="vm:OrderContentPageViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
+    xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+    xmlns:i="clr-namespace:Services.Models.Orders;assembly=Services.Models"
+    ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
+    BackgroundColor="White"
+    StatusBarColor="White"
+    HasNavigationBar="False"
+    Icons="Dark">
+    <ContentPage.Content>
+        <ScrollView Margin="0,0,0,30">
+
+            <Grid>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Label
+                    Margin="30,5,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="30"
+                    Text="{Binding Order.OrderNumber,
+                    StringFormat={x:Static str:LocalizationStrings.OrderContentTitleFormat}}"
+                    TextColor="#1A1824" />
+
+                <CollectionView Grid.Row="1"
+                                ItemsSource="{Binding Order.Contents}"
+                                Margin="30,0"
+                                HeightRequest="300"
+                                Footer="{Binding .}">
+                    
+                    <CollectionView.ItemTemplate>
+                         <DataTemplate x:DataType="i:OrderContentModel">
+                             
+                             <StackLayout
+                                 Margin="0,0,0,0"
+                                 Padding="20"
+                                 Orientation="Horizontal">
+                                 
+                                 <Label
+                                     FontFamily="{StaticResource NormalFont}"
+                                     FontSize="16"
+                                     TextColor="#1C1C1C"
+                                     VerticalOptions="Center"
+                                     Text="{Binding .}"/>
+                                 
+                                 <Label
+                                     FontFamily="{StaticResource NormalFont}"
+                                     HorizontalOptions="EndAndExpand"
+                                     Text="{Binding FullPrice, StringFormat='{0} ₴'}"
+                                     TextColor="#1C1C1C"
+                                     VerticalOptions="Center" />
+                                 
+                             </StackLayout>
+                             
+                         </DataTemplate>
+                     </CollectionView.ItemTemplate>
+                    
+                    <CollectionView.FooterTemplate>
+                        <DataTemplate>
+                            
+                            <StackLayout Orientation="Horizontal"
+                                         Margin="0,10,0,0">
+                                
+                                <Label
+                                    Margin="15,0,0,0"
+                                    FontFamily="{StaticResource BoldFont}"
+                                    FontSize="16"
+                                    HorizontalOptions="StartAndExpand"
+                                    VerticalTextAlignment="End"
+                                    Text="Общая сумма"
+                                    TextColor="#1A1824" />
+
+                                <Label
+                                    Margin="0,0,15,0"
+                                    FontFamily="{StaticResource BoldFont}"
+                                    FontSize="16"
+                                    HorizontalOptions="EndAndExpand"
+                                    VerticalTextAlignment="End"
+                                    Text="{Binding Order.AmountPrice, StringFormat='{0} ₴'}"
+                                    TextColor="#1A1824" />
+                                
+                            </StackLayout>
+                            
+                        </DataTemplate>
+                    </CollectionView.FooterTemplate>
+                    
+                </CollectionView>
+                
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</base:BaseContentPage>

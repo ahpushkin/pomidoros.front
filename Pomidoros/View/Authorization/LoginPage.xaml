@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:Class="Pomidoros.View.Authorization.LoginPage"
+    x:TypeArguments="vm:LoginPageViewModel"
+    x:DataType="vm:LoginPageViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:basil="clr-namespace:Basil.Behaviors.Masks;assembly=Basil.Behaviors"
+    xmlns:handlers="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:rules="clr-namespace:Basil.Behaviors.Rules.Mask;assembly=Basil.Behaviors"
+    xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+    xmlns:local="clr-namespace:Pomidoros.Controls"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.Authorization;assembly=Pomidoros"
+    BackgroundColor="White"
+    Icons="Dark"
+    StatusBarColor="White"
+    HasNavigationBar="False">
+    <ContentPage.Content>
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <StackLayout 
+                Margin="30, 20,30,10"
+                Orientation="Horizontal"
+                VerticalOptions="StartAndExpand">
+                        
+                <ImageButton
+                    BackgroundColor="Transparent"
+                    Command="{Binding CallOperatorCommand}"
+                    HeightRequest="40"
+                    HorizontalOptions="EndAndExpand"
+                    Source="help"
+                    WidthRequest="40" />
+                        
+            </StackLayout>
+            
+            <ScrollView Grid.Row="1">
+            
+                <Grid
+                    Margin="30, 15"
+                    RowSpacing="15"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Fill">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="70" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="70" />
+                    </Grid.RowDefinitions>
+                    
+                    <Label
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="33"
+                        Text="{x:Static str:LocalizationStrings.EnterTitle}"
+                        TextColor="#1A1824" />
+                    
+                    <!--  phone  -->
+                    <local:ImageEntry
+                        Grid.Row="1"
+                        x:Name="number"
+                        FontFamily="{StaticResource NormalFont}"
+                        HeightRequest="50"
+                        Image="ua"
+                        LineColor="Gray"
+                        Placeholder="{x:Static str:LocalizationStrings.UAPhonePlaceHolder}"
+                        PlaceholderColor="Gray"
+                        Keyboard="Numeric"
+                        Text="{Binding Phone}"
+                        TextColor="#1A1824">
+                        <local:ImageEntry.Behaviors>
+                            <handlers:EventToSetPropertyBehavior x:TypeArguments="x:String" Value="+380" PropertyName="Text" EventName="Focused" TargetExecuteObject="{x:Reference number}" />
+                            <basil:MaskWithRulesBehavior Pattern="+380XXXXXXXXX" PropertyName="Text" >
+                                <rules:CharMaskRule Rule="X" AllowedChars="+1234567890" />
+                            </basil:MaskWithRulesBehavior>
+                        </local:ImageEntry.Behaviors>
+                    </local:ImageEntry>
+                    
+                    <!-- pwrd -->
+                    <local:ImageEntry
+                        Grid.Row="2"
+                        BackgroundColor="Transparent"
+                        FontFamily="{StaticResource NormalFont}"
+                        HeightRequest="50"
+                        IsPassword="{Binding IsPassword}"
+                        Text="{Binding Password}"
+                        Keyboard="Numeric"
+                        LineColor="Gray"
+                        Placeholder="{x:Static str:LocalizationStrings.PasswordPlaceHolder}"
+                        PlaceholderColor="Gray"
+                        TextColor="#1A1824"
+                        WidthRequest="300" />
+                    
+                    <!-- hide pass btn -->
+                    <ImageButton
+                        Grid.Row="2"
+                        Margin="0,0,8,0"
+                        BackgroundColor="Transparent"
+                        Command="{Binding SwitchPasswordVisibleCommand}"
+                        HeightRequest="25"
+                        HorizontalOptions="EndAndExpand"
+                        Source="pass"
+                        WidthRequest="25" />
+                    
+                    <!-- login btn -->
+                    <Button
+                        Grid.Row="3"
+                        Margin="0,15,0,0"
+                        HeightRequest="55"
+                        BackgroundColor="#90A610"
+                        Command="{Binding LoginCommand}"
+                        CornerRadius="8"
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        Text="{x:Static str:LocalizationStrings.EnterBtn}"
+                        TextColor="White" />
+                    
+                    <!-- forgot btn -->
+                    <Button
+                        Grid.Row="5"
+                        BackgroundColor="Transparent"
+                        Command="{Binding ForgotPasswordCommand}"
+                        FontAttributes="Bold"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="16"
+                        Text="{x:Static str:LocalizationStrings.ForgotPassBtn}"
+                        TextColor="#1A1824" />
+                    
+                </Grid>
+                
+            </ScrollView>
+            
+        </Grid>
+        
+    </ContentPage.Content>
+    
+</base:BaseContentPage>

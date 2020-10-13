@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<base:BaseContentPage
+    x:Class="Pomidoros.View.Profile.ProfilePage"
+    x:DataType="vm:ProfilePageViewModel"
+    x:TypeArguments="vm:ProfilePageViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+    xmlns:local="clr-namespace:Pomidoros.Controls"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel.Profile;assembly=Pomidoros"
+    ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
+    BackgroundColor="White"
+    HasNavigationBar="False"
+    Icons="Dark"
+    StatusBarColor="White">
+    <ContentPage.Content>
+        <ScrollView>
+            
+            <StackLayout Padding="30,15">
+
+                <Image
+                    HorizontalOptions="Start"
+                    Source="profileimage"
+                    VerticalOptions="StartAndExpand"
+                    HeightRequest="130"
+                    WidthRequest="130"/>
+
+                <Label
+                    x:Name="name"
+                    Margin="0,20,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="30"
+                    Text="{Binding FullName}"
+                    TextColor="#1A1824"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Start"/>
+
+                <Button
+                    ImageSource="logout"
+                    Margin="0,10,0,0"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Start"
+                    Command="{Binding LogoutCommand}"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Выйти"
+                    TextColor="#96A637" />
+
+                <Label
+                    Margin="0,10,0,0"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="20"
+                    Text="Личная информация"
+                    TextColor="#1A1824"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Start"/>
+
+                <Label
+                    Margin="0,10,0,0"
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource NormalFont}"
+                    FontSize="16"
+                    Text="Идентификатор"
+                    TextColor="Gray" />
+                
+                <Entry
+                    Margin="0,-10,0,0"
+                    FontFamily="{StaticResource NormalFont}"
+                    FontSize="18"
+                    HeightRequest="50"
+                    PlaceholderColor="LightGray"
+                    IsReadOnly="True"
+                    Text="{Binding Identify}"
+                    TextColor="#1A1824" />
+
+                <Label
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource NormalFont}"
+                    FontSize="16"
+                    Text="Имя и Фамилия"
+                    TextColor="Gray" />
+                
+                <Entry
+                    Margin="0,-10,0,0"
+                    FontFamily="{StaticResource NormalFont}"
+                    FontSize="18"
+                    HeightRequest="50"
+                    PlaceholderColor="LightGray"
+                    Text="{Binding FullName}"
+                    TextColor="#1A1824" />
+
+                <Label
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource NormalFont}"
+                    FontSize="16"
+                    Text="Email"
+                    TextColor="Gray" />
+                
+                <Entry
+                    Margin="0,-10,0,0"
+                    FontFamily="{StaticResource NormalFont}"
+                    HeightRequest="50"
+                    FontSize="18"
+                    PlaceholderColor="LightGray"
+                    Text="{Binding Email}"
+                    TextColor="#1A1824" />
+
+                <Label
+                    BackgroundColor="Transparent"
+                    FontFamily="{StaticResource NormalFont}"
+                    FontSize="16"
+                    Text="Номер телефона"
+                    TextColor="Gray" />
+                
+                <Entry
+                    Margin="0,-10,0,0"
+                    FontFamily="{StaticResource NormalFont}"
+                    HeightRequest="50"
+                    FontSize="18"
+                    PlaceholderColor="LightGray"
+                    Text="{Binding Phone}"
+                    TextColor="#1A1824" />
+
+                <Label
+                    Margin="0,10,0,0"
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="StartAndExpand"
+                    HorizontalTextAlignment="Start"
+                    Text="Мой транспорт"
+                    TextColor="#1A1824"/>
+                
+                <Frame
+                    Margin="0,15,0,0"
+                    BorderColor="LightGray"
+                    CornerRadius="13"
+                    HasShadow="False"
+                    HeightRequest="60">
+                    
+                    <Grid Padding="0,5"
+                          ColumnSpacing="20">
+                        
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height=".5*"/>
+                            <RowDefinition Height=".5*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        
+                        <Image 
+                            Grid.RowSpan="2"
+                            Source="car" />
+                        
+                        <Label
+                            Grid.Column="1"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource BoldFont}"
+                            FontSize="16"
+                            Text="{Binding Transport.Number}"
+                            TextColor="#1A1824"/>
+                        
+                        <Label
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            FontAttributes="Bold"
+                            FontFamily="{StaticResource NormalFont}"
+                            FontSize="14"
+                            Text="{Binding Transport.Model}"
+                            TextColor="Gray"/>
+
+                    </Grid>
+                    
+                </Frame>
+                
+                <Label
+                    Margin="0,10,0,0"
+                    FontFamily="{StaticResource NormalFont}"
+                    FontSize="18"
+                    HorizontalTextAlignment="Start"
+                    Text="Для смены транспорта необходимо&#x0a;выйти из системы и зайти под другими&#x0a;доступами."
+                    TextColor="#1A1824" />
+                
+                <Button
+                    Margin="0,40,0,0"
+                    BackgroundColor="#96A637"
+                    HeightRequest="60"
+                    Clicked="ChangeTransportEvent"
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Сменить транспорт"
+                    TextColor="White" />
+                
+                <Button
+                    Margin="0,5,0,0"
+                    BackgroundColor="#96A637"
+                    HeightRequest="60"
+                    Command="{Binding CallOperatorCommand}"
+                    CornerRadius="5"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Связаться с оператором"
+                    TextColor="White" />
+
+                <Button
+                    Margin="0,5,0,79"
+                    BackgroundColor="Transparent"
+                    HeightRequest="60"
+                    Clicked="BreakEvent"
+                    FontAttributes="Bold"
+                    FontFamily="{StaticResource BoldFont}"
+                    FontSize="16"
+                    Text="Запросить перерыв на 15 мин"
+                    TextColor="#1A1824" />
+                
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</base:BaseContentPage>

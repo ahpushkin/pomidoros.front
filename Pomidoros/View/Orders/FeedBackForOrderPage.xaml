@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<base:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      x:Class="Pomidoros.View.Orders.FeedBackForOrderPage"
+                      x:TypeArguments="vm:CompleteOrderPageViewModel"
+                      x:DataType="vm:CompleteOrderPageViewModel"
+                      xmlns:local="clr-namespace:Pomidoros.Controls"
+                      xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
+                      xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
+                      xmlns:state="clr-namespace:Pomidoros.StateContainer;assembly=Pomidoros"
+                      xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+                      ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
+                      BackgroundColor="White"
+                      StatusBarColor="White"
+                      HasNavigationBar="False"
+                      Icons="Dark">
+    <ContentPage.Content>
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="70" />
+            </Grid.RowDefinitions>
+            
+            <state:StateContainer x:Name="container">
+                <state:StateCondition State="Default">
+                    
+                    <StackLayout Padding="30"
+                                 VerticalOptions="Center">
+                        
+                        <Label Text="Понравилась ли вам доставка?"
+                               FontFamily="{StaticResource BoldFont}"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#1A1824"
+                               FontSize="36"/>
+                        
+                        <StackLayout Margin="0,10,0,0"
+                                     Orientation="Horizontal"
+                                     HorizontalOptions="CenterAndExpand"
+                                     BackgroundColor="Transparent"
+                                     Spacing="0">
+                
+                            <Button Clicked="YesEvent" 
+                                    Text="Да"
+                                    Margin="0,0,0,0"
+                                    TextColor="#96A637"
+                                    HeightRequest="80"
+                                    WidthRequest="140"
+                                    BackgroundColor="Transparent"
+                                    CornerRadius="10"
+                                    FontSize="26"
+                                    FontFamily="{StaticResource BoldFont}"/>
+                
+                            <Button Clicked="NopeEvent"
+                                    BackgroundColor="Transparent"
+                                    Text="Нет"
+                                    TextColor="Gray"
+                                    HeightRequest="80"
+                                    WidthRequest="140"
+                                    CornerRadius="10"
+                                    FontSize="26"
+                                    FontFamily="{StaticResource BoldFont}"/>
+                
+                        </StackLayout>
+                        
+                    </StackLayout>
+                    
+                </state:StateCondition>
+                
+                <state:StateCondition State="Like">
+                    
+                    <StackLayout Padding="30, 40,30,0"
+                                 Spacing="20"
+                                 VerticalOptions="Start">
+                        
+                        <Label Text="Понравилась ли вам доставка?"
+                               FontFamily="{StaticResource BoldFont}"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#1A1824"
+                               FontSize="24"/>
+                        
+                        <StackLayout Margin="0,10,0,0"
+                                     Orientation="Horizontal"
+                                     HorizontalOptions="CenterAndExpand"
+                                     BackgroundColor="Transparent"
+                                     Spacing="0">
+                
+                            <Button Text="Да"
+                                    BackgroundColor="#96A637"
+                                    TextColor="White"
+                                    HeightRequest="80"
+                                    WidthRequest="140"
+                                    CornerRadius="10"
+                                    FontSize="26"
+                                    InputTransparent="True"
+                                    FontFamily="{StaticResource BoldFont}"/>
+                
+                            <Button BackgroundColor="Transparent"
+                                    Text="Нет"
+                                    TextColor="Gray"
+                                    HeightRequest="80"
+                                    WidthRequest="140"
+                                    CornerRadius="10"
+                                    FontSize="26"
+                                    InputTransparent="True"
+                                    FontFamily="{StaticResource BoldFont}"/>
+                
+                        </StackLayout>
+                        
+                        <Label Text="Спасибо за ответ"
+                               FontFamily="{StaticResource BoldFont}"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#1A1824"
+                               FontSize="22"
+                               Margin="0,65,0,0"/>
+                        
+                        <Label Text="Приятного аппетита!"
+                               FontFamily="{StaticResource BoldFont}"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#1A1824"
+                               FontSize="36"
+                               Margin="0,10,0,0"/>
+                        
+                    </StackLayout>
+                    
+                </state:StateCondition>
+                
+                <state:StateCondition State="Dislike">
+                    
+                    <StackLayout Padding="30, 40,30,0"
+                                 Spacing="20"
+                                 VerticalOptions="Start">
+                        
+                        <Label Text="Понравилась ли вам доставка?"
+                               FontFamily="{StaticResource BoldFont}"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#1A1824"
+                               FontSize="24"/>
+                        
+                        <StackLayout Margin="0,10,0,0"
+                                     Orientation="Horizontal"
+                                     HorizontalOptions="CenterAndExpand"
+                                     BackgroundColor="Transparent">
+                
+                            <Button Text="Да"
+                                    TextColor="#96A637"
+                                    HeightRequest="80"
+                                    WidthRequest="140"
+                                    BackgroundColor="Transparent"
+                                    CornerRadius="10"
+                                    FontSize="26"
+                                    InputTransparent="True"
+                                    FontFamily="{StaticResource BoldFont}"/>
+                
+                            <Button BackgroundColor="#1C1C1C"
+                                    Text="Нет"
+                                    TextColor="White"
+                                    HeightRequest="80"
+                                    WidthRequest="140"
+                                    CornerRadius="10"
+                                    FontSize="26"
+                                    InputTransparent="True"
+                                    FontFamily="{StaticResource BoldFont}"/>
+                
+                        </StackLayout>
+                        
+                        <Label Text="Спасибо за ответ"
+                               FontFamily="{StaticResource BoldFont}"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#1A1824"
+                               FontSize="18"
+                               Margin="0,65,0,0"/>
+                        
+                        <Label Text="Наш оператор свяжется с вами, чтобы узнать подробности"
+                               FontFamily="{StaticResource BoldFont}"
+                               HorizontalTextAlignment="Center"
+                               TextColor="#1A1824"
+                               FontSize="36"
+                               Margin="0,10,0,0"/>
+
+                    </StackLayout>
+                    
+                </state:StateCondition>
+            </state:StateContainer>
+            
+            <Button Grid.Row="1"
+                    Clicked="DoneEvent"
+                    TextColor="#96A637"
+                    Text="Завершить доставку (15)"
+                    BackgroundColor="Transparent"
+                    FontSize="16"
+                    FontFamily="{StaticResource BoldFont}"
+                    x:Name="complete"/>
+            
+        </Grid>
+    </ContentPage.Content>
+</base:BaseContentPage>
