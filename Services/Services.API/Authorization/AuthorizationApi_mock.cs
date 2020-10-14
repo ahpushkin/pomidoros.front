@@ -12,5 +12,15 @@ namespace Services.API.Authorization
             await Task.Delay(3000).WithCancellation(token);
             return new TokenModel();
         }
+
+        public Task LogoutAsync(CancellationToken token = default)
+        {
+            return Task.Delay(3000).WithCancellation(token);
+        }
+
+        public Task ResetPasswordAsync(CancellationToken token = default)
+        {
+            return Task.Delay(3000).WithCancellation(token);
+        }
     }
 }

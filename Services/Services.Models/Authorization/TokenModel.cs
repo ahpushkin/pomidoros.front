@@ -12,6 +12,6 @@ namespace Services.Models.Authorization
         public DateTime CreatedAt { get; set; }
         
         [JsonProperty("user")]
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

@@ -8,8 +8,10 @@ using System.Windows.Input;
 using Acr.UserDialogs;
 using Autofac;
 using Core.Commands;
+using Core.Exceptions.Helpers;
 using Pomidoros.Constants;
 using Pomidoros.Interfaces;
+using Pomidoros.Resources;
 using Pomidoros.View.Authorization;
 using Pomidoros.View.Notification;
 using Pomidoros.ViewModel.Base;
@@ -54,11 +56,11 @@ namespace Pomidoros.ViewModel.Authorization
             set => SetProperty(ref _phone, value);
         }
 
-        private bool _isPassword = true;
-        public bool IsPassword
+        private bool _isPasswordVisible = true;
+        public bool IsPasswordVisible
         {
-            get => _isPassword;
-            set => SetProperty(ref _isPassword, value);
+            get => _isPasswordVisible;
+            set => SetProperty(ref _isPasswordVisible, value);
         }
         
         public ICommand SwitchPasswordVisibleCommand => new Command(OnSwitchPasswordVisibleCommand);
@@ -73,30 +75,32 @@ namespace Pomidoros.ViewModel.Authorization
         
         private void OnSwitchPasswordVisibleCommand()
         {
-            IsPassword = !IsPassword;
+            IsPasswordVisible = !IsPasswordVisible;
         }
         
         private async Task OnLoginCommandAsync(object arg)
         {
-            if (!await CheckConnectionWithPopupAsync())
+            if (!await CheckConnectionWithAlertAsync())
                 return;
 
             if (!ValidateInputDataWithToast())
                 return;
 
-            var isLogined = false;
             using (UserDialogs.Loading(maskType: MaskType.Clear))
-                //await AuthorizationService.LoginAsync(Phone, Password, CancellationToken.None);
-                await Task.Delay(2000);
+                await LoginAsync();
             
-            //if (AuthorizationService.IsAuthorized)
-            if (true)
+            if (AuthorizationService.IsAuthorized)
             {
                 await CurrentUserDataService.FetchUserDataAsync();
                 await Navigation.PushAsync(new WelcomePage());
             }
             else
-                await UserDialogs.AlertAsync("Убедидесь в правильности введеных данных и повторите попытку.", "Ошибка при входе", "Ок");
+            {
+                await AlertAsync(
+                    LocalizationStrings.EnsureRightCredentialsAlertMessage,
+                    LocalizationStrings.ErrorWhileLoginAlertTitle,
+                    LocalizationStrings.Ok);
+            }
         }
         
         private Task OnForgotPasswordCommand(object arg)
@@ -106,19 +110,31 @@ namespace Pomidoros.ViewModel.Authorization
         
         #endregion
 
+        private async Task LoginAsync()
+        {
+            try
+            {
+                await AuthorizationService.LoginAsync(Phone, Password);
+            }
+            catch (Exception e)
+            {
+                ErrorHandlerHelper.Handle(e);
+            }
+        }
+        
         private bool ValidateInputDataWithToast()
         {
             var errorCounter = Regex.Matches(Phone, @"[a-zA-Z,а-яА-Я]")?.Count;
             
             if (string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(Password) || errorCounter > 0)
             {
-                Toast("Проверьте введенные данные");
+                Toast(LocalizationStrings.CheckInputDataMessageToast);
                 return false;
             }
             
-            if(!Phone.Contains("+380") || Phone.Length < 13 || Phone.Length > 14)
+            if(!Phone.Contains("+") || Phone.Contains(" ") || Phone.Contains("-"))
             {
-                Toast("Неверный формат номера телефона");
+                Toast(LocalizationStrings.WrongPhoneNumberFormatToastMessage);
                 return false;
             }
 

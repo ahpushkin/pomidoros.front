@@ -10,10 +10,9 @@ namespace Pomidoros.Modules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<HttpClient>();
-            builder.RegisterType<AuthorizationApi>().As<IAuthorizationApi>();
             
-            builder.RegisterType<OrdersApi_mock>().As<IOrdersApi>();
-            //builder.RegisterType<OrdersApi>().As<IOrdersApi>();
+            builder.RegisterType<AuthorizationApi>().As<IAuthorizationApi>();
+            builder.RegisterType<OrdersApi>().As<IOrdersApi>();
         }
     }
 }

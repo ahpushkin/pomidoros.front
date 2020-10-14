@@ -89,7 +89,7 @@
                         BackgroundColor="Transparent"
                         FontFamily="{StaticResource NormalFont}"
                         HeightRequest="50"
-                        IsPassword="{Binding IsPassword}"
+                        IsPassword="{Binding IsPasswordVisible}"
                         Text="{Binding Password}"
                         Keyboard="Numeric"
                         LineColor="Gray"

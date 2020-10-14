@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Services.API;
 using Services.API.Authorization;
 using Services.Storage;
 
@@ -22,8 +21,10 @@ namespace Services.Authorization
 
         public bool IsAuthorized => _storage.Available(Constants.StorageKeys.Token);
         
-        public void Logout()
+        public async Task LogoutAsync(CancellationToken token = default)
         {
+            await _authorizationApi.LogoutAsync(token);
+            
             if (IsAuthorized)
                 _storage.Remove(Constants.StorageKeys.Token);
             _storage.RemoveAll();
