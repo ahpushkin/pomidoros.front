@@ -1,7 +1,7 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
-using Services.Models.Data;
-using Services.Models.Enums;
+using Services.API.UserData;
 using Services.Models.User;
 using Services.Storage;
 
@@ -10,42 +10,38 @@ namespace Services.CurrentUser
     public class CurrentUserDataService : ICurrentUserDataService
     {
         private readonly IStorage _storage;
+        private readonly IUserDataApi _userDataApi;
 
-        public CurrentUserDataService(IStorage storage)
+        public CurrentUserDataService(
+            IStorage storage,
+            IUserDataApi userDataApi)
         {
             _storage = storage;
+            _userDataApi = userDataApi;
         }
         
-        public Task FetchUserDataAsync()
+        public async Task<UserDataModel> FetchUserDataAsync(CancellationToken token = default)
         {
-            _storage.Put(Constants.StorageKeys.UserData, new UserDataModel
-            {
-                FullName = "Олдос Хаксли",
-                Identify = "22212151",
-                Email = "aldous.huxley@gmail.com",
-                Phone = "+380 9767 217 315",
-                Transport = new TransportModel
-                {
-                    Type = ETransportType.Car,
-                    Model = "Volkswagen-Passat",
-                    Number = "AA 1234 AB"
-                }
-            });
-
-            return Task.CompletedTask;
-        }
-
-        public Task UpdateUserDataAsync(UserDataModel userData)
-        {
+            var userData = await _userDataApi.GetCurrentUserDataAsync(token);
+            
             _storage.Put(Constants.StorageKeys.UserData, userData);
 
-            return Task.CompletedTask;
+            return userData;
         }
 
-        public UserDataModel GetUserData()
+        public async Task<UserDataModel> UpdateUserDataAsync(UserDataModel userData, CancellationToken token = default)
+        {
+            var userNewData = await _userDataApi.UpdateCurrentUserDataAsync(userData, token);
+            
+            _storage.Put(Constants.StorageKeys.UserData, userNewData);
+
+            return userNewData;
+        }
+
+        public UserDataModel TryGetSavedUserData()
         {
             if (!_storage.Available(Constants.StorageKeys.UserData))
-                throw new ApplicationException("User data was not fetch or saved yet");
+                return null;
 
             return _storage.Get<UserDataModel>(Constants.StorageKeys.UserData);
         }

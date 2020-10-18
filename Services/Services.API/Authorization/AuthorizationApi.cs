@@ -32,7 +32,7 @@ namespace Services.API.Authorization
             => _httpClient
                 .WithDefaultHeaders()
                 .WithAuthorization(_tokenProvider.GetToken())
-                .PostAsync(RequestUrl("/auth/logout/"), null, token)
+                .PostAsync(RequestUrl("auth/logout/"), null, token)
                 .ReadAsJsonAsync<TokenModel>()
                 .WithCancellation(token);
 

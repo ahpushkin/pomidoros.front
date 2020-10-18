@@ -1,4 +1,8 @@
+using System;
+using System.Threading.Tasks;
+using Acr.UserDialogs;
 using Autofac;
+using Core.Exceptions.Helpers;
 using Pomidoros.Constants;
 using Pomidoros.ViewModel.Base;
 using Services.CurrentUser;
@@ -27,13 +31,31 @@ namespace Pomidoros.ViewModel.ReviewSteps
             set => SetProperty(ref _number, value);
         }
 
-        public override void OnAppearing()
+        public override async void OnAppearing()
         {
             base.OnAppearing();
 
-            var currentUser = CurrentUserDataService.GetUserData();
-            Model = currentUser.Transport.Model;
-            Number = currentUser.Transport.Number;
+            var currentUser = CurrentUserDataService.TryGetSavedUserData();
+            
+            if (currentUser == null)
+                using (UserDialogs.Loading(maskType: MaskType.Clear))
+                    await FetchUserDataAsync();
+            
+            Model = currentUser?.Transport?.Model;
+            Number = currentUser?.Transport?.Number;
+        }
+        
+        private async Task FetchUserDataAsync()
+        {
+            try
+            {
+                await CurrentUserDataService.FetchUserDataAsync();
+            }
+            catch (Exception e)
+            {
+                ErrorHandlerHelper.Handle(e);
+                ErrorToast();
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Threading.Tasks;
 using Autofac;
 using Pomidoros.Constants;
 using Pomidoros.Modules;
@@ -11,6 +12,7 @@ using Pomidoros.ViewModel;
 using Pomidoros.ViewModel.Authorization;
 using Pomidoros.ViewModel.Profile;
 using Pomidoros.ViewModel.ReviewSteps;
+using Services.Authorization;
 using Services.FlowFlags;
 using Services.Storage;
 using Xamarin.Forms;
@@ -22,6 +24,10 @@ namespace Pomidoros
 {
     public partial class App : BaseApp
     {
+        private IAuthorizationService _authorizationService;
+        protected IAuthorizationService AuthorizationService
+            => _authorizationService ??= Container.Resolve<IAuthorizationService>();
+        
         protected override void InitializeApp()
         {
             InitializeComponent();
@@ -39,9 +45,9 @@ namespace Pomidoros
             builder.RegisterType<FlowFlagManager>().As<IFlowFlagManager>();
         }
 
-        protected override void SetupNavigation()
+        protected override async void SetupNavigation()
         {
-            RestoreNavigation();
+            await RestoreNavigationAsync();
         }
 
         protected override void PostLaunchRegistrations(ContainerBuilder builder)
@@ -57,7 +63,7 @@ namespace Pomidoros
             builder.Register(c => new NavigationProvider(() => MainPage.Navigation));
         }
 
-        private void RestoreNavigation()
+        private async Task RestoreNavigationAsync()
         {
             var flowService = Container.Resolve<IFlowFlagManager>();
 
@@ -67,19 +73,19 @@ namespace Pomidoros
 
                 if (flowService.Is(FlowSteps.Break))
                 {
-                    MainPage.Navigation.PushAsync(new ProfilePage());
-                    MainPage.Navigation.PushAsync(new BreakPage());
+                    await MainPage.Navigation.PushAsync(new ProfilePage());
+                    await MainPage.Navigation.PushAsync(new BreakPage());
                 }
             }
             else
             {
                 MainPage = new NavigationPage(new LoginPage());
 
-                if (flowService.Is(FlowSteps.CheckAutoStep))
-                    MainPage.Navigation.PushAsync(new FirstReviewPage());
+                if (flowService.Is(FlowSteps.CheckAutoStep) || AuthorizationService.IsAuthorized)
+                    await MainPage.Navigation.PushAsync(new FirstReviewPage());
                 
                 if (flowService.Is(FlowSteps.CheckUniformStep))
-                    MainPage.Navigation.PushAsync(new SecondReviewPage());
+                    await MainPage.Navigation.PushAsync(new SecondReviewPage());
             }
             
         }

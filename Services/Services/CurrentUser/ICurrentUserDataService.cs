@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using Services.Models.User;
 
@@ -5,10 +6,10 @@ namespace Services.CurrentUser
 {
     public interface ICurrentUserDataService
     {
-        Task FetchUserDataAsync();
+        Task<UserDataModel> FetchUserDataAsync(CancellationToken token = default);
         
-        Task UpdateUserDataAsync(UserDataModel userData);
+        Task<UserDataModel> UpdateUserDataAsync(UserDataModel userData, CancellationToken token = default);
 
-        UserDataModel GetUserData();
+        UserDataModel TryGetSavedUserData();
     }
 }

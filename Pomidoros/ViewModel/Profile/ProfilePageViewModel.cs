@@ -61,8 +61,8 @@ namespace Pomidoros.ViewModel.Profile
             set => SetProperty(ref _email, value);
         }
 
-        private string _ideftify;
-        public string Identify
+        private int _ideftify;
+        public int Identify
         {
             get => _ideftify;
             set => SetProperty(ref _ideftify, value);
@@ -101,12 +101,18 @@ namespace Pomidoros.ViewModel.Profile
         {
             try
             {
+                var splittedName = FullName.Trim().Split(' ');
+                var firstName = splittedName.Length > 0 ? splittedName[0] : string.Empty;
+                var lastName = splittedName.Length > 1
+                    ? splittedName.Skip(1).FirstOrDefault(s => !string.IsNullOrWhiteSpace(s))
+                    : string.Empty;
+                
                 await CurrentUserDataService.UpdateUserDataAsync(new UserDataModel
                 {
-                    FullName = FullName,
+                    FirstName = firstName,
+                    LastName = lastName,
                     Identify = Identify,
                     Email = Email,
-                    Phone = Phone,
                     Transport = Transport
                 });
                 
@@ -121,12 +127,11 @@ namespace Pomidoros.ViewModel.Profile
 
         private void UpdateUserDataFromStorage()
         {
-            var userData = CurrentUserDataService.GetUserData();
+            var userData = CurrentUserDataService.TryGetSavedUserData();
             
             FullName = userData.FullName;
             Identify = userData.Identify;
             Email = userData.Email;
-            Phone = userData.Phone;
             Transport = new TransportModel
             {
                 Type = userData.Transport?.Type ?? ETransportType.OnFoot,

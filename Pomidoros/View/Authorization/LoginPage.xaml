@@ -6,7 +6,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:basil="clr-namespace:Basil.Behaviors.Masks;assembly=Basil.Behaviors"
-    xmlns:handlers="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
+    xmlns:behaviors="clr-namespace:Basil.Behaviors.Events;assembly=Basil.Behaviors"
+    xmlns:handlers="clr-namespace:Basil.Behaviors.Events.Handlers;assembly=Basil.Behaviors"
+    xmlns:conditional="clr-namespace:Basil.Behaviors.Events.Handlers.Conditional;assembly=Basil.Behaviors"
     xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
     xmlns:rules="clr-namespace:Basil.Behaviors.Rules.Mask;assembly=Basil.Behaviors"
     xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
@@ -76,7 +78,14 @@
                         Text="{Binding Phone}"
                         TextColor="#1A1824">
                         <local:ImageEntry.Behaviors>
-                            <handlers:EventToSetPropertyBehavior x:TypeArguments="x:String" Value="+380" PropertyName="Text" EventName="Focused" TargetExecuteObject="{x:Reference number}" />
+                            <behaviors:EventToMultipleHandlersBehavior EventName="Focused">
+                                <conditional:ConditionalCompositeHandler Condition="{Binding IsPhoneNotEligible}">
+                                    <handlers:EventToSetPropertyHandler x:TypeArguments="x:String"
+                                                                        Value="+380"
+                                                                        PropertyName="Text"
+                                                                        TargetExecuteObject="{x:Reference number}"/>
+                                </conditional:ConditionalCompositeHandler>
+                            </behaviors:EventToMultipleHandlersBehavior>
                             <basil:MaskWithRulesBehavior Pattern="+380XXXXXXXXX" PropertyName="Text" >
                                 <rules:CharMaskRule Rule="X" AllowedChars="+1234567890" />
                             </basil:MaskWithRulesBehavior>

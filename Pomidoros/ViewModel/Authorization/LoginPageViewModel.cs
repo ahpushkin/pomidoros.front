@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Acr.UserDialogs;
@@ -10,10 +7,8 @@ using Autofac;
 using Core.Commands;
 using Core.Exceptions.Helpers;
 using Pomidoros.Constants;
-using Pomidoros.Interfaces;
 using Pomidoros.Resources;
 using Pomidoros.View.Authorization;
-using Pomidoros.View.Notification;
 using Pomidoros.ViewModel.Base;
 using Rg.Plugins.Popup.Contracts;
 using Services.Authorization;
@@ -40,6 +35,11 @@ namespace Pomidoros.ViewModel.Authorization
 
         #endregion
 
+        public LoginPageViewModel()
+        {
+            IsPhoneNotEligible = true;
+        }
+
         #region properties
 
         private string _password;
@@ -54,6 +54,13 @@ namespace Pomidoros.ViewModel.Authorization
         {
             get => _phone;
             set => SetProperty(ref _phone, value);
+        }
+
+        private bool _isPhoneNotEligible;
+        public bool IsPhoneNotEligible
+        {
+            get => _isPhoneNotEligible;
+            set => SetProperty(ref _isPhoneNotEligible, value);
         }
 
         private bool _isPasswordVisible = true;
@@ -72,7 +79,15 @@ namespace Pomidoros.ViewModel.Authorization
         protected override string CurrentStep => FlowSteps.Login;
 
         #region commands
-        
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+
+            if (propertyName == nameof(Phone))
+                IsPhoneNotEligible = Phone.Length <= 4;
+        }
+
         private void OnSwitchPasswordVisibleCommand()
         {
             IsPasswordVisible = !IsPasswordVisible;
@@ -87,11 +102,13 @@ namespace Pomidoros.ViewModel.Authorization
                 return;
 
             using (UserDialogs.Loading(maskType: MaskType.Clear))
+            {
                 await LoginAsync();
+                await FetchUserDataAsync();
+            }
             
             if (AuthorizationService.IsAuthorized)
             {
-                await CurrentUserDataService.FetchUserDataAsync();
                 await Navigation.PushAsync(new WelcomePage());
             }
             else
@@ -119,6 +136,21 @@ namespace Pomidoros.ViewModel.Authorization
             catch (Exception e)
             {
                 ErrorHandlerHelper.Handle(e);
+                ErrorToast();
+            }
+        }
+
+        private async Task FetchUserDataAsync()
+        {
+            try
+            {
+                if (AuthorizationService.IsAuthorized)
+                    await CurrentUserDataService.FetchUserDataAsync();
+            }
+            catch (Exception e)
+            {
+                ErrorHandlerHelper.Handle(e);
+                ErrorToast();
             }
         }
         
