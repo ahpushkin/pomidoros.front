@@ -1,13 +1,13 @@
 ﻿using Autofac;
 using Pomidoros.Controller;
-using Pomidoros.Interfaces;
-using Rg.Plugins.Popup.Pages;
 using System;
 using Core.Navigation;
+using Services.Call;
+using Services.Sms;
 
 namespace Pomidoros.View.Notification
 {
-    public partial class CallPopupPage : PopupPage, IParametrized
+    public partial class CallPopupPage : IParametrized
     {
         private readonly ICallService _callService;
         private readonly ISmsService _smsService;

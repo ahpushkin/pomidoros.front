@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 
-namespace Pomidoros.Interfaces
+namespace Services.Call
 {
     public interface ICallService
     {

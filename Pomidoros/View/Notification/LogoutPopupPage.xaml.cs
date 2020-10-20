@@ -1,13 +1,12 @@
 ﻿using Autofac;
 using Pomidoros.Controller;
-using Pomidoros.Interfaces;
-using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
+using Services.Call;
 
 namespace Pomidoros.View.Notification
 {
-    public partial class LogoutPopupPage : PopupPage
+    public partial class LogoutPopupPage
     {
         private readonly ICallService _callService;
 
