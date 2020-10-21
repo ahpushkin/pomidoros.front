@@ -8,6 +8,6 @@ namespace Services.API.UserData
     {
         Task<UserDataModel> GetCurrentUserDataAsync(CancellationToken token = default);
         
-        Task<UserDataModel> UpdateCurrentUserDataAsync(UserDataModel newData, CancellationToken token = default);
+        Task<UserDataModel> UpdateCurrentUserDataAsync(UserUpdateModel newData, CancellationToken token = default);
     }
 }

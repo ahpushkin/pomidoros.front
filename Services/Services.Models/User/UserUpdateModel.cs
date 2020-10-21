@@ -1,10 +1,8 @@
-using System.Collections.Generic;
 using Newtonsoft.Json;
-using Services.Models.Data;
 
 namespace Services.Models.User
 {
-    public class UserDataModel
+    public class UserUpdateModel
     {
         [JsonProperty("id")]
         public int Identify { get; set; }
@@ -20,11 +18,5 @@ namespace Services.Models.User
 
         [JsonProperty("phone_number")]
         public string Phone { get; set; }
-        
-        [JsonProperty("username")]
-        public string Username { get; set; }
-
-        [JsonProperty("transport")]
-        public IEnumerable<TransportModel> Transport { get; set; }
     }
 }

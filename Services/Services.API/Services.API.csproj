@@ -32,6 +32,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="GeoJSON.Net, Version=1.1.73.0, Culture=neutral, PublicKeyToken=42c00ea87f5f14d4">
+          <HintPath>..\..\..\..\..\.nuget\packages\geojson.net\1.1.73\lib\netstandard1.1\GeoJSON.Net.dll</HintPath>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
@@ -45,6 +48,7 @@
         <Compile Include="Authorization\IAuthorizationApi.cs" />
         <Compile Include="Constants.cs" />
         <Compile Include="Extensions\HttpClientExtensions.cs" />
+        <Compile Include="Model\MultipleResponseHolder.cs" />
         <Compile Include="Orders\IOrdersApi.cs" />
         <Compile Include="Orders\OrdersApi.cs" />
         <Compile Include="Orders\OrdersApi_mock.cs" />
@@ -62,6 +66,10 @@
         <Project>{6eab063c-476d-4d50-9e7f-36348b3154b0}</Project>
         <Name>Services.Models</Name>
       </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <PackageReference Include="GeoJSON.Net" Version="1.1.73" />
+      <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

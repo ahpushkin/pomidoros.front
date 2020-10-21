@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Autofac;
@@ -40,9 +41,10 @@ namespace Pomidoros.ViewModel.ReviewSteps
             if (currentUser == null)
                 using (UserDialogs.Loading(maskType: MaskType.Clear))
                     await FetchUserDataAsync();
-            
-            Model = currentUser?.Transport?.Model;
-            Number = currentUser?.Transport?.Number;
+
+            var transportData = currentUser?.Transport?.FirstOrDefault();
+            Model = transportData?.Model;
+            Number = transportData?.Number;
         }
         
         private async Task FetchUserDataAsync()

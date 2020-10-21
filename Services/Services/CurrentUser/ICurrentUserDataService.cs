@@ -8,7 +8,7 @@ namespace Services.CurrentUser
     {
         Task<UserDataModel> FetchUserDataAsync(CancellationToken token = default);
         
-        Task<UserDataModel> UpdateUserDataAsync(UserDataModel userData, CancellationToken token = default);
+        Task<UserDataModel> UpdateUserDataAsync(UserUpdateModel userData, CancellationToken token = default);
 
         UserDataModel TryGetSavedUserData();
     }

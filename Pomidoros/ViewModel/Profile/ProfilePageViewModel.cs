@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Autofac;
 using Core.Commands;
+using Core.Exceptions.Helpers;
 using Core.Extensions;
 using Core.ViewModel.Infra;
 using Pomidoros.View.Authorization;
@@ -12,7 +14,6 @@ using Pomidoros.ViewModel.Base;
 using Services.Authorization;
 using Services.CurrentUser;
 using Services.Models.Data;
-using Services.Models.Enums;
 using Services.Models.User;
 
 namespace Pomidoros.ViewModel.Profile
@@ -40,11 +41,20 @@ namespace Pomidoros.ViewModel.Profile
         
         #region properties
 
-        private string _fullName;
-        public string FullName
+        public string FullName => $"{FirstName} {LastName}";
+
+        private string _firstName;
+        public string FirstName
         {
-            get => _fullName;
-            set => SetProperty(ref _fullName, value);
+            get => _firstName;
+            set => SetProperty(ref _firstName, value);
+        }
+
+        private string _lastName;
+        public string LastName
+        {
+            get => _lastName;
+            set => SetProperty(ref _lastName, value);
         }
 
         private string _phone;
@@ -95,32 +105,30 @@ namespace Pomidoros.ViewModel.Profile
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             _dataChanged = true;
+            
+            if (e.PropertyName == nameof(LastName) || e.PropertyName == nameof(FirstName))
+                RaisePropertyChanged(nameof(FullName));
         }
 
         private async Task SaveUserDataToStorage()
         {
             try
             {
-                var splittedName = FullName.Trim().Split(' ');
-                var firstName = splittedName.Length > 0 ? splittedName[0] : string.Empty;
-                var lastName = splittedName.Length > 1
-                    ? splittedName.Skip(1).FirstOrDefault(s => !string.IsNullOrWhiteSpace(s))
-                    : string.Empty;
-                
-                await CurrentUserDataService.UpdateUserDataAsync(new UserDataModel
+                var userData = CurrentUserDataService.TryGetSavedUserData();
+                await CurrentUserDataService.UpdateUserDataAsync(new UserUpdateModel
                 {
-                    FirstName = firstName,
-                    LastName = lastName,
-                    Identify = Identify,
+                    Identify = userData.Identify,
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Phone = Phone,
                     Email = Email,
-                    Transport = Transport
                 });
                 
                 Toast("Измененные данные были сохранены");
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                ErrorHandlerHelper.Handle(e);
                 ErrorToast();
             }
         }
@@ -128,16 +136,17 @@ namespace Pomidoros.ViewModel.Profile
         private void UpdateUserDataFromStorage()
         {
             var userData = CurrentUserDataService.TryGetSavedUserData();
-            
-            FullName = userData.FullName;
-            Identify = userData.Identify;
-            Email = userData.Email;
-            Transport = new TransportModel
+
+            if (userData != null)
             {
-                Type = userData.Transport?.Type ?? ETransportType.OnFoot,
-                Model = userData.Transport?.Model,
-                Number = userData.Transport?.Number
-            };
+                FirstName = userData.FirstName;
+                LastName = userData.LastName;
+                Identify = userData.Identify;
+                Phone = userData.Phone;
+                Email = userData.Email;
+                Transport = userData.Transport?.FirstOrDefault();
+                RaisePropertyChanged(nameof(FullName));
+            }
         }
         
         private async Task OnLogoutCommandAsync(object obj)

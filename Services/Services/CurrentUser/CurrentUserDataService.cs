@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Services.API.UserData;
@@ -29,7 +30,7 @@ namespace Services.CurrentUser
             return userData;
         }
 
-        public async Task<UserDataModel> UpdateUserDataAsync(UserDataModel userData, CancellationToken token = default)
+        public async Task<UserDataModel> UpdateUserDataAsync(UserUpdateModel userData, CancellationToken token = default)
         {
             var userNewData = await _userDataApi.UpdateCurrentUserDataAsync(userData, token);
             
