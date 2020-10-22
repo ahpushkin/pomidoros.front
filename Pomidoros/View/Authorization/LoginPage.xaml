@@ -55,7 +55,6 @@
                         <RowDefinition Height="55" />
                         <RowDefinition Height="70" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="70" />
                     </Grid.RowDefinitions>
                     
                     <Label
@@ -131,17 +130,6 @@
                         FontSize="16"
                         Text="{x:Static str:LocalizationStrings.EnterBtn}"
                         TextColor="White" />
-                    
-                    <!-- forgot btn -->
-                    <Button
-                        Grid.Row="5"
-                        BackgroundColor="Transparent"
-                        Command="{Binding ForgotPasswordCommand}"
-                        FontAttributes="Bold"
-                        FontFamily="{StaticResource BoldFont}"
-                        FontSize="16"
-                        Text="{x:Static str:LocalizationStrings.ForgotPassBtn}"
-                        TextColor="#1A1824" />
                     
                 </Grid>
                 

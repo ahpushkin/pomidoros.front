@@ -1,9 +1,7 @@
 using Autofac;
-using Pomidoros.Interfaces;
 using Pomidoros.Services.Call;
 using Pomidoros.Services.Route;
 using Pomidoros.Services.Sms;
-using Pomidoros.Utils;
 using Services.API.Token;
 using Services.Authorization;
 using Services.Call;
@@ -27,8 +25,6 @@ namespace Pomidoros.Modules
             builder.RegisterType<CallService>().As<ICallService>();
             builder.RegisterType<SmsService>().As<ISmsService>();
             builder.RegisterType<RouteService>().As<IMapHolder>().As<IRouteUpdater>().SingleInstance();
-            
-            builder.RegisterType<Requests>().As<IRequestsToServer>();
         }
     }
 }

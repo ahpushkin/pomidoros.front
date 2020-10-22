@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using Pomidoros.Interfaces;
 using System;
 using System.Threading.Tasks;
 using Pomidoros.Resources;

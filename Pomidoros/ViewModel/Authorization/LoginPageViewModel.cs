@@ -72,8 +72,7 @@ namespace Pomidoros.ViewModel.Authorization
         
         public ICommand SwitchPasswordVisibleCommand => new Command(OnSwitchPasswordVisibleCommand);
         public ICommand LoginCommand => new AsyncCommand(OnLoginCommandAsync);
-        public ICommand ForgotPasswordCommand => new AsyncCommand(OnForgotPasswordCommand);
-
+        
         #endregion
 
         protected override string CurrentStep => FlowSteps.Login;
@@ -118,11 +117,6 @@ namespace Pomidoros.ViewModel.Authorization
                     LocalizationStrings.ErrorWhileLoginAlertTitle,
                     LocalizationStrings.Ok);
             }
-        }
-        
-        private Task OnForgotPasswordCommand(object arg)
-        {
-            return Navigation.PushAsync(new ForgotPasswordPage());
         }
         
         #endregion

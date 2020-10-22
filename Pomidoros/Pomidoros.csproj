@@ -48,10 +48,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>LocalizationStrings.ru.resx</DependentUpon>
     </Compile>
-    <Compile Update="View\Authorization\ForgotPasswordPage.xaml.cs">
-      <DependentUpon>ForgotPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\Authorization\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
       <SubType>Code</SubType>
