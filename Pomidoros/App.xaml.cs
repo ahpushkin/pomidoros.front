@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
 using Autofac;
+using Plugin.FirebasePushNotification;
 using Pomidoros.Constants;
 using Pomidoros.Modules;
 using Pomidoros.Services.Navigation;
@@ -12,7 +13,6 @@ using Pomidoros.ViewModel;
 using Pomidoros.ViewModel.Authorization;
 using Pomidoros.ViewModel.Profile;
 using Pomidoros.ViewModel.ReviewSteps;
-using Services.Authorization;
 using Services.FlowFlags;
 using Services.Storage;
 using Xamarin.Forms;
@@ -22,7 +22,7 @@ using ProfilePage = Pomidoros.View.Profile.ProfilePage;
 
 namespace Pomidoros
 {
-    public partial class App : BaseApp
+    public partial class App
     {
         protected override void InitializeApp()
         {
@@ -58,6 +58,16 @@ namespace Pomidoros
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
             
             builder.Register(c => new NavigationProvider(() => MainPage.Navigation));
+        }
+
+        protected override Task HandleNotificationOpenedAsync(FirebasePushNotificationResponseEventArgs e)
+        {
+            return Task.CompletedTask;
+        }
+
+        protected override Task HandleNotificationReceivedAsync(FirebasePushNotificationDataEventArgs e)
+        {
+            return Task.CompletedTask;
         }
 
         private async Task RestoreNavigationAsync()
