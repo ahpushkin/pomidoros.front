@@ -7,6 +7,7 @@ using Services.Authorization;
 using Services.Call;
 using Services.CurrentUser;
 using Services.HistoryOrders;
+using Services.Messaging.Authorization;
 using Services.Orders;
 using Services.Sms;
 using Services.Token;
@@ -20,7 +21,7 @@ namespace Pomidoros.Modules
             builder.RegisterType<CurrentUserDataService>().As<ICurrentUserDataService>();
             builder.RegisterType<OrdersProvider>().As<IOrdersProvider>().As<IOrdersUpdater>();
             builder.RegisterType<HistoryOrdersProvider>().As<IHistoryOrdersProvider>();
-            builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
+            builder.RegisterType<AuthorizationService>().As<IAuthorizationService>().As<IAuthorizationProvider>();
             builder.RegisterType<TokenProvider>().As<ITokenProvider>();
             builder.RegisterType<CallService>().As<ICallService>();
             builder.RegisterType<SmsService>().As<ISmsService>();

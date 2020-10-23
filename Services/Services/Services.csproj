@@ -64,6 +64,10 @@
         <Project>{b6d1b98b-5ba4-4b0f-b316-f2f55575a6cb}</Project>
         <Name>Services.API</Name>
       </ProjectReference>
+      <ProjectReference Include="..\Services.Messaging\Services.Messaging.csproj">
+        <Project>{f2afe204-4837-4d41-aeae-0d8971841299}</Project>
+        <Name>Services.Messaging</Name>
+      </ProjectReference>
       <ProjectReference Include="..\Services.Models\Services.Models.csproj">
         <Project>{6eab063c-476d-4d50-9e7f-36348b3154b0}</Project>
         <Name>Services.Models</Name>

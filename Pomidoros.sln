@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Tools\Core\Core.csproj", "{C481399F-3CE7-467B-9DBC-588AB452A370}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Messaging", "Services\Services.Messaging\Services.Messaging.csproj", "{F2AFE204-4837-4D41-AEAE-0D8971841299}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -102,6 +104,18 @@ Global
 		{C481399F-3CE7-467B-9DBC-588AB452A370}.Release|iPhone.Build.0 = Release|Any CPU
 		{C481399F-3CE7-467B-9DBC-588AB452A370}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{C481399F-3CE7-467B-9DBC-588AB452A370}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Release|iPhone.Build.0 = Release|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{F2AFE204-4837-4D41-AEAE-0D8971841299}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,5 +129,6 @@ Global
 		{B6D1B98B-5BA4-4B0F-B316-F2F55575A6CB} = {46A55342-49AC-4C2A-A476-2B808B13F65F}
 		{F1AB95F2-C1DD-40D4-B5FD-DE4AC1FB1A9F} = {46A55342-49AC-4C2A-A476-2B808B13F65F}
 		{C481399F-3CE7-467B-9DBC-588AB452A370} = {F541D6C5-78CC-4AE1-86F4-3D580FF6AC62}
+		{F2AFE204-4837-4D41-AEAE-0D8971841299} = {46A55342-49AC-4C2A-A476-2B808B13F65F}
 	EndGlobalSection
 EndGlobal

@@ -132,6 +132,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Services\Services.Messaging\Services.Messaging.csproj" />
     <ProjectReference Include="..\Tools\Core\Core.csproj" />
     <ProjectReference Include="..\Services\Services.API\Services.API.csproj" />
     <ProjectReference Include="..\Services\Services\Services.csproj" />

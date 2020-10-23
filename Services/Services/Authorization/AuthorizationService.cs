@@ -2,11 +2,13 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Services.API.Authorization;
+using Services.Messaging.Authorization;
+using Services.Models.Authorization;
 using Services.Storage;
 
 namespace Services.Authorization
 {
-    public class AuthorizationService : IAuthorizationService
+    public class AuthorizationService : IAuthorizationService, IAuthorizationProvider
     {
         private readonly IAuthorizationApi _authorizationApi;
         private readonly IStorage _storage;
@@ -41,5 +43,8 @@ namespace Services.Authorization
             var tokenModel = await _authorizationApi.LoginAsync(phone, passcode, token);
             _storage.Put(Constants.StorageKeys.Token, tokenModel);
         }
+
+        public Task<TokenModel> GetTokenAsync()
+            => Task.FromResult(_storage.Get<TokenModel>(Constants.StorageKeys.Token));
     }
 }

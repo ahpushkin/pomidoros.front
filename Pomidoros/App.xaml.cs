@@ -24,10 +24,6 @@ namespace Pomidoros
 {
     public partial class App : BaseApp
     {
-        private IAuthorizationService _authorizationService;
-        protected IAuthorizationService AuthorizationService
-            => _authorizationService ??= Container.Resolve<IAuthorizationService>();
-        
         protected override void InitializeApp()
         {
             InitializeComponent();
@@ -56,6 +52,7 @@ namespace Pomidoros
             builder.RegisterModule<ApiBindingsModule>();
             builder.RegisterModule<ServicesModule>();
             builder.RegisterModule<ViewModelsModule>();
+            builder.RegisterModule<MessagingModule>();
             builder.RegisterModule<ItemsViewModelModule>();
 
             ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
@@ -81,7 +78,7 @@ namespace Pomidoros
             {
                 MainPage = new NavigationPage(new LoginPage());
 
-                if (flowService.Is(FlowSteps.CheckAutoStep) || AuthorizationService.IsAuthorized)
+                if (flowService.Is(FlowSteps.CheckAutoStep))
                     await MainPage.Navigation.PushAsync(new FirstReviewPage());
                 
                 if (flowService.Is(FlowSteps.CheckUniformStep))
