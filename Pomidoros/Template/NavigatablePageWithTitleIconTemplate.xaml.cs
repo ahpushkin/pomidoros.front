@@ -1,4 +1,4 @@
-namespace Pomidoros.Templates
+namespace Pomidoros.Template
 {
     public partial class NavigatablePageWithTitleIconTemplate
     {

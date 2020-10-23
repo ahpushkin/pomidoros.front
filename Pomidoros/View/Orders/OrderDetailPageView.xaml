@@ -8,7 +8,7 @@
                       xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
                       xmlns:i="clr-namespace:Services.Models.Orders;assembly=Services.Models"
                       xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
-                      xmlns:stateContainer="clr-namespace:Pomidoros.StateContainer;assembly=Pomidoros"
+                      xmlns:stateContainer="clr-namespace:Pomidoros.Controls.StateContainer;assembly=Pomidoros"
                       x:Class="Pomidoros.View.Orders.OrderDetailPageView"
                       BackgroundColor="White"
                       ControlTemplate="{x:StaticResource NavigatablePageTemplate}"

@@ -7,7 +7,7 @@
                       xmlns:local="clr-namespace:Pomidoros.Controls"
                       xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
                       xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
-                      xmlns:state="clr-namespace:Pomidoros.StateContainer;assembly=Pomidoros"
+                      xmlns:state="clr-namespace:Pomidoros.Controls.StateContainer;assembly=Pomidoros"
                       xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
                       ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
                       BackgroundColor="White"

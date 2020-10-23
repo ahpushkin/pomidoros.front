@@ -1,6 +1,6 @@
 using Xamarin.Forms;
 
-namespace Pomidoros.StateContainer
+namespace Pomidoros.Controls.StateContainer
 {
     [ContentProperty("Content")]
     public class StateCondition : Xamarin.Forms.View

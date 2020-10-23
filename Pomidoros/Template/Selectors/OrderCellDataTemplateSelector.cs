@@ -2,7 +2,7 @@ using Pomidoros.ViewModel.ListElements;
 using Services.Models.Enums;
 using Xamarin.Forms;
 
-namespace Pomidoros.TemplateSelectors
+namespace Pomidoros.Template.Selectors
 {
     public class OrderCellDataTemplateSelector : DataTemplateSelector
     {

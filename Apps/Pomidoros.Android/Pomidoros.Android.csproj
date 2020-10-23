@@ -84,7 +84,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Renderers\ImageEntryRenderer.cs" />
     <Compile Include="MyListViewRenderer.cs" />
-    <Compile Include="FocusEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -248,8 +247,6 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\Montserrat-Bold.ttf" />
     <AndroidAsset Include="Assets\Montserrat-Light.ttf" />
-    <AndroidAsset Include="CustomMapRenderer.cs" />
-    <AndroidAsset Include="AndroidNotificationManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Activities" />

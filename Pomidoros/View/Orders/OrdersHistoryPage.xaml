@@ -7,7 +7,7 @@
                       xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
                       xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
                       xmlns:ivm="clr-namespace:Pomidoros.ViewModel.ListElements;assembly=Pomidoros"
-                      xmlns:state="clr-namespace:Pomidoros.StateContainer;assembly=Pomidoros"
+                      xmlns:state="clr-namespace:Pomidoros.Controls.StateContainer;assembly=Pomidoros"
                       xmlns:states="clr-namespace:Pomidoros.View.Orders;assembly=Pomidoros"
                       ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
                       HasNavigationBar="False"

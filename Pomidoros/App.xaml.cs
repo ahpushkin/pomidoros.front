@@ -16,10 +16,11 @@ using Pomidoros.ViewModel.ReviewSteps;
 using Services.FlowFlags;
 using Services.Storage;
 using Xamarin.Forms;
-
+using Xamarin.Forms.Xaml;
 using BreakPage = Pomidoros.View.Profile.BreakPage;
 using ProfilePage = Pomidoros.View.Profile.ProfilePage;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Pomidoros
 {
     public partial class App

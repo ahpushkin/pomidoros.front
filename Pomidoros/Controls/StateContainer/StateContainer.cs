@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Pomidoros.StateContainer
+namespace Pomidoros.Controls.StateContainer
 {
     [ContentProperty(nameof(Conditions))]
     public class StateContainer : ContentView

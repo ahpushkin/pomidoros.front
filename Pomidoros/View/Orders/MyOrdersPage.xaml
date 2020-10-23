@@ -6,7 +6,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
-    xmlns:selectors="clr-namespace:Pomidoros.TemplateSelectors;assembly=Pomidoros"
+    xmlns:selectors="clr-namespace:Pomidoros.Template.Selectors;assembly=Pomidoros"
     xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
     xmlns:ivm="clr-namespace:Pomidoros.ViewModel.ListElements;assembly=Pomidoros"
     ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
@@ -17,51 +17,52 @@
     
     <ContentPage.Resources>
         <ResourceDictionary>
+            
             <DataTemplate x:DataType="ivm:ShortOrderViewModel" x:Key="defaultOrderCell">
                         
-                        <Grid Padding="15,5,15,5"
-                              HeightRequest="70">
-                            
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height=".5*"/>
-                                <RowDefinition Height=".5*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="65"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            
-                            <Image Grid.RowSpan="2"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"
-                                   HeightRequest="40"
-                                   WidthRequest="40"
-                                   Source="geo" />
-                            
-                            <Label
-                                Grid.Column="1"
-                                FontFamily="{StaticResource BoldFont}"
-                                FontSize="18"
-                                Text="{Binding Address}"
-                                TextColor="#1C1C1C"
-                                VerticalOptions="End" />
-                                
-                            <Label
-                                Grid.Column="1"
-                                Grid.Row="1"
-                                FontFamily="{StaticResource NormalFont}"
-                                Text="{Binding Distance, Converter={StaticResource distanceToStringConverter}}"
-                                TextColor="#249824"
-                                VerticalOptions="Start" />
-                            
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding PressCommand}"
-                                                      CommandParameter="{Binding .}"/>
-                            </Grid.GestureRecognizers>
-                            
-                        </Grid>
+                <Grid Padding="15,5,15,5"
+                      HeightRequest="70">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".5*"/>
+                        <RowDefinition Height=".5*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="65"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Image Grid.RowSpan="2"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           HeightRequest="40"
+                           WidthRequest="40"
+                           Source="geo" />
+                    
+                    <Label
+                        Grid.Column="1"
+                        FontFamily="{StaticResource BoldFont}"
+                        FontSize="18"
+                        Text="{Binding Address}"
+                        TextColor="#1C1C1C"
+                        VerticalOptions="End" />
                         
-                    </DataTemplate>
+                    <Label
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        FontFamily="{StaticResource NormalFont}"
+                        Text="{Binding Distance, Converter={StaticResource distanceToStringConverter}}"
+                        TextColor="#249824"
+                        VerticalOptions="Start" />
+                    
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PressCommand}"
+                                              CommandParameter="{Binding .}"/>
+                    </Grid.GestureRecognizers>
+                    
+                </Grid>
+                
+            </DataTemplate>
             
             <DataTemplate x:DataType="ivm:ShortOrderViewModel" x:Key="timedOrderCell">
                 
@@ -203,6 +204,7 @@
                                                      DefaultTemplate="{StaticResource defaultOrderCell}"
                                                      TimedTemplate="{StaticResource timedOrderCell}"
                                                      SpecialTemplate="{StaticResource specialOrderCell}"/>
+            
         </ResourceDictionary>
     </ContentPage.Resources>
     

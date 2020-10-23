@@ -8,7 +8,7 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:vm="clr-namespace:Pomidoros.ViewModel;assembly=Pomidoros"
     xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
-    xmlns:state="clr-namespace:Pomidoros.StateContainer;assembly=Pomidoros"
+    xmlns:state="clr-namespace:Pomidoros.Controls.StateContainer;assembly=Pomidoros"
     BackgroundColor="#96A637"
     HasNavigationBar="False"
     Icons="Light"
