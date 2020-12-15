@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Core.Commands;
@@ -28,7 +29,7 @@ namespace Pomidoros.ViewModel.Orders
         {
             ZoomLevel = 15;
 
-            DidFinishLoadingStyleCommand = new AsyncCommand<MapStyle>(DidFinishLoadingStyle);
+            DidFinishLoadingStyleCommand = new Command<MapStyle>(DidFinishLoadingStyle);
         }
 
         public void PassParameters(NavigationParameters parameters)
@@ -64,9 +65,9 @@ namespace Pomidoros.ViewModel.Orders
         public ICommand OrderContentCommand => new AsyncCommand(OnOrderContentCommand);
         public ICommand DidFinishLoadingStyleCommand { get; }
 
-        async Task DidFinishLoadingStyle(MapStyle mapStyle)
+        void DidFinishLoadingStyle(MapStyle mapStyle)
         {
-            var routeCoordinates = await GetRouteCoordinates();
+            var routeCoordinates = Order.Coordinates.Select(i => new Position(i.Item1, i.Item2)).ToList<IPosition>();
 
             if (routeCoordinates.Count > 0)
             {
@@ -76,18 +77,6 @@ namespace Pomidoros.ViewModel.Orders
 
                 AddRoute(routeCoordinates, MapFunctions, Color.FromHex("#96A637"));
             }
-        }
-
-        async Task<IList<IPosition>> GetRouteCoordinates()
-        {
-            await Task.Delay(1000);
-
-            return new List<IPosition>
-                {
-                    new Position( 49.9977729, 36.2413953 ),
-                    new Position( 49.9978729, 36.2416953 ),
-                    new Position( 49.9979729, 36.2417953 )
-                };
         }
 
         void AddEndPoints(IList<IPosition> routeCoordinates, IList<Annotation> annotations, ImageSource startImage, ImageSource endImage)
