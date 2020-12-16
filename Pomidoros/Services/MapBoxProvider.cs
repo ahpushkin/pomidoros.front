@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using GeoJSON.Net.Feature;
 using GeoJSON.Net.Geometry;
 using Naxam.Mapbox;
@@ -21,14 +22,26 @@ namespace Pomidoros.Services
 
         public ObservableCollection<Annotation> Annotations { get; } = new ObservableCollection<Annotation>();
 
-        public void AddEndPoints(IList<IPosition> routeCoordinates)
+        public void AddEndPoints(IList<Tuple<double, double>> coordinates)
         {
+            var routeCoordinates = GetCoordinates(coordinates);
             AddEndPoints(routeCoordinates, Annotations, "geo.png", "geo2.png");
         }
 
-        public void AddRoute(IEnumerable<IPosition> routeCoordinates)
+        public void AddRoute(IList<Tuple<double, double>> coordinates)
         {
+            var routeCoordinates = GetCoordinates(coordinates);
             AddRoute(routeCoordinates, MapFunctions, (Color)Application.Current.Resources["mainColor"]);
+        }
+
+        public LatLng GetCenterCoordinates(IList<Tuple<double, double>> coordinates)
+        {
+            if (coordinates.Count > 0)
+            {
+                var routeCoordinates = GetCoordinates(coordinates);
+                return new LatLng(routeCoordinates[0].Latitude, routeCoordinates[0].Longitude);
+            }
+            return LatLng.Zero;
         }
 
         void AddEndPoints(IList<IPosition> routeCoordinates, IList<Annotation> annotations, ImageSource startImage, ImageSource endImage)
@@ -48,7 +61,7 @@ namespace Pomidoros.Services
             {
                 Coordinates = new LatLng(end.Latitude, end.Longitude),
                 IconImage = endImage,
-                IconSize = 2
+                IconSize = 1
             };
             annotations.Add(endAnnotation);
         }
@@ -74,6 +87,11 @@ namespace Pomidoros.Services
                 LineColor = lineColor
             };
             mapFunctions.AddLayer(lineLayer);
+        }
+
+        IList<IPosition> GetCoordinates(IList<Tuple<double, double>> coordinates)
+        {
+            return coordinates.Select(i => new Position(i.Item1, i.Item2)).ToList<IPosition>();
         }
     }
 }

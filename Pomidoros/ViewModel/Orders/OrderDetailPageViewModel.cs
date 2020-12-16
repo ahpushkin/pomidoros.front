@@ -120,7 +120,7 @@ namespace Pomidoros.ViewModel.Orders
         
         private Task OnShowRouteCommand(object arg)
         {
-            return Navigation.PushAsync(new MapPage());
+            return Navigation.PushAsync(new MapPage(), Order, "order");
         }
     }
 }

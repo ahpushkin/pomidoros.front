@@ -1,5 +1,7 @@
 using Core.Navigation;
+using Naxam.Mapbox;
 using Pomidoros.Resources;
+using Pomidoros.Services;
 using Pomidoros.ViewModel.Base;
 using Services.Models.Enums;
 using Services.Models.Orders;
@@ -14,13 +16,26 @@ namespace Pomidoros.ViewModel.Orders
             get => _order;
             set => SetProperty(ref _order, value);
         }
-        
+
+        public MapBoxProvider MapBoxProvider { get; } = new MapBoxProvider();
+
+        LatLng _center = LatLng.Zero;
+        public LatLng Center
+        {
+            get => _center;
+            set => SetProperty(ref _center, value);
+        }
+
         public void PassParameters(NavigationParameters parameters)
         {
             if (parameters.TryGetParameter("order", out FullOrderModel order))
             {
                 Order = order;
                 UpdateTitle(order);
+                if (Order != null)
+                {
+                    Center = MapBoxProvider.GetCenterCoordinates(Order.Coordinates);
+                }
             }
         }
 

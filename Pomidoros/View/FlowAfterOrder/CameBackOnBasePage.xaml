@@ -15,7 +15,9 @@
     <ContentPage.Content>
         <Grid>
             
-            <maps:MapView />
+            <maps:MapView
+                ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
+                Center="{Binding Center}" />
             
             <BoxView BackgroundColor="#A0000000" />
             

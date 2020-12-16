@@ -24,7 +24,9 @@
                 <RowDefinition Height="180" />
             </Grid.RowDefinitions>
             
-            <maps:MapView />
+            <maps:MapView
+                ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
+                Center="{Binding Center}" />
             
             <yummy:PancakeView
                 Grid.Row="1"

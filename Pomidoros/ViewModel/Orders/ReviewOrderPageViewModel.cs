@@ -1,10 +1,8 @@
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
-using GeoJSON.Net.Geometry;
 using Naxam.Controls.Forms;
 using Naxam.Mapbox;
 using Pomidoros.Resources;
@@ -30,6 +28,7 @@ namespace Pomidoros.ViewModel.Orders
             {
                 Order = order;
                 Title = string.Format(LocalizationStrings.OrderNumberTitleFormat, order.OrderNumber);
+                Center = MapBoxProvider.GetCenterCoordinates(Order.Coordinates);
             }
         }
 
@@ -42,7 +41,7 @@ namespace Pomidoros.ViewModel.Orders
 
         public MapBoxProvider MapBoxProvider { get; } = new MapBoxProvider();
 
-        LatLng _center = MapBoxProvider.InitialCenter;
+        LatLng _center = LatLng.Zero;
         public LatLng Center
         {
             get => _center;
@@ -55,15 +54,11 @@ namespace Pomidoros.ViewModel.Orders
 
         void DidFinishLoadingStyle(MapStyle mapStyle)
         {
-            var routeCoordinates = Order.Coordinates.Select(i => new Position(i.Item1, i.Item2)).ToList<IPosition>();
-
-            if (routeCoordinates.Count > 0)
+            if (Order.Coordinates.Count > 0)
             {
-                Center = new LatLng(routeCoordinates[0].Latitude, routeCoordinates[0].Longitude);
+                MapBoxProvider.AddEndPoints(Order.Coordinates);
 
-                MapBoxProvider.AddEndPoints(routeCoordinates);
-
-                MapBoxProvider.AddRoute(routeCoordinates);
+                MapBoxProvider.AddRoute(Order.Coordinates);
             }
         }
 
