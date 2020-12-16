@@ -70,9 +70,9 @@
                 <maps:MapView InputTransparent="True"
                               LogoEnabled="False"
                               HeightRequest="250"
-                              Annotations="{Binding Annotations}"
-                              Functions="{Binding MapFunctions}"
-                              ZoomLevel="{Binding ZoomLevel}"
+                              Annotations="{Binding MapBoxProvider.Annotations}"
+                              Functions="{Binding MapBoxProvider.MapFunctions}"
+                              ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
                               Center="{Binding Center}"
                               DidFinishLoadingStyleCommand="{Binding DidFinishLoadingStyleCommand}"/>
 

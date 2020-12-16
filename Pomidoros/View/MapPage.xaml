@@ -3,8 +3,15 @@
     x:Class="Pomidoros.View.MapPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
+    xmlns:vm="clr-namespace:Pomidoros.ViewModel"
     BackgroundColor="White"
     NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <vm:MapViewModel/>
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Margin="20,35,20,0" Orientation="Horizontal">
@@ -31,16 +38,15 @@
                     Source="help" />
 
             </StackLayout>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
+            <maps:MapView 
+                VerticalOptions="FillAndExpand"
+                LogoEnabled="False"
+                Annotations="{Binding MapBoxProvider.Annotations}"
+                Functions="{Binding MapBoxProvider.MapFunctions}"
+                ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
+                Center="{Binding Center}"
+                DidFinishLoadingStyleCommand="{Binding DidFinishLoadingStyleCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

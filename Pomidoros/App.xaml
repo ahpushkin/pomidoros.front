@@ -9,7 +9,10 @@
              x:Class="Pomidoros.App">
     
     <Application.Resources>
+
         <ResourceDictionary>
+
+            <Color x:Key="mainColor">#96A637</Color>
             
             <!-- fonts -->
             <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
