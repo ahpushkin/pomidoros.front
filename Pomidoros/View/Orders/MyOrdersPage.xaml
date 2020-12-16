@@ -13,7 +13,7 @@
     HasNavigationBar="False"
     Icons="Dark"
     StatusBarColor="White"
-    x:Name="this">
+    x:Name="contentPage">
     
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -134,20 +134,21 @@
                         TextColor="#249824"
                         VerticalOptions="Start" />
                     
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding PressCommand}"
-                                              CommandParameter="{Binding .}"/>
-                    </Grid.GestureRecognizers>
-                    
                     <Button Grid.Row="2"
                             Grid.ColumnSpan="4"
                             Margin="15,0,15,10"
                             FontFamily="{StaticResource BoldFont}"
-                            Command="{Binding BindingContext.BeginDeliveryCommand, Source={x:Reference this}}"
+                            Command="{Binding BindingContext.BeginDeliveryCommand, Source={x:Reference contentPage}}"
+                            CommandParameter="{Binding .}"
                             CornerRadius="24"
                             TextColor="White"
                             BackgroundColor="#96A637"
                             Text="Начать доставку сейчас"/>
+                    
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PressCommand}"
+                                              CommandParameter="{Binding .}"/>
+                    </Grid.GestureRecognizers>
                     
                 </Grid>
                 

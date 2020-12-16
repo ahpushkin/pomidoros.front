@@ -85,6 +85,7 @@ namespace Pomidoros.ViewModel.Orders
         private Task OnBeginDeliveryCommandAsync(ShortOrderViewModel arg)
         {
             //TODO: Request to server to update status of order
+            throw new NotImplementedException("Request to server to update status of order");
             arg.Type = EOrderType.Default;
             return OnOpenOrderCommand(arg);
         }
