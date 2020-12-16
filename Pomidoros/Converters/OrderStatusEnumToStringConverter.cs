@@ -20,6 +20,7 @@ namespace Pomidoros.Converters
                 case EOrderStatus.NotPayed: result = LocalizationStrings.OrderStatusNotPayed; break;
                 case EOrderStatus.Failed: result = LocalizationStrings.OrderStatusNotDelivered; break;
                 case EOrderStatus.Pending: result = LocalizationStrings.OrderStatusPending; break;
+                case EOrderStatus.OperatorPending: result = LocalizationStrings.OrderStatusOperatorApprovePending; break;
                 default: throw new NotImplementedException();
             }
             
