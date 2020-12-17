@@ -38,7 +38,7 @@
             
             <ImageButton
                 BackgroundColor="Transparent"
-                Command="{x:TemplateBinding BackCommand}"
+                Command="{Binding BackCommand}"
                 HorizontalOptions="StartAndExpand"
                 Source="back" />
             
