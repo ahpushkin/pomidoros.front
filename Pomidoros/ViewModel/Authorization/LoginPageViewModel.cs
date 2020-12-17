@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,9 +6,7 @@ using Acr.UserDialogs;
 using Autofac;
 using Core.Commands;
 using Pomidoros.Constants;
-using Pomidoros.Interfaces;
 using Pomidoros.View.Authorization;
-using Pomidoros.View.Notification;
 using Pomidoros.ViewModel.Base;
 using Rg.Plugins.Popup.Contracts;
 using Services.Authorization;
@@ -84,13 +79,12 @@ namespace Pomidoros.ViewModel.Authorization
             if (!ValidateInputDataWithToast())
                 return;
 
-            var isLogined = false;
             using (UserDialogs.Loading(maskType: MaskType.Clear))
-                //await AuthorizationService.LoginAsync(Phone, Password, CancellationToken.None);
-                await Task.Delay(2000);
+            {
+                await AuthorizationService.LoginAsync(Phone, Password, CancellationToken.None);
+            }
             
-            //if (AuthorizationService.IsAuthorized)
-            if (true)
+            if (AuthorizationService.IsAuthorized)
             {
                 await CurrentUserDataService.FetchUserDataAsync();
                 await Navigation.PushAsync(new WelcomePage());
