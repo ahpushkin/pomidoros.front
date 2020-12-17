@@ -25,6 +25,7 @@
             </Grid.RowDefinitions>
             
             <maps:MapView
+                LogoEnabled="False"
                 ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
                 Center="{Binding Center}" />
             

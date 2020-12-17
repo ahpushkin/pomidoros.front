@@ -7,12 +7,17 @@ using System.Windows.Input;
 using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
+using GeoJSON.Net.Geometry;
+using Naxam.Controls.Forms;
+using Naxam.Mapbox;
 using Pomidoros.Resources;
+using Pomidoros.Services;
 using Pomidoros.View.SearchPlace;
 using Pomidoros.ViewModel.Base;
 using Services.Models.Address;
 using Services.Models.Orders;
 using Services.Orders;
+using Xamarin.Forms;
 
 namespace Pomidoros.ViewModel.Orders
 {
@@ -25,8 +30,18 @@ namespace Pomidoros.ViewModel.Orders
             _ordersUpdater = ordersUpdater;
             
             Title = LocalizationStrings.AddressTextTitle;
+            DidFinishLoadingStyleCommand = new Command<MapStyle>(DidFinishLoadingStyle);
         }
-        
+
+        public MapBoxProvider MapBoxProvider { get; } = new MapBoxProvider();
+
+        LatLng _center = LatLng.Zero;
+        public LatLng Center
+        {
+            get => _center;
+            set => SetProperty(ref _center, value);
+        }
+
         private FullOrderModel _order;
         public FullOrderModel Order
         {
@@ -47,21 +62,35 @@ namespace Pomidoros.ViewModel.Orders
             get => _places;
             set => SetProperty(ref _places, value);
         }
-        
+
         public ICommand SaveCommand => new AsyncCommand(OnSaveCommandAsync);
         public ICommand SearchOnMapCommand => new AsyncCommand(OnSearchOnMapCommand);
+        public ICommand DidFinishLoadingStyleCommand { get; }
 
         public void PassParameters(NavigationParameters parameters)
         {
             if (parameters.TryGetParameter<FullOrderModel>("order", out var order))
             {
                 Order = order;
+                if (Order != null)
+                {
+                    Center = MapBoxProvider.GetCenterCoordinates(Order.Coordinates);
+                }
             }
         }
         
         private Task OnSearchOnMapCommand(object arg)
         {
             return Navigation.PushAndSaveContextAsync(new SearchPlaceOnMapPage());
+        }
+
+        private void DidFinishLoadingStyle(MapStyle mapStyle)
+        {
+            if (Order.Coordinates.Count > 0)
+            {
+                var coordinates = new Tuple<double, double>(Center.Lat, Center.Long);
+                MapBoxProvider.AddEndPoint(coordinates);
+            }
         }
 
         private async Task OnSaveCommandAsync(object arg)

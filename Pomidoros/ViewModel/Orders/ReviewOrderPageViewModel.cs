@@ -56,7 +56,7 @@ namespace Pomidoros.ViewModel.Orders
         {
             if (Order.Coordinates.Count > 0)
             {
-                MapBoxProvider.AddEndPoints(Order.Coordinates);
+                MapBoxProvider.AddStartAndEndPoints(Order.Coordinates);
 
                 MapBoxProvider.AddRoute(Order.Coordinates);
             }

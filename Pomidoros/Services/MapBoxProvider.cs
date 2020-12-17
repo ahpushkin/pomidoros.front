@@ -14,6 +14,8 @@ namespace Pomidoros.Services
 {
     public class MapBoxProvider
     {
+        private string transportId = null;
+
         public static LatLng InitialCenter { get; } = new LatLng(49.9977729, 36.2413953);
 
         public double ZoomLevel { get; } = 15;
@@ -22,15 +24,41 @@ namespace Pomidoros.Services
 
         public ObservableCollection<Annotation> Annotations { get; } = new ObservableCollection<Annotation>();
 
-        public void AddEndPoints(IList<Tuple<double, double>> coordinates)
+        public void SetTransportAtPoint(Tuple<double, double> coordinates)
         {
-            var routeCoordinates = GetCoordinates(coordinates);
-            AddEndPoints(routeCoordinates, Annotations, "marker_1.png", "marker_2.png");
+            SymbolAnnotation transport = null;
+            if (transportId != null)
+            {
+                transport = Annotations.FirstOrDefault(i => i.Id == transportId) as SymbolAnnotation;
+            }
+
+            if (transport == null)
+            {
+                transportId = AddAnnotation(coordinates, "car.png");
+            }
+            else
+            {
+                transport.Coordinates = new LatLng(coordinates.Item1, coordinates.Item2);
+            }
+        }
+
+        public void AddEndPoint(Tuple<double, double> coordinates)
+        {
+            AddAnnotation(coordinates, "marker_1.png");
+        }
+
+        public void AddStartAndEndPoints(IList<Tuple<double, double>> coordinates)
+        {
+            var start = coordinates[0];
+            AddAnnotation(start, "marker_2.png");
+
+            var end = coordinates[coordinates.Count - 1];
+            AddAnnotation(end, "marker_1.png");
         }
 
         public void AddRoute(IList<Tuple<double, double>> coordinates)
         {
-            var routeCoordinates = GetCoordinates(coordinates);
+            var routeCoordinates = coordinates.Select(i => new Position(i.Item1, i.Item2)).ToList<IPosition>();
             AddRoute(routeCoordinates, MapFunctions, (Color)Application.Current.Resources["mainColor"]);
         }
 
@@ -38,34 +66,24 @@ namespace Pomidoros.Services
         {
             if (coordinates.Count > 0)
             {
-                var routeCoordinates = GetCoordinates(coordinates);
-                return new LatLng(routeCoordinates[0].Latitude, routeCoordinates[0].Longitude);
+                return new LatLng(coordinates[0].Item1, coordinates[0].Item2);
             }
             return LatLng.Zero;
         }
 
-        void AddEndPoints(IList<IPosition> routeCoordinates, IList<Annotation> annotations, ImageSource startImage, ImageSource endImage)
+        string AddAnnotation(Tuple<double, double> coordinates, ImageSource image)
         {
-            var start = routeCoordinates[0];
-            var end = routeCoordinates[routeCoordinates.Count - 1];
-
-            var startAnnotation = new SymbolAnnotation()
+            var annotation = new SymbolAnnotation()
             {
-                Coordinates = new LatLng(start.Latitude, start.Longitude),
-                IconImage = startImage,
+                Id = Guid.NewGuid().ToString(),
+                Coordinates = new LatLng(coordinates.Item1, coordinates.Item2),
+                IconImage = image,
                 IconSize = 1,
                 IconOffset = new float[] { 0, -10.0f }
             };
-            annotations.Add(startAnnotation);
+            Annotations.Add(annotation);
 
-            var endAnnotation = new SymbolAnnotation()
-            {
-                Coordinates = new LatLng(end.Latitude, end.Longitude),
-                IconImage = endImage,
-                IconSize = 1,
-                IconOffset = new float[] { 0, -10.0f }
-            };
-            annotations.Add(endAnnotation);
+            return annotation.Id;
         }
 
         void AddRoute(IEnumerable<IPosition> routeCoordinates, IMapFunctions mapFunctions, Color lineColor)
@@ -89,11 +107,6 @@ namespace Pomidoros.Services
                 LineColor = lineColor
             };
             mapFunctions.AddLayer(lineLayer);
-        }
-
-        IList<IPosition> GetCoordinates(IList<Tuple<double, double>> coordinates)
-        {
-            return coordinates.Select(i => new Position(i.Item1, i.Item2)).ToList<IPosition>();
         }
     }
 }

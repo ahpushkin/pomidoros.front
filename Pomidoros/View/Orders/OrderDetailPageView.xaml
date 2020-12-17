@@ -148,9 +148,15 @@
                     </stateContainer:StateCondition>
                 </stateContainer:StateContainer>
                 
-                <maps:MapView InputTransparent="True"
-                              LogoEnabled="False"
-                              HeightRequest="250"/>
+                <maps:MapView
+                    InputTransparent="True"
+                    LogoEnabled="False"
+                    HeightRequest="250"
+                    Annotations="{Binding MapBoxProvider.Annotations}"
+                    Functions="{Binding MapBoxProvider.MapFunctions}"
+                    ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
+                    Center="{Binding Center}"
+                    DidFinishLoadingStyleCommand="{Binding DidFinishLoadingStyleCommand}"/>
                 
                 <StackLayout Margin="30,20"
                              Orientation="Horizontal">

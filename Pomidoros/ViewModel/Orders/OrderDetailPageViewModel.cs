@@ -11,6 +11,10 @@ using Pomidoros.ViewModel.Base;
 using Rg.Plugins.Popup.Contracts;
 using Services.Models.Enums;
 using Services.Models.Orders;
+using Pomidoros.Services;
+using Naxam.Controls.Forms;
+using Xamarin.Forms;
+using Naxam.Mapbox;
 
 namespace Pomidoros.ViewModel.Orders
 {
@@ -21,8 +25,9 @@ namespace Pomidoros.ViewModel.Orders
         public OrderDetailPageViewModel(IPopupNavigation popupNavigation)
         {
             _popupNavigation = popupNavigation;
+            DidFinishLoadingStyleCommand = new Command<MapStyle>(DidFinishLoadingStyle);
         }
-        
+
         public void PassParameters(NavigationParameters parameters)
         {
             if (parameters.TryGetParameter<FullOrderModel>("order", out var order))
@@ -32,7 +37,20 @@ namespace Pomidoros.ViewModel.Orders
                 IsOrderOpened = order.OrderStatus == EOrderStatus.Opened;
                 IsOrderDelivered = order.OrderStatus == EOrderStatus.Completed;
                 Title = string.Format(LocalizationStrings.OrderNumberTitleFormat, order.OrderNumber);
+                if (Order != null)
+                {
+                    Center = MapBoxProvider.GetCenterCoordinates(Order.Coordinates);
+                }
             }
+        }
+
+        public MapBoxProvider MapBoxProvider { get; } = new MapBoxProvider();
+
+        LatLng _center = LatLng.Zero;
+        public LatLng Center
+        {
+            get => _center;
+            set => SetProperty(ref _center, value);
         }
 
         private FullOrderModel _order;
@@ -70,6 +88,17 @@ namespace Pomidoros.ViewModel.Orders
         public ICommand OrderContentCommand => new AsyncCommand(OnOrderContentCommand);
         public ICommand ShowRouteCommand => new AsyncCommand(OnShowRouteCommand);
         public ICommand BeginDeliveryCommand => new AsyncCommand(OnBeginDeliveryCommandAsync);
+        public ICommand DidFinishLoadingStyleCommand { get; }
+
+        private void DidFinishLoadingStyle(MapStyle mapStyle)
+        {
+            if (Order.Coordinates.Count > 0)
+            {
+                MapBoxProvider.AddStartAndEndPoints(Order.Coordinates);
+
+                MapBoxProvider.AddRoute(Order.Coordinates);
+            }
+        }
 
         private async Task OnBeginDeliveryCommandAsync(object arg)
         {
