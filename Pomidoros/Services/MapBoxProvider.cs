@@ -25,7 +25,7 @@ namespace Pomidoros.Services
         public void AddEndPoints(IList<Tuple<double, double>> coordinates)
         {
             var routeCoordinates = GetCoordinates(coordinates);
-            AddEndPoints(routeCoordinates, Annotations, "geo.png", "geo2.png");
+            AddEndPoints(routeCoordinates, Annotations, "marker_1.png", "marker_2.png");
         }
 
         public void AddRoute(IList<Tuple<double, double>> coordinates)
@@ -53,7 +53,8 @@ namespace Pomidoros.Services
             {
                 Coordinates = new LatLng(start.Latitude, start.Longitude),
                 IconImage = startImage,
-                IconSize = 1
+                IconSize = 1,
+                IconOffset = new float[] { 0, -10.0f }
             };
             annotations.Add(startAnnotation);
 
@@ -61,7 +62,8 @@ namespace Pomidoros.Services
             {
                 Coordinates = new LatLng(end.Latitude, end.Longitude),
                 IconImage = endImage,
-                IconSize = 1
+                IconSize = 1,
+                IconOffset = new float[] { 0, -10.0f }
             };
             annotations.Add(endAnnotation);
         }
