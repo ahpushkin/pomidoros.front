@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Core.Extensions;
-using Newtonsoft.Json;
 using Services.Models.Authorization;
 
 namespace Services.API.Authorization
@@ -25,8 +23,11 @@ namespace Services.API.Authorization
                 { "phone_number", phone },
                 { "password", passcode }
             };
-            var stringContent = new StringContent(JsonConvert.SerializeObject(parameters), Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync(RequestUrl("auth/login/"), stringContent, token);
+            var response = await _httpClient.PostAsync(RequestUrl("auth/login/"), parameters, token);
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
             return await response.ReadAsJsonAsync<TokenModel>().WithCancellation(token);
         }
     }

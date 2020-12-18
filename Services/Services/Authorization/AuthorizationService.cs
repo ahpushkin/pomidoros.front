@@ -38,7 +38,10 @@ namespace Services.Authorization
                 throw new ArgumentException(nameof(passcode));
             
             var tokenModel = await _authorizationApi.LoginAsync(phone, passcode, token);
-            _storage.Put(Constants.StorageKeys.Token, tokenModel);
+            if (tokenModel != null)
+            {
+                _storage.Put(Constants.StorageKeys.Token, tokenModel);
+            }
         }
     }
 }
