@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "674222962771",
+    "project_id": "pomidoros",
+    "storage_bucket": "pomidoros.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674222962771:android:9a2a2a0fcddc8aee1aaea6",
+        "android_client_info": {
+          "package_name": "pshkn.pomidoros"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674222962771-e62kgggatogvbklosii7esmgl50pi0nt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMxU8ZQZsQtVcCkhZVw-HHu2dMypyp7d4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674222962771-e62kgggatogvbklosii7esmgl50pi0nt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

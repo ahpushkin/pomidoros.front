@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Plugin.CurrentActivity;
+using Plugin.FirebasePushNotification;
 
 namespace Pomidoros.Droid
 {
@@ -26,6 +27,8 @@ namespace Pomidoros.Droid
 
             LoadApplication(new App());
 
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
+
             InitializePackages(savedInstanceState);
         }
 
@@ -42,6 +45,12 @@ namespace Pomidoros.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        protected override void OnNewIntent(Android.Content.Intent intent)
+        {
+            base.OnNewIntent(intent);
+            FirebasePushNotificationManager.ProcessIntent(this, intent);
         }
     }
 }
