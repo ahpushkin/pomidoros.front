@@ -12,20 +12,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.454" />
-    <PackageReference Include="Autofac" Version="5.2.0" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.470" />
+    <PackageReference Include="Autofac" Version="6.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Basil.Behaviors" Version="1.2.0.1" />
-    <PackageReference Include="GeoJSON.Net" Version="1.1.73" />
+    <PackageReference Include="GeoJSON.Net" Version="1.2.19" />
     <PackageReference Include="Naxam.Mapbox.Forms" Version="1.0.8.4" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Xam.Plugins.Forms.ProgressRing" Version="0.1.2" />
-    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
-    <PackageReference Include="SkiaSharp" Version="2.80.1" />
-    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.1" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.4" />
+    <PackageReference Include="SkiaSharp" Version="2.80.2" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.2" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.1.0.714" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.6" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModel\" />
@@ -137,8 +137,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tools\Core\Core.csproj" />
-    <ProjectReference Include="..\Services\Services.API\Services.API.csproj" />
     <ProjectReference Include="..\Services\Services\Services.csproj" />
+    <ProjectReference Include="..\Services\Services.API\Services.API.csproj" />
     <ProjectReference Include="..\Services\Services.Models\Services.Models.csproj" />
   </ItemGroup>
 </Project>

@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs">
-      <Version>7.1.0.454</Version>
+      <Version>7.1.0.470</Version>
     </PackageReference>
     <PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.4" />
     <PackageReference Include="Xam.Plugins.Forms.ProgressRing">
@@ -65,10 +65,10 @@
       <Version>0.6.1.2</Version>
     </PackageReference>
     <PackageReference Include="Naxam.MapboxSdkTurf.Droid">
-      <Version>4.9.0</Version>
+      <Version>4.9.0.1</Version>
     </PackageReference>
     <PackageReference Include="Naxam.MapboxSdkGeojson.Droid">
-      <Version>4.9.0</Version>
+      <Version>4.9.0.1</Version>
     </PackageReference>
     <PackageReference Include="Naxam.Mapbox.Services.Android.Telemetry">
       <Version>4.5.1</Version>
