@@ -1,41 +1,24 @@
 ﻿using System;
 using Android.App;
-using Android.OS;
 using Android.Runtime;
-using Plugin.FirebasePushNotification;
 
-[Application]
-public class MainApplication : Application
+namespace Pomidoros.Droid
 {
-    public MainApplication(IntPtr javaReference, JniHandleOwnership transfer)
-        : base(javaReference, transfer)
+    [Application]
+    public class MainApplication : Application
     {
-    }
-
-    public override void OnCreate()
-    {
-        base.OnCreate();
-
-        InitPushNotificationService();
-    }
-
-    void InitPushNotificationService()
-    {
-        // for Android Oreo
-        if (Build.VERSION.SdkInt >= BuildVersionCodes.O)
+        public MainApplication(IntPtr javaReference, JniHandleOwnership transfer)
+            : base(javaReference, transfer)
         {
-            FirebasePushNotificationManager.DefaultNotificationChannelId = "PomidorosPushNotificationChannel";
-            FirebasePushNotificationManager.DefaultNotificationChannelName = "PomidorosChannel";
         }
 
-#if DEBUG
-        FirebasePushNotificationManager.Initialize(this, true);
-#else
-        FirebasePushNotificationManager.Initialize(this,false);
-#endif
+        internal IPushNotificationHelper PushNotificationHelper { get; private set; }
 
-        CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+        public override void OnCreate()
         {
-        };
+            base.OnCreate();
+
+            PushNotificationHelper = new PushNotificationHelper(this);
+        }
     }
 }

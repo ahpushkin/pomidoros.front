@@ -119,6 +119,7 @@
     <Compile Include="MyListViewRenderer.cs" />
     <Compile Include="FocusEffect.cs" />
     <Compile Include="MainApplication.cs" />
+    <Compile Include="PushNotificationHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

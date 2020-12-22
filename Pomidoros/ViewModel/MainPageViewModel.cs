@@ -9,6 +9,7 @@ using Acr.UserDialogs;
 using Autofac;
 using Core.Commands;
 using Core.Extensions;
+using Pomidoros.Model;
 using Pomidoros.View.Notification;
 using Pomidoros.View.Orders;
 using Pomidoros.View.Profile;
@@ -18,6 +19,7 @@ using Services.HistoryOrders;
 using Services.Models.Enums;
 using Services.Models.Orders;
 using Services.Orders;
+using Xamarin.Forms;
 
 namespace Pomidoros.ViewModel
 {
@@ -70,7 +72,11 @@ namespace Pomidoros.ViewModel
         public override async void OnAppearing()
         {
             base.OnAppearing();
-            
+
+            var pushManager = DependencyService.Get<IPushNotificationManager>();
+            pushManager.OrdersAvailableReceived += OnOrdersAvailableReceived;
+            pushManager.SpecialOrderReceived += OnOrdersAvailableReceived;
+
             IsBusy = true;
             await UpdateOrdersAsync();
             UpdateState();
@@ -82,6 +88,15 @@ namespace Pomidoros.ViewModel
             }
             
             _onseAppeared = true;
+        }
+
+        public override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            var pushManager = DependencyService.Get<IPushNotificationManager>();
+            pushManager.OrdersAvailableReceived -= OnOrdersAvailableReceived;
+            pushManager.SpecialOrderReceived -= OnOrdersAvailableReceived;
         }
 
         private async Task UpdateOrdersAsync()
@@ -179,7 +194,15 @@ namespace Pomidoros.ViewModel
                 State = "OrdersEmpty";
             }
         }
-        
+
+        private async void OnOrdersAvailableReceived(object sender, EventArgs e)
+        {
+            IsBusy = true;
+            await UpdateOrdersAsync();
+            UpdateState();
+            IsBusy = false;
+        }
+
         protected void EmptyOrdersToast()
             => UserDialogs.Toast("На данный момент у Вас нет заказов");
         

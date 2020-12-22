@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using Autofac;
 using Pomidoros.Constants;
+using Pomidoros.Model;
 using Pomidoros.Modules;
 using Pomidoros.Services.Navigation;
 using Pomidoros.Services.Storage;
@@ -37,6 +38,8 @@ namespace Pomidoros
             builder.RegisterType<FirstReviewPageViewModel>();
             builder.RegisterType<StorageImplementation>().As<IStorage>();
             builder.RegisterType<FlowFlagManager>().As<IFlowFlagManager>();
+
+            DependencyService.Register<IPushNotificationManager>();
         }
 
         protected override void SetupNavigation()
