@@ -8,9 +8,10 @@
     xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
     xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
     xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
+    xmlns:vmcommon="clr-namespace:Pomidoros.ViewModel"
     xmlns:i="clr-namespace:Services.Models.Orders;assembly=Services.Models"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-    xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:controls="clr-namespace:Pomidoros.Controls"
     BackgroundColor="White"
     ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
     HasNavigationBar="False"
@@ -67,14 +68,20 @@
 
                 </Frame>
 
-                <maps:MapView InputTransparent="True"
-                              LogoEnabled="False"
-                              HeightRequest="250"
-                              Annotations="{Binding MapBoxProvider.Annotations}"
-                              Functions="{Binding MapBoxProvider.MapFunctions}"
-                              ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
-                              Center="{Binding Center}"
-                              DidFinishLoadingStyleCommand="{Binding DidFinishLoadingStyleCommand}"/>
+                <controls:AppMap x:Name="appMap"
+                                 InputTransparent="True"
+                                 HeightRequest="250"
+                                 Center="{Binding Center}"
+                                 CustomPolyline="{Binding Route}"
+                                 ItemsSource="{Binding Markers}" >
+                    <maps:Map.ItemTemplate>
+                        <DataTemplate x:DataType="vmcommon:MapItemViewModel">
+                            <controls:Marker Position="{Binding Position}"
+                                             Label="{Binding Name}"
+                                             MarkerType="{Binding MarkerType}"/>
+                        </DataTemplate>
+                    </maps:Map.ItemTemplate>
+                </controls:AppMap>
 
                 <StackLayout Margin="30,20"
                              Orientation="Horizontal">

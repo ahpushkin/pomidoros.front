@@ -123,6 +123,7 @@
     <Compile Include="FocusEffect.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="PushNotificationHelper.cs" />
+    <Compile Include="AppMapRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
