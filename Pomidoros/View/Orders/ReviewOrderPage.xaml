@@ -68,8 +68,7 @@
 
                 </Frame>
 
-                <controls:AppMap x:Name="appMap"
-                                 InputTransparent="True"
+                <controls:AppMap InputTransparent="True"
                                  HeightRequest="250"
                                  Center="{Binding Center}"
                                  ItemsSource="{Binding Markers}"

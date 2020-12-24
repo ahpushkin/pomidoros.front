@@ -3,7 +3,9 @@
     x:Class="Pomidoros.View.MapPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:controls="clr-namespace:Pomidoros.Controls"
+    xmlns:vmcommon="clr-namespace:Pomidoros.ViewModel"
     xmlns:vm="clr-namespace:Pomidoros.ViewModel"
     BackgroundColor="White"
     NavigationPage.HasNavigationBar="False">
@@ -39,14 +41,22 @@
 
             </StackLayout>
 
-            <maps:MapView 
+            <controls:AppMap
                 VerticalOptions="FillAndExpand"
-                LogoEnabled="False"
-                Annotations="{Binding MapBoxProvider.Annotations}"
-                Functions="{Binding MapBoxProvider.MapFunctions}"
-                ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
                 Center="{Binding Center}"
-                DidFinishLoadingStyleCommand="{Binding DidFinishLoadingStyleCommand}"/>
+                ItemsSource="{Binding Markers}"
+                RoutePoints="{Binding RoutePoints}"
+                RouteColor="{Binding RouteColor}"
+                ClickedPosition="{Binding ClickedPosition}">
+                <maps:Map.ItemTemplate>
+                    <DataTemplate x:DataType="vmcommon:MapItemViewModel">
+                        <controls:Marker
+                            Position="{Binding Position}"
+                            Label="{Binding Name}"
+                            MarkerType="{Binding MarkerType}"/>
+                    </DataTemplate>
+                </maps:Map.ItemTemplate>
+            </controls:AppMap>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

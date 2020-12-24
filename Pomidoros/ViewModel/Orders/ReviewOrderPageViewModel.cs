@@ -23,7 +23,10 @@ namespace Pomidoros.ViewModel.Orders
                 Order = order;
                 Title = string.Format(LocalizationStrings.OrderNumberTitleFormat, order.OrderNumber);
 
-                InitMap();
+                if (Order != null && Order.Coordinates.Count > 0)
+                {
+                    InitMap();
+                }
             }
         }
 
@@ -36,13 +39,6 @@ namespace Pomidoros.ViewModel.Orders
         {
             get => _routeColor;
             set => SetProperty(ref _routeColor, value);
-        }
-
-        private Polyline _polyline;
-        public Polyline Route
-        {
-            get => _polyline;
-            set => SetProperty(ref _polyline, value);
         }
 
         private Position _center;
@@ -74,21 +70,23 @@ namespace Pomidoros.ViewModel.Orders
 
         private void InitMap()
         {
-            if (Order != null && Order.Coordinates.Count >= 2)
+            var startPos = Order.Coordinates[0];
+
+            Center = new Position(startPos.Item1, startPos.Item2);
+
+            if (Order.Coordinates.Count < 2)
             {
-                var startPos = Order.Coordinates[0];
+                return;
+            }
 
-                Center = new Position(startPos.Item1, startPos.Item2);
+            Markers.Add(MapItemViewModel.CreateStartItem(new Position(startPos.Item1, startPos.Item2)));
 
-                Markers.Add(MapItemViewModel.CreateStartItem(new Position(startPos.Item1, startPos.Item2)));
+            var endPos = Order.Coordinates[Order.Coordinates.Count - 1];
+            Markers.Add(MapItemViewModel.CreateEndItem(new Position(endPos.Item1, endPos.Item2)));
 
-                var endPos = Order.Coordinates[Order.Coordinates.Count - 1];
-                Markers.Add(MapItemViewModel.CreateEndItem(new Position(endPos.Item1, endPos.Item2)));
-
-                foreach (var coord in Order.Coordinates)
-                {
-                    RoutePoints.Add(new Position(coord.Item1, coord.Item2));
-                }
+            foreach (var coord in Order.Coordinates)
+            {
+                RoutePoints.Add(new Position(coord.Item1, coord.Item2));
             }
         }
     }
