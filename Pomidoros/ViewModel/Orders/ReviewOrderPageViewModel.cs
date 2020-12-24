@@ -29,6 +29,15 @@ namespace Pomidoros.ViewModel.Orders
 
         public ObservableCollection<MapItemViewModel> Markers { get; } = new ObservableCollection<MapItemViewModel>();
 
+        public ObservableCollection<Position> RoutePoints { get; } = new ObservableCollection<Position>();
+
+        private Color _routeColor = (Color)Application.Current.Resources["mainColor"];
+        public Color RouteColor
+        {
+            get => _routeColor;
+            set => SetProperty(ref _routeColor, value);
+        }
+
         private Polyline _polyline;
         public Polyline Route
         {
@@ -76,16 +85,10 @@ namespace Pomidoros.ViewModel.Orders
                 var endPos = Order.Coordinates[Order.Coordinates.Count - 1];
                 Markers.Add(MapItemViewModel.CreateEndItem(new Position(endPos.Item1, endPos.Item2)));
 
-                Route = new Polyline
+                foreach (var coord in Order.Coordinates)
                 {
-                    StrokeColor = (Color)Application.Current.Resources["mainColor"],
-                    StrokeWidth = 5,
-                    Geopath =
-                        {
-                            new Position(startPos.Item1, startPos.Item2),
-                            new Position(endPos.Item1, endPos.Item2)
-                        }
-                };
+                    RoutePoints.Add(new Position(coord.Item1, coord.Item2));
+                }
             }
         }
     }

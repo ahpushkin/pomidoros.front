@@ -1,17 +1,16 @@
-﻿using Xamarin.Forms;
+﻿using System.Collections.Generic;
+using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace Pomidoros.Controls
 {
     public class AppMap : Map
     {
-        public static readonly BindableProperty CustomPolylineProperty = BindableProperty.Create("CustomPolyline",
-            typeof(Polyline), typeof(AppMap), propertyChanged: (bindableObject, oldValue, newValue) =>
-            {
-                var map = bindableObject as Map;
-                map.MapElements.Clear();
-                map.MapElements.Add((Polyline)newValue);
-            });
+        public static readonly BindableProperty RoutePointsProperty = BindableProperty.Create("RoutePoints",
+            typeof(IList<Position>), typeof(AppMap));
+
+        public static readonly BindableProperty RouteColorProperty = BindableProperty.Create("RouteColor",
+            typeof(Color), typeof(AppMap));
 
         public static readonly BindableProperty CenterProperty = BindableProperty.Create("Center",
             typeof(Position), typeof(AppMap), propertyChanged: (bindableObject, oldValue, newValue) =>
@@ -21,10 +20,16 @@ namespace Pomidoros.Controls
                     Distance.FromKilometers(0.5)));
             });
 
-        public Polyline CustomPolyline
+        public IList<Position> RoutePoints
         {
-            get => (Polyline)GetValue(CustomPolylineProperty);
-            set => SetValue(CustomPolylineProperty, value);
+            get => (IList<Position>)GetValue(RoutePointsProperty);
+            set => SetValue(RoutePointsProperty, value);
+        }
+
+        public Color RouteColor
+        {
+            get => (Color)GetValue(RouteColorProperty);
+            set => SetValue(RouteColorProperty, value);
         }
 
         public Position Center

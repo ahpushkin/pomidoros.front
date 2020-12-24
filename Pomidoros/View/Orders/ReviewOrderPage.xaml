@@ -72,8 +72,9 @@
                                  InputTransparent="True"
                                  HeightRequest="250"
                                  Center="{Binding Center}"
-                                 CustomPolyline="{Binding Route}"
-                                 ItemsSource="{Binding Markers}" >
+                                 ItemsSource="{Binding Markers}"
+                                 RoutePoints="{Binding RoutePoints}"
+                                 RouteColor="{Binding RouteColor}">
                     <maps:Map.ItemTemplate>
                         <DataTemplate x:DataType="vmcommon:MapItemViewModel">
                             <controls:Marker Position="{Binding Position}"
