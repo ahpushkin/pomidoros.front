@@ -70,10 +70,10 @@
 
                 <controls:AppMap InputTransparent="True"
                                  HeightRequest="250"
-                                 Center="{Binding Center}"
-                                 ItemsSource="{Binding Markers}"
-                                 RoutePoints="{Binding RoutePoints}"
-                                 RouteColor="{Binding RouteColor}">
+                                 Center="{Binding GoogleMapProvider.Center}"
+                                 ItemsSource="{Binding GoogleMapProvider.Markers}"
+                                 RoutePoints="{Binding GoogleMapProvider.RoutePoints}"
+                                 RouteColor="{Binding GoogleMapProvider.RouteColor}">
                     <maps:Map.ItemTemplate>
                         <DataTemplate x:DataType="vmcommon:MapItemViewModel">
                             <controls:Marker Position="{Binding Position}"

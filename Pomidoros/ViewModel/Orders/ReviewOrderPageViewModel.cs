@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Core.Commands;
@@ -9,8 +8,6 @@ using Pomidoros.View;
 using Pomidoros.View.Orders;
 using Pomidoros.ViewModel.Base;
 using Services.Models.Orders;
-using Xamarin.Forms;
-using Xamarin.Forms.Maps;
 
 namespace Pomidoros.ViewModel.Orders
 {
@@ -23,30 +20,12 @@ namespace Pomidoros.ViewModel.Orders
                 Order = order;
                 Title = string.Format(LocalizationStrings.OrderNumberTitleFormat, order.OrderNumber);
 
-                if (Order != null && Order.Coordinates.Count > 0)
-                {
-                    InitMap();
-                }
+                GoogleMapProvider.SetCoordinates(Order?.Coordinates);
+                GoogleMapProvider.AddRouteWithMarkers();
             }
         }
 
-        public ObservableCollection<MapItemViewModel> Markers { get; } = new ObservableCollection<MapItemViewModel>();
-
-        public ObservableCollection<Position> RoutePoints { get; } = new ObservableCollection<Position>();
-
-        private Color _routeColor = (Color)Application.Current.Resources["mainColor"];
-        public Color RouteColor
-        {
-            get => _routeColor;
-            set => SetProperty(ref _routeColor, value);
-        }
-
-        private Position _center;
-        public Position Center
-        {
-            get => _center;
-            set => SetProperty(ref _center, value);
-        }
+        public GoogleMapViewModel GoogleMapProvider { get; } = new GoogleMapViewModel();
 
         private FullOrderModel _order;
         public FullOrderModel Order
@@ -66,28 +45,6 @@ namespace Pomidoros.ViewModel.Orders
         private Task OnOrderContentCommand(object arg)
         {
             return Navigation.PushAsync(new OrderContentPage(), Order, "order");
-        }
-
-        private void InitMap()
-        {
-            var startPos = Order.Coordinates[0];
-
-            Center = new Position(startPos.Item1, startPos.Item2);
-
-            if (Order.Coordinates.Count < 2)
-            {
-                return;
-            }
-
-            Markers.Add(MapItemViewModel.CreateStartItem(new Position(startPos.Item1, startPos.Item2)));
-
-            var endPos = Order.Coordinates[Order.Coordinates.Count - 1];
-            Markers.Add(MapItemViewModel.CreateEndItem(new Position(endPos.Item1, endPos.Item2)));
-
-            foreach (var coord in Order.Coordinates)
-            {
-                RoutePoints.Add(new Position(coord.Item1, coord.Item2));
-            }
         }
     }
 }

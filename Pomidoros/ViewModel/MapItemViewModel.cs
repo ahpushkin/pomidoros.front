@@ -11,7 +11,7 @@ namespace Pomidoros.ViewModel
             return new MapItemViewModel
             {
                 Position = position,
-                Name = "Start",
+                Name = "Начало",
                 MarkerType = MarkerType.Start
             };
         }
@@ -21,7 +21,7 @@ namespace Pomidoros.ViewModel
             return new MapItemViewModel
             {
                 Position = position,
-                Name = "End",
+                Name = "Окончание",
                 MarkerType = MarkerType.End
             };
         }
@@ -31,7 +31,7 @@ namespace Pomidoros.ViewModel
             return new MapItemViewModel
             {
                 Position = position,
-                Name = "Courier",
+                Name = "Вы",
                 MarkerType = MarkerType.Courier
             };
         }

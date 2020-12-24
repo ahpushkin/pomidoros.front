@@ -43,11 +43,10 @@
 
             <controls:AppMap
                 VerticalOptions="FillAndExpand"
-                Center="{Binding Center}"
-                ItemsSource="{Binding Markers}"
-                RoutePoints="{Binding RoutePoints}"
-                RouteColor="{Binding RouteColor}"
-                ClickedPosition="{Binding ClickedPosition}">
+                Center="{Binding GoogleMapProvider.Center}"
+                ItemsSource="{Binding GoogleMapProvider.Markers}"
+                RoutePoints="{Binding GoogleMapProvider.RoutePoints}"
+                RouteColor="{Binding GoogleMapProvider.RouteColor}">
                 <maps:Map.ItemTemplate>
                     <DataTemplate x:DataType="vmcommon:MapItemViewModel">
                         <controls:Marker
