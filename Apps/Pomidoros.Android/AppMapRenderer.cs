@@ -71,11 +71,14 @@ namespace Pomidoros.Droid
             marker.SetTitle(pin.Label);
             marker.SetSnippet(pin.Address);
 
-            var markerType = (pin as Controls.Marker).MarkerType;
-            int iconResourceId = (markerType == MarkerType.Start ? Resource.Drawable.marker_2
-                : (markerType == MarkerType.End ? Resource.Drawable.marker_1
-                : Resource.Drawable.car));
-            marker.SetIcon(BitmapDescriptorFactory.FromResource(iconResourceId));
+            var iconSource = (pin as Controls.Marker).ImageSource;
+            var resource = typeof(Resource.Drawable).GetField(iconSource);
+            if (resource != null)
+            {
+                var resourceId = (int)resource.GetValue(iconSource);
+                var bitmapDescriptor = BitmapDescriptorFactory.FromResource(resourceId);
+                marker.SetIcon(bitmapDescriptor);
+            }
 
             return marker;
         }

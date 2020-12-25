@@ -52,7 +52,7 @@
                         <controls:Marker
                             Position="{Binding Position}"
                             Label="{Binding Name}"
-                            MarkerType="{Binding MarkerType}"/>
+                            ImageSource="{Binding ImageSource}"/>
                     </DataTemplate>
                 </maps:Map.ItemTemplate>
             </controls:AppMap>

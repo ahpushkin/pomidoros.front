@@ -1,5 +1,4 @@
 ﻿using Core.ViewModel.Infra;
-using Pomidoros.Controls;
 using Xamarin.Forms.Maps;
 
 namespace Pomidoros.ViewModel
@@ -12,7 +11,7 @@ namespace Pomidoros.ViewModel
             {
                 Position = position,
                 Name = "Начало",
-                MarkerType = MarkerType.Start
+                ImageSource = "marker_2"
             };
         }
 
@@ -22,7 +21,7 @@ namespace Pomidoros.ViewModel
             {
                 Position = position,
                 Name = "Окончание",
-                MarkerType = MarkerType.End
+                ImageSource = "marker_1"
             };
         }
 
@@ -32,12 +31,12 @@ namespace Pomidoros.ViewModel
             {
                 Position = position,
                 Name = "Вы",
-                MarkerType = MarkerType.Courier
+                ImageSource = "car"
             };
         }
 
         public string Name { get; set; }
         public Position Position { get; set; }
-        public MarkerType MarkerType { get; set; }
+        public string ImageSource { get; set; }
     }
 }
