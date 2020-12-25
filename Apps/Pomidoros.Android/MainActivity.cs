@@ -63,8 +63,6 @@ namespace Pomidoros.Droid
         {
             UserDialogs.Init(this);
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
-            Com.Mapbox.Mapboxsdk.Mapbox.GetInstance(this, "pk.eyJ1IjoiY29lc3RhciIsImEiOiJja2Z5ZjV6bXgwYml5MnlxZmUyMnp1cGl1In0.jbHBLT8jdIOkh4J301Z1jA");
-            Com.Mapbox.Mapboxsdk.Mapbox.Telemetry.SetDebugLoggingEnabled(true);
         }
         
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
