@@ -5,8 +5,7 @@
     x:DataType="vm:DonePageViewModel"
     xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
     xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
-    xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
-    xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+    xmlns:controls="clr-namespace:Pomidoros.Controls"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="White"
@@ -16,10 +15,8 @@
     <ContentPage.Content>
         <Grid>
             
-            <maps:MapView
-                LogoEnabled="False"
-                ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
-                Center="{Binding Center}" />
+            <controls:AppMap
+                Center="{Binding GoogleMapProvider.Center}" />
             
             <BoxView BackgroundColor="#A0000000" />
             

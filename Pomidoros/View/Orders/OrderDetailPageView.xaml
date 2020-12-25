@@ -7,7 +7,9 @@
                       xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
                       xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
                       xmlns:i="clr-namespace:Services.Models.Orders;assembly=Services.Models"
-                      xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
+                      xmlns:vmcommon="clr-namespace:Pomidoros.ViewModel"
+                      xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+                      xmlns:controls="clr-namespace:Pomidoros.Controls"
                       xmlns:stateContainer="clr-namespace:Pomidoros.StateContainer;assembly=Pomidoros"
                       x:Class="Pomidoros.View.Orders.OrderDetailPageView"
                       BackgroundColor="White"
@@ -148,15 +150,21 @@
                     </stateContainer:StateCondition>
                 </stateContainer:StateContainer>
                 
-                <maps:MapView
+                <controls:AppMap
                     InputTransparent="True"
-                    LogoEnabled="False"
                     HeightRequest="250"
-                    Annotations="{Binding MapBoxProvider.Annotations}"
-                    Functions="{Binding MapBoxProvider.MapFunctions}"
-                    ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
-                    Center="{Binding Center}"
-                    DidFinishLoadingStyleCommand="{Binding DidFinishLoadingStyleCommand}"/>
+                    Center="{Binding GoogleMapProvider.Center}"
+                    ItemsSource="{Binding GoogleMapProvider.Markers}"
+                    RoutePoints="{Binding GoogleMapProvider.RoutePoints}"
+                    RouteColor="{Binding GoogleMapProvider.RouteColor}">
+                    <maps:Map.ItemTemplate>
+                        <DataTemplate x:DataType="vmcommon:MapItemViewModel">
+                            <controls:Marker Position="{Binding Position}"
+                                                Label="{Binding Name}"
+                                                ImageSource="{Binding ImageSource}"/>
+                        </DataTemplate>
+                    </maps:Map.ItemTemplate>
+                </controls:AppMap>
                 
                 <StackLayout Margin="30,20"
                              Orientation="Horizontal">

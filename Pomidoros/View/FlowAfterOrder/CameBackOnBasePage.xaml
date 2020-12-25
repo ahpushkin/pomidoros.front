@@ -6,8 +6,7 @@
                       x:DataType="vm:CameBackOnBasePageViewModel"
                       xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
                       xmlns:vm="clr-namespace:Pomidoros.ViewModel.FlowAfterOrder;assembly=Pomidoros"
-                      xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
-                      xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+                      xmlns:controls="clr-namespace:Pomidoros.Controls"
                       BackgroundColor="White"
                       HasNavigationBar="False"
                       Icons="Dark"
@@ -15,10 +14,8 @@
     <ContentPage.Content>
         <Grid>
             
-            <maps:MapView
-                LogoEnabled="False"
-                ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
-                Center="{Binding Center}" />
+            <controls:AppMap
+                Center="{Binding GoogleMapProvider.Center}" />
             
             <BoxView BackgroundColor="#A0000000" />
             

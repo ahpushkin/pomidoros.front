@@ -8,8 +8,9 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
     xmlns:vm="clr-namespace:Pomidoros.ViewModel.FlowAfterOrder;assembly=Pomidoros"
-    xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
-    xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
+    xmlns:vmcommon="clr-namespace:Pomidoros.ViewModel"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:controls="clr-namespace:Pomidoros.Controls"
     ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
     BackgroundColor="White"
     HasNavigationBar="False"
@@ -24,10 +25,19 @@
                 <RowDefinition Height="180" />
             </Grid.RowDefinitions>
             
-            <maps:MapView
-                LogoEnabled="False"
-                ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
-                Center="{Binding Center}" />
+            <controls:AppMap
+                Center="{Binding GoogleMapProvider.Center}"
+                ItemsSource="{Binding GoogleMapProvider.Markers}"
+                RoutePoints="{Binding GoogleMapProvider.RoutePoints}"
+                RouteColor="{Binding GoogleMapProvider.RouteColor}">
+                <maps:Map.ItemTemplate>
+                    <DataTemplate x:DataType="vmcommon:MapItemViewModel">
+                        <controls:Marker Position="{Binding Position}"
+                                            Label="{Binding Name}"
+                                            ImageSource="{Binding ImageSource}"/>
+                    </DataTemplate>
+                </maps:Map.ItemTemplate>
+            </controls:AppMap>
             
             <yummy:PancakeView
                 Grid.Row="1"

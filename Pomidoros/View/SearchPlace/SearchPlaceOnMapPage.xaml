@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <base:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                      xmlns:local="clr-namespace:Pomidoros.Controls"
                       xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
                       xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
-                      xmlns:maps="clr-namespace:Naxam.Controls.Forms;assembly=Naxam.Mapbox.Forms"
+                      xmlns:vmcommon="clr-namespace:Pomidoros.ViewModel"
+                      xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+                      xmlns:controls="clr-namespace:Pomidoros.Controls"
                       xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
-                      xmlns:i="clr-namespace:Services.Models.Address;assembly=Services.Models"
                       x:Class="Pomidoros.View.SearchPlace.SearchPlaceOnMapPage"
                       x:TypeArguments="vm:ChangeLocationPageViewModel"
                       x:DataType="vm:ChangeLocationPageViewModel"
@@ -22,13 +22,20 @@
             <RowDefinition Height="120" />
         </Grid.RowDefinitions>
         
-        <maps:MapView
-            LogoEnabled="False"
-            Annotations="{Binding MapBoxProvider.Annotations}"
-            Functions="{Binding MapBoxProvider.MapFunctions}"
-            ZoomLevel="{Binding MapBoxProvider.ZoomLevel}"
-            Center="{Binding Center}"
-            DidFinishLoadingStyleCommand="{Binding DidFinishLoadingStyleCommand}"/>
+        <controls:AppMap
+            Center="{Binding GoogleMapProvider.Center}"
+            ItemsSource="{Binding GoogleMapProvider.Markers}"
+            RoutePoints="{Binding GoogleMapProvider.RoutePoints}"
+            RouteColor="{Binding GoogleMapProvider.RouteColor}"
+            ClickedPosition="{Binding GoogleMapProvider.ClickedPosition}">
+            <maps:Map.ItemTemplate>
+                <DataTemplate x:DataType="vmcommon:MapItemViewModel">
+                    <controls:Marker Position="{Binding Position}"
+                                        Label="{Binding Name}"
+                                        ImageSource="{Binding ImageSource}"/>
+                </DataTemplate>
+            </maps:Map.ItemTemplate>
+        </controls:AppMap>
         
         <Frame Padding="0"
                Margin="30"

@@ -54,6 +54,11 @@ namespace Pomidoros.ViewModel
             }
         }
 
+        public void SetCourierMarker(Tuple<double, double> coordinates)
+        {
+            Markers.Add(MapItemViewModel.CreateCourierItem(new Position(coordinates.Item1, coordinates.Item2)));
+        }
+
         public void AddRouteWithMarkers()
         {
             if (_coordinates != null && _coordinates.Count >= 2)
@@ -68,6 +73,15 @@ namespace Pomidoros.ViewModel
                 {
                     RoutePoints.Add(new Position(coord.Item1, coord.Item2));
                 }
+            }
+        }
+
+        public void AddEndMarker()
+        {
+            if (_coordinates != null && _coordinates.Count >= 2)
+            {
+                var endPos = _coordinates[_coordinates.Count - 1];
+                Markers.Add(MapItemViewModel.CreateEndItem(new Position(endPos.Item1, endPos.Item2)));
             }
         }
     }
