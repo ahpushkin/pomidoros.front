@@ -24,7 +24,7 @@ namespace Pomidoros.Droid
 #if DEBUG
             FirebasePushNotificationManager.Initialize(application, true);
 #else
-            FirebasePushNotificationManager.Initialize(this, false);
+            FirebasePushNotificationManager.Initialize(application, false);
 #endif
 
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
