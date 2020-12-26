@@ -85,7 +85,7 @@ namespace Pomidoros.Droid
 
         private void AddRoute()
         {
-            if (googleMap == null || routePoints?.Count == 0)
+            if (googleMap == null || routePoints == null || routePoints.Count == 0)
             {
                 return;
             }
