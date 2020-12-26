@@ -56,13 +56,13 @@ namespace Pomidoros.Droid
 
             (Application as MainApplication).PushNotificationHelper.ProcessIntent(this, Intent);
 
-            InitializePackages(savedInstanceState);
+            InitializePackages();
         }
 
-        private void InitializePackages(Bundle savedInstanceState)
+        private void InitializePackages()
         {
             UserDialogs.Init(this);
-            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+            Rg.Plugins.Popup.Popup.Init(this);
         }
         
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
