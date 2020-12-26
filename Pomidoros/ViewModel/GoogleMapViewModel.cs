@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Core.ViewModel.Infra;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using System.Linq;
 
 namespace Pomidoros.ViewModel
 {
@@ -56,7 +57,21 @@ namespace Pomidoros.ViewModel
 
         public void SetCourierMarker(Tuple<double, double> coordinates)
         {
-            Markers.Add(MapItemViewModel.CreateCourierItem(new Position(coordinates.Item1, coordinates.Item2)));
+            var courierMarker = MapItemViewModel.CreateCourierItem(new Position(coordinates.Item1, coordinates.Item2));
+            var previous = Markers.SingleOrDefault(i => i.ImageSource == courierMarker.ImageSource);
+
+            if (previous == null)
+            {
+                Markers.Add(courierMarker);
+            }
+            else
+            {
+                if (previous.Position != courierMarker.Position)
+                {
+                    Markers.Remove(previous);
+                    Markers.Add(courierMarker);
+                }
+            }
         }
 
         public void AddRouteWithMarkers()
