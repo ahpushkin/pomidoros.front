@@ -6,6 +6,7 @@ using Services.Authorization;
 using Services.CurrentUser;
 using Services.HistoryOrders;
 using Services.Orders;
+using Services.UserLocation;
 
 namespace Pomidoros.Modules
 {
@@ -17,6 +18,7 @@ namespace Pomidoros.Modules
             builder.RegisterType<OrdersProvider>().As<IOrdersProvider>().As<IOrdersUpdater>();
             builder.RegisterType<HistoryOrdersProvider>().As<IHistoryOrdersProvider>();
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
+            builder.RegisterType<UserLocationService>().As<IUserLocationService>();
             
             builder.RegisterType<Requests>().As<IRequestsToServer>();
             builder.RegisterType<CallService>().As<ICallService>();

@@ -8,4 +8,7 @@
     <ProjectReference Include="..\Services.Models\Services.Models.csproj" />
     <ProjectReference Include="..\..\Tools\Core\Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserLocation\" />
+  </ItemGroup>
 </Project>

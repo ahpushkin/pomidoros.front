@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Autofac;
 using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
@@ -14,6 +15,7 @@ using Pomidoros.View.Orders;
 using Pomidoros.ViewModel.Base;
 using Rg.Plugins.Popup.Contracts;
 using Services.Models.Orders;
+using Services.UserLocation;
 using Xamarin.Essentials;
 
 namespace Pomidoros.ViewModel.Orders
@@ -28,6 +30,10 @@ namespace Pomidoros.ViewModel.Orders
         {
             _popupNavigation = popupNavigation;
         }
+
+        private IUserLocationService _userLocationService;
+        protected IUserLocationService UserLocationService
+            => _userLocationService ??= App.Container.Resolve<IUserLocationService>();
 
         public GoogleMapViewModel GoogleMapProvider { get; } = new GoogleMapViewModel();
 
@@ -127,7 +133,7 @@ namespace Pomidoros.ViewModel.Orders
                 });
             }
 
-            // TODO: send location to server here
+            UserLocationService.SendLocation(location.Item1, location.Item2, CancellationToken.None);
 
             MainThread.InvokeOnMainThreadAsync(() =>
             {

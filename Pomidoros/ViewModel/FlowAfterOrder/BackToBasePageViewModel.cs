@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using Autofac;
 using Core.Extensions;
 using Core.Navigation;
 using Core.ViewModel.Infra;
@@ -9,6 +11,7 @@ using Pomidoros.Services;
 using Pomidoros.View.FlowAfterOrder;
 using Pomidoros.ViewModel.Base;
 using Services.Models.Orders;
+using Services.UserLocation;
 using Xamarin.Essentials;
 
 namespace Pomidoros.ViewModel.FlowAfterOrder
@@ -22,6 +25,10 @@ namespace Pomidoros.ViewModel.FlowAfterOrder
         {
             Title = LocalizationStrings.ToHomeBaseTitle;
         }
+
+        private IUserLocationService _userLocationService;
+        protected IUserLocationService UserLocationService
+            => _userLocationService ??= App.Container.Resolve<IUserLocationService>();
 
         private FullOrderModel _order;
         public FullOrderModel Order
@@ -65,7 +72,7 @@ namespace Pomidoros.ViewModel.FlowAfterOrder
                 });
             }
 
-            // TODO: send location to server here
+            UserLocationService.SendLocation(location.Item1, location.Item2, CancellationToken.None);
 
             MainThread.InvokeOnMainThreadAsync(() =>
             {

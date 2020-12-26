@@ -8,4 +8,7 @@
     <ProjectReference Include="..\Services.API\Services.API.csproj" />
     <ProjectReference Include="..\Services.Models\Services.Models.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserLocation\" />
+  </ItemGroup>
 </Project>
