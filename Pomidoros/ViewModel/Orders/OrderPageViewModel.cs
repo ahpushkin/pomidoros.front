@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Core.Commands;
@@ -5,17 +8,21 @@ using Core.Extensions;
 using Core.Navigation;
 using Core.ViewModel.Infra;
 using Pomidoros.Resources;
+using Pomidoros.Services;
 using Pomidoros.View.Notification;
 using Pomidoros.View.Orders;
 using Pomidoros.ViewModel.Base;
 using Rg.Plugins.Popup.Contracts;
 using Services.Models.Orders;
+using Xamarin.Essentials;
 
 namespace Pomidoros.ViewModel.Orders
 {
-    public class OrderPageViewModel : BaseViewModel, IParametrized, IAppearingAware
+    public class OrderPageViewModel : BaseViewModel, IParametrized, IAppearingAware, IDisappearingAware
     {
         private readonly IPopupNavigation _popupNavigation;
+        private readonly DeviceLocation _deviceLocation = new DeviceLocation();
+        private bool firstTimeLocation = true;
 
         public OrderPageViewModel(IPopupNavigation popupNavigation)
         {
@@ -26,13 +33,20 @@ namespace Pomidoros.ViewModel.Orders
 
         public void OnAppearing()
         {
+            _deviceLocation.StartRequestLocation(OnGetLocation);
+
             if (!HasDeliveryAddress && !string.IsNullOrEmpty(Order?.DeliveryAddress))
             {
                 HasDeliveryAddress = !string.IsNullOrEmpty(Order?.DeliveryAddress);
                 RaisePropertyChanged(nameof(Order));
             }
         }
-        
+
+        public void OnDisappearing()
+        {
+            _deviceLocation.Cancel();
+        }
+
         public void PassParameters(NavigationParameters parameters)
         {
             if (parameters.TryGetParameter<FullOrderModel>("order", out var order))
@@ -40,10 +54,6 @@ namespace Pomidoros.ViewModel.Orders
                 Order = order;
                 Title = string.Format(LocalizationStrings.OrderNumberTitleFormat, order.OrderNumber);
                 HasDeliveryAddress = !string.IsNullOrEmpty(order.DeliveryAddress);
-
-                GoogleMapProvider.SetCoordinates(Order?.Coordinates);
-
-                //GoogleMapProvider.SetCourierMarker(coordinates);
             }
         }
 
@@ -104,6 +114,25 @@ namespace Pomidoros.ViewModel.Orders
         private Task OnInputAddressCommand(object arg)
         {
             return Navigation.PushAsync(new ChangeLocationPage(), Order, "order");
+        }
+
+        private void OnGetLocation(Tuple<double, double> location)
+        {
+            if (firstTimeLocation)
+            {
+                firstTimeLocation = false;
+                MainThread.InvokeOnMainThreadAsync(() =>
+                {
+                    GoogleMapProvider.SetCoordinates(new List<Tuple<double, double>> { location });
+                });
+            }
+
+            // TODO: send location to server here
+
+            MainThread.InvokeOnMainThreadAsync(() =>
+            {
+                GoogleMapProvider.SetCourierMarker(location);
+            });
         }
     }
 }
