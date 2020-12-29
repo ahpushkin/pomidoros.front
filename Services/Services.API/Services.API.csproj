@@ -10,5 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UserLocation\" />
+    <Folder Include="User\" />
   </ItemGroup>
 </Project>

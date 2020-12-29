@@ -28,12 +28,6 @@ namespace Pomidoros.Utils
             return true;
         }
 
-        public async Task<bool> LoginAsync(string phoneNumber, string password)
-        {
-            await Task.Delay(2000);
-            return true;
-        }
-
         public async Task<bool> ResetPasswordAsync(string phoneNumber)
         {
             await Task.Delay(3000);

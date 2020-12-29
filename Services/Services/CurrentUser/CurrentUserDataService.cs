@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Services.Models.Data;
-using Services.Models.Enums;
+using Services.API.User;
 using Services.Models.User;
 using Services.Storage;
 
@@ -9,37 +8,38 @@ namespace Services.CurrentUser
 {
     public class CurrentUserDataService : ICurrentUserDataService
     {
+        private readonly IUserApi _userApi;
         private readonly IStorage _storage;
 
-        public CurrentUserDataService(IStorage storage)
+        public CurrentUserDataService(IUserApi userApi, IStorage storage)
         {
+            _userApi = userApi;
             _storage = storage;
         }
         
-        public Task FetchUserDataAsync()
+        public async Task FetchUserDataAsync()
         {
-            _storage.Put(Constants.StorageKeys.UserData, new UserDataModel
+            if (!_storage.Available(Constants.StorageKeys.UserData))
             {
-                FullName = "Олдос Хаксли",
-                Identify = "22212151",
-                Email = "aldous.huxley@gmail.com",
-                Phone = "+380 9767 217 315",
-                Transport = new TransportModel
-                {
-                    Type = ETransportType.Car,
-                    Model = "Volkswagen-Passat",
-                    Number = "AA 1234 AB"
-                }
-            });
+                throw new ApplicationException("User data was not fetched or saved yet");
+            }
 
-            return Task.CompletedTask;
+            var user = _storage.Get<UserDataModel>(Constants.StorageKeys.UserData);
+
+            var userData = await _userApi.GetUserDataAsync(user.Identify);
+
+            if (userData != null)
+            {
+                _storage.Put(Constants.StorageKeys.UserData, userData);
+            }
         }
 
-        public Task UpdateUserDataAsync(UserDataModel userData)
+        public async Task UpdateUserDataAsync(UserDataModel userData)
         {
-            _storage.Put(Constants.StorageKeys.UserData, userData);
-
-            return Task.CompletedTask;
+            if(await _userApi.UpdateUserDataAsync(userData))
+            {
+                _storage.Put(Constants.StorageKeys.UserData, userData);
+            }
         }
 
         public UserDataModel GetUserData()

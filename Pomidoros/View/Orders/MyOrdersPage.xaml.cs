@@ -8,15 +8,5 @@ namespace Pomidoros.View.Orders
         {
             InitializeComponent();
         }
-
-        private void GetReview(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void GetOrder(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

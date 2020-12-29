@@ -2,6 +2,7 @@ using System.Net.Http;
 using Autofac;
 using Services.API.Authorization;
 using Services.API.Orders;
+using Services.API.User;
 using Services.API.UserLocation;
 
 namespace Pomidoros.Modules
@@ -17,6 +18,8 @@ namespace Pomidoros.Modules
 
             builder.RegisterType<OrdersApi_mock>().As<IOrdersApi>();
             //builder.RegisterType<OrdersApi>().As<IOrdersApi>();
+            builder.RegisterType<UserApi_mock>().As<IUserApi>();
+            //builder.RegisterType<UserApi>().As<IUserApi>();
         }
     }
 }
