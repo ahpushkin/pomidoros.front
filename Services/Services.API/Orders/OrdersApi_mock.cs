@@ -33,13 +33,14 @@ namespace Services.API.Orders
                     new OrderContentModel {Count = 2, Name = "Бургер 'DeLuxe'", Price = 120},
                     new OrderContentModel {Count = 5, Name = "Картошка 'По селянски'", Price = 35}
                 },
-                DeliveryAddress = rnd.Next(0, 2) == 1 ? "ул. Героев Сталинграда 143-б" : null,
-                StartAddress = "ул. Засумская 65",
+                DeliveryAddress = rnd.Next(0, 2) == 1 ? "ул. Богдана Хмельницкого, 28" : null,
+                StartAddress = "ул. Садовая, 1В",
                 Coordinates = new List<Tuple<double, double>>
                 {
-                    new Tuple<double, double>(49.9977729, 36.2413953),
-                    new Tuple<double, double>(49.9982729, 36.2426953),
-                    new Tuple<double, double>(49.9987729, 36.2433953)
+                    new Tuple<double, double>(50.4340454, 30.3310020),
+                    new Tuple<double, double>(50.4343374, 30.3312058),
+                    new Tuple<double, double>(50.4350150, 30.3347454),
+                    new Tuple<double, double>(50.4371955, 30.3339110)
                 },
                 Distance = 5674,
                 EndTime = DateTimeOffset.Now.AddHours(rnd.Next(10, 60)),
@@ -114,7 +115,7 @@ namespace Services.API.Orders
         private ShortOrderModel CreateModel(EOrderStatus status, EOrderType type, int minutes)
             => new ShortOrderModel
             {
-                Address = "ул. Засумская 18",
+                Address = "ул. Богдана Хмельницкого, 28",
                 Distance = 450,
                 Status = status,
                 Type = type,
