@@ -1,12 +1,6 @@
-﻿using System;
-using Acr.UserDialogs;
+﻿using System.Threading.Tasks;
 using Autofac;
-using Pomidoros.Controller;
-using Pomidoros.Interfaces;
 using Pomidoros.View.Base;
-using Pomidoros.View.Notification;
-using Pomidoros.View.ReviewSteps;
-using Rg.Plugins.Popup.Services;
 using Services.CurrentUser;
 
 namespace Pomidoros.View.Authorization
@@ -25,17 +19,10 @@ namespace Pomidoros.View.Authorization
             var userDataProvider = App.Container.Resolve<ICurrentUserDataService>();
             name.Text = userDataProvider.GetUserData().FullName;
 
-            var requestRes = await App.Container.Resolve<IRequestsToServer>()?.GetDriverDataAsync();
-            
-            if (requestRes)
-            {
-                Navigation.InsertPageBefore(new FirstReviewPage(), this);
-                Navigation.PopAsync();
-            }
-            else
-            {
-                UserDialogs.Instance.AlertAsync("Произошла ошибка.", "Не удалось загрузить данные вашего профиля. Повторите попытку позже. ", "Хорошо").SafeFireAndForget(false);
-            }            
+            await Task.Delay(2000);
+
+            Navigation.InsertPageBefore(new ReviewSteps.FirstReviewPage(), this);
+            await Navigation.PopAsync();
         }
     }
 }
