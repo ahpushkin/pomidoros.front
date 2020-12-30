@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Services.API.Authorization;
@@ -81,6 +82,35 @@ namespace Services.Authorization
                 }
             }
             return false;
+        }
+
+        public AuthorizationErrorCode ValidatePhoneNumber(string phoneNumber)
+        {
+            var errorCounter = Regex.Matches(phoneNumber, @"[a-zA-Z,а-яА-Я]")?.Count;
+
+            if (string.IsNullOrWhiteSpace(phoneNumber) || errorCounter > 0)
+            {
+                return AuthorizationErrorCode.IncorrectPhoneChars;
+            }
+
+            if (!phoneNumber.Contains("+380") || phoneNumber.Length < 13 || phoneNumber.Length > 14)
+            {
+                return AuthorizationErrorCode.IncorrectPhoneFormat;
+            }
+
+            return AuthorizationErrorCode.Ok;
+        }
+
+        public AuthorizationErrorCode ValidateSmsCode(string smsCode)
+        {
+            var errorCounter = Regex.Matches(smsCode, @"[a-zA-Z,а-яА-Я]")?.Count;
+
+            if (string.IsNullOrWhiteSpace(smsCode) || errorCounter > 0 || smsCode.Length < 4)
+            {
+                return AuthorizationErrorCode.IncorrectSmsCode;
+            }
+
+            return AuthorizationErrorCode.Ok;
         }
     }
 }

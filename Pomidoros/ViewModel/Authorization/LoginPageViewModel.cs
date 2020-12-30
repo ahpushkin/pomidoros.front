@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -76,8 +75,13 @@ namespace Pomidoros.ViewModel.Authorization
             if (!await CheckConnectionWithPopupAsync())
                 return;
 
-            if (!ValidateInputDataWithToast())
+            var error = AuthorizationService.ValidatePhoneNumber(Phone);
+            if (error != AuthorizationErrorCode.Ok)
+            {
+                Toast(error == AuthorizationErrorCode.IncorrectPhoneChars
+                    ? "Проверьте введенные данные" : "Неверный формат номера телефона");
                 return;
+            }
 
             using (UserDialogs.Loading(maskType: MaskType.Clear))
             {
@@ -99,24 +103,5 @@ namespace Pomidoros.ViewModel.Authorization
         }
         
         #endregion
-
-        private bool ValidateInputDataWithToast()
-        {
-            var errorCounter = Regex.Matches(Phone, @"[a-zA-Z,а-яА-Я]")?.Count;
-            
-            if (string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(Password) || errorCounter > 0)
-            {
-                Toast("Проверьте введенные данные");
-                return false;
-            }
-            
-            if(!Phone.Contains("+380") || Phone.Length < 13 || Phone.Length > 14)
-            {
-                Toast("Неверный формат номера телефона");
-                return false;
-            }
-
-            return true;
-        }
     }
 }

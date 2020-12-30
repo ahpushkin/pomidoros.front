@@ -63,11 +63,11 @@ namespace Pomidoros.ViewModel.Authorization
             set => SetProperty(ref _enableTimer, value);
         }
 
-        private bool _isFooterVisible;
-        public bool IsFooterVisible
+        private bool _isEnableTimerVisible;
+        public bool IsEnableTimerVisible
         {
-            get => _isFooterVisible;
-            set => SetProperty(ref _isFooterVisible, value);
+            get => _isEnableTimerVisible;
+            set => SetProperty(ref _isEnableTimerVisible, value);
         }
 
         public ICommand TapBackCommand { get; }
@@ -80,11 +80,12 @@ namespace Pomidoros.ViewModel.Authorization
 
         private async Task ResetPassword()
         {
-            var errorCounter = Regex.Matches(UserPhone, @"[a-zA-Z,а-яА-Я]")?.Count;
-
-            if (string.IsNullOrWhiteSpace(UserPhone) || errorCounter > 0 || !UserPhone.Contains("+380") || UserPhone.Length < 13 || UserPhone.Length > 14)
+            var error = AuthorizationService.ValidatePhoneNumber(UserPhone);
+            if (error != AuthorizationErrorCode.Ok)
             {
-                UserDialogs.AlertAsync("Некорректный номер телефона", okText: "Ок").SafeFireAndForget(false);
+                var msg = error == AuthorizationErrorCode.IncorrectPhoneChars
+                    ? "Проверьте введенные данные" : "Неверный формат номера телефона";
+                UserDialogs.AlertAsync(msg, okText: "Ок").SafeFireAndForget(false);
                 return;
             }
 
@@ -95,7 +96,7 @@ namespace Pomidoros.ViewModel.Authorization
             if (result)
             {
                 State = "EnterSmsCode";
-                IsFooterVisible = true;
+                IsEnableTimerVisible = true;
             }
             else
                 UserDialogs.AlertAsync("Ошибка соеденения с сервером. Повторите позже.", okText: "Ок")
@@ -105,9 +106,8 @@ namespace Pomidoros.ViewModel.Authorization
 
         private async Task SendSmsCode()
         {
-            var errorCounter = Regex.Matches(SmsCode, @"[a-zA-Z,а-яА-Я]")?.Count;
-
-            if (string.IsNullOrWhiteSpace(SmsCode) || errorCounter > 0 || SmsCode.Length < 4)
+            var error = AuthorizationService.ValidateSmsCode(SmsCode);
+            if (error == AuthorizationErrorCode.IncorrectSmsCode)
             {
                 UserDialogs.AlertAsync("Некорректный код из смс", okText: "Ок").SafeFireAndForget(false);
                 return;
@@ -129,15 +129,22 @@ namespace Pomidoros.ViewModel.Authorization
 
         private async Task SendSmsAgain()
         {
-            var userPhone = UserPhone ?? string.Empty;
-
             if (!_smsResendEnable)
                 return;
 
             _smsResendEnable = false;
 
+            var error = AuthorizationService.ValidatePhoneNumber(UserPhone);
+            if (error != AuthorizationErrorCode.Ok)
+            {
+                var msg = error == AuthorizationErrorCode.IncorrectPhoneChars
+                    ? "Проверьте введенные данные" : "Неверный формат номера телефона";
+                UserDialogs.AlertAsync(msg, okText: "Ок").SafeFireAndForget(false);
+                return;
+            }
+
             UserDialogs.ShowLoading("");
-            var result = await AuthorizationService.ResetPasswordAsync(userPhone, CancellationToken.None);
+            var result = await AuthorizationService.ResetPasswordAsync(UserPhone, CancellationToken.None);
             UserDialogs.HideLoading();
 
             if (!result)
@@ -145,6 +152,8 @@ namespace Pomidoros.ViewModel.Authorization
                 UserDialogs.AlertAsync("Ошибка соеденения с сервером. Повторите позже.", okText: "Ок").SafeFireAndForget(false);
                 return;
             }
+
+            IsEnableTimerVisible = true;
 
             var startPoint = 300; // seconds
             while (true)
@@ -158,7 +167,7 @@ namespace Pomidoros.ViewModel.Authorization
                 if (startPoint == 0)
                 {
                     _smsResendEnable = true;
-                    IsFooterVisible = false;
+                    IsEnableTimerVisible = false;
                     break;
                 }
             }
