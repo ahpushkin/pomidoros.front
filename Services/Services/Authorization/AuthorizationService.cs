@@ -28,7 +28,7 @@ namespace Services.Authorization
             {
                 var tokenModel = _storage.Get<TokenModel>(Constants.StorageKeys.Token);
 
-                await _authorizationApi.Logout(tokenModel.Token);
+                await _authorizationApi.LogoutAsync(tokenModel.Token);
 
                 _storage.Remove(Constants.StorageKeys.Token);
             }
@@ -51,12 +51,36 @@ namespace Services.Authorization
 
                 // TODO: TokenModel should be changed to have user id
                 // and next reqquest won't be necessary
-                var userModel = await _authorizationApi.GetUserAuth(token);
+                var userModel = await _authorizationApi.GetUserAuthAsync(token);
                 if (userModel != null)
                 {
                     _storage.Put(Constants.StorageKeys.UserAuth, userModel);
                 }
             }
+        }
+
+        public Task<bool> ResetPasswordAsync(string phone, CancellationToken token)
+        {
+            return _authorizationApi.ResetPasswordAsync(phone, token);
+        }
+
+        public async Task<bool> SendSmsAsync(string code, CancellationToken token)
+        {
+            var tokenModel = await _authorizationApi.SendSmsAsync(code, token);
+            if (tokenModel != null)
+            {
+                _storage.Put(Constants.StorageKeys.Token, tokenModel);
+
+                // TODO: TokenModel should be changed to have user id
+                // and next reqquest won't be necessary
+                var userModel = await _authorizationApi.GetUserAuthAsync(token);
+                if (userModel != null)
+                {
+                    _storage.Put(Constants.StorageKeys.UserAuth, userModel);
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

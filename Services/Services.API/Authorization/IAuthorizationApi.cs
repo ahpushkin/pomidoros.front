@@ -8,7 +8,9 @@ namespace Services.API.Authorization
     public interface IAuthorizationApi
     {
         Task<TokenModel> LoginAsync(string phone, string passcode, CancellationToken token);
-        Task Logout(string token);
-        Task<UserDataModel> GetUserAuth(CancellationToken token);
+        Task LogoutAsync(string token);
+        Task<UserDataModel> GetUserAuthAsync(CancellationToken token);
+        Task<bool> ResetPasswordAsync(string phone, CancellationToken token);
+        Task<TokenModel> SendSmsAsync(string code, CancellationToken token);
     }
 }

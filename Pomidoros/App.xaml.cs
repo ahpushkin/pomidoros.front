@@ -34,6 +34,7 @@ namespace Pomidoros
             builder.RegisterType<ProfilePageViewModel>();
             builder.RegisterType<MainPageViewModel>();
             builder.RegisterType<LoginPageViewModel>();
+            builder.RegisterType<ForgotPasswordPageViewModel>();
             builder.RegisterType<SecondReviewPageViewModel>();
             builder.RegisterType<FirstReviewPageViewModel>();
             builder.RegisterType<StorageImplementation>().As<IStorage>();

@@ -12,6 +12,7 @@ namespace Pomidoros.Modules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<HttpClient>();
+            //builder.RegisterType<AuthorizationApi_mock>().As<IAuthorizationApi>();
             builder.RegisterType<AuthorizationApi>().As<IAuthorizationApi>();
             builder.RegisterType<UserLocationApi_mock>().As<IUserLocationApi>();
             //builder.RegisterType<UserLocationApi>().As<IUserLocationApi>();

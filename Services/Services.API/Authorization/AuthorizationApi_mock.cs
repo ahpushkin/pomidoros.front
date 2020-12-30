@@ -8,7 +8,7 @@ namespace Services.API.Authorization
 {
     public class AuthorizationApi_mock : IAuthorizationApi
     {
-        public async Task<UserDataModel> GetUserAuth(CancellationToken token)
+        public async Task<UserDataModel> GetUserAuthAsync(CancellationToken token)
         {
             await Task.Delay(1000);
 
@@ -24,12 +24,30 @@ namespace Services.API.Authorization
         public async Task<TokenModel> LoginAsync(string phone, string passcode, CancellationToken token)
         {
             await Task.Delay(1000).WithCancellation(token);
-            return new TokenModel();
+            return new TokenModel
+            {
+                Token = "asdasdasdasdasdasdasdasdasd"
+            };
         }
 
-        public async Task Logout(string token)
+        public async Task LogoutAsync(string token)
         {
             await Task.Delay(1000);
+        }
+
+        public async Task<bool> ResetPasswordAsync(string phone, CancellationToken token)
+        {
+            await Task.Delay(2000);
+            return true;
+        }
+
+        public async Task<TokenModel> SendSmsAsync(string code, CancellationToken token)
+        {
+            await Task.Delay(2000);
+            return new TokenModel
+            {
+                Token = "asdasdasdasdasdasdasdasdasd"
+            };
         }
     }
 }

@@ -6,9 +6,9 @@ namespace Services.Authorization
     public interface IAuthorizationService
     {
         bool IsAuthorized { get; }
-
-        Task LogoutAsync();
-
         Task LoginAsync(string phone, string passcode, CancellationToken token);
+        Task LogoutAsync();
+        Task<bool> ResetPasswordAsync(string phone, CancellationToken token);
+        Task<bool> SendSmsAsync(string code, CancellationToken token);
     }
 }

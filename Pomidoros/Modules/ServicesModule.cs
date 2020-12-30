@@ -20,7 +20,6 @@ namespace Pomidoros.Modules
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
             builder.RegisterType<UserLocationService>().As<IUserLocationService>();
             
-            builder.RegisterType<Requests>().As<IRequestsToServer>();
             builder.RegisterType<CallService>().As<ICallService>();
             builder.RegisterType<SmsService>().As<ISmsService>();
         }
