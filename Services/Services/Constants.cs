@@ -5,6 +5,7 @@ namespace Services
         public static class StorageKeys
         {
             public const string Token = nameof(Token);
+            public const string UserAuth = nameof(UserAuth);
             public const string UserData = nameof(UserData);
         }
     }

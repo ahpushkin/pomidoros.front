@@ -19,12 +19,12 @@ namespace Services.CurrentUser
         
         public async Task FetchUserDataAsync()
         {
-            if (!_storage.Available(Constants.StorageKeys.UserData))
+            if (!_storage.Available(Constants.StorageKeys.UserAuth))
             {
-                throw new ApplicationException("User data was not fetched or saved yet");
+                throw new ApplicationException("User auth info doesn't exist");
             }
 
-            var user = _storage.Get<UserDataModel>(Constants.StorageKeys.UserData);
+            var user = _storage.Get<UserDataModel>(Constants.StorageKeys.UserAuth);
 
             var userData = await _userApi.GetUserDataAsync(user.Identify);
 

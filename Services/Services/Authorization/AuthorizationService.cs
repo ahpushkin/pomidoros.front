@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Services.API;
 using Services.API.Authorization;
+using Services.Models.Authorization;
 using Services.Storage;
 
 namespace Services.Authorization
@@ -22,10 +22,17 @@ namespace Services.Authorization
 
         public bool IsAuthorized => _storage.Available(Constants.StorageKeys.Token);
         
-        public void Logout()
+        public async Task LogoutAsync()
         {
             if (IsAuthorized)
+            {
+                var tokenModel = _storage.Get<TokenModel>(Constants.StorageKeys.Token);
+
+                await _authorizationApi.Logout(tokenModel.Token);
+
                 _storage.Remove(Constants.StorageKeys.Token);
+            }
+
             _storage.RemoveAll();
         }
         
@@ -41,6 +48,14 @@ namespace Services.Authorization
             if (tokenModel != null)
             {
                 _storage.Put(Constants.StorageKeys.Token, tokenModel);
+
+                // TODO: TokenModel should be changed to have user id
+                // and next reqquest won't be necessary
+                var userModel = await _authorizationApi.GetUserAuth(token);
+                if (userModel != null)
+                {
+                    _storage.Put(Constants.StorageKeys.UserAuth, userModel);
+                }
             }
         }
     }

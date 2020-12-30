@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Core.Extensions;
 using Services.Models.Authorization;
+using Services.Models.User;
 
 namespace Services.API.Authorization
 {
@@ -14,6 +15,16 @@ namespace Services.API.Authorization
         public AuthorizationApi(HttpClient httpClient)
         {
             _httpClient = httpClient;
+        }
+
+        public async Task<UserDataModel> GetUserAuth(CancellationToken token)
+        {
+            var response = await _httpClient.GetAsync(RequestUrl("auth/user/"), token);
+            if (!response.IsSuccessStatusCode)
+            {
+                return null;
+            }
+            return await response.ReadAsJsonAsync<UserDataModel>().WithCancellation(token);
         }
 
         public async Task<TokenModel> LoginAsync(string phone, string passcode, CancellationToken token)
@@ -29,6 +40,11 @@ namespace Services.API.Authorization
                 return null;
             }
             return await response.ReadAsJsonAsync<TokenModel>().WithCancellation(token);
+        }
+
+        public async Task Logout(string token)
+        {
+            await _httpClient.PostAsync(RequestUrl("/auth/logout/"), null);
         }
     }
 }

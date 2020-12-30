@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Autofac;
@@ -135,11 +134,12 @@ namespace Pomidoros.ViewModel.Profile
             };
         }
         
-        private Task OnLogoutCommandAsync(object obj)
+        private async Task OnLogoutCommandAsync(object obj)
         {
-            AuthorizationService.Logout();
+            await AuthorizationService.LogoutAsync();
+
             Navigation.InsertPageBefore(new LoginPage(), Navigation.GetRoot());
-            return Navigation.PopToRootAsync();
+            await Navigation.PopToRootAsync();
         }
     }
 }

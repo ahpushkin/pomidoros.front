@@ -7,7 +7,7 @@ namespace Services.Authorization
     {
         bool IsAuthorized { get; }
 
-        void Logout();
+        Task LogoutAsync();
 
         Task LoginAsync(string phone, string passcode, CancellationToken token);
     }
