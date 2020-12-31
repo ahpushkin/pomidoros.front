@@ -7,6 +7,7 @@ using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
 using Pomidoros.Resources;
+using Pomidoros.Services;
 using Pomidoros.View;
 using Pomidoros.View.Notification;
 using Pomidoros.View.Orders;
@@ -15,6 +16,7 @@ using Rg.Plugins.Popup.Contracts;
 using Services.Models.Enums;
 using Services.Models.Orders;
 using Services.UserLocation;
+using Xamarin.Essentials;
 
 namespace Pomidoros.ViewModel.Orders
 {
@@ -144,10 +146,14 @@ namespace Pomidoros.ViewModel.Orders
 
             Task.Run(async () =>
             {
-                string orderId = Order.OrderNumber;
-                var routeInfo = await UserLocationService.GetRouteInfoAsync(Convert.ToInt32(orderId), CancellationToken.None);
+                var startLocation = await PlaceLocation.GetLocationByAddress(Order.StartCity + ", " + Order.StartAddress);
+                var endLocation = await PlaceLocation.GetLocationByAddress(Order.DeliveryCity + ", " + Order.DeliveryAddress);
 
-                await Xamarin.Essentials.MainThread.InvokeOnMainThreadAsync(() =>
+                string orderId = Order.OrderNumber;
+                var routeInfo = await UserLocationService.GetRouteInfoAsync(Convert.ToInt32(orderId), startLocation,
+                    endLocation, CancellationToken.None);
+
+                await MainThread.InvokeOnMainThreadAsync(() =>
                 {
                     GoogleMapProvider.SetCoordinates(routeInfo.Coordinates);
                     GoogleMapProvider.AddRouteWithMarkers();

@@ -33,7 +33,9 @@ namespace Services.API.Orders
                     new OrderContentModel {Count = 2, Name = "Бургер 'DeLuxe'", Price = 120},
                     new OrderContentModel {Count = 5, Name = "Картошка 'По селянски'", Price = 35}
                 },
+                DeliveryCity = "Петропавловская Борщаговка",
                 DeliveryAddress = rnd.Next(0, 2) == 1 ? "ул. Богдана Хмельницкого, 28" : null,
+                StartCity = "Петропавловская Борщаговка",
                 StartAddress = "ул. Садовая, 1В",
                 Coordinates = new List<Tuple<double, double>>
                 {

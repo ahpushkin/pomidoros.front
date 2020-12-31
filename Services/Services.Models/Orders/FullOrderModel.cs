@@ -12,7 +12,11 @@ namespace Services.Models.Orders
 
         public EOrderStatus OrderStatus { get; set; }
 
+        public string StartCity { get; set; }
+
         public string StartAddress { get; set; }
+
+        public string DeliveryCity { get; set; }
 
         public string DeliveryAddress { get; set; }
 

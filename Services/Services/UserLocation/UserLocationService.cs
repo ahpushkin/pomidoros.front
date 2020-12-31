@@ -32,7 +32,7 @@ namespace Services.UserLocation
             throw new NotImplementedException();
         }
 
-        public Task<RouteInfoModel> GetRouteInfoAsync(int orderId, CancellationToken token)
+        public Task<RouteInfoModel> GetRouteInfoAsync(int orderId, Tuple<double, double> start, Tuple<double, double> end, CancellationToken token)
         {
             throw new NotImplementedException();
         }
@@ -67,9 +67,11 @@ namespace Services.UserLocation
             return _userLocationApi.SendCurrentLocationAsync(_routeId, $"{latitude}", $"{longitude}", token);
         }
 
-        public async Task<RouteInfoModel> GetRouteInfoAsync(int orderId, CancellationToken token)
+        public async Task<RouteInfoModel> GetRouteInfoAsync(int orderId, Tuple<double, double> start,
+            Tuple<double, double> end, CancellationToken token)
         {
-            var result = await _userLocationApi.GetRouteInfoAsync(_orderId, _userId, "50.4371627", "30.3337534", "50.4341283", "30.3313164", token);
+            var result = await _userLocationApi.GetRouteInfoAsync(_orderId, _userId, $"{start.Item1}", $"{start.Item2}",
+                $"{end.Item1}", $"{end.Item2}", token);
 
             if (result == null)
             {
