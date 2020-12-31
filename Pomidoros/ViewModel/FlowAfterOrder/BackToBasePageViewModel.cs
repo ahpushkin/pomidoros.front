@@ -63,21 +63,18 @@ namespace Pomidoros.ViewModel.FlowAfterOrder
 
         private void OnGetLocation(Tuple<double, double> location)
         {
-            if (_firstTimeLocation)
-            {
-                _firstTimeLocation = false;
-                MainThread.InvokeOnMainThreadAsync(() =>
-                {
-                    GoogleMapProvider.SetCoordinates(new List<Tuple<double, double>> { location });
-                });
-            }
-
-            UserLocationService.SendLocation(location.Item1, location.Item2, CancellationToken.None);
-
             MainThread.InvokeOnMainThreadAsync(() =>
             {
+                if (_firstTimeLocation)
+                {
+                    _firstTimeLocation = false;
+                    GoogleMapProvider.SetCoordinates(new List<Tuple<double, double>> { location });
+                }
+
                 GoogleMapProvider.SetCourierMarker(location);
             });
+
+            UserLocationService.SendCurrentLocationAsync(location.Item1, location.Item2, CancellationToken.None);
         }
     }
 }

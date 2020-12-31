@@ -5,6 +5,6 @@ namespace Services.API.UserLocation
 {
     public interface IUserLocationApi
     {
-        Task SendLocationAsync(string userId, double latitude, double longitude, CancellationToken token);
+        Task SendCurrentLocationAsync(int routeId, string latitude, string longitude, CancellationToken token);
     }
 }

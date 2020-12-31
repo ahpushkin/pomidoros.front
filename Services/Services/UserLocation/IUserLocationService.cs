@@ -1,9 +1,10 @@
 ﻿using System.Threading;
+using System.Threading.Tasks;
 
 namespace Services.UserLocation
 {
     public interface IUserLocationService
     {
-        void SendLocation(double latitude, double longitude, CancellationToken token);
+        Task SendCurrentLocationAsync(double latitude, double longitude, CancellationToken token);
     }
 }

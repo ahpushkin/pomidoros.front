@@ -17,19 +17,32 @@ namespace Services.UserLocation
             _storage = storage;
         }
 
-        public void SendLocation(double latitude, double longitude, CancellationToken token)
+        public Task SendCurrentLocationAsync(double latitude, double longitude, CancellationToken token)
         {
-            if (!_storage.Available(Constants.StorageKeys.UserData))
-            {
-                throw new ApplicationException("User data was not fetch or saved yet");
-            }
+            //if (!_storage.Available(Constants.StorageKeys.UserData))
+            //{
+            //    throw new ApplicationException("User data was not fetch or saved yet");
+            //}
 
-            var user = _storage.Get<Models.User.UserDataModel>(Constants.StorageKeys.UserData);
+            //var user = _storage.Get<Models.User.UserDataModel>(Constants.StorageKeys.UserData);
 
-            Task.Run(async () =>
-            {
-                await _userLocationApi.SendLocationAsync(user.Identify, latitude, longitude, token);
-            });
+            //return _userLocationApi.SendLocationAsync(user.Identify, $"{latitude}", $"{longitude}", token);
+            throw new NotImplementedException();
+        }
+    }
+
+    public class UserLocationService_mock : IUserLocationService
+    {
+        readonly IUserLocationApi _userLocationApi;
+
+        public UserLocationService_mock(IUserLocationApi userLocationApi)
+        {
+            _userLocationApi = userLocationApi;
+        }
+
+        public Task SendCurrentLocationAsync(double latitude, double longitude, CancellationToken token)
+        {
+            return _userLocationApi.SendCurrentLocationAsync(1, $"{latitude}", $"{longitude}", token);
         }
     }
 }

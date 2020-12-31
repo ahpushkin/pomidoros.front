@@ -24,7 +24,7 @@ namespace Pomidoros.ViewModel.Orders
     {
         private readonly IPopupNavigation _popupNavigation;
         private readonly DeviceLocation _deviceLocation = new DeviceLocation();
-        private bool firstTimeLocation = true;
+        private bool _firstTimeLocation = true;
 
         public OrderPageViewModel(IPopupNavigation popupNavigation)
         {
@@ -124,21 +124,18 @@ namespace Pomidoros.ViewModel.Orders
 
         private void OnGetLocation(Tuple<double, double> location)
         {
-            if (firstTimeLocation)
-            {
-                firstTimeLocation = false;
-                MainThread.InvokeOnMainThreadAsync(() =>
-                {
-                    GoogleMapProvider.SetCoordinates(new List<Tuple<double, double>> { location });
-                });
-            }
-
-            UserLocationService.SendLocation(location.Item1, location.Item2, CancellationToken.None);
-
             MainThread.InvokeOnMainThreadAsync(() =>
             {
+                if (_firstTimeLocation)
+                {
+                    _firstTimeLocation = false;
+                    GoogleMapProvider.SetCoordinates(new List<Tuple<double, double>> { location });
+                }
+
                 GoogleMapProvider.SetCourierMarker(location);
             });
-        }
+
+            UserLocationService.SendCurrentLocationAsync(location.Item1, location.Item2, CancellationToken.None);
+       }
     }
 }

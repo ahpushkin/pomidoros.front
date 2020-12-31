@@ -15,15 +15,15 @@ namespace Services.API.UserLocation
             _httpClient = httpClient;
         }
 
-        public async Task SendLocationAsync(string userId, double latitude, double longitude, CancellationToken token)
+        public async Task SendCurrentLocationAsync(int routeId, string latitude, string longitude, CancellationToken token)
         {
             var parameters = new Dictionary<string, object>
             {
-                { "user_id", userId },
-                { "latitude", latitude },
-                { "longitude", longitude }
+                { "current_lat_courier", latitude },
+                { "current_lon_courier", longitude },
+                { "route", routeId }
             };
-            await _httpClient.PostAsync(RequestUrl("location/send/"), parameters, token);
+            await _httpClient.PostAsync(RequestUrl("geo/log/"), parameters, token);
         }
     }
 }

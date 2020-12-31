@@ -5,10 +5,10 @@ namespace Services.API.UserLocation
 {
     public class UserLocationApi_mock : IUserLocationApi
     {
-        public async Task SendLocationAsync(string userId, double latitude, double longitude, CancellationToken token)
+        public async Task SendCurrentLocationAsync(int routeId, string latitude, string longitude, CancellationToken token)
         {
             await Task.Delay(1000);
-            System.Diagnostics.Debug.WriteLine($"Saved user ({userId}) coordinate: {latitude}:{longitude}");
+            System.Diagnostics.Debug.WriteLine($"Saved route ({routeId}) coordinate: {latitude}:{longitude}");
         }
     }
 }
