@@ -25,5 +25,22 @@ namespace Services.API.UserLocation
             };
             await _httpClient.PostAsync(RequestUrl("geo/log/"), parameters, token);
         }
+
+        public async Task<string> GetRouteInfoAsync(int orderId, int userId, string startLatitude, string startLongitude, string endLatitude, string endLongitude, CancellationToken token)
+        {
+            var parameters = new Dictionary<string, object>
+            {
+                { "start_lat_courier", startLatitude},
+                { "start_lon_courier", startLongitude},
+                { "finish_point_lat", endLatitude},
+                { "finish_point_lon", endLongitude},
+                { "order", orderId},
+                { "courier_user", userId}
+            };
+
+            var response = await _httpClient.PostAsync(RequestUrl("geo/route-info"), parameters, token);
+
+            return await response.ReadAsStringAsync();
+        }
     }
 }

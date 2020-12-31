@@ -1,5 +1,8 @@
+using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Autofac;
 using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
@@ -11,6 +14,7 @@ using Pomidoros.ViewModel.Base;
 using Rg.Plugins.Popup.Contracts;
 using Services.Models.Enums;
 using Services.Models.Orders;
+using Services.UserLocation;
 
 namespace Pomidoros.ViewModel.Orders
 {
@@ -33,10 +37,13 @@ namespace Pomidoros.ViewModel.Orders
                 IsOrderDelivered = order.OrderStatus == EOrderStatus.Completed;
                 Title = string.Format(LocalizationStrings.OrderNumberTitleFormat, order.OrderNumber);
 
-                GoogleMapProvider.SetCoordinates(Order?.Coordinates);
-                GoogleMapProvider.AddRouteWithMarkers();
+                InitMap();
             }
         }
+
+        private IUserLocationService _userLocationService;
+        protected IUserLocationService UserLocationService
+            => _userLocationService ??= App.Container.Resolve<IUserLocationService>();
 
         public GoogleMapViewModel GoogleMapProvider { get; } = new GoogleMapViewModel();
 
@@ -126,6 +133,26 @@ namespace Pomidoros.ViewModel.Orders
         private Task OnShowRouteCommand(object arg)
         {
             return Navigation.PushAsync(new MapPage(), Order, "order");
+        }
+
+        private void InitMap()
+        {
+            if (Order == null)
+            {
+                return;
+            }
+
+            Task.Run(async () =>
+            {
+                string orderId = Order.OrderNumber;
+                var routeInfo = await UserLocationService.GetRouteInfoAsync(Convert.ToInt32(orderId), CancellationToken.None);
+
+                await Xamarin.Essentials.MainThread.InvokeOnMainThreadAsync(() =>
+                {
+                    GoogleMapProvider.SetCoordinates(routeInfo.Coordinates);
+                    GoogleMapProvider.AddRouteWithMarkers();
+                });
+            });
         }
     }
 }
