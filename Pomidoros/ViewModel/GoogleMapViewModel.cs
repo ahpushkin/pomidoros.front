@@ -12,6 +12,12 @@ namespace Pomidoros.ViewModel
     public class GoogleMapViewModel : BindingObject
     {
         IList<Tuple<double, double>> _coordinates;
+        readonly Action<double, double> _clickHandler;
+
+        public GoogleMapViewModel(Action<double, double> clickHandler = null)
+        {
+            _clickHandler = clickHandler;
+        }
 
         public ObservableCollection<MapItemViewModel> Markers { get; } = new ObservableCollection<MapItemViewModel>();
 
@@ -31,7 +37,7 @@ namespace Pomidoros.ViewModel
                 if (_clickedPosition != value)
                 {
                     SetProperty(ref _clickedPosition, value);
-                    System.Diagnostics.Debug.WriteLine($"Clicked: {_clickedPosition.Latitude}:{_clickedPosition.Longitude}");
+                    _clickHandler?.Invoke(_clickedPosition.Latitude, _clickedPosition.Longitude);
                 }
             }
         }
@@ -91,12 +97,20 @@ namespace Pomidoros.ViewModel
             }
         }
 
-        public void AddEndMarker()
+        public void SetEndMarker()
         {
             if (_coordinates != null && _coordinates.Count >= 2)
             {
                 var endPos = _coordinates[_coordinates.Count - 1];
-                Markers.Add(MapItemViewModel.CreateEndItem(new Position(endPos.Item1, endPos.Item2)));
+                var endMarker = MapItemViewModel.CreateEndItem(new Position(endPos.Item1, endPos.Item2));
+
+                var previous = Markers.SingleOrDefault(i => i.ImageSource == endMarker.ImageSource);
+                if (previous != null)
+                {
+                    Markers.Remove(previous);
+                }
+
+                Markers.Add(endMarker);
             }
         }
     }

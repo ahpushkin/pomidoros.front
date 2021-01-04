@@ -27,7 +27,7 @@ namespace Pomidoros.Services
             return null;
         }
 
-        public static async Task<string> GetAddressByLocation(Tuple<double, double> location)
+        public static async Task<Tuple<string, string>> GetAddressByLocation(Tuple<double, double> location)
         {
             try
             {
@@ -36,19 +36,8 @@ namespace Pomidoros.Services
                 var placemark = placemarks?.FirstOrDefault();
                 if (placemark != null)
                 {
-                    var geocodeAddress =
-                        $"AdminArea:       {placemark.AdminArea}\n" +
-                        $"CountryCode:     {placemark.CountryCode}\n" +
-                        $"CountryName:     {placemark.CountryName}\n" +
-                        $"FeatureName:     {placemark.FeatureName}\n" +
-                        $"Locality:        {placemark.Locality}\n" +
-                        $"PostalCode:      {placemark.PostalCode}\n" +
-                        $"SubAdminArea:    {placemark.SubAdminArea}\n" +
-                        $"SubLocality:     {placemark.SubLocality}\n" +
-                        $"SubThoroughfare: {placemark.SubThoroughfare}\n" +
-                        $"Thoroughfare:    {placemark.Thoroughfare}\n";
-
-                    return $"{placemark.Thoroughfare + ", " + placemark.FeatureName}";
+                    return new Tuple<string, string>(placemark.Locality,
+                        $"{placemark.Thoroughfare + ", " + placemark.FeatureName}");
                 }
             }
             catch (FeatureNotSupportedException fnsEx)

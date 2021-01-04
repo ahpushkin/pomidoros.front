@@ -8,6 +8,7 @@ using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
 using Pomidoros.Resources;
+using Pomidoros.Services;
 using Pomidoros.View.SearchPlace;
 using Pomidoros.ViewModel.Base;
 using Services.Models.Address;
@@ -18,6 +19,7 @@ namespace Pomidoros.ViewModel.Orders
 {
     public class ChangeLocationPageViewModel : BaseViewModel, IParametrized
     {
+        private string _deliveryCity;
         private readonly IOrdersUpdater _ordersUpdater;
 
         public ChangeLocationPageViewModel(IOrdersUpdater ordersUpdater)
@@ -25,9 +27,11 @@ namespace Pomidoros.ViewModel.Orders
             _ordersUpdater = ordersUpdater;
             
             Title = LocalizationStrings.AddressTextTitle;
+
+            GoogleMapProvider = new GoogleMapViewModel(MapClickHandler);
         }
 
-        public GoogleMapViewModel GoogleMapProvider { get; } = new GoogleMapViewModel();
+        public GoogleMapViewModel GoogleMapProvider { get; }
 
         private FullOrderModel _order;
         public FullOrderModel Order
@@ -60,7 +64,6 @@ namespace Pomidoros.ViewModel.Orders
                 Order = order;
 
                 GoogleMapProvider.SetCoordinates(Order?.Coordinates);
-                GoogleMapProvider.AddEndMarker();
             }
         }
         
@@ -81,18 +84,36 @@ namespace Pomidoros.ViewModel.Orders
             {
                 UserDialogs.ShowLoading();
                 Order.DeliveryAddress = DeliveryAddress;
+                Order.DeliveryCity = _deliveryCity;
                 await _ordersUpdater.UpdateOrderDataASync(Order.OrderNumber, Order, CancellationToken.None);
                 await Navigation.PopAsync();
             }
             catch (Exception e)
             {
                 Order.DeliveryAddress = null;
+                Order.DeliveryCity = null;
                 Debugger.Break();
                 ErrorToast();
             }
             finally
             {
                 UserDialogs.HideLoading();
+            }
+        }
+
+        private async void MapClickHandler(double latitude, double longitude)
+        {
+            var endLocation = new Tuple<double, double>(latitude, longitude);
+
+            var address = await PlaceLocation.GetAddressByLocation(endLocation);
+
+            if (address != null)
+            {
+                Order.Coordinates[Order.Coordinates.Count - 1] = endLocation;//TODO: remove
+                _deliveryCity = address.Item1;
+                DeliveryAddress = address.Item2;
+
+                GoogleMapProvider.SetEndMarker();
             }
         }
     }

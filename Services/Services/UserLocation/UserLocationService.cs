@@ -82,7 +82,13 @@ namespace Services.UserLocation
                 Id = _routeId,
                 OrderId = _orderId,
                 UserId = _userId,
-                Coordinates = UserLocationService.GetCoordinates(result)
+                Coordinates = new List<Tuple<double, double>>
+                {
+                    start,
+                    new Tuple<double, double>(50.4343374, 30.3312058),
+                    new Tuple<double, double>(50.4350150, 30.3347454),
+                    end ?? new Tuple<double, double>(50.4371955, 30.3339110)
+                }
             };
         }
     }
