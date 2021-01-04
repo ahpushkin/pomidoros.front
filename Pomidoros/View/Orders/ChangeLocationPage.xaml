@@ -87,14 +87,14 @@
                              VerticalOptions="Start">
                         
                     <Label
-                        Margin="10,0,0,0"
+                        Margin="12,0,0,0"
                         FontFamily="{StaticResource BoldFont}"
                         FontSize="16"
                         Text="{Binding Order.StartAddress}"
                         TextColor="Black"/>
                         
                     <Label
-                        Margin="10,0,0,0"
+                        Margin="12,0,0,0"
                         FontFamily="{StaticResource NormalFont}"
                         FontSize="16"
                         Text="{Binding Order.Distance, Converter={x:StaticResource distanceToStringConverter}}"
@@ -104,11 +104,11 @@
                     
                 <BoxView
                     Grid.Column="1"
+                    Margin="14,0,4,0"
                     VerticalOptions="End"
                     BackgroundColor="LightGray"
                     HeightRequest="1"
-                    HorizontalOptions="FillAndExpand"
-                    WidthRequest="500" />
+                    HorizontalOptions="FillAndExpand" />
                     
                 <local:ImageEntry
                     Grid.Column="1"
@@ -118,7 +118,7 @@
                     FontFamily="{StaticResource NormalFont}"
                     FontSize="18"
                     HorizontalOptions="FillAndExpand"
-                    LineColor="#96A637"
+                    LineColor="Black"
                     Text="{Binding DeliveryAddress}"
                     Placeholder="{x:Static str:LocalizationStrings.InputDeliveryAddressPlaceholder}"
                     ReturnType="Search" />
