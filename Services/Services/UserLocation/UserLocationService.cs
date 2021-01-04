@@ -20,6 +20,11 @@ namespace Services.UserLocation
             _storage = storage;
         }
 
+        public Tuple<double, double> GetLastKnownUserLocation()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task SendCurrentLocationAsync(Tuple<double, double> location, CancellationToken token)
         {
             //if (!_storage.Available(Constants.StorageKeys.UserData))
@@ -63,6 +68,11 @@ namespace Services.UserLocation
         {
             _userLocationApi = userLocationApi;
             _geoCodingService = geoCodingService;
+        }
+
+        public Tuple<double, double> GetLastKnownUserLocation()
+        {
+            return new Tuple<double, double>(50.4343374, 30.3312058);
         }
 
         public Task SendCurrentLocationAsync(Tuple<double, double> location, CancellationToken token)

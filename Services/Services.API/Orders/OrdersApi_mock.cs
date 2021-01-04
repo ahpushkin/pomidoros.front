@@ -37,13 +37,6 @@ namespace Services.API.Orders
                 DeliveryAddress = rnd.Next(0, 2) == 1 ? "ул. Богдана Хмельницкого, 28" : null,
                 StartCity = "Петропавловская Борщаговка",
                 StartAddress = "ул. Садовая, 1В",
-                Coordinates = new List<Tuple<double, double>>
-                {
-                    new Tuple<double, double>(50.4340454, 30.3310020),
-                    new Tuple<double, double>(50.4343374, 30.3312058),
-                    new Tuple<double, double>(50.4350150, 30.3347454),
-                    new Tuple<double, double>(50.4371955, 30.3339110)
-                },
                 Distance = 5674,
                 EndTime = DateTimeOffset.Now.AddHours(rnd.Next(10, 60)),
                 OrderStatus = RandomizeOrderStatus(),

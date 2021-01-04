@@ -20,8 +20,6 @@ namespace Services.Models.Orders
 
         public string DeliveryAddress { get; set; }
 
-        public IList<Tuple<double, double>> Coordinates { get; set; }
-
         public int Distance { get; set; }
 
         public string ClientNumber { get; set; }

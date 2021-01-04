@@ -129,7 +129,7 @@ namespace Pomidoros.ViewModel.Orders
                 if (_firstTimeLocation)
                 {
                     _firstTimeLocation = false;
-                    GoogleMapProvider.SetCoordinates(new List<Tuple<double, double>> { location });
+                    GoogleMapProvider.SetCenterCoordinates(location);
                 }
 
                 GoogleMapProvider.SetCourierMarker(location);

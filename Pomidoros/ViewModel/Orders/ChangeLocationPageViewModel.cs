@@ -9,13 +9,13 @@ using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
 using Pomidoros.Resources;
-using Pomidoros.Services;
 using Pomidoros.View.SearchPlace;
 using Pomidoros.ViewModel.Base;
 using Services.Models.Address;
 using Services.Models.Orders;
 using Services.Orders;
 using Services.UserLocation;
+using Xamarin.Essentials;
 
 namespace Pomidoros.ViewModel.Orders
 {
@@ -65,7 +65,7 @@ namespace Pomidoros.ViewModel.Orders
             {
                 Order = order;
 
-                GoogleMapProvider.SetCoordinates(Order?.Coordinates);
+                InitMap();
             }
         }
         
@@ -112,11 +112,27 @@ namespace Pomidoros.ViewModel.Orders
 
             if (address != null)
             {
-                Order.Coordinates[Order.Coordinates.Count - 1] = endLocation;//TODO: remove
                 _deliveryCity = address.Item1;
                 DeliveryAddress = address.Item2;
 
-                GoogleMapProvider.SetEndMarker();
+                GoogleMapProvider.SetEndMarker(endLocation);
+            }
+        }
+
+        private void InitMap()
+        {
+            if (Order != null)
+            {
+                Task.Run(async () =>
+                {
+                    var geoCodingService = App.Container.Resolve<IGeoCodingService>();
+                    var start = await geoCodingService.GetLocationByAddress(Order.StartCity + ", " + Order.StartAddress);
+
+                    await MainThread.InvokeOnMainThreadAsync(() =>
+                    {
+                        GoogleMapProvider.SetCenterCoordinates(start);
+                    });
+                });
             }
         }
     }

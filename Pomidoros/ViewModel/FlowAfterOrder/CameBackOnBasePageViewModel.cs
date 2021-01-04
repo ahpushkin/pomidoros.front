@@ -1,14 +1,22 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Autofac;
 using Core.Commands;
 using Core.Navigation;
 using Pomidoros.ViewModel.Base;
 using Services.Models.Orders;
+using Services.UserLocation;
 
 namespace Pomidoros.ViewModel.FlowAfterOrder
 {
     public class CameBackOnBasePageViewModel : BaseViewModel, IParametrized
     {
+        public CameBackOnBasePageViewModel()
+        {
+            var userLocationService = App.Container.Resolve<IUserLocationService>();
+            GoogleMapProvider.SetCenterCoordinates(userLocationService.GetLastKnownUserLocation());
+        }
+
         private FullOrderModel _order;
         public FullOrderModel Order
         {
@@ -25,8 +33,6 @@ namespace Pomidoros.ViewModel.FlowAfterOrder
             if (parameters.TryGetParameter("order", out FullOrderModel order))
             {
                 Order = order;
-
-                GoogleMapProvider.SetCoordinates(Order?.Coordinates);
             }
         }
         

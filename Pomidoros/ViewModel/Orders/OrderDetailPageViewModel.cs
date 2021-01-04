@@ -144,8 +144,8 @@ namespace Pomidoros.ViewModel.Orders
                     var routeInfo = await UserLocationService.GetRouteInfoAsync(Order, CancellationToken.None);
                     await MainThread.InvokeOnMainThreadAsync(() =>
                     {
-                        GoogleMapProvider.SetCoordinates(routeInfo.Coordinates);
-                        GoogleMapProvider.AddRouteWithMarkers();
+                        GoogleMapProvider.SetCenterCoordinates(routeInfo?.Coordinates);
+                        GoogleMapProvider.AddRouteWithMarkers(routeInfo?.Coordinates);
                     });
                 });
             }

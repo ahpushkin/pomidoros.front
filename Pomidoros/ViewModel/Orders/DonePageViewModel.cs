@@ -1,13 +1,21 @@
+using Autofac;
 using Core.Navigation;
 using Pomidoros.Resources;
 using Pomidoros.ViewModel.Base;
 using Services.Models.Enums;
 using Services.Models.Orders;
+using Services.UserLocation;
 
 namespace Pomidoros.ViewModel.Orders
 {
     public class DonePageViewModel : BaseViewModel, IParametrized
     {
+        public DonePageViewModel()
+        {
+            var userLocationService = App.Container.Resolve<IUserLocationService>();
+            GoogleMapProvider.SetCenterCoordinates(userLocationService.GetLastKnownUserLocation());
+        }
+
         private FullOrderModel _order;
         public FullOrderModel Order
         {
@@ -23,8 +31,6 @@ namespace Pomidoros.ViewModel.Orders
             {
                 Order = order;
                 UpdateTitle(order);
-
-                GoogleMapProvider.SetCoordinates(Order?.Coordinates);
             }
         }
 

@@ -1,6 +1,11 @@
-﻿using Core.Navigation;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Autofac;
+using Core.Navigation;
 using Pomidoros.ViewModel.Base;
 using Services.Models.Orders;
+using Services.UserLocation;
+using Xamarin.Essentials;
 
 namespace Pomidoros.ViewModel
 {
@@ -21,8 +26,24 @@ namespace Pomidoros.ViewModel
             {
                 Order = order;
 
-                GoogleMapProvider.SetCoordinates(Order?.Coordinates);
-                GoogleMapProvider.AddRouteWithMarkers();
+                InitMap();
+            }
+        }
+
+        private void InitMap()
+        {
+            if (Order != null)
+            {
+                Task.Run(async () =>
+                {
+                    var userLocationService = App.Container.Resolve<IUserLocationService>();
+                    var routeInfo = await userLocationService.GetRouteInfoAsync(Order, CancellationToken.None);
+                    await MainThread.InvokeOnMainThreadAsync(() =>
+                    {
+                        GoogleMapProvider.SetCenterCoordinates(routeInfo?.Coordinates);
+                        GoogleMapProvider.AddRouteWithMarkers(routeInfo?.Coordinates);
+                    });
+                });
             }
         }
     }

@@ -11,7 +11,6 @@ namespace Pomidoros.ViewModel
 {
     public class GoogleMapViewModel : BindingObject
     {
-        IList<Tuple<double, double>> _coordinates;
         readonly Action<double, double> _clickHandler;
 
         public GoogleMapViewModel(Action<double, double> clickHandler = null)
@@ -49,14 +48,16 @@ namespace Pomidoros.ViewModel
             set => SetProperty(ref _center, value);
         }
 
-        public void SetCoordinates(IList<Tuple<double, double>> coordinates)
+        public void SetCenterCoordinates(Tuple<double, double> coord)
         {
-            _coordinates = coordinates;
+            Center = new Position(coord.Item1, coord.Item2);
+        }
 
-            if (_coordinates != null && _coordinates.Count > 0)
+        public void SetCenterCoordinates(IList<Tuple<double, double>> coordinates)
+        {
+            if (coordinates != null && coordinates.Count > 0)
             {
-                var startPos = _coordinates[0];
-                Center = new Position(startPos.Item1, startPos.Item2);
+                Center = new Position(coordinates[0].Item1, coordinates[0].Item2);
             }
         }
 
@@ -79,39 +80,35 @@ namespace Pomidoros.ViewModel
             }
         }
 
-        public void AddRouteWithMarkers()
+        public void AddRouteWithMarkers(IList<Tuple<double, double>> coordinates)
         {
-            if (_coordinates != null && _coordinates.Count >= 2)
+            if (coordinates != null && coordinates.Count >= 2)
             {
-                var startPos = _coordinates[0];
+                var startPos = coordinates[0];
                 Markers.Add(MapItemViewModel.CreateStartItem(new Position(startPos.Item1, startPos.Item2)));
 
-                var endPos = _coordinates[_coordinates.Count - 1];
+                var endPos = coordinates[coordinates.Count - 1];
                 Markers.Add(MapItemViewModel.CreateEndItem(new Position(endPos.Item1, endPos.Item2)));
 
                 Route = new RouteInfo
                 {
-                    Points = _coordinates.Select(i => new Position(i.Item1, i.Item2)).ToList(),
+                    Points = coordinates.Select(i => new Position(i.Item1, i.Item2)).ToList(),
                     Color = (Color)Application.Current.Resources["mainColor"]
                 };
             }
         }
 
-        public void SetEndMarker()
+        public void SetEndMarker(Tuple<double, double> endPos)
         {
-            if (_coordinates != null && _coordinates.Count >= 2)
+            var endMarker = MapItemViewModel.CreateEndItem(new Position(endPos.Item1, endPos.Item2));
+
+            var previous = Markers.SingleOrDefault(i => i.ImageSource == endMarker.ImageSource);
+            if (previous != null)
             {
-                var endPos = _coordinates[_coordinates.Count - 1];
-                var endMarker = MapItemViewModel.CreateEndItem(new Position(endPos.Item1, endPos.Item2));
-
-                var previous = Markers.SingleOrDefault(i => i.ImageSource == endMarker.ImageSource);
-                if (previous != null)
-                {
-                    Markers.Remove(previous);
-                }
-
-                Markers.Add(endMarker);
+                Markers.Remove(previous);
             }
+
+            Markers.Add(endMarker);
         }
     }
 }
