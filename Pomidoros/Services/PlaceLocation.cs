@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Services.UserLocation;
 using Xamarin.Essentials;
 
 namespace Pomidoros.Services
 {
-    public static class PlaceLocation
+    public class PlaceLocation : IGeoCodingService
     {
-        public static async Task<Tuple<double, double>> GetLocationByAddress(string address)
+        public async Task<Tuple<double, double>> GetLocationByAddress(string address)
         {
             try
             {
@@ -27,7 +28,7 @@ namespace Pomidoros.Services
             return null;
         }
 
-        public static async Task<Tuple<string, string>> GetAddressByLocation(Tuple<double, double> location)
+        public async Task<Tuple<string, string>> GetAddressByLocation(Tuple<double, double> location)
         {
             try
             {

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Autofac;
 using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
@@ -14,6 +15,7 @@ using Pomidoros.ViewModel.Base;
 using Services.Models.Address;
 using Services.Models.Orders;
 using Services.Orders;
+using Services.UserLocation;
 
 namespace Pomidoros.ViewModel.Orders
 {
@@ -105,7 +107,8 @@ namespace Pomidoros.ViewModel.Orders
         {
             var endLocation = new Tuple<double, double>(latitude, longitude);
 
-            var address = await PlaceLocation.GetAddressByLocation(endLocation);
+            var geoCodingService = App.Container.Resolve<IGeoCodingService>();
+            var address = await geoCodingService.GetAddressByLocation(endLocation);
 
             if (address != null)
             {

@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -7,7 +6,6 @@ using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
 using Pomidoros.Resources;
-using Pomidoros.Services;
 using Pomidoros.View;
 using Pomidoros.View.Notification;
 using Pomidoros.View.Orders;
@@ -139,26 +137,18 @@ namespace Pomidoros.ViewModel.Orders
 
         private void InitMap()
         {
-            if (Order == null)
+            if (Order != null)
             {
-                return;
-            }
-
-            Task.Run(async () =>
-            {
-                var startLocation = await PlaceLocation.GetLocationByAddress(Order.StartCity + ", " + Order.StartAddress);
-                var endLocation = await PlaceLocation.GetLocationByAddress(Order.DeliveryCity + ", " + Order.DeliveryAddress);
-
-                string orderId = Order.OrderNumber;
-                var routeInfo = await UserLocationService.GetRouteInfoAsync(Convert.ToInt32(orderId), startLocation,
-                    endLocation, CancellationToken.None);
-
-                await MainThread.InvokeOnMainThreadAsync(() =>
+                Task.Run(async () =>
                 {
-                    GoogleMapProvider.SetCoordinates(routeInfo.Coordinates);
-                    GoogleMapProvider.AddRouteWithMarkers();
+                    var routeInfo = await UserLocationService.GetRouteInfoAsync(Order, CancellationToken.None);
+                    await MainThread.InvokeOnMainThreadAsync(() =>
+                    {
+                        GoogleMapProvider.SetCoordinates(routeInfo.Coordinates);
+                        GoogleMapProvider.AddRouteWithMarkers();
+                    });
                 });
-            });
+            }
         }
     }
 }

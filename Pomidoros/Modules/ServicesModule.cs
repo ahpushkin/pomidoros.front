@@ -22,6 +22,7 @@ namespace Pomidoros.Modules
 
             builder.RegisterType<CallService>().As<ICallService>();
             builder.RegisterType<SmsService>().As<ISmsService>();
+            builder.RegisterType<PlaceLocation>().As<IGeoCodingService>();
         }
     }
 }

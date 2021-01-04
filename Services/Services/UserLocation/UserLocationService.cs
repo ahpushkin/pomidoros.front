@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Services.API.UserLocation;
+using Services.Models.Orders;
 using Services.Models.Route;
 using Services.Storage;
 
@@ -19,7 +20,7 @@ namespace Services.UserLocation
             _storage = storage;
         }
 
-        public Task SendCurrentLocationAsync(double latitude, double longitude, CancellationToken token)
+        public Task SendCurrentLocationAsync(Tuple<double, double> location, CancellationToken token)
         {
             //if (!_storage.Available(Constants.StorageKeys.UserData))
             //{
@@ -32,7 +33,7 @@ namespace Services.UserLocation
             throw new NotImplementedException();
         }
 
-        public Task<RouteInfoModel> GetRouteInfoAsync(int orderId, Tuple<double, double> start, Tuple<double, double> end, CancellationToken token)
+        public Task<RouteInfoModel> GetRouteInfoAsync(FullOrderModel orderModel, CancellationToken token)
         {
             throw new NotImplementedException();
         }
@@ -52,24 +53,28 @@ namespace Services.UserLocation
     public class UserLocationService_mock : IUserLocationService
     {
         readonly IUserLocationApi _userLocationApi;
+        readonly IGeoCodingService _geoCodingService;
 
         static int _userId = 1;
         static int _orderId = 1;
         static int _routeId = 1;
 
-        public UserLocationService_mock(IUserLocationApi userLocationApi)
+        public UserLocationService_mock(IUserLocationApi userLocationApi, IGeoCodingService geoCodingService)
         {
             _userLocationApi = userLocationApi;
+            _geoCodingService = geoCodingService;
         }
 
-        public Task SendCurrentLocationAsync(double latitude, double longitude, CancellationToken token)
+        public Task SendCurrentLocationAsync(Tuple<double, double> location, CancellationToken token)
         {
-            return _userLocationApi.SendCurrentLocationAsync(_routeId, $"{latitude}", $"{longitude}", token);
+            return _userLocationApi.SendCurrentLocationAsync(_routeId, $"{location.Item1}", $"{location.Item2}", token);
         }
 
-        public async Task<RouteInfoModel> GetRouteInfoAsync(int orderId, Tuple<double, double> start,
-            Tuple<double, double> end, CancellationToken token)
+        public async Task<RouteInfoModel> GetRouteInfoAsync(FullOrderModel orderModel, CancellationToken token)
         {
+            var start = await _geoCodingService.GetLocationByAddress(orderModel.StartCity + ", " + orderModel.StartAddress);
+            var end = await _geoCodingService.GetLocationByAddress(orderModel.DeliveryCity + ", " + orderModel.DeliveryAddress);
+
             var result = await _userLocationApi.GetRouteInfoAsync(_orderId, _userId, $"{start.Item1}", $"{start.Item2}",
                 $"{end.Item1}", $"{end.Item2}", token);
 
