@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Android.Content;
 using Android.Gms.Maps;
 using Android.Gms.Maps.Model;
@@ -12,9 +11,9 @@ namespace Pomidoros.Droid
 {
     public class AppMapRenderer : MapRenderer
     {
-        GoogleMap googleMap;
-        IList<Position> routePoints;
-        Android.Graphics.Color routeColor;
+        private GoogleMap googleMap;
+        private RouteInfo routeInfo;
+        private Android.Gms.Maps.Model.Polyline route;
 
         public AppMapRenderer(Context context) : base(context) { }
 
@@ -25,8 +24,7 @@ namespace Pomidoros.Droid
             if (e.OldElement == null && e.NewElement != null)
             {
                 var appMap = e.NewElement as AppMap;
-                routePoints = appMap.RoutePoints;
-                routeColor = GetNativeColor(appMap.RouteColor);
+                routeInfo = appMap.Route;
             }
         }
 
@@ -34,23 +32,14 @@ namespace Pomidoros.Droid
         {
             base.OnElementPropertyChanged(sender, e);
 
-            if (e.PropertyName == AppMap.RoutePointsProperty.PropertyName)
+            if (e.PropertyName == AppMap.RouteProperty.PropertyName)
             {
                 if (Element != null)
                 {
                     var appMap = Element as AppMap;
-                    routePoints = appMap.RoutePoints;
+                    routeInfo = appMap.Route;
 
                     AddRoute();
-                }
-            }
-
-            if (e.PropertyName == AppMap.RouteColorProperty.PropertyName)
-            {
-                if (Element != null)
-                {
-                    var appMap = Element as AppMap;
-                    routeColor = GetNativeColor(appMap.RouteColor);
                 }
             }
         }
@@ -85,22 +74,29 @@ namespace Pomidoros.Droid
 
         private void AddRoute()
         {
-            if (googleMap == null || routePoints == null || routePoints.Count == 0)
+            if (googleMap == null || routeInfo == null || routeInfo.Points == null || routeInfo.Points.Count < 2)
             {
                 return;
             }
 
+            if (route != null)
+            {
+                route.Remove();
+                route.Dispose();
+                route = null;
+            }
+
             var line = new PolylineOptions();
-            line.InvokeColor(routeColor);
+            line.InvokeColor(GetNativeColor(routeInfo.Color));
             line.InvokeWidth(5);
 
-            foreach (var pt in routePoints)
+            foreach (var pt in routeInfo.Points)
             {
                 var latLng = new LatLng(pt.Latitude, pt.Longitude);
                 line.Add(latLng);
             }
 
-            googleMap.AddPolyline(line);
+            route = googleMap.AddPolyline(line);
         }
 
         private static Android.Graphics.Color GetNativeColor(Xamarin.Forms.Color source)

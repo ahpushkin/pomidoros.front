@@ -26,9 +26,7 @@
             
             <controls:AppMap
                 Center="{Binding GoogleMapProvider.Center}"
-                ItemsSource="{Binding GoogleMapProvider.Markers}"
-                RoutePoints="{Binding GoogleMapProvider.RoutePoints}"
-                RouteColor="{Binding GoogleMapProvider.RouteColor}">
+                ItemsSource="{Binding GoogleMapProvider.Markers}">
                 <maps:Map.ItemTemplate>
                     <DataTemplate x:DataType="vmcommon:MapItemViewModel">
                         <controls:Marker Position="{Binding Position}"

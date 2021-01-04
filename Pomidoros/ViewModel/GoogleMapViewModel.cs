@@ -5,6 +5,7 @@ using Core.ViewModel.Infra;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using System.Linq;
+using Pomidoros.Controls;
 
 namespace Pomidoros.ViewModel
 {
@@ -14,13 +15,11 @@ namespace Pomidoros.ViewModel
 
         public ObservableCollection<MapItemViewModel> Markers { get; } = new ObservableCollection<MapItemViewModel>();
 
-        public ObservableCollection<Position> RoutePoints { get; } = new ObservableCollection<Position>();
-
-        private Color _routeColor = (Color)Application.Current.Resources["mainColor"];
-        public Color RouteColor
+        private RouteInfo _route;
+        public RouteInfo Route
         {
-            get => _routeColor;
-            set => SetProperty(ref _routeColor, value);
+            get => _route;
+            set => SetProperty(ref _route, value);
         }
 
         private Position _clickedPosition;
@@ -84,10 +83,11 @@ namespace Pomidoros.ViewModel
                 var endPos = _coordinates[_coordinates.Count - 1];
                 Markers.Add(MapItemViewModel.CreateEndItem(new Position(endPos.Item1, endPos.Item2)));
 
-                foreach (var coord in _coordinates)
+                Route = new RouteInfo
                 {
-                    RoutePoints.Add(new Position(coord.Item1, coord.Item2));
-                }
+                    Points = _coordinates.Select(i => new Position(i.Item1, i.Item2)).ToList(),
+                    Color = (Color)Application.Current.Resources["mainColor"]
+                };
             }
         }
 

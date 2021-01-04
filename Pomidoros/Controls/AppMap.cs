@@ -16,11 +16,8 @@ namespace Pomidoros.Controls
             MapClicked += OnMapClicked;
         }
 
-        public static readonly BindableProperty RoutePointsProperty = BindableProperty.Create("RoutePoints",
-            typeof(IList<Position>), typeof(AppMap));
-
-        public static readonly BindableProperty RouteColorProperty = BindableProperty.Create("RouteColor",
-            typeof(Color), typeof(AppMap));
+        public static readonly BindableProperty RouteProperty = BindableProperty.Create("Route",
+            typeof(RouteInfo), typeof(AppMap));
 
         public static readonly BindableProperty ClickedPositionProperty = BindableProperty.Create("ClickedPosition",
             typeof(Position), typeof(AppMap), defaultBindingMode: BindingMode.TwoWay);
@@ -33,16 +30,10 @@ namespace Pomidoros.Controls
                     Distance.FromKilometers(0.5)));
             });
 
-        public IList<Position> RoutePoints
+        public RouteInfo Route
         {
-            get => (IList<Position>)GetValue(RoutePointsProperty);
-            set => SetValue(RoutePointsProperty, value);
-        }
-
-        public Color RouteColor
-        {
-            get => (Color)GetValue(RouteColorProperty);
-            set => SetValue(RouteColorProperty, value);
+            get => (RouteInfo)GetValue(RouteProperty);
+            set => SetValue(RouteProperty, value);
         }
 
         public Position ClickedPosition
@@ -61,5 +52,11 @@ namespace Pomidoros.Controls
         {
             ClickedPosition = e.Position;
         }
+    }
+
+    public class RouteInfo
+    {
+        public IList<Position> Points { get; set; }
+        public Color Color { get; set; }
     }
 }
