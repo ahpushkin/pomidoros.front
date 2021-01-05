@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using Autofac;
 using Core.Extensions;
 using Core.Navigation;
@@ -18,6 +16,7 @@ namespace Pomidoros.ViewModel.FlowAfterOrder
 {
     public class BackToBasePageViewModel : BaseViewModel, IParametrized, IAppearingAware, IDisappearingAware
     {
+        readonly CancellationTokenSource _cts = new CancellationTokenSource();
         private readonly DeviceLocation _deviceLocation = new DeviceLocation();
         private bool _firstTimeLocation = true;
 
@@ -47,23 +46,20 @@ namespace Pomidoros.ViewModel.FlowAfterOrder
             }
         }
 
-        public async void OnAppearing()
+        public void OnAppearing()
         {
             _deviceLocation.StartRequestLocation(OnGetLocation);
-
-            await Task.Delay(5000);//TODO: is it ok?
-            Navigation.InsertPageBefore(new CameBackOnBasePage(), Navigation.GetCurrent(), Order, "order");
-            await Navigation.PopAsync();
         }
 
         public void OnDisappearing()
         {
             _deviceLocation.Cancel();
+            _cts.Cancel();
         }
 
-        private void OnGetLocation(Tuple<double, double> location)
+        private async void OnGetLocation(Tuple<double, double> location)
         {
-            MainThread.InvokeOnMainThreadAsync(() =>
+            await MainThread.InvokeOnMainThreadAsync(() =>
             {
                 if (_firstTimeLocation)
                 {
@@ -74,7 +70,13 @@ namespace Pomidoros.ViewModel.FlowAfterOrder
                 GoogleMapProvider.SetCourierMarker(location);
             });
 
-            UserLocationService.SendCurrentLocationAsync(location, CancellationToken.None);
+            await UserLocationService.SendCurrentLocationAsync(location, _cts.Token);
+            var result = await UserLocationService.IsOnBaseAsync(_cts.Token);
+            if (result)
+            {
+                Navigation.InsertPageBefore(new CameBackOnBasePage(), Navigation.GetCurrent(), Order, "order");
+                await Navigation.PopAsync();
+            }
         }
     }
 }

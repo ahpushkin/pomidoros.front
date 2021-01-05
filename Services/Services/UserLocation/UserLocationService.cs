@@ -53,6 +53,11 @@ namespace Services.UserLocation
                     new Tuple<double, double>(50.4371955, 30.3339110)
                 };
         }
+
+        public Task<bool> IsOnBaseAsync(CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class UserLocationService_mock : IUserLocationService
@@ -63,6 +68,7 @@ namespace Services.UserLocation
         static int _userId = 1;
         static int _orderId = 1;
         static int _routeId = 1;
+        DateTime timeToApproveBreak = DateTime.MinValue;
 
         public UserLocationService_mock(IUserLocationApi userLocationApi, IGeoCodingService geoCodingService)
         {
@@ -105,6 +111,21 @@ namespace Services.UserLocation
                     end ?? new Tuple<double, double>(50.4371955, 30.3339110)
                 }
             };
+        }
+
+        public async Task<bool> IsOnBaseAsync(CancellationToken token)
+        {
+            await Task.Delay(1000);
+
+            if (timeToApproveBreak == DateTime.MinValue)
+            {
+                timeToApproveBreak = DateTime.Now;
+                return false;
+            }
+
+            var timeSpane = DateTime.Now.Subtract(timeToApproveBreak);
+
+            return timeSpane.TotalSeconds > 5;
         }
     }
 }

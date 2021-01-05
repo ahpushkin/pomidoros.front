@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Services.Models.User;
 
 namespace Services.API.User
@@ -7,5 +8,6 @@ namespace Services.API.User
     {
         Task<UserDataModel> GetUserDataAsync(string userId);
         Task<bool> UpdateUserDataAsync(UserDataModel userData);
+        Task<bool> RequestBreakAsync(CancellationToken token);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Services.API.User;
 using Services.Models.User;
@@ -48,6 +49,11 @@ namespace Services.CurrentUser
                 throw new ApplicationException("User data was not fetch or saved yet");
 
             return _storage.Get<UserDataModel>(Constants.StorageKeys.UserData);
+        }
+
+        public Task<bool> RequestBreakAsync(CancellationToken token)
+        {
+            return _userApi.RequestBreakAsync(token);
         }
     }
 }

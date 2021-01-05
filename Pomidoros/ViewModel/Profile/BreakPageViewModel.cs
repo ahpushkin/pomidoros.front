@@ -8,11 +8,12 @@ using Xamarin.Forms;
 
 namespace Pomidoros.ViewModel.Profile
 {
-    public class BreakPageViewModel : BaseViewModel, IAppearingAware
+    public class BreakPageViewModel : BaseViewModel, IAppearingAware, IDisappearingAware
     {
+        private bool _isDisappeared = false;
         private readonly int goal = 900;
-        public string main_data;
-        public int count;
+        private string main_data;
+        private int count;
 
         public BreakPageViewModel()
         {
@@ -42,6 +43,12 @@ namespace Pomidoros.ViewModel.Profile
             while (true)
             {
                 await Task.Delay(1000);
+
+                if (_isDisappeared)
+                {
+                    break;
+                }
+
                 count--;
                 UpdateTime();
 
@@ -52,6 +59,11 @@ namespace Pomidoros.ViewModel.Profile
                     break;
                 }
             }
+        }
+
+        public void OnDisappearing()
+        {
+            _isDisappeared = true;
         }
 
         private void UpdateTime()

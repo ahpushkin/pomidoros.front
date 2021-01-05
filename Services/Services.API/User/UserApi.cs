@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Services.Models.User;
 
@@ -12,6 +13,11 @@ namespace Services.API.User
         }
 
         public Task<bool> UpdateUserDataAsync(UserDataModel userData)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> RequestBreakAsync(CancellationToken token)
         {
             throw new NotImplementedException();
         }

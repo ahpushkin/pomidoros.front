@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Threading;
+using System.Threading.Tasks;
 using Services.Models.Data;
 using Services.Models.Enums;
 using Services.Models.User;
@@ -30,6 +31,12 @@ namespace Services.API.User
         {
             await Task.Delay(1000);
 
+            return true;
+        }
+
+        public async Task<bool> RequestBreakAsync(CancellationToken token)
+        {
+            await Task.Delay(5000);
             return true;
         }
     }

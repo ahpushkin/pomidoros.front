@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using Services.Models.User;
 
@@ -10,5 +11,7 @@ namespace Services.CurrentUser
         Task UpdateUserDataAsync(UserDataModel userData);
 
         UserDataModel GetUserData();
+
+        Task<bool> RequestBreakAsync(CancellationToken token);
     }
 }

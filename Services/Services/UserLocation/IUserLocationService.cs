@@ -11,5 +11,6 @@ namespace Services.UserLocation
         Tuple<double, double> GetLastKnownUserLocation();
         Task SendCurrentLocationAsync(Tuple<double, double> location, CancellationToken token);
         Task<RouteInfoModel> GetRouteInfoAsync(FullOrderModel orderModel, CancellationToken token);
+        Task<bool> IsOnBaseAsync(CancellationToken token);
     }
 }
