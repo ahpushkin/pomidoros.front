@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Core.ViewModel.Infra;
 using Pomidoros.View.Profile;
@@ -10,7 +11,7 @@ namespace Pomidoros.ViewModel.Profile
 {
     public class BreakPageViewModel : BaseViewModel, IAppearingAware, IDisappearingAware
     {
-        private bool _isDisappeared = false;
+        private readonly CancellationTokenSource _cts = new CancellationTokenSource();
         private readonly int goal = 900;
         private string main_data;
         private int count;
@@ -42,9 +43,7 @@ namespace Pomidoros.ViewModel.Profile
             UpdateTime();
             while (true)
             {
-                await Task.Delay(1000);
-
-                if (_isDisappeared)
+                if (await Task.Delay(1000, _cts.Token).ContinueWith(tsk => tsk.IsCanceled))
                 {
                     break;
                 }
@@ -63,7 +62,7 @@ namespace Pomidoros.ViewModel.Profile
 
         public void OnDisappearing()
         {
-            _isDisappeared = true;
+            _cts.Cancel();
         }
 
         private void UpdateTime()

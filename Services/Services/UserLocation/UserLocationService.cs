@@ -115,7 +115,10 @@ namespace Services.UserLocation
 
         public async Task<bool> IsOnBaseAsync(CancellationToken token)
         {
-            await Task.Delay(1000);
+            if (await Task.Delay(1000, token).ContinueWith(tsk => tsk.IsCanceled))
+            {
+                return false;
+            }
 
             if (timeToApproveBreak == DateTime.MinValue)
             {

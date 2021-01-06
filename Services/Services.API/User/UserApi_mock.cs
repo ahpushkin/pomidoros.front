@@ -36,8 +36,7 @@ namespace Services.API.User
 
         public async Task<bool> RequestBreakAsync(CancellationToken token)
         {
-            await Task.Delay(5000);
-            return true;
+            return await Task.Delay(5000, token).ContinueWith(tsk => !tsk.IsCanceled);
         }
     }
 }
