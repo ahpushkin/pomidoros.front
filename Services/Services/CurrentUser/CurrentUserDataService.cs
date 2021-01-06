@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Services.API.User;
+using Services.Models.Authorization;
 using Services.Models.User;
 using Services.Storage;
 
@@ -20,14 +21,14 @@ namespace Services.CurrentUser
         
         public async Task FetchUserDataAsync()
         {
-            if (!_storage.Available(Constants.StorageKeys.UserAuth))
+            if (!_storage.Available(Constants.StorageKeys.Token))
             {
                 throw new ApplicationException("User auth info doesn't exist");
             }
 
-            var user = _storage.Get<UserDataModel>(Constants.StorageKeys.UserAuth);
+            var tokenModel = _storage.Get<TokenModel>(Constants.StorageKeys.Token);
 
-            var userData = await _userApi.GetUserDataAsync(user.Identify);
+            var userData = await _userApi.GetUserDataAsync(tokenModel.UserId);
 
             if (userData != null)
             {

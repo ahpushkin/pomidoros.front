@@ -49,14 +49,6 @@ namespace Services.Authorization
             if (tokenModel != null)
             {
                 _storage.Put(Constants.StorageKeys.Token, tokenModel);
-
-                // TODO: TokenModel should be changed to have user id
-                // and next reqquest won't be necessary
-                var userModel = await _authorizationApi.GetUserAuthAsync(token);
-                if (userModel != null)
-                {
-                    _storage.Put(Constants.StorageKeys.UserAuth, userModel);
-                }
             }
         }
 
@@ -71,15 +63,7 @@ namespace Services.Authorization
             if (tokenModel != null)
             {
                 _storage.Put(Constants.StorageKeys.Token, tokenModel);
-
-                // TODO: TokenModel should be changed to have user id
-                // and next reqquest won't be necessary
-                var userModel = await _authorizationApi.GetUserAuthAsync(token);
-                if (userModel != null)
-                {
-                    _storage.Put(Constants.StorageKeys.UserAuth, userModel);
-                    return true;
-                }
+                return true;
             }
             return false;
         }

@@ -6,5 +6,7 @@ namespace Services.Models.Authorization
     {
         [JsonProperty("key")]
         public string Token { get; set; }
+        [JsonProperty("user")]
+        public string UserId { get; set; }
     }
 }
