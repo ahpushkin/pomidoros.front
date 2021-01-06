@@ -43,6 +43,11 @@ namespace Services.UserLocation
             throw new NotImplementedException();
         }
 
+        public Task<bool> IsOnBaseAsync(CancellationToken token)
+        {
+            throw new NotImplementedException();
+        }
+
         public static List<Tuple<double, double>> GetCoordinates(string response)
         {
             return new List<Tuple<double, double>>
@@ -52,11 +57,6 @@ namespace Services.UserLocation
                     new Tuple<double, double>(50.4350150, 30.3347454),
                     new Tuple<double, double>(50.4371955, 30.3339110)
                 };
-        }
-
-        public Task<bool> IsOnBaseAsync(CancellationToken token)
-        {
-            throw new NotImplementedException();
         }
     }
 

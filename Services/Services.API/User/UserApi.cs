@@ -5,7 +5,7 @@ using Services.Models.User;
 
 namespace Services.API.User
 {
-    public class UserApi : IUserApi
+    public class UserApi : ApiBase, IUserApi
     {
         public Task<UserDataModel> GetUserDataAsync(string userId)
         {

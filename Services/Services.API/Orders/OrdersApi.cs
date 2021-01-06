@@ -5,7 +5,7 @@ using Services.Models.Orders;
 
 namespace Services.API.Orders
 {
-    public class OrdersApi : IOrdersApi
+    public class OrdersApi : ApiBase, IOrdersApi
     {
         public Task<FullOrderModel> UpdateOrderAsync(string number, FullOrderModel order, CancellationToken token)
         {
