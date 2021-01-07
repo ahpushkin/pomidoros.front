@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Core.Extensions;
 using Services.Models.Authorization;
 using Services.Models.User;
 
@@ -10,66 +8,39 @@ namespace Services.API.Authorization
 {
     public class AuthorizationApi : ApiBase, IAuthorizationApi
     {
-        private readonly HttpClient _httpClient;
-
-        public AuthorizationApi(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-        }
-
         public async Task<UserDataModel> GetUserAuthAsync(CancellationToken token)
         {
-            var response = await _httpClient.GetAsync(RequestUrl("auth/user/"), token);
-            if (!response.IsSuccessStatusCode)
-            {
-                return null;
-            }
-            return await response.ReadAsJsonAsync<UserDataModel>().WithCancellation(token);
+            return await GetAsync<UserDataModel>("auth/user/", token);
         }
 
         public async Task<TokenModel> LoginAsync(string phone, string passcode, CancellationToken token)
         {
-            var parameters = new Dictionary<string, string>
+            var parameters = new Dictionary<string, object>
             {
                 { "phone_number", phone },
                 { "password", passcode }
             };
-            var response = await _httpClient.PostAsync(RequestUrl("auth/login/"), parameters, token);
-            if (!response.IsSuccessStatusCode)
-            {
-                return null;
-            }
-            return await response.ReadAsJsonAsync<TokenModel>().WithCancellation(token);
+
+            return await PostAsync<TokenModel>("auth/login/", parameters, token);
         }
 
         public async Task LogoutAsync(string token)
         {
-            await _httpClient.PostAsync(RequestUrl("auth/logout/"), null);
+            await PostWithTokenAsync<bool>("auth/logout/", null, CancellationToken.None);
         }
 
         public async Task<bool> ResetPasswordAsync(string phone, CancellationToken token)
         {
-            var parameters = new Dictionary<string, string>
-            {
-                { "phone_number", phone }
-            };
-            var response = await _httpClient.PostAsync(RequestUrl("auth/password/reset/"), parameters, token);
+            var parameters = new Dictionary<string, object> { { "phone_number", phone } };
 
-            return response.IsSuccessStatusCode;
+            return await PostWithTokenAsync<bool>("auth/password/reset/", parameters, token);
         }
 
         public async Task<TokenModel> SendSmsAsync(string code, CancellationToken token)
         {
-            var parameters = new Dictionary<string, string>
-            {
-                { "code", code }
-            };
-            var response = await _httpClient.PostAsync(RequestUrl("auth/register/send_sms/"), parameters, token);
-            if (!response.IsSuccessStatusCode)
-            {
-                return null;
-            }
-            return await response.ReadAsJsonAsync<TokenModel>().WithCancellation(token);
+            var parameters = new Dictionary<string, object> { { "code", code } };
+
+            return await PostWithTokenAsync<TokenModel>("auth/register/send_sms/", parameters, token);
         }
     }
 }
