@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Services.Models.Route;
 
 namespace Services.API.UserLocation
 {
@@ -7,7 +8,7 @@ namespace Services.API.UserLocation
     {
         Task SendCurrentLocationAsync(int routeId, string latitude, string longitude, CancellationToken token);
 
-        Task<string> GetRouteInfoAsync(int orderId, int userId, string startLatitude, string startLongitude,
+        Task<GoogleRouteInfo> GetRouteInfoAsync(int orderId, int userId, string startLatitude, string startLongitude,
             string endLatitude, string endLongitude, CancellationToken token);
     }
 }

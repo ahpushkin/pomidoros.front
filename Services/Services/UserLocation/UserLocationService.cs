@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using Services.API.UserLocation;
@@ -65,9 +66,9 @@ namespace Services.UserLocation
         readonly IUserLocationApi _userLocationApi;
         readonly IGeoCodingService _geoCodingService;
 
-        static int _userId = 1;
+        static int _userId = 3;
         static int _orderId = 1;
-        static int _routeId = 1;
+        static int _routeId = 8;
         DateTime timeToApproveBreak = DateTime.MinValue;
 
         public UserLocationService_mock(IUserLocationApi userLocationApi, IGeoCodingService geoCodingService)
@@ -83,7 +84,10 @@ namespace Services.UserLocation
 
         public Task SendCurrentLocationAsync(Tuple<double, double> location, CancellationToken token)
         {
-            return _userLocationApi.SendCurrentLocationAsync(_routeId, $"{location.Item1}", $"{location.Item2}", token);
+            return _userLocationApi.SendCurrentLocationAsync(_routeId,
+                location.Item1.ToString(CultureInfo.InvariantCulture),
+                location.Item2.ToString(CultureInfo.InvariantCulture),
+                token);
         }
 
         public async Task<RouteInfoModel> GetRouteInfoAsync(FullOrderModel orderModel, CancellationToken token)
@@ -91,8 +95,12 @@ namespace Services.UserLocation
             var start = await _geoCodingService.GetLocationByAddress(orderModel.StartCity + ", " + orderModel.StartAddress);
             var end = await _geoCodingService.GetLocationByAddress(orderModel.DeliveryCity + ", " + orderModel.DeliveryAddress);
 
-            var result = await _userLocationApi.GetRouteInfoAsync(_orderId, _userId, $"{start.Item1}", $"{start.Item2}",
-                $"{end.Item1}", $"{end.Item2}", token);
+            var result = await _userLocationApi.GetRouteInfoAsync(_orderId, _userId,
+                start.Item1.ToString(CultureInfo.InvariantCulture),
+                start.Item2.ToString(CultureInfo.InvariantCulture),
+                end.Item1.ToString(CultureInfo.InvariantCulture),
+                end.Item2.ToString(CultureInfo.InvariantCulture),
+                token);
 
             if (result == null)
             {
