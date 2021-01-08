@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Services.API.UserLocation;
@@ -49,15 +50,12 @@ namespace Services.UserLocation
             throw new NotImplementedException();
         }
 
-        public static List<Tuple<double, double>> GetCoordinates(string response)
+        public static List<Tuple<double, double>> GetCoordinates(GoogleRouteInfo info)
         {
-            return new List<Tuple<double, double>>
-                {
-                    new Tuple<double, double>(50.4340454, 30.3310020),
-                    new Tuple<double, double>(50.4343374, 30.3312058),
-                    new Tuple<double, double>(50.4350150, 30.3347454),
-                    new Tuple<double, double>(50.4371955, 30.3339110)
-                };
+            var result = info.Steps.Select(i => new Tuple<double, double>(i.StartLocation.Lat, i.StartLocation.Lng)).ToList();
+            result.Add(new Tuple<double, double>(info.Steps.Last().EndLocation.Lat, info.Steps.Last().EndLocation.Lng));
+
+            return result;
         }
     }
 
@@ -111,13 +109,7 @@ namespace Services.UserLocation
                 Id = _routeId,
                 OrderId = _orderId,
                 UserId = _userId,
-                Coordinates = new List<Tuple<double, double>>
-                {
-                    start,
-                    new Tuple<double, double>(50.4343374, 30.3312058),
-                    new Tuple<double, double>(50.4350150, 30.3347454),
-                    end ?? new Tuple<double, double>(50.4371955, 30.3339110)
-                }
+                Coordinates = UserLocationService.GetCoordinates(result)
             };
         }
 

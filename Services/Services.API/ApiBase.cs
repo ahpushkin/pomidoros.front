@@ -134,6 +134,8 @@ namespace Services.API
             {
                 return new T();
             }
+            var responseString = await response.ReadAsStringAsync();
+            System.Diagnostics.Debug.WriteLine($"Response: ({responseString})");
             return await response.ReadAsJsonAsync<T>().WithCancellation(cancellationToken);
         }
     }

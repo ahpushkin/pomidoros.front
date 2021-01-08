@@ -5,8 +5,8 @@ namespace Services.Models.Route
 {
     public class GoogleRouteInfo
     {
-        [JsonProperty("geo_direction_result")]
-        public List<Root> Result { get; set; }
+        [JsonProperty("steps")]
+        public List<Step> Steps { get; set; }
 
         public class Loc
         {
@@ -22,20 +22,6 @@ namespace Services.Models.Route
             public Loc EndLocation { get; set; }
             [JsonProperty("start_location")]
             public Loc StartLocation { get; set; }
-            //[JsonProperty("polyline"), JsonIgnore]
-            //public Loc Polyline { get; set; }
-        }
-
-        public class Leg
-        {
-            [JsonProperty("steps")]
-            public List<Step> Steps { get; set; }
-        }
-
-        public class Root
-        {
-            [JsonProperty("legs")]
-            public List<Leg> Legs { get; set; }
         }
     }
 }
