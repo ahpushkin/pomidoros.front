@@ -62,6 +62,7 @@ namespace Services.UserLocation
     public class UserLocationService_mock : IUserLocationService
     {
         readonly IUserLocationApi _userLocationApi;
+        readonly IStorage _storage;
         readonly IGeoCodingService _geoCodingService;
 
         static int _userId = 3;
@@ -69,9 +70,10 @@ namespace Services.UserLocation
         static int _routeId = 8;
         DateTime timeToApproveBreak = DateTime.MinValue;
 
-        public UserLocationService_mock(IUserLocationApi userLocationApi, IGeoCodingService geoCodingService)
+        public UserLocationService_mock(IUserLocationApi userLocationApi, IStorage storage, IGeoCodingService geoCodingService)
         {
             _userLocationApi = userLocationApi;
+            _storage = storage;
             _geoCodingService = geoCodingService;
         }
 
@@ -90,6 +92,12 @@ namespace Services.UserLocation
 
         public async Task<RouteInfoModel> GetRouteInfoAsync(FullOrderModel orderModel, CancellationToken token)
         {
+            var routeInfo = await _storage.GetRouteInfo(_routeId);
+            if (routeInfo != null)
+            {
+                return routeInfo;
+            }
+
             var start = await _geoCodingService.GetLocationByAddress(orderModel.StartCity + ", " + orderModel.StartAddress);
             var end = await _geoCodingService.GetLocationByAddress(orderModel.DeliveryCity + ", " + orderModel.DeliveryAddress);
 
@@ -104,13 +112,17 @@ namespace Services.UserLocation
             {
                 return null;
             }
-            return new RouteInfoModel
+            routeInfo = new RouteInfoModel
             {
                 Id = _routeId,
                 OrderId = _orderId,
                 UserId = _userId,
                 Coordinates = UserLocationService.GetCoordinates(result)
             };
+
+            await _storage.AddRouteInfo(routeInfo);
+
+            return routeInfo;
         }
 
         public async Task<bool> IsOnBaseAsync(CancellationToken token)
