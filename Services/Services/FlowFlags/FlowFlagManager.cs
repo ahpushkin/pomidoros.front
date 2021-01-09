@@ -4,10 +4,10 @@ namespace Services.FlowFlags
 {
     public class FlowFlagManager : IFlowFlagManager
     {
-        private readonly IStorage _storage;
+        private readonly IPreferencesStorage _storage;
 
         public FlowFlagManager(
-            IStorage storage)
+            IPreferencesStorage storage)
         {
             _storage = storage;
         }

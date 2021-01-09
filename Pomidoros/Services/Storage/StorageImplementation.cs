@@ -4,7 +4,7 @@ using Xamarin.Essentials;
 
 namespace Pomidoros.Services.Storage
 {
-    public class StorageImplementation : IStorage
+    public class StorageImplementation : IPreferencesStorage
     {
         public bool Available(string key)
             => Preferences.ContainsKey(key);

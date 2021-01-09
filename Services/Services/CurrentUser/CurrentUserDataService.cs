@@ -11,28 +11,28 @@ namespace Services.CurrentUser
     public class CurrentUserDataService : ICurrentUserDataService
     {
         private readonly IUserApi _userApi;
-        private readonly IStorage _storage;
+        private readonly IPreferencesStorage _preferences;
 
-        public CurrentUserDataService(IUserApi userApi, IStorage storage)
+        public CurrentUserDataService(IUserApi userApi, IPreferencesStorage preferences)
         {
             _userApi = userApi;
-            _storage = storage;
+            _preferences = preferences;
         }
         
         public async Task FetchUserDataAsync()
         {
-            if (!_storage.Available(Constants.StorageKeys.Token))
+            if (!_preferences.Available(Constants.StorageKeys.Token))
             {
                 throw new ApplicationException("User auth info doesn't exist");
             }
 
-            var tokenModel = _storage.Get<TokenModel>(Constants.StorageKeys.Token);
+            var tokenModel = _preferences.Get<TokenModel>(Constants.StorageKeys.Token);
 
             var userData = await _userApi.GetUserDataAsync(tokenModel.UserId);
 
             if (userData != null)
             {
-                _storage.Put(Constants.StorageKeys.UserData, userData);
+                _preferences.Put(Constants.StorageKeys.UserData, userData);
             }
         }
 
@@ -40,16 +40,16 @@ namespace Services.CurrentUser
         {
             if(await _userApi.UpdateUserDataAsync(userData))
             {
-                _storage.Put(Constants.StorageKeys.UserData, userData);
+                _preferences.Put(Constants.StorageKeys.UserData, userData);
             }
         }
 
         public UserDataModel GetUserData()
         {
-            if (!_storage.Available(Constants.StorageKeys.UserData))
+            if (!_preferences.Available(Constants.StorageKeys.UserData))
                 throw new ApplicationException("User data was not fetch or saved yet");
 
-            return _storage.Get<UserDataModel>(Constants.StorageKeys.UserData);
+            return _preferences.Get<UserDataModel>(Constants.StorageKeys.UserData);
         }
 
         public Task<bool> RequestBreakAsync(CancellationToken token)

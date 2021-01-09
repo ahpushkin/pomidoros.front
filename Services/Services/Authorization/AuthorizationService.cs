@@ -11,29 +11,33 @@ namespace Services.Authorization
     public class AuthorizationService : IAuthorizationService
     {
         private readonly IAuthorizationApi _authorizationApi;
+        private readonly IPreferencesStorage _preferences;
         private readonly IStorage _storage;
 
         public AuthorizationService(
             IAuthorizationApi authorizationApi,
+            IPreferencesStorage preferences,
             IStorage storage)
         {
             _authorizationApi = authorizationApi;
+            _preferences = preferences;
             _storage = storage;
         }
 
-        public bool IsAuthorized => _storage.Available(Constants.StorageKeys.Token);
+        public bool IsAuthorized => _preferences.Available(Constants.StorageKeys.Token);
         
         public async Task LogoutAsync()
         {
             if (IsAuthorized)
             {
-                var tokenModel = _storage.Get<TokenModel>(Constants.StorageKeys.Token);
+                var tokenModel = _preferences.Get<TokenModel>(Constants.StorageKeys.Token);
 
                 await _authorizationApi.LogoutAsync(tokenModel.Token);
 
-                _storage.Remove(Constants.StorageKeys.Token);
+                _preferences.Remove(Constants.StorageKeys.Token);
             }
 
+            _preferences.RemoveAll();
             _storage.RemoveAll();
         }
         
@@ -48,7 +52,7 @@ namespace Services.Authorization
             var tokenModel = await _authorizationApi.LoginAsync(phone, passcode, token);
             if (tokenModel != null)
             {
-                _storage.Put(Constants.StorageKeys.Token, tokenModel);
+                _preferences.Put(Constants.StorageKeys.Token, tokenModel);
             }
         }
 
@@ -62,7 +66,7 @@ namespace Services.Authorization
             var tokenModel = await _authorizationApi.SendSmsAsync(code, token);
             if (tokenModel != null)
             {
-                _storage.Put(Constants.StorageKeys.Token, tokenModel);
+                _preferences.Put(Constants.StorageKeys.Token, tokenModel);
                 return true;
             }
             return false;

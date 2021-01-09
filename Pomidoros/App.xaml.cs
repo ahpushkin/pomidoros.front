@@ -37,7 +37,8 @@ namespace Pomidoros
             builder.RegisterType<ForgotPasswordPageViewModel>();
             builder.RegisterType<SecondReviewPageViewModel>();
             builder.RegisterType<FirstReviewPageViewModel>();
-            builder.RegisterType<StorageImplementation>().As<IStorage>();
+            builder.RegisterType<StorageImplementation>().As<IPreferencesStorage>();
+            builder.RegisterType<Storage>().As<IStorage>().SingleInstance();
             builder.RegisterType<FlowFlagManager>().As<IFlowFlagManager>();
 
             DependencyService.Register<IPushNotificationManager>();
