@@ -30,6 +30,8 @@ namespace Pomidoros
 
         protected override void PreLaunchRegistrations(ContainerBuilder builder)
         {
+            builder.RegisterInstance<IStorage>(new Storage());
+
             builder.RegisterType<BreakPageViewModel>();
             builder.RegisterType<ProfilePageViewModel>();
             builder.RegisterType<MainPageViewModel>();
@@ -38,7 +40,6 @@ namespace Pomidoros
             builder.RegisterType<SecondReviewPageViewModel>();
             builder.RegisterType<FirstReviewPageViewModel>();
             builder.RegisterType<StorageImplementation>().As<IPreferencesStorage>();
-            builder.RegisterType<Storage>().As<IStorage>().SingleInstance();
             builder.RegisterType<FlowFlagManager>().As<IFlowFlagManager>();
 
             DependencyService.Register<IPushNotificationManager>();
