@@ -56,7 +56,7 @@ namespace Services.Orders
                 Distance = i.Distance,
                 Status = i.OrderStatus,
                 Type = i.Type,
-                EndTime = i.EndTime
+                EndTime = DateTimeOffset.FromUnixTimeSeconds(i.EndTime)
             });
         }
 

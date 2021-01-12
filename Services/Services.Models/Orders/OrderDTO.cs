@@ -6,9 +6,9 @@ namespace Services.Models.Orders
     public class OrderDTO
     {
         [PrimaryKey]
-        public long Id { get; set; }
+        public long Number { get; set; }
 
-        public int OrderNumber { get; set; }
+        public int SerialNumber { get; set; }
 
         public int Status { get; set; }
 
@@ -34,8 +34,8 @@ namespace Services.Models.Orders
 
         public OrderDTO(FullOrderModel order)
         {
-            Id = Convert.ToInt64(order.Number);
-            OrderNumber = Convert.ToInt32(order.OrderNumber);
+            Number = Convert.ToInt64(order.Number);
+            SerialNumber = Convert.ToInt32(order.OrderNumber);
             Status = (int)order.OrderStatus;
             StartAddress = order.StartCity + ";" + order.StartAddress;
             DeliveryAddress = order.DeliveryCity + ";" + order.DeliveryAddress;
@@ -44,7 +44,7 @@ namespace Services.Models.Orders
             Comments = order.Comments;
             Price = (int)order.AmountPrice;
             Type = (int)order.Type;
-            EndTime = order.EndTime.ToUnixTimeSeconds();
+            EndTime = order.EndTime;
             ClientLiked = order.IsClientLiked;
         }
     }

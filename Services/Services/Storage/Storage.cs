@@ -46,7 +46,7 @@ namespace Services.Storage
 
         public async Task<FullOrderModel> GetOrder(long id)
         {
-            var orders = await sqLiteConnection.Table<OrderDTO>().Where(i => i.Id == id).ToListAsync();
+            var orders = await sqLiteConnection.Table<OrderDTO>().Where(i => i.Number == id).ToListAsync();
             if (orders.Count != 1)
             {
                 return null;
@@ -76,7 +76,7 @@ namespace Services.Storage
             return new FullOrderModel
             {
                 Number = $"{id}",
-                OrderNumber = $"{orders[0].OrderNumber}",
+                OrderNumber = $"{orders[0].SerialNumber}",
                 OrderStatus = (EOrderStatus)orders[0].Status,
                 StartCity = start[0],
                 StartAddress = start[1],
@@ -88,7 +88,7 @@ namespace Services.Storage
                 Contents = contentItems2,
                 AmountPrice = orders[0].Price,
                 Type = (EOrderType)orders[0].Type,
-                EndTime = DateTimeOffset.FromUnixTimeSeconds(orders[0].EndTime),
+                EndTime = orders[0].EndTime,
                 IsClientLiked = orders[0].ClientLiked
             };
         }
