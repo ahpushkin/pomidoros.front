@@ -21,7 +21,7 @@ namespace Services.API.Orders
             var rnd = new Random();
             return new FullOrderModel
             {
-                Number = "2343356554",
+                Number = number,
                 OrderNumber = "288382",
                 AmountPrice = 835,
                 ClientNumber = "+380992373767",
@@ -108,13 +108,18 @@ namespace Services.API.Orders
         }
 
         private ShortOrderModel CreateModel(EOrderStatus status, EOrderType type, int minutes)
-            => new ShortOrderModel
+        {
+            var rnd = new Random();
+            var id = 2343356554 + rnd.Next(0, 5);
+            return new ShortOrderModel
             {
+                Number = $"{id}",
                 Address = "ул. Богдана Хмельницкого, 28",
                 Distance = 450,
                 Status = status,
                 Type = type,
                 EndTime = DateTimeOffset.Now.Add(TimeSpan.FromMinutes(minutes))
             };
+        }
     }
 }

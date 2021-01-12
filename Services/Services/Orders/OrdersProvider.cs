@@ -1,23 +1,39 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Services.API.Orders;
 using Services.Models.Orders;
+using Services.Storage;
 
 namespace Services.Orders
 {
     public class OrdersProvider : IOrdersProvider, IOrdersUpdater
     {
         private readonly IOrdersApi _ordersApi;
+        private readonly IStorage _storage;
 
-        public OrdersProvider(IOrdersApi ordersApi)
+        public OrdersProvider(IOrdersApi ordersApi, IStorage storage)
         {
             _ordersApi = ordersApi;
+            _storage = storage;
         }
 
-        public Task<FullOrderModel> GetOrderDetailsAsync(string number, CancellationToken token)
+        public async Task<FullOrderModel> GetOrderDetailsAsync(string number, CancellationToken token)
         {
-            return _ordersApi.GetOrderDetailAsync(number, token);
+            var order = await _storage.GetOrder(Convert.ToInt64(number));
+            if (order != null)
+            {
+                return order;
+            }
+
+            order = await _ordersApi.GetOrderDetailAsync(number, token);
+            if (order != null)
+            {
+                await _storage.AddOrder(order);
+                return order;
+            }
+            return null;
         }
 
         public Task<IEnumerable<ShortOrderModel>> GetOrdersAsync(CancellationToken token)
@@ -25,9 +41,15 @@ namespace Services.Orders
             return _ordersApi.GetOrdersAsync(token);
         }
 
-        public Task<FullOrderModel> UpdateOrderDataASync(string number, FullOrderModel newData, CancellationToken token)
+        public async Task<FullOrderModel> UpdateOrderDataASync(string number, FullOrderModel newData, CancellationToken token)
         {
-            return _ordersApi.UpdateOrderAsync(number, newData, token);
+            var order = await _ordersApi.UpdateOrderAsync(number, newData, token);
+            if (order != null)
+            {
+                await _storage.UpdateOrder(order);
+                return order;
+            }
+            return null;
         }
     }
 }
