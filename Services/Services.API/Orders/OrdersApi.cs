@@ -17,12 +17,12 @@ namespace Services.API.Orders
             throw new System.NotImplementedException();
         }
 
-        public Task<IEnumerable<ShortOrderModel>> GetOrdersAsync(CancellationToken token)
+        public Task<IEnumerable<FullOrderModel>> GetOrdersAsync(CancellationToken token)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<IEnumerable<ShortOrderModel>> GetHistoryOrdersAsync(CancellationToken token)
+        public Task<IEnumerable<FullOrderModel>> GetHistoryOrdersAsync(CancellationToken token)
         {
             throw new System.NotImplementedException();
         }

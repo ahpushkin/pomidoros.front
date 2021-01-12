@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Services.API.Orders;
@@ -36,9 +37,27 @@ namespace Services.Orders
             return null;
         }
 
-        public Task<IEnumerable<ShortOrderModel>> GetOrdersAsync(CancellationToken token)
+        public async Task<IEnumerable<ShortOrderModel>> GetOrdersAsync(CancellationToken token)
         {
-            return _ordersApi.GetOrdersAsync(token);
+            var orders = await _ordersApi.GetOrdersAsync(token);
+
+            foreach (var order in orders)
+            {
+                if (await _storage.GetOrder(Convert.ToInt64(order.Number)) == null)
+                {
+                    await _storage.AddOrder(order);
+                }
+            }
+
+            return orders.Select(i => new ShortOrderModel
+            {
+                Number = i.Number,
+                Address = i.DeliveryAddress,
+                Distance = i.Distance,
+                Status = i.OrderStatus,
+                Type = i.Type,
+                EndTime = i.EndTime
+            });
         }
 
         public async Task<FullOrderModel> UpdateOrderDataASync(string number, FullOrderModel newData, CancellationToken token)

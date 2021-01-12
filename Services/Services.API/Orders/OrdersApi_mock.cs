@@ -19,33 +19,10 @@ namespace Services.API.Orders
         {
             await Task.Delay(1500);
             var rnd = new Random();
-            return new FullOrderModel
-            {
-                Number = number,
-                OrderNumber = "288382",
-                AmountPrice = 835,
-                ClientNumber = "+380992373767",
-                Comments = "Не трясти при перевозке. Заехать во двор через арку",
-                Contents = new List<OrderContentModel>
-                {
-                    new OrderContentModel {Count = 2, Name = "Нагетсы", Price = 50},
-                    new OrderContentModel {Count = 4, Name = "Пицца", Price = 80},
-                    new OrderContentModel {Count = 2, Name = "Бургер 'DeLuxe'", Price = 120},
-                    new OrderContentModel {Count = 5, Name = "Картошка 'По селянски'", Price = 35}
-                },
-                DeliveryCity = "Петропавловская Борщаговка",
-                DeliveryAddress = rnd.Next(0, 2) == 1 ? "ул. Богдана Хмельницкого, 28" : null,
-                StartCity = "Петропавловская Борщаговка",
-                StartAddress = "ул. Садовая, 1В",
-                Distance = 5674,
-                EndTime = DateTimeOffset.Now.AddHours(rnd.Next(10, 60)),
-                OrderStatus = RandomizeOrderStatus(),
-                Type = RandomizeOrderType(),
-                IsClientLiked = RandomizeBoolean()
-            };
+            return CreateModel(RandomizeOrderStatus(), RandomizeOrderType(), rnd.Next(10, 60));
         }
 
-        public async Task<IEnumerable<ShortOrderModel>> GetOrdersAsync(CancellationToken token)
+        public async Task<IEnumerable<FullOrderModel>> GetOrdersAsync(CancellationToken token)
         {
             var rnd = new Random();
             await Task.Delay(1500);
@@ -53,7 +30,7 @@ namespace Services.API.Orders
             return CreateRangeOpenedModels(rnd.Next(0, 3));
         }
 
-        public async Task<IEnumerable<ShortOrderModel>> GetHistoryOrdersAsync(CancellationToken token)
+        public async Task<IEnumerable<FullOrderModel>> GetHistoryOrdersAsync(CancellationToken token)
         {
             var rnd = new Random();
             await Task.Delay(1500);
@@ -61,7 +38,7 @@ namespace Services.API.Orders
             return CreateRangeHistoryModels(rnd.Next(0, 20));
         }
 
-        private IEnumerable<ShortOrderModel> CreateRangeHistoryModels(int count)
+        private IEnumerable<FullOrderModel> CreateRangeHistoryModels(int count)
         {
             var rnd = new Random();
             var randomStatus = rnd.Next(0, 3) == 0 ? EOrderStatus.NotPayed : EOrderStatus.Completed;
@@ -69,7 +46,7 @@ namespace Services.API.Orders
                 yield return CreateModel(randomStatus, EOrderType.Default, 0);
         }
 
-        private IEnumerable<ShortOrderModel> CreateRangeOpenedModels(int count)
+        private IEnumerable<FullOrderModel> CreateRangeOpenedModels(int count)
         {
             var rnd = new Random();
 
@@ -107,18 +84,33 @@ namespace Services.API.Orders
             return rnd.Next(0, 2) == 1;
         }
 
-        private ShortOrderModel CreateModel(EOrderStatus status, EOrderType type, int minutes)
+        private FullOrderModel CreateModel(EOrderStatus status, EOrderType type, int minutes)
         {
             var rnd = new Random();
             var id = 2343356554 + rnd.Next(0, 5);
-            return new ShortOrderModel
+            return new FullOrderModel
             {
                 Number = $"{id}",
-                Address = "ул. Богдана Хмельницкого, 28",
-                Distance = 450,
-                Status = status,
+                OrderNumber = "288382",
+                AmountPrice = 835,
+                ClientNumber = "+380992373767",
+                Comments = "Не трясти при перевозке. Заехать во двор через арку",
+                Contents = new List<OrderContentModel>
+                {
+                    new OrderContentModel {Count = 2, Name = "Нагетсы", Price = 50},
+                    new OrderContentModel {Count = 4, Name = "Пицца", Price = 80},
+                    new OrderContentModel {Count = 2, Name = "Бургер 'DeLuxe'", Price = 120},
+                    new OrderContentModel {Count = 5, Name = "Картошка 'По селянски'", Price = 35}
+                },
+                DeliveryCity = "Петропавловская Борщаговка",
+                DeliveryAddress = rnd.Next(0, 2) == 1 ? "ул. Богдана Хмельницкого, 28" : null,
+                StartCity = "Петропавловская Борщаговка",
+                StartAddress = "ул. Садовая, 1В",
+                Distance = 5674,
+                EndTime = DateTimeOffset.Now.Add(TimeSpan.FromMinutes(minutes)),
+                OrderStatus = status,
                 Type = type,
-                EndTime = DateTimeOffset.Now.Add(TimeSpan.FromMinutes(minutes))
+                IsClientLiked = RandomizeBoolean()
             };
         }
     }

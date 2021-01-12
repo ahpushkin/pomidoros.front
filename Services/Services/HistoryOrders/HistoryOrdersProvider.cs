@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Services.API.Orders;
@@ -19,11 +20,29 @@ namespace Services.HistoryOrders
             _storage = storage;
         }
 
-        public Task<IEnumerable<ShortOrderModel>> GetOrdersHistoryAsync(CancellationToken token)
+        public async Task<IEnumerable<ShortOrderModel>> GetOrdersHistoryAsync(CancellationToken token)
         {
-            return _ordersApi.GetHistoryOrdersAsync(token);
+            var orders = await _ordersApi.GetHistoryOrdersAsync(token);
+
+            foreach (var order in orders)
+            {
+                if (await _storage.GetOrder(Convert.ToInt64(order.Number)) == null)
+                {
+                    await _storage.AddOrder(order);
+                }
+            }
+
+            return orders.Select(i => new ShortOrderModel
+            {
+                Number = i.Number,
+                Address = i.DeliveryAddress,
+                Distance = i.Distance,
+                Status = i.OrderStatus,
+                Type = i.Type,
+                EndTime = i.EndTime
+            });
         }
-        
+
         public async Task<FullOrderModel> GetOrderDetailsAsync(string number, CancellationToken token)
         {
             var order = await _storage.GetOrder(Convert.ToInt64(number));

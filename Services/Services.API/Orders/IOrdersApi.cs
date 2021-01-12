@@ -9,7 +9,7 @@ namespace Services.API.Orders
     {
         Task<FullOrderModel> UpdateOrderAsync(string number, FullOrderModel order, CancellationToken token);
         Task<FullOrderModel> GetOrderDetailAsync(string number, CancellationToken token);
-        Task<IEnumerable<ShortOrderModel>> GetOrdersAsync(CancellationToken token);
-        Task<IEnumerable<ShortOrderModel>> GetHistoryOrdersAsync(CancellationToken token);
+        Task<IEnumerable<FullOrderModel>> GetOrdersAsync(CancellationToken token);
+        Task<IEnumerable<FullOrderModel>> GetHistoryOrdersAsync(CancellationToken token);
     }
 }
