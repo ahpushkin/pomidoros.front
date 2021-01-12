@@ -6,9 +6,9 @@ namespace Services.CurrentUser
 {
     public interface ICurrentUserDataService
     {
-        Task FetchUserDataAsync();
+        Task FetchUserDataAsync(CancellationToken token);
         
-        Task UpdateUserDataAsync(UserDataModel userData);
+        Task UpdateUserDataAsync(UserDataModel userData, CancellationToken token);
 
         UserDataModel GetUserData();
 

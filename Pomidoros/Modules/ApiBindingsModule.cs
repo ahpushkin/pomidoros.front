@@ -17,7 +17,7 @@ namespace Pomidoros.Modules
 
             builder.RegisterType<OrdersApi_mock2>().As<IOrdersApi>();
             //builder.RegisterType<OrdersApi>().As<IOrdersApi>();
-            builder.RegisterType<UserApi_mock>().As<IUserApi>();
+            builder.RegisterType<UserApi_mock2>().As<IUserApi>();
             //builder.RegisterType<UserApi>().As<IUserApi>();
         }
     }

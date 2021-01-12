@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Autofac;
@@ -107,7 +108,7 @@ namespace Pomidoros.ViewModel.Profile
                     Email = Email,
                     Phone = Phone,
                     Transport = Transport
-                });
+                }, CancellationToken.None);
                 
                 Toast("Измененные данные были сохранены");
             }

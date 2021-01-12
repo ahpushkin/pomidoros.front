@@ -90,7 +90,7 @@ namespace Pomidoros.ViewModel.Authorization
             
             if (AuthorizationService.IsAuthorized)
             {
-                await CurrentUserDataService.FetchUserDataAsync();
+                await CurrentUserDataService.FetchUserDataAsync(CancellationToken.None);
                 await Navigation.PushAsync(new WelcomePage());
             }
             else

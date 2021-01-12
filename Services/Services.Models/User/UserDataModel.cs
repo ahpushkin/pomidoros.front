@@ -3,7 +3,6 @@ using Services.Models.Data;
 
 namespace Services.Models.User
 {
-    // TODO: change json keys and fields according to User model on server
     public class UserDataModel
     {
         [JsonProperty("username")]
@@ -15,9 +14,10 @@ namespace Services.Models.User
         [JsonProperty("email")]
         public string Email { get; set; }
 
-        [JsonProperty("pk")]
+        [JsonProperty("id")]
         public string Identify { get; set; }
 
+        [JsonProperty("transport")]
         public TransportModel Transport { get; set; }
     }
 }

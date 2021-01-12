@@ -19,7 +19,7 @@ namespace Services.CurrentUser
             _preferences = preferences;
         }
         
-        public async Task FetchUserDataAsync()
+        public async Task FetchUserDataAsync(CancellationToken token)
         {
             if (!_preferences.Available(Constants.StorageKeys.Token))
             {
@@ -28,7 +28,7 @@ namespace Services.CurrentUser
 
             var tokenModel = _preferences.Get<TokenModel>(Constants.StorageKeys.Token);
 
-            var userData = await _userApi.GetUserDataAsync(tokenModel.UserId);
+            var userData = await _userApi.GetUserDataAsync(tokenModel.UserId, token);
 
             if (userData != null)
             {
@@ -36,9 +36,9 @@ namespace Services.CurrentUser
             }
         }
 
-        public async Task UpdateUserDataAsync(UserDataModel userData)
+        public async Task UpdateUserDataAsync(UserDataModel userData, CancellationToken token)
         {
-            if(await _userApi.UpdateUserDataAsync(userData))
+            if(await _userApi.UpdateUserDataAsync(userData, token))
             {
                 _preferences.Put(Constants.StorageKeys.UserData, userData);
             }

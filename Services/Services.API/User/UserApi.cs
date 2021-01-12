@@ -7,12 +7,12 @@ namespace Services.API.User
 {
     public class UserApi : ApiBase, IUserApi
     {
-        public Task<UserDataModel> GetUserDataAsync(string userId)
+        public Task<UserDataModel> GetUserDataAsync(string userId, CancellationToken token)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateUserDataAsync(UserDataModel userData)
+        public Task<bool> UpdateUserDataAsync(UserDataModel userData, CancellationToken token)
         {
             throw new NotImplementedException();
         }

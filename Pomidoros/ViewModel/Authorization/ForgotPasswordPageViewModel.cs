@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Autofac;
@@ -119,7 +118,7 @@ namespace Pomidoros.ViewModel.Authorization
 
             if (result)
             {
-                await CurrentUserDataService.FetchUserDataAsync();
+                await CurrentUserDataService.FetchUserDataAsync(CancellationToken.None);
                 Navigation.PushAsync(new WelcomePage()).SafeFireAndForget(false);
             }
             else
