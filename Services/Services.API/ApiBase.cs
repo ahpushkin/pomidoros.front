@@ -24,7 +24,21 @@ namespace Services.API
             return await GetResult<T>(resource, response, cancellationToken);
         }
 
-        public async Task<T> PostAsync<T>(string resource, Dictionary<string, object> parameters, CancellationToken cancellationToken)
+        public async Task<T> PutAsync<T>(string resource, object parameters, CancellationToken cancellationToken)
+            where T : new()
+        {
+            var response = await SharedHttpClient.PutAsync(RequestUrl(resource), parameters, cancellationToken);
+
+            var cookies = GetCookies(RequestUrl(resource));
+            foreach (var c in cookies)
+            {
+                System.Diagnostics.Debug.WriteLine($"Cookies: ({c.Item1})({c.Item2})");
+            }
+
+            return await GetResult<T>(resource, response, cancellationToken);
+        }
+
+        public async Task<T> PostAsync<T>(string resource, object parameters, CancellationToken cancellationToken)
             where T : new()
         {
             var response = await SharedHttpClient.PostAsync(RequestUrl(resource), parameters, cancellationToken);
@@ -38,7 +52,7 @@ namespace Services.API
             return await GetResult<T>(resource, response, cancellationToken);
         }
 
-        public async Task<T> PostWithTokenAsync<T>(string resource, Dictionary<string, object> parameters, CancellationToken cancellationToken)
+        public async Task<T> PostWithTokenAsync<T>(string resource, object parameters, CancellationToken cancellationToken)
             where T : new()
         {
             var cookies = GetCookies(RequestUrl(resource));

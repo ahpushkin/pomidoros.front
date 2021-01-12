@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Services.Models.User;
 
@@ -9,17 +8,17 @@ namespace Services.API.User
     {
         public Task<UserDataModel> GetUserDataAsync(string userId, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return GetAsync<UserDataModel>("/user/me/", token);
         }
 
-        public Task<bool> UpdateUserDataAsync(UserDataModel userData, CancellationToken token)
+        public async Task<bool> UpdateUserDataAsync(UserDataModel userData, CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await PutAsync<bool>("/user/me/", userData, token);
         }
 
-        public Task<bool> RequestBreakAsync(CancellationToken token)
+        public async Task<bool> RequestBreakAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            return await PostWithTokenAsync<bool>("/user/me/break/", null, token);
         }
     }
 }
