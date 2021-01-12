@@ -65,7 +65,7 @@ namespace Services.UserLocation
         readonly IStorage _storage;
         readonly IGeoCodingService _geoCodingService;
 
-        static int _userId = 3;
+        static int _userId = 9;
         static int _orderId = 1;
         static int _routeId = 8;
         DateTime timeToApproveBreak = DateTime.MinValue;

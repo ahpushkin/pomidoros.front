@@ -12,8 +12,8 @@ namespace Pomidoros.Modules
         {
             //builder.RegisterType<AuthorizationApi_mock>().As<IAuthorizationApi>();
             builder.RegisterType<AuthorizationApi>().As<IAuthorizationApi>();
-            //builder.RegisterType<UserLocationApi_mock>().As<IUserLocationApi>();
-            builder.RegisterType<UserLocationApi>().As<IUserLocationApi>();
+            builder.RegisterType<UserLocationApi_mock>().As<IUserLocationApi>();
+            //builder.RegisterType<UserLocationApi>().As<IUserLocationApi>();
 
             builder.RegisterType<OrdersApi_mock>().As<IOrdersApi>();
             //builder.RegisterType<OrdersApi>().As<IOrdersApi>();
