@@ -9,7 +9,6 @@ using System.Windows.Input;
 using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
-using Pomidoros.View;
 using Pomidoros.View.Orders;
 using Pomidoros.ViewModel.Base;
 using Pomidoros.ViewModel.ListElements;
@@ -27,15 +26,18 @@ namespace Pomidoros.ViewModel.Orders
 
         private readonly Func<ShortOrderModel, ICommand, ShortOrderViewModel> _itemsBuilder;
         private readonly IOrdersProvider _ordersProvider;
+        private readonly IOrdersUpdater _ordersUpdater;
 
         #endregion
-        
+
         public MyOrdersPageViewModel(
             Func<ShortOrderModel, ICommand, ShortOrderViewModel> itemsBuilder,
-            IOrdersProvider ordersProvider)
+            IOrdersProvider ordersProvider,
+            IOrdersUpdater ordersUpdater)
         {
             _itemsBuilder = itemsBuilder;
             _ordersProvider = ordersProvider;
+            _ordersUpdater = ordersUpdater;
             
             Title = "Мои заказы";
         }
@@ -82,12 +84,11 @@ namespace Pomidoros.ViewModel.Orders
                 await Navigation.PushAsync(new OrderPage(), order, "order");
         }
 
-        private Task OnBeginDeliveryCommandAsync(ShortOrderViewModel arg)
+        private async Task OnBeginDeliveryCommandAsync(ShortOrderViewModel arg)
         {
-            //TODO: Request to server to update status of order
-            throw new NotImplementedException("Request to server to update status of order");
             arg.Type = EOrderType.Default;
-            return OnOpenOrderCommand(arg);
+            await _ordersUpdater.UpdateOrderDataASync(arg.GetModel(), CancellationToken.None);
+            await OnOpenOrderCommand(arg);
         }
 
         private async Task<FullOrderModel> GetOrderDetailsAsync(string orderNumber)

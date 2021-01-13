@@ -70,5 +70,22 @@ namespace Services.Orders
             }
             return null;
         }
+
+        public async Task UpdateOrderDataASync(ShortOrderModel newData, CancellationToken token)
+        {
+            var fullModel = await _storage.GetOrder(Convert.ToInt64(newData.Number));
+            if (fullModel == null)
+            {
+                return;
+            }
+
+            fullModel.DeliveryAddress = newData.Address;
+            fullModel.Distance = newData.Distance;
+            fullModel.OrderStatus = newData.Status;
+            fullModel.Type = newData.Type;
+            fullModel.EndTime = newData.EndTime.ToUnixTimeSeconds();
+
+            await UpdateOrderDataASync(newData.Number, fullModel, token);
+        }
     }
 }

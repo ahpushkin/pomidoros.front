@@ -7,5 +7,6 @@ namespace Services.Orders
     public interface IOrdersUpdater
     {
         Task<FullOrderModel> UpdateOrderDataASync(string number, FullOrderModel newData, CancellationToken token);
+        Task UpdateOrderDataASync(ShortOrderModel newData, CancellationToken token);
     }
 }
