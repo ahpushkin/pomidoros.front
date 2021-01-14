@@ -73,7 +73,7 @@ namespace Pomidoros.Droid
 
             if (requestCode == RequestLocationId)
             {
-                if ((grantResults.Length == 1) && (grantResults[0] == (int)Permission.Granted))
+                if ((grantResults.Length > 0) && (grantResults[0] == (int)Permission.Granted))
                 {
                     this.ShowMessage("Доступ к геоданным разрешен");
                 }
