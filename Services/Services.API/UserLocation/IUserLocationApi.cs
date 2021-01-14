@@ -8,7 +8,7 @@ namespace Services.API.UserLocation
     {
         Task SendCurrentLocationAsync(int routeId, string latitude, string longitude, CancellationToken token);
 
-        Task<GoogleRouteInfo> GetRouteInfoAsync(int orderId, int userId, string startLatitude, string startLongitude,
+        Task<GoogleRouteInfo> GetRouteInfoAsync(string orderId, string userId, string startLatitude, string startLongitude,
             string endLatitude, string endLongitude, CancellationToken token);
     }
 }

@@ -135,7 +135,7 @@ namespace Pomidoros.ViewModel.Orders
                 GoogleMapProvider.SetCourierMarker(location);
             });
 
-            UserLocationService.SendCurrentLocationAsync(location, CancellationToken.None);
+            UserLocationService.SendCurrentLocationAsync(Order, location, CancellationToken.None);
        }
     }
 }

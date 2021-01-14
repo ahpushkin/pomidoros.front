@@ -14,7 +14,7 @@ namespace Services.API.UserLocation
             System.Diagnostics.Debug.WriteLine($"Saved route ({routeId}) coordinate: {latitude}:{longitude}");
         }
 
-        public async Task<GoogleRouteInfo> GetRouteInfoAsync(int orderId, int userId, string startLatitude, string startLongitude, string endLatitude, string endLongitude, CancellationToken token)
+        public async Task<GoogleRouteInfo> GetRouteInfoAsync(string orderId, string userId, string startLatitude, string startLongitude, string endLatitude, string endLongitude, CancellationToken token)
         {
             await Task.Delay(1000);
             System.Diagnostics.Debug.WriteLine($"Get route for order ({orderId}), user {userId}, coordinates: {startLatitude}:{startLongitude}-{endLatitude}:{endLongitude}");

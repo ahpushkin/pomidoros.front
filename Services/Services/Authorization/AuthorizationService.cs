@@ -38,7 +38,7 @@ namespace Services.Authorization
             }
 
             _preferences.RemoveAll();
-            _storage.RemoveAll();
+            await _storage.RemoveAll();
         }
         
         public async Task LoginAsync(string phone, string passcode, CancellationToken token)

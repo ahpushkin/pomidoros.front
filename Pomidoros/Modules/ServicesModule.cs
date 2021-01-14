@@ -17,8 +17,8 @@ namespace Pomidoros.Modules
             builder.RegisterType<OrdersProvider>().As<IOrdersProvider>().As<IOrdersUpdater>();
             builder.RegisterType<HistoryOrdersProvider>().As<IHistoryOrdersProvider>();
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
-            //builder.RegisterType<UserLocationService>().As<IUserLocationService>();
-            builder.RegisterType<UserLocationService_mock>().As<IUserLocationService>();
+            builder.RegisterType<UserLocationService>().As<IUserLocationService>();
+            //builder.RegisterType<UserLocationService_mock>().As<IUserLocationService>();
 
             builder.RegisterType<CallService>().As<ICallService>();
             builder.RegisterType<SmsService>().As<ISmsService>();

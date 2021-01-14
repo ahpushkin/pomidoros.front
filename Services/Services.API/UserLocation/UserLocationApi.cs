@@ -19,7 +19,7 @@ namespace Services.API.UserLocation
             await PostWithTokenAsync<object>("geo/log", parameters, token);
         }
 
-        public async Task<GoogleRouteInfo> GetRouteInfoAsync(int orderId, int userId, string startLatitude, string startLongitude, string endLatitude, string endLongitude, CancellationToken token)
+        public async Task<GoogleRouteInfo> GetRouteInfoAsync(string orderId, string userId, string startLatitude, string startLongitude, string endLatitude, string endLongitude, CancellationToken token)
         {
             var parameters = new Dictionary<string, object>
             {

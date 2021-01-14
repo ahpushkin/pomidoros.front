@@ -8,8 +8,9 @@ namespace Services.UserLocation
 {
     public interface IUserLocationService
     {
+        void SaveUserLocation(Tuple<double, double> location);
         Tuple<double, double> GetLastKnownUserLocation();
-        Task SendCurrentLocationAsync(Tuple<double, double> location, CancellationToken token);
+        Task SendCurrentLocationAsync(FullOrderModel orderModel, Tuple<double, double> location, CancellationToken token);
         Task<RouteInfoModel> GetRouteInfoAsync(FullOrderModel orderModel, CancellationToken token);
         Task<bool> IsOnBaseAsync(CancellationToken token);
     }

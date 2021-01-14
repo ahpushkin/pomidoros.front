@@ -70,7 +70,7 @@ namespace Pomidoros.ViewModel.FlowAfterOrder
                 GoogleMapProvider.SetCourierMarker(location);
             });
 
-            await UserLocationService.SendCurrentLocationAsync(location, _cts.Token);
+            await UserLocationService.SendCurrentLocationAsync(Order, location, _cts.Token);
             var result = await UserLocationService.IsOnBaseAsync(_cts.Token);
             if (result)
             {

@@ -10,6 +10,7 @@ using Autofac;
 using Core.Commands;
 using Core.Extensions;
 using Pomidoros.Model;
+using Pomidoros.Services;
 using Pomidoros.View.Notification;
 using Pomidoros.View.Orders;
 using Pomidoros.View.Profile;
@@ -19,6 +20,7 @@ using Services.HistoryOrders;
 using Services.Models.Enums;
 using Services.Models.Orders;
 using Services.Orders;
+using Services.UserLocation;
 using Xamarin.Forms;
 
 namespace Pomidoros.ViewModel
@@ -27,7 +29,8 @@ namespace Pomidoros.ViewModel
     {
         private bool _onseAppeared;
         private IEnumerable<ShortOrderModel> _orders;
-        
+        private readonly DeviceLocation _deviceLocation = new DeviceLocation();
+
         #region services
 
         private IPopupNavigation _popupNavigation;
@@ -81,10 +84,18 @@ namespace Pomidoros.ViewModel
             
             if (!_onseAppeared)
             {
+                _deviceLocation.StartRequestLocation(LocationHandler);
                 await ShowDelayedPopupAsync();
             }
             
             _onseAppeared = true;
+        }
+
+        private void LocationHandler(Tuple<double, double> location)
+        {
+            _deviceLocation.Cancel();
+
+            App.Container.Resolve<IUserLocationService>().SaveUserLocation(location);
         }
 
         public override void OnDisappearing()

@@ -6,6 +6,7 @@ namespace Services
         {
             public const string Token = nameof(Token);
             public const string UserData = nameof(UserData);
+            public const string Location = nameof(Location);
         }
     }
 }

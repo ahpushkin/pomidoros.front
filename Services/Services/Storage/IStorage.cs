@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Services.Models.Orders;
 using Services.Models.Route;
@@ -12,9 +14,11 @@ namespace Services.Storage
 
         Task<FullOrderModel> GetOrder(long id);
 
-        Task AddRouteInfo(RouteInfoModel routeInfo);
+        Task<int> AddRouteInfo(long orderId, int userId, List<Tuple<double, double>> coordinates);
 
         Task<RouteInfoModel> GetRouteInfo(int id);
+
+        Task<RouteInfoModel> GetRouteInfoForOrder(long orderId);
 
         Task RemoveAll();
     }
