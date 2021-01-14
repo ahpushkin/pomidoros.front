@@ -78,9 +78,6 @@ namespace Pomidoros.ViewModel
             pushManager.SpecialOrderReceived += OnOrdersAvailableReceived;
 
             IsBusy = true;
-            await UpdateOrdersAsync();
-            UpdateState();
-            IsBusy = false;
             
             if (!_onseAppeared)
             {
@@ -125,7 +122,10 @@ namespace Pomidoros.ViewModel
         
         private async Task OnRefreshCommandAsync(object arg)
         {
-            IsBusy = true;
+            if (!IsBusy)
+            {
+                IsBusy = true;
+            }
             await UpdateOrdersAsync();
             UpdateState();
             IsBusy = false;
@@ -195,12 +195,9 @@ namespace Pomidoros.ViewModel
             }
         }
 
-        private async void OnOrdersAvailableReceived(object sender, EventArgs e)
+        private void OnOrdersAvailableReceived(object sender, EventArgs e)
         {
             IsBusy = true;
-            await UpdateOrdersAsync();
-            UpdateState();
-            IsBusy = false;
         }
 
         protected void EmptyOrdersToast()
