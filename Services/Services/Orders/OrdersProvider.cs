@@ -9,7 +9,7 @@ using Services.Storage;
 
 namespace Services.Orders
 {
-    public class OrdersProvider : IOrdersProvider, IOrdersUpdater
+    public class OrdersProvider : IOrdersProvider
     {
         private readonly IOrdersApi _ordersApi;
         private readonly IStorage _storage;
@@ -41,23 +41,14 @@ namespace Services.Orders
         {
             var orders = await _ordersApi.GetOrdersAsync(token);
 
-            foreach (var order in orders)
-            {
-                if (await _storage.GetOrder(Convert.ToInt64(order.Number)) == null)
-                {
-                    await _storage.AddOrder(order);
-                }
-            }
+            return await GetOrdersAsync(orders, false, token);
+        }
 
-            return orders.Select(i => new ShortOrderModel
-            {
-                Number = i.Number,
-                Address = i.DeliveryAddress,
-                Distance = i.Distance,
-                Status = i.OrderStatus,
-                Type = i.Type,
-                EndTime = DateTimeOffset.FromUnixTimeSeconds(i.EndTime)
-            });
+        public async Task<IEnumerable<ShortOrderModel>> GetOrdersHistoryAsync(CancellationToken token)
+        {
+            var orders = await _ordersApi.GetHistoryOrdersAsync(token);
+
+            return await GetOrdersAsync(orders, true, token);
         }
 
         public async Task<FullOrderModel> UpdateOrderDataASync(string number, FullOrderModel newData, CancellationToken token)
@@ -71,7 +62,7 @@ namespace Services.Orders
             return null;
         }
 
-        public async Task UpdateOrderDataASync(ShortOrderModel newData, CancellationToken token)
+        public async Task UpdateOrderDataAsync(ShortOrderModel newData, CancellationToken token)
         {
             var fullModel = await _storage.GetOrder(Convert.ToInt64(newData.Number));
             if (fullModel == null)
@@ -86,6 +77,29 @@ namespace Services.Orders
             fullModel.EndTime = newData.EndTime.ToUnixTimeSeconds();
 
             await UpdateOrderDataASync(newData.Number, fullModel, token);
+        }
+
+        private async Task<IEnumerable<ShortOrderModel>> GetOrdersAsync(IEnumerable<FullOrderModel> orders, bool isHistoryOrders, CancellationToken token)
+        {
+            foreach (var order in orders)
+            {
+                if (await _storage.GetOrder(Convert.ToInt64(order.Number)) == null)
+                {
+                    await _storage.AddOrder(order);
+                }
+            }
+
+            orders = await _storage.GetAllOrders(isHistoryOrders);
+
+            return orders.Select(i => new ShortOrderModel
+            {
+                Number = i.Number,
+                Address = i.DeliveryAddress,
+                Distance = i.Distance,
+                Status = i.OrderStatus,
+                Type = i.Type,
+                EndTime = DateTimeOffset.FromUnixTimeSeconds(i.EndTime)
+            });
         }
     }
 }

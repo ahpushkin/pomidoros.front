@@ -22,11 +22,11 @@ namespace Pomidoros.ViewModel.Orders
     public class ChangeLocationPageViewModel : BaseViewModel, IParametrized
     {
         private string _deliveryCity;
-        private readonly IOrdersUpdater _ordersUpdater;
+        private readonly IOrdersProvider _ordersProvider;
 
-        public ChangeLocationPageViewModel(IOrdersUpdater ordersUpdater)
+        public ChangeLocationPageViewModel(IOrdersProvider ordersProvider)
         {
-            _ordersUpdater = ordersUpdater;
+            _ordersProvider = ordersProvider;
             
             Title = LocalizationStrings.AddressTextTitle;
 
@@ -87,7 +87,7 @@ namespace Pomidoros.ViewModel.Orders
                 UserDialogs.ShowLoading();
                 Order.DeliveryAddress = DeliveryAddress;
                 Order.DeliveryCity = _deliveryCity;
-                await _ordersUpdater.UpdateOrderDataASync(Order.OrderNumber, Order, CancellationToken.None);
+                await _ordersProvider.UpdateOrderDataASync(Order.OrderNumber, Order, CancellationToken.None);
                 await Navigation.PopAsync();
             }
             catch (Exception e)

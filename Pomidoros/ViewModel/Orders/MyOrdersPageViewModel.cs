@@ -26,18 +26,15 @@ namespace Pomidoros.ViewModel.Orders
 
         private readonly Func<ShortOrderModel, ICommand, ShortOrderViewModel> _itemsBuilder;
         private readonly IOrdersProvider _ordersProvider;
-        private readonly IOrdersUpdater _ordersUpdater;
 
         #endregion
 
         public MyOrdersPageViewModel(
             Func<ShortOrderModel, ICommand, ShortOrderViewModel> itemsBuilder,
-            IOrdersProvider ordersProvider,
-            IOrdersUpdater ordersUpdater)
+            IOrdersProvider ordersProvider)
         {
             _itemsBuilder = itemsBuilder;
             _ordersProvider = ordersProvider;
-            _ordersUpdater = ordersUpdater;
             
             Title = "Мои заказы";
         }
@@ -87,7 +84,7 @@ namespace Pomidoros.ViewModel.Orders
         private async Task OnBeginDeliveryCommandAsync(ShortOrderViewModel arg)
         {
             arg.Type = EOrderType.Default;
-            await _ordersUpdater.UpdateOrderDataASync(arg.GetModel(), CancellationToken.None);
+            await _ordersProvider.UpdateOrderDataAsync(arg.GetModel(), CancellationToken.None);
             await OnOpenOrderCommand(arg);
         }
 

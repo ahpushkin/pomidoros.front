@@ -9,13 +9,12 @@ using System.Windows.Input;
 using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
-using Pomidoros.View;
 using Pomidoros.View.Orders;
 using Pomidoros.ViewModel.Base;
 using Pomidoros.ViewModel.ListElements;
-using Services.HistoryOrders;
 using Services.Models.Enums;
 using Services.Models.Orders;
+using Services.Orders;
 
 namespace Pomidoros.ViewModel.Orders
 {
@@ -24,14 +23,14 @@ namespace Pomidoros.ViewModel.Orders
         private const int MaxOrdersCount = 2;
         
         private readonly Func<ShortOrderModel, ICommand, ShortOrderViewModel> _itemsBuilder;
-        private readonly IHistoryOrdersProvider _historyOrdersProvider;
+        private readonly IOrdersProvider _ordersProvider;
 
         public OrdersHistoryPageViewModel(
             Func<ShortOrderModel, ICommand, ShortOrderViewModel> itemsBuilder,
-            IHistoryOrdersProvider historyOrdersProvider)
+            IOrdersProvider ordersProvider)
         {
             _itemsBuilder = itemsBuilder;
-            _historyOrdersProvider = historyOrdersProvider;
+            _ordersProvider = ordersProvider;
             Title = "История заказов";
         }
         
@@ -82,7 +81,7 @@ namespace Pomidoros.ViewModel.Orders
             try
             {
                 UserDialogs.ShowLoading();
-                var order = await _historyOrdersProvider.GetOrderDetailsAsync(arg.Number, CancellationToken.None);
+                var order = await _ordersProvider.GetOrderDetailsAsync(arg.Number, CancellationToken.None);
                 UserDialogs.HideLoading();
                 await Navigation.PushAsync(new ReviewOrderPage(), order, "order");
             }
@@ -123,7 +122,7 @@ namespace Pomidoros.ViewModel.Orders
         
         private async Task UpdateOrdersList()
         {
-            var orders = await _historyOrdersProvider.GetOrdersHistoryAsync(CancellationToken.None);
+            var orders = await _ordersProvider.GetOrdersHistoryAsync(CancellationToken.None);
             var completedOrdersViewModels = orders.Where(o => o.Status == EOrderStatus.Completed).Select(e => _itemsBuilder(e, ReviewOrderCommand));
             CompletedOrders = new ObservableCollection<ShortOrderViewModel>(completedOrdersViewModels);
             var uncompletedOrdersViewModels = orders.Where(o => o.Status == EOrderStatus.NotPayed).Select(e => _itemsBuilder(e, ReviewOrderCommand));

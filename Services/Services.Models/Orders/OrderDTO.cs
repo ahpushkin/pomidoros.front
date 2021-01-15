@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Services.Models.Enums;
 using SQLite;
 
 namespace Services.Models.Orders
@@ -46,6 +48,41 @@ namespace Services.Models.Orders
             Type = (int)order.Type;
             EndTime = order.EndTime;
             ClientLiked = order.IsClientLiked;
+        }
+
+        public FullOrderModel GetModel(List<OrderContentModel> contentItems)
+        {
+            var start = StartAddress.Split(';');
+            var delivery = DeliveryAddress.Split(';');
+            if (start.Length != 2 || delivery.Length != 2)
+            {
+                return null;
+            }
+
+            if (!Enum.IsDefined(typeof(EOrderStatus), Status)
+                || !Enum.IsDefined(typeof(EOrderType), Type))
+            {
+                return null;
+            }
+
+            return new FullOrderModel
+            {
+                Number = $"{Number}",
+                OrderNumber = $"{SerialNumber}",
+                OrderStatus = (EOrderStatus)Status,
+                StartCity = start[0],
+                StartAddress = start[1],
+                DeliveryCity = delivery[0],
+                DeliveryAddress = delivery[1],
+                Distance = Distance,
+                ClientNumber = ClientPhone,
+                Comments = Comments,
+                Contents = contentItems,
+                AmountPrice = Price,
+                Type = (EOrderType)Type,
+                EndTime = EndTime,
+                IsClientLiked = ClientLiked
+            };
         }
     }
 }

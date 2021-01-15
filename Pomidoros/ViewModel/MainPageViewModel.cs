@@ -16,7 +16,6 @@ using Pomidoros.View.Orders;
 using Pomidoros.View.Profile;
 using Pomidoros.ViewModel.Base;
 using Rg.Plugins.Popup.Contracts;
-using Services.HistoryOrders;
 using Services.Models.Enums;
 using Services.Models.Orders;
 using Services.Orders;
@@ -36,10 +35,6 @@ namespace Pomidoros.ViewModel
         private IPopupNavigation _popupNavigation;
         protected IPopupNavigation PopupNavigation
             => _popupNavigation ??= App.Container.Resolve<IPopupNavigation>();
-
-        private IHistoryOrdersProvider _historyOrdersProvider;
-        protected IHistoryOrdersProvider HistoryOrdersProvider
-            => _historyOrdersProvider ??= App.Container.Resolve<IHistoryOrdersProvider>();
 
         private IOrdersProvider _ordersProvider;
         protected IOrdersProvider OrdersProvider
@@ -156,7 +151,7 @@ namespace Pomidoros.ViewModel
         {
             using (UserDialogs.Loading(maskType: MaskType.Clear))
             {
-                var orders = await HistoryOrdersProvider.GetOrdersHistoryAsync(CancellationToken.None);
+                var orders = await OrdersProvider.GetOrdersHistoryAsync(CancellationToken.None);
                 await Navigation.PushAsync(new OrdersHistoryPage(), orders, "orders");
             }
         }

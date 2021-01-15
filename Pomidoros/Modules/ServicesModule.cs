@@ -3,7 +3,6 @@ using Pomidoros.Interfaces;
 using Pomidoros.Services;
 using Services.Authorization;
 using Services.CurrentUser;
-using Services.HistoryOrders;
 using Services.Orders;
 using Services.UserLocation;
 
@@ -14,8 +13,7 @@ namespace Pomidoros.Modules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<CurrentUserDataService>().As<ICurrentUserDataService>();
-            builder.RegisterType<OrdersProvider>().As<IOrdersProvider>().As<IOrdersUpdater>();
-            builder.RegisterType<HistoryOrdersProvider>().As<IHistoryOrdersProvider>();
+            builder.RegisterType<OrdersProvider>().As<IOrdersProvider>();
             builder.RegisterType<AuthorizationService>().As<IAuthorizationService>();
             builder.RegisterType<UserLocationService>().As<IUserLocationService>();
             //builder.RegisterType<UserLocationService_mock>().As<IUserLocationService>();
