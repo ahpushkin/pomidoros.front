@@ -25,6 +25,8 @@ namespace Pomidoros.ViewModel.Orders
         public OrderDetailPageViewModel(IPopupNavigation popupNavigation)
         {
             _popupNavigation = popupNavigation;
+
+            GoogleMapProvider.SetCenterCoordinates(UserLocationService.GetLastKnownUserLocation());
         }
 
         public void PassParameters(NavigationParameters parameters)

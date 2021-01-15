@@ -11,6 +11,12 @@ namespace Pomidoros.ViewModel
 {
     public class MapViewModel : BaseViewModel, IParametrized
     {
+        public MapViewModel()
+        {
+            var userLocationService = App.Container.Resolve<IUserLocationService>();
+            GoogleMapProvider.SetCenterCoordinates(userLocationService.GetLastKnownUserLocation());
+        }
+
         public GoogleMapViewModel GoogleMapProvider { get; } = new GoogleMapViewModel();
 
         private FullOrderModel _order;
