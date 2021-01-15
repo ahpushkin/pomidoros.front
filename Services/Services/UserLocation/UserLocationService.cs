@@ -99,9 +99,19 @@ namespace Services.UserLocation
             return routeInfo;
         }
 
-        public Task<bool> IsOnBaseAsync(CancellationToken token)
+        public async Task<bool> IsOnBaseAsync(CancellationToken token)
         {
-            throw new NotImplementedException();
+            if (await Task.Delay(1000, token).ContinueWith(tsk => tsk.IsCanceled))
+            {
+                return false;
+            }
+
+            var currentLocation = _preferencesStorage.Get<Tuple<double, double>>(Constants.StorageKeys.Location);
+            var baseLocation = new Tuple<double, double>(50.4331186, 30.3308163);//TODO
+
+            var distance = _geoCodingService.GetDistance(currentLocation, baseLocation);
+
+            return distance <= 20;
         }
 
         public static List<Tuple<double, double>> GetCoordinates(GoogleRouteInfo info)
@@ -122,7 +132,7 @@ namespace Services.UserLocation
         static int _userId = 9;
         static int _orderId = 1;
         static int _routeId = 8;
-        DateTime timeToApproveBreak = DateTime.MinValue;
+        DateTime timeToStartMovingToBase = DateTime.MinValue;
 
         public UserLocationService_mock(IUserLocationApi userLocationApi, IStorage storage, IGeoCodingService geoCodingService)
         {
@@ -189,15 +199,20 @@ namespace Services.UserLocation
                 return false;
             }
 
-            if (timeToApproveBreak == DateTime.MinValue)
+            if (timeToStartMovingToBase == DateTime.MinValue)
             {
-                timeToApproveBreak = DateTime.Now;
+                timeToStartMovingToBase = DateTime.Now;
                 return false;
             }
 
-            var timeSpane = DateTime.Now.Subtract(timeToApproveBreak);
+            var timeSpane = DateTime.Now.Subtract(timeToStartMovingToBase);
 
-            return timeSpane.TotalSeconds > 5;
+            var result = timeSpane.TotalSeconds > 5;
+            if (result)
+            {
+                timeToStartMovingToBase = DateTime.MinValue;
+            }
+            return result;
         }
     }
 }

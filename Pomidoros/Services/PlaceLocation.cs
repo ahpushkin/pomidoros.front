@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Services.UserLocation;
 using Xamarin.Essentials;
+using Xamarin.Forms.Maps;
 
 namespace Pomidoros.Services
 {
@@ -50,6 +51,12 @@ namespace Pomidoros.Services
                 System.Diagnostics.Debug.WriteLine($"Geocoding reverse: {ex.Message}");
             }
             return null;
+        }
+
+        public double GetDistance(Tuple<double, double> location1, Tuple<double, double> location2)
+        {
+            return Distance.BetweenPositions(new Position(location1.Item1, location1.Item2),
+                new Position(location2.Item1, location2.Item2)).Meters;
         }
     }
 }
