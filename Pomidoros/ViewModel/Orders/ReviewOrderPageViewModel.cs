@@ -17,6 +17,11 @@ namespace Pomidoros.ViewModel.Orders
 {
     public class ReviewOrderPageViewModel : BaseViewModel, IParametrized
     {
+        public ReviewOrderPageViewModel()
+        {
+            GoogleMapProvider.SetCenterCoordinates(UserLocationService.GetLastKnownUserLocation());
+        }
+
         public void PassParameters(NavigationParameters parameters)
         {
             if (parameters.TryGetParameter<FullOrderModel>("order", out var order))
@@ -27,6 +32,10 @@ namespace Pomidoros.ViewModel.Orders
                 InitMap();
             }
         }
+
+        private IUserLocationService _userLocationService;
+        protected IUserLocationService UserLocationService
+            => _userLocationService ??= App.Container.Resolve<IUserLocationService>();
 
         public GoogleMapViewModel GoogleMapProvider { get; } = new GoogleMapViewModel();
 
@@ -56,8 +65,7 @@ namespace Pomidoros.ViewModel.Orders
             {
                 Task.Run(async () =>
                 {
-                    var userLocationService = App.Container.Resolve<IUserLocationService>();
-                    var routeInfo = await userLocationService.GetRouteInfoAsync(Order, CancellationToken.None);
+                    var routeInfo = await UserLocationService.GetRouteInfoAsync(Order, CancellationToken.None);
                     await MainThread.InvokeOnMainThreadAsync(() =>
                     {
                         GoogleMapProvider.SetCenterCoordinates(routeInfo?.Coordinates);
