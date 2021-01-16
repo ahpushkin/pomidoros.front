@@ -4,11 +4,9 @@
                       x:Class="Pomidoros.View.Orders.FeedBackForOrderPage"
                       x:TypeArguments="vm:CompleteOrderPageViewModel"
                       x:DataType="vm:CompleteOrderPageViewModel"
-                      xmlns:local="clr-namespace:Pomidoros.Controls"
                       xmlns:vm="clr-namespace:Pomidoros.ViewModel.Orders;assembly=Pomidoros"
                       xmlns:base="clr-namespace:Pomidoros.View.Base;assembly=Pomidoros"
                       xmlns:state="clr-namespace:Pomidoros.StateContainer;assembly=Pomidoros"
-                      xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
                       ControlTemplate="{x:StaticResource NavigatablePageTemplate}"
                       BackgroundColor="White"
                       StatusBarColor="White"
@@ -22,7 +20,7 @@
                 <RowDefinition Height="70" />
             </Grid.RowDefinitions>
             
-            <state:StateContainer x:Name="container">
+            <state:StateContainer  State="{Binding State}">
                 <state:StateCondition State="Default">
                     
                     <StackLayout Padding="30"
@@ -40,7 +38,7 @@
                                      BackgroundColor="Transparent"
                                      Spacing="0">
                 
-                            <Button Clicked="YesEvent" 
+                            <Button Command="{Binding YesCommand}" 
                                     Text="Да"
                                     Margin="0,0,0,0"
                                     TextColor="#96A637"
@@ -51,7 +49,7 @@
                                     FontSize="26"
                                     FontFamily="{StaticResource BoldFont}"/>
                 
-                            <Button Clicked="NopeEvent"
+                            <Button Command="{Binding NoCommand}"
                                     BackgroundColor="Transparent"
                                     Text="Нет"
                                     TextColor="Gray"
@@ -184,13 +182,12 @@
             </state:StateContainer>
             
             <Button Grid.Row="1"
-                    Clicked="DoneEvent"
+                    Command="{Binding DoneCommand}"
                     TextColor="#96A637"
-                    Text="Завершить доставку (15)"
+                    Text="{Binding CompleteText}"
                     BackgroundColor="Transparent"
                     FontSize="16"
-                    FontFamily="{StaticResource BoldFont}"
-                    x:Name="complete"/>
+                    FontFamily="{StaticResource BoldFont}"/>
             
         </Grid>
     </ContentPage.Content>

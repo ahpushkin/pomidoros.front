@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
+using Autofac;
 using Core.Extensions;
 using Core.Navigation;
 using Pomidoros.Controller;
 using Pomidoros.View.FlowAfterOrder;
-using Pomidoros.View.Orders;
-using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Services.Models.Enums;
 using Services.Models.Orders;
+using Services.Orders;
 using Xamarin.Forms;
 
 namespace Pomidoros.View.Notification
@@ -24,6 +24,10 @@ namespace Pomidoros.View.Notification
         {
             InitializeComponent();
         }
+
+        private IOrdersProvider _ordersProvider;
+        protected IOrdersProvider OrdersProvider
+            => _ordersProvider ??= App.Container.Resolve<IOrdersProvider>();
 
         private void ClientClicked(object sender, EventArgs e)
         {
@@ -42,12 +46,13 @@ namespace Pomidoros.View.Notification
 
         private async Task GoToHistoryAsync()
         {
-            //send request to server about closed order
             UserDialogs.Instance.ShowLoading("");
-            await Task.Delay(2000);
-            UserDialogs.Instance.HideLoading();
 
             _order.OrderStatus = EOrderStatus.Failed;
+            await OrdersProvider.UpdateOrderDataAsync(_order.Number, _order, CancellationToken.None);
+
+            UserDialogs.Instance.HideLoading();
+
             var page = new DoneOrderPage();
             _navigation.InsertPageBefore(page, _navigation.NavigationStack[1], _order, "order");
             await PopupNavigation.Instance.PopAsync();

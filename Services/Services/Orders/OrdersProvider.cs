@@ -51,7 +51,7 @@ namespace Services.Orders
             return await GetOrdersAsync(orders, true, token);
         }
 
-        public async Task<FullOrderModel> UpdateOrderDataASync(string number, FullOrderModel newData, CancellationToken token)
+        public async Task<FullOrderModel> UpdateOrderDataAsync(string number, FullOrderModel newData, CancellationToken token)
         {
             var order = await _ordersApi.UpdateOrderAsync(number, newData, token);
             if (order != null)
@@ -76,7 +76,7 @@ namespace Services.Orders
             fullModel.Type = newData.Type;
             fullModel.EndTime = newData.EndTime.ToUnixTimeSeconds();
 
-            await UpdateOrderDataASync(newData.Number, fullModel, token);
+            await UpdateOrderDataAsync(newData.Number, fullModel, token);
         }
 
         private async Task<IEnumerable<ShortOrderModel>> GetOrdersAsync(IEnumerable<FullOrderModel> orders, bool isHistoryOrders, CancellationToken token)

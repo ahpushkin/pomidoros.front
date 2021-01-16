@@ -87,7 +87,7 @@ namespace Pomidoros.ViewModel.Orders
                 UserDialogs.ShowLoading();
                 Order.DeliveryAddress = DeliveryAddress;
                 Order.DeliveryCity = _deliveryCity;
-                await _ordersProvider.UpdateOrderDataASync(Order.OrderNumber, Order, CancellationToken.None);
+                await _ordersProvider.UpdateOrderDataAsync(Order.OrderNumber, Order, CancellationToken.None);
                 await Navigation.PopAsync();
             }
             catch (Exception e)

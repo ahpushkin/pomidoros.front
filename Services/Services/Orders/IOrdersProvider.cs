@@ -13,7 +13,7 @@ namespace Services.Orders
 
         Task<IEnumerable<ShortOrderModel>> GetOrdersHistoryAsync(CancellationToken token);
 
-        Task<FullOrderModel> UpdateOrderDataASync(string number, FullOrderModel newData, CancellationToken token);
+        Task<FullOrderModel> UpdateOrderDataAsync(string number, FullOrderModel newData, CancellationToken token);
 
         Task UpdateOrderDataAsync(ShortOrderModel newData, CancellationToken token);
     }
