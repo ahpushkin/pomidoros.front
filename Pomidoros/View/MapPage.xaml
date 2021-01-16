@@ -7,6 +7,7 @@
     xmlns:controls="clr-namespace:Pomidoros.Controls"
     xmlns:vmcommon="clr-namespace:Pomidoros.ViewModel"
     xmlns:vm="clr-namespace:Pomidoros.ViewModel"
+    xmlns:str="clr-namespace:Pomidoros.Resources;assembly=Pomidoros"
     BackgroundColor="White"
     NavigationPage.HasNavigationBar="False">
 
@@ -29,7 +30,8 @@
                     BackgroundColor="Transparent"
                     FontFamily="{StaticResource BoldFont}"
                     FontSize="16"
-                    Text="Заказ№00000"
+                    Text="{Binding Order.OrderNumber,
+                       StringFormat={x:Static str:LocalizationStrings.OrderNumberTitleFormat}}"
                     TextColor="#1C1C1C" />
 
                 <ImageButton
