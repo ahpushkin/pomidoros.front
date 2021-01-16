@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Core.Commands;
 using Core.Extensions;
 using Core.Navigation;
+using Core.ViewModel.Infra;
 using Pomidoros.View.Orders;
 using Pomidoros.ViewModel.Base;
 using Pomidoros.ViewModel.ListElements;
@@ -18,9 +19,10 @@ using Services.Orders;
 
 namespace Pomidoros.ViewModel.Orders
 {
-    public class MyOrdersPageViewModel : BaseViewModel, IParametrized
+    public class MyOrdersPageViewModel : BaseViewModel, IParametrized, IAppearingAware
     {
         private const int MaxOrdersCount = 2;
+        private bool appearedFirstTime = true;
         
         #region services
 
@@ -55,12 +57,7 @@ namespace Pomidoros.ViewModel.Orders
             set => SetProperty(ref _orderAttention, value);
         }
 
-        private ObservableCollection<ShortOrderViewModel> _items;
-        public ObservableCollection<ShortOrderViewModel> Items
-        {
-            get => _items;
-            set => SetProperty(ref _items, value);
-        }
+        public ObservableCollection<ShortOrderViewModel> Items { get; } = new ObservableCollection<ShortOrderViewModel>();
         
         public ICommand OpenOrderCommand => new AsyncCommand<ShortOrderViewModel>(OnOpenOrderCommand);
         public ICommand BeginDeliveryCommand => new AsyncCommand<ShortOrderViewModel>(OnBeginDeliveryCommandAsync);
@@ -136,22 +133,37 @@ namespace Pomidoros.ViewModel.Orders
 
         #endregion
 
+        public async void OnAppearing()
+        {
+            if (!appearedFirstTime)
+            {
+                await OnRefreshCommandAsync(null);
+            }
+            appearedFirstTime = false;
+        }
+
         private async Task UpdateOrdersList()
         {
             var orders = await _ordersProvider.GetOrdersAsync(CancellationToken.None);
-            var ordersViewModels = orders.Select(e => _itemsBuilder(e, OpenOrderCommand));
-            Items = new ObservableCollection<ShortOrderViewModel>(ordersViewModels);
-            OrderAttention = Items.Count >= MaxOrdersCount;
+            SetOrders(orders);
         }
 
         public void PassParameters(NavigationParameters parameters)
         {
             if (parameters.TryGetParameter("orders", out IEnumerable<ShortOrderModel> orders))
             {
-                var ordersViewModels = orders.Select(e => _itemsBuilder(e, OpenOrderCommand));
-                Items = new ObservableCollection<ShortOrderViewModel>(ordersViewModels);
-                OrderAttention = Items.Count >= MaxOrdersCount;
+                SetOrders(orders);
             }
+        }
+
+        private void SetOrders(IEnumerable<ShortOrderModel> orders)
+        {
+            var ordersViewModels = orders.Select(e => _itemsBuilder(e, OpenOrderCommand));
+
+            Items.Clear();
+            Items.Add(ordersViewModels);
+
+            OrderAttention = Items.Count >= MaxOrdersCount;
         }
     }
 }
