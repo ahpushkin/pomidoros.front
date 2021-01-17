@@ -81,6 +81,7 @@ namespace Pomidoros.ViewModel.Orders
         private async Task OnBeginDeliveryCommandAsync(ShortOrderViewModel arg)
         {
             arg.Type = EOrderType.Default;
+            arg.Status = EOrderStatus.Opened;
             await _ordersProvider.UpdateOrderDataAsync(arg.GetModel(), CancellationToken.None);
             await OnOpenOrderCommand(arg);
         }

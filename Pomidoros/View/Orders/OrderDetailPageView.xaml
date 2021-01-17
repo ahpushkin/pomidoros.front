@@ -48,7 +48,7 @@
                                        HorizontalOptions="Center"
                                        FontFamily="{StaticResource BoldFont}"/>
                         
-                                <Label Text="{Binding Order.EndTime,
+                                <Label Text="{Binding EndTime,
                                 StringFormat={x:Static str:LocalizationStrings.DeliveryEstimationTimeLabelFormat}}"
                                        FontSize="16"
                                        TextColor="#1C1C1C"
@@ -132,7 +132,6 @@
                                        HorizontalOptions="Center"
                                        HorizontalTextAlignment="Center"
                                        FontAttributes="Bold"
-                                       IsVisible="{Binding IsOrderOpened}"
                                        FontFamily="{StaticResource BoldFont}" />
                         
                                 <Label Text="{Binding CountDown,
@@ -141,7 +140,6 @@
                                        FontFamily="{StaticResource NormalFont}"
                                        HorizontalOptions="Center"
                                        HorizontalTextAlignment="Center"
-                                       IsVisible="{Binding IsOrderOpened}"
                                        TextColor="#1C1C1C"/>
                         
                             </StackLayout>
@@ -247,7 +245,7 @@
                     Text="Просмотреть маршрут"
                     TextColor="White" />
 
-                <StackLayout Orientation="Horizontal">
+                <!--<StackLayout Orientation="Horizontal">
                     
                     <Frame Margin="30,40,0,0"
                            BorderColor="LightGray"
@@ -295,7 +293,7 @@
                         </StackLayout>
                     </Frame>
 
-                </StackLayout>
+                </StackLayout>-->
                 
                 <Label
                     Margin="30,39,30,0"

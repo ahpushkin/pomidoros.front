@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -13,6 +14,7 @@ using Pomidoros.ViewModel.Base;
 using Rg.Plugins.Popup.Contracts;
 using Services.Models.Enums;
 using Services.Models.Orders;
+using Services.Orders;
 using Services.UserLocation;
 using Xamarin.Essentials;
 
@@ -36,8 +38,8 @@ namespace Pomidoros.ViewModel.Orders
                 CountDown = 10;
                 Order = order;
                 IsOrderOpened = order.OrderStatus == EOrderStatus.Opened;
-                IsOrderDelivered = order.OrderStatus == EOrderStatus.Completed;
                 Title = string.Format(LocalizationStrings.OrderNumberTitleFormat, order.OrderNumber);
+                EndTime = DateTimeOffset.FromUnixTimeSeconds(order.EndTime);
 
                 InitMap();
             }
@@ -46,6 +48,10 @@ namespace Pomidoros.ViewModel.Orders
         private IUserLocationService _userLocationService;
         protected IUserLocationService UserLocationService
             => _userLocationService ??= App.Container.Resolve<IUserLocationService>();
+
+        private IOrdersProvider _ordersProvider;
+        protected IOrdersProvider OrdersProvider
+            => _ordersProvider ??= App.Container.Resolve<IOrdersProvider>();
 
         public GoogleMapViewModel GoogleMapProvider { get; } = new GoogleMapViewModel();
 
@@ -56,18 +62,18 @@ namespace Pomidoros.ViewModel.Orders
             set => SetProperty(ref _order, value);
         }
 
+        private DateTimeOffset _endTime;
+        public DateTimeOffset EndTime
+        {
+            get => _endTime;
+            set => SetProperty(ref _endTime, value);
+        }
+
         private int _countDown;
         public int CountDown
         {
             get => _countDown;
             set => SetProperty(ref _countDown, value);
-        }
-
-        private bool _isOrderDelivered;
-        public bool IsOrderDelivered
-        {
-            get => _isOrderDelivered;
-            set => SetProperty(ref _isOrderDelivered, value);
         }
 
         private bool _isOrderOpened;
@@ -76,7 +82,7 @@ namespace Pomidoros.ViewModel.Orders
             get => _isOrderOpened;
             set => SetProperty(ref _isOrderOpened, value);
         }
-        
+
         public ICommand CallToClientCommand => new AsyncCommand(OnCallToClientCommand);
         public ICommand ApproveDeliveryCommand => new AsyncCommand(OnApproveDeliveryCommand);
         public ICommand ImpossibleDeliveryCommand => new AsyncCommand(OnImpossibleDeliveryCommand);
@@ -91,11 +97,14 @@ namespace Pomidoros.ViewModel.Orders
                 return;
 
             UserDialogs.ShowLoading();
+
+            Order.Type = EOrderType.Default;
             Order.OrderStatus = EOrderStatus.Opened;
-            await Task.Delay(1500);
+            await OrdersProvider.UpdateOrderDataAsync(Order.Number, Order, CancellationToken.None);
+
             RaisePropertyChanged(nameof(Order));
             IsOrderOpened = Order.OrderStatus == EOrderStatus.Opened;
-            IsOrderDelivered = Order.OrderStatus == EOrderStatus.Completed;
+
             UserDialogs.HideLoading();
         }
 
