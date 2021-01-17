@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Input;
 using Core.ViewModel.Infra;
+using Pomidoros.Resources;
 using Services.Models.Enums;
 using Services.Models.Orders;
 
@@ -16,7 +17,7 @@ namespace Pomidoros.ViewModel.ListElements
         {
             _command = command;
             Number = model.Number;
-            Address = model.Address;
+            Address = string.IsNullOrEmpty(model.Address) ? LocalizationStrings.NoDeliveryAddressLabel : model.Address;
             Distance = model.Distance;
             Type = model.Type;
             EndTime = model.EndTime;
@@ -49,7 +50,7 @@ namespace Pomidoros.ViewModel.ListElements
             return new ShortOrderModel
             {
                 Number = this.Number,
-                Address = this.Address,
+                Address = this.Address == LocalizationStrings.NoDeliveryAddressLabel ? "" : this.Address,
                 Distance = this.Distance,
                 Status = this.Status,
                 Type = this.Type,
