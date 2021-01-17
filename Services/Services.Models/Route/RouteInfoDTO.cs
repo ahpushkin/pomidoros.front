@@ -4,8 +4,17 @@ namespace Services.Models.Route
 {
     public class RouteInfoDTO
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public RouteInfoDTO() { }
+
+        public RouteInfoDTO(RouteInfoModel model)
+        {
+            Id = model.Id;
+            OrderId = model.OrderId;
+            UserId = model.UserId;
+        }
+
+        [PrimaryKey]
+        public long Id { get; set; }
 
         public long OrderId { get; set; }
 

@@ -55,10 +55,16 @@ namespace Services.UserLocation
 
         public async Task<RouteInfoModel> GetRouteInfoAsync(FullOrderModel orderModel, CancellationToken token)
         {
-            var routeInfo = await _storage.GetRouteInfoForOrder(Convert.ToInt64(orderModel.OrderNumber));
+            var orderId = Convert.ToInt64(orderModel.Number);
+            var routeInfo = await _storage.GetRouteInfoForOrder(orderId);
             if (routeInfo != null)
             {
                 return routeInfo;
+            }
+
+            if (string.IsNullOrEmpty(orderModel.DeliveryAddress))
+            {
+                return null;
             }
 
             var start = await _geoCodingService.GetLocationByAddress(orderModel.StartCity + ", " + orderModel.StartAddress);
@@ -71,32 +77,32 @@ namespace Services.UserLocation
 
             var user = _preferencesStorage.Get<Models.User.UserDataModel>(Constants.StorageKeys.UserData);
 
-            var result = await _userLocationApi.GetRouteInfoAsync(orderModel.Number, user.Identify,
+            // TODO: Release - uncomment real order and user ids
+            var googleRouteInfo = await _userLocationApi.GetRouteInfoAsync(null, "9",//orderModel.Number, user.Identify,
                 start.Item1.ToString(CultureInfo.InvariantCulture),
                 start.Item2.ToString(CultureInfo.InvariantCulture),
                 end.Item1.ToString(CultureInfo.InvariantCulture),
                 end.Item2.ToString(CultureInfo.InvariantCulture),
                 token);
 
-            if (result == null)
+            if (googleRouteInfo == null)
             {
                 return null;
             }
-            var orderId = Convert.ToInt64(orderModel.Number);
             var userId = Convert.ToInt32(user.Identify);
-            var coordinates = UserLocationService.GetCoordinates(result);
+            var coordinates = GetCoordinates(googleRouteInfo);
 
-            var routeId = await _storage.AddRouteInfo(orderId, userId, coordinates);
-
-            routeInfo = new RouteInfoModel
+            var result = new RouteInfoModel
             {
-                Id = routeId,
+                Id = googleRouteInfo.Id,
                 OrderId = orderId,
                 UserId = userId,
                 Coordinates = coordinates
             };
 
-            return routeInfo;
+            await _storage.AddRouteInfo(result);
+
+            return result;
         }
 
         public async Task<bool> IsOnBaseAsync(CancellationToken token)
@@ -187,7 +193,7 @@ namespace Services.UserLocation
                 Coordinates = coordinates
             };
 
-            await _storage.AddRouteInfo(_orderId, _userId, coordinates);
+            await _storage.AddRouteInfo(routeInfo);
 
             return routeInfo;
         }

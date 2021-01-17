@@ -153,11 +153,14 @@ namespace Pomidoros.ViewModel.Orders
                 Task.Run(async () =>
                 {
                     var routeInfo = await UserLocationService.GetRouteInfoAsync(Order, CancellationToken.None);
-                    await MainThread.InvokeOnMainThreadAsync(() =>
+                    if (routeInfo != null)
                     {
-                        GoogleMapProvider.SetCenterCoordinates(routeInfo?.Coordinates);
-                        GoogleMapProvider.AddRouteWithMarkers(routeInfo?.Coordinates);
-                    });
+                        await MainThread.InvokeOnMainThreadAsync(() =>
+                        {
+                            GoogleMapProvider.SetCenterCoordinates(routeInfo?.Coordinates);
+                            GoogleMapProvider.AddRouteWithMarkers(routeInfo?.Coordinates);
+                        });
+                    }
                 });
             }
         }

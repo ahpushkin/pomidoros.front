@@ -5,7 +5,7 @@ namespace Services.Models.Route
 {
     public class RouteInfoModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public long OrderId { get; set; }
 

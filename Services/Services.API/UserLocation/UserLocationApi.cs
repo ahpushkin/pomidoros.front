@@ -7,7 +7,7 @@ namespace Services.API.UserLocation
 {
     public class UserLocationApi : ApiBase, IUserLocationApi
     {
-        public async Task SendCurrentLocationAsync(int routeId, string latitude, string longitude, CancellationToken token)
+        public async Task SendCurrentLocationAsync(long routeId, string latitude, string longitude, CancellationToken token)
         {
             var parameters = new Dictionary<string, object>
             {
@@ -27,9 +27,13 @@ namespace Services.API.UserLocation
                 { "start_lon_courier", startLongitude},
                 { "finish_point_lat", endLatitude},
                 { "finish_point_lon", endLongitude},
-                { "order", orderId},
                 { "courier_user", userId}
             };
+
+            if (orderId != null)
+            {
+                parameters["order"] = orderId;
+            }
 
             return await PostWithTokenAsync<GoogleRouteInfo>("geo/route-info", parameters, token);
         }

@@ -99,32 +99,20 @@ namespace Services.Storage
             return result;
         }
 
-        public async Task<int> AddRouteInfo(long orderId, int userId, List<Tuple<double, double>> coordinates)
+        public async Task AddRouteInfo(RouteInfoModel routeInfo)
         {
-            await sqLiteConnection.InsertAsync(new RouteInfoDTO
-            {
-                OrderId = orderId,
-                UserId = userId
-            });
+            await sqLiteConnection.InsertAsync(new RouteInfoDTO(routeInfo));
 
-            var routes = await sqLiteConnection.Table<RouteInfoDTO>().Where(i => i.OrderId == orderId).ToListAsync();
-            if (routes.Count != 1)
+            var coords = routeInfo.Coordinates.Select(i => new LocationDTO
             {
-                return -1;
-            }
-
-            var coords = coordinates.Select(i => new LocationDTO
-            {
-                RouteId = routes[0].Id,
+                RouteId = routeInfo.Id,
                 Lat = i.Item1,
                 Lon = i.Item2
             });
             await sqLiteConnection.InsertAllAsync(coords);
-
-            return routes[0].Id;
         }
 
-        public async Task<RouteInfoModel> GetRouteInfo(int id)
+        public async Task<RouteInfoModel> GetRouteInfo(long id)
         {
             var routes = await sqLiteConnection.Table<RouteInfoDTO>().Where(i => i.Id == id).ToListAsync();
             if (routes.Count != 1)

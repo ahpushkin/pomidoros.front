@@ -44,11 +44,14 @@ namespace Pomidoros.ViewModel
                 {
                     var userLocationService = App.Container.Resolve<IUserLocationService>();
                     var routeInfo = await userLocationService.GetRouteInfoAsync(Order, CancellationToken.None);
-                    await MainThread.InvokeOnMainThreadAsync(() =>
+                    if (routeInfo != null)
                     {
-                        GoogleMapProvider.SetCenterCoordinates(routeInfo?.Coordinates);
-                        GoogleMapProvider.AddRouteWithMarkers(routeInfo?.Coordinates);
-                    });
+                        await MainThread.InvokeOnMainThreadAsync(() =>
+                        {
+                            GoogleMapProvider.SetCenterCoordinates(routeInfo?.Coordinates);
+                            GoogleMapProvider.AddRouteWithMarkers(routeInfo?.Coordinates);
+                        });
+                    }
                 });
             }
         }

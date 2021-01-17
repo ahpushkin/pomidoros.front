@@ -8,6 +8,9 @@ namespace Services.Models.Route
         [JsonProperty("steps")]
         public List<Step> Steps { get; set; }
 
+        [JsonProperty("id")]
+        public long Id { get; set; }
+
         public class Loc
         {
             [JsonProperty("lat")]

@@ -7,7 +7,7 @@ namespace Services.Models.Route
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
-        public int RouteId { get; set; }
+        public long RouteId { get; set; }
 
         public double Lat { get; set; }
 

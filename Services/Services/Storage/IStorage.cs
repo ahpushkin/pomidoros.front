@@ -16,9 +16,9 @@ namespace Services.Storage
 
         Task<IEnumerable<FullOrderModel>> GetAllOrders(bool isHistoryOrders);
 
-        Task<int> AddRouteInfo(long orderId, int userId, List<Tuple<double, double>> coordinates);
+        Task AddRouteInfo(RouteInfoModel routeInfo);
 
-        Task<RouteInfoModel> GetRouteInfo(int id);
+        Task<RouteInfoModel> GetRouteInfo(long id);
 
         Task<RouteInfoModel> GetRouteInfoForOrder(long orderId);
 
