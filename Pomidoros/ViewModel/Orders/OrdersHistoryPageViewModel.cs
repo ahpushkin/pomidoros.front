@@ -57,20 +57,12 @@ namespace Pomidoros.ViewModel.Orders
             set => SetProperty(ref _message, value);
         }
 
-        private ObservableCollection<ShortOrderViewModel> _uncompletedOrders;
-        public ObservableCollection<ShortOrderViewModel> UncompletedOrders
-        {
-            get => _uncompletedOrders;
-            set => SetProperty(ref _uncompletedOrders, value);
-        }
+        public ObservableCollection<ShortOrderViewModel> UncompletedOrders { get; }
+            = new ObservableCollection<ShortOrderViewModel>();
 
-        private ObservableCollection<ShortOrderViewModel> _completedOrders;
-        public ObservableCollection<ShortOrderViewModel> CompletedOrders
-        {
-            get => _completedOrders;
-            set => SetProperty(ref _completedOrders, value);
-        }
-        
+        public ObservableCollection<ShortOrderViewModel> CompletedOrders { get; }
+            = new ObservableCollection<ShortOrderViewModel>();
+
         public ICommand RefreshCommand => new AsyncCommand(OnRefreshCommand);
         public ICommand ReviewOrderCommand => new AsyncCommand<ShortOrderViewModel>(OnReviewOrderCommand);
 
@@ -123,11 +115,7 @@ namespace Pomidoros.ViewModel.Orders
         private async Task UpdateOrdersList()
         {
             var orders = await _ordersProvider.GetOrdersHistoryAsync(CancellationToken.None);
-            var completedOrdersViewModels = orders.Where(o => o.Status == EOrderStatus.Completed).Select(e => _itemsBuilder(e, ReviewOrderCommand));
-            CompletedOrders = new ObservableCollection<ShortOrderViewModel>(completedOrdersViewModels);
-            var uncompletedOrdersViewModels = orders.Where(o => o.Status == EOrderStatus.NotPayed).Select(e => _itemsBuilder(e, ReviewOrderCommand));
-            UncompletedOrders = new ObservableCollection<ShortOrderViewModel>(uncompletedOrdersViewModels);
-            UpdateMessage();
+            SetOrders(orders);
         }
 
         private void UpdateMessage()
@@ -154,12 +142,23 @@ namespace Pomidoros.ViewModel.Orders
         {
             if (parameters.TryGetParameter("orders", out IEnumerable<ShortOrderModel> orders))
             {
-                var completedOrdersViewModels = orders.Where(o => o.Status == EOrderStatus.Completed).Select(e => _itemsBuilder(e, ReviewOrderCommand));
-                CompletedOrders = new ObservableCollection<ShortOrderViewModel>(completedOrdersViewModels);
-                var uncompletedOrdersViewModels = orders.Where(o => o.Status == EOrderStatus.NotPayed).Select(e => _itemsBuilder(e, ReviewOrderCommand));
-                UncompletedOrders = new ObservableCollection<ShortOrderViewModel>(uncompletedOrdersViewModels);
-                UpdateMessage();
+                SetOrders(orders);
             }
+        }
+
+        private void SetOrders(IEnumerable<ShortOrderModel> orders)
+        {
+            var completedOrdersViewModels = orders.Where(o => o.Status == EOrderStatus.Completed)
+                .Select(e => _itemsBuilder(e, ReviewOrderCommand));
+            CompletedOrders.Clear();
+            CompletedOrders.Add(completedOrdersViewModels);
+
+            var uncompletedOrdersViewModels = orders.Where(o => o.Status == EOrderStatus.NotPayed || o.Status == EOrderStatus.Failed)
+                .Select(e => _itemsBuilder(e, ReviewOrderCommand));
+            UncompletedOrders.Clear();
+            UncompletedOrders.Add(uncompletedOrdersViewModels);
+
+            UpdateMessage();
         }
     }
 }

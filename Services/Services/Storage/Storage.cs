@@ -72,11 +72,11 @@ namespace Services.Storage
             List<OrderDTO> orders;
             if (isHistoryOrders)
             {
-                orders = await sqLiteConnection.Table<OrderDTO>().Where(i => i.Status == 0 || i.Status == 1).ToListAsync();
+                orders = await sqLiteConnection.Table<OrderDTO>().Where(i => i.Status == 0 || i.Status == 1 || i.Status == 3).ToListAsync();
             }
             else
             {
-                orders = await sqLiteConnection.Table<OrderDTO>().Where(i => i.Status != 0 && i.Status != 1).ToListAsync();
+                orders = await sqLiteConnection.Table<OrderDTO>().Where(i => i.Status == 2 || i.Status == 4 || i.Status == 5).ToListAsync();
             }
 
             var result = new List<FullOrderModel>();

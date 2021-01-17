@@ -164,7 +164,7 @@
                     Text="Просмотреть маршрут"
                     TextColor="White" />
 
-                <StackLayout Orientation="Horizontal">
+                <!--<StackLayout Orientation="Horizontal">
 
                     <Frame Margin="30,40,0,0"
                            BorderColor="LightGray"
@@ -258,7 +258,7 @@
                         </Frame.Triggers>
                     </Frame>
 
-                </StackLayout>
+                </StackLayout>-->
 
                 <Label
                     Margin="30,39,30,0"
