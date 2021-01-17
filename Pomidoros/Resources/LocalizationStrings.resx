@@ -124,7 +124,8 @@
 на экран маршрута</value>
     </data>
     <data name="OrderContentTitleFormat" xml:space="preserve">
-        <value>Состав&amp;#x0a;Заказа №{0}</value>
+        <value>Состав
+Заказа №{0}</value>
     </data>
     <data name="NoDeliveryAddressLabel" xml:space="preserve">
         <value>Без адреса</value>

@@ -77,7 +77,7 @@ namespace Services.Models.Orders
                 Distance = Distance,
                 ClientNumber = ClientPhone,
                 Comments = Comments,
-                Contents = contentItems,
+                Contents = contentItems ?? new List<OrderContentModel>(),
                 AmountPrice = Price,
                 Type = (EOrderType)Type,
                 EndTime = EndTime,

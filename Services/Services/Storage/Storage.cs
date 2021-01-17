@@ -28,14 +28,17 @@ namespace Services.Storage
 
         public async Task AddOrder(FullOrderModel order)
         {
-            var contentItems = order.Contents.Select(i => new OrderContentDTO
+            if (order.Contents != null)
             {
-                OrderId = Convert.ToInt64(order.Number),
-                Name = i.Name,
-                Count = i.Count,
-                Price = (int)i.Price
-            });
-            await sqLiteConnection.InsertAllAsync(contentItems);
+                var contentItems = order.Contents.Select(i => new OrderContentDTO
+                {
+                    OrderId = Convert.ToInt64(order.Number),
+                    Name = i.Name,
+                    Count = i.Count,
+                    Price = (int)i.Price
+                });
+                await sqLiteConnection.InsertAllAsync(contentItems);
+            }
 
             await sqLiteConnection.InsertAsync(new OrderDTO(order));
         }
